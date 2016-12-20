@@ -7,15 +7,15 @@ Game::Game()
 
 void Game::Update(float dt)
 {
-	for (auto& gameObject : m_gameObjects)
+	for (GameObject* gameObject : m_gameObjects)
 	{
 		gameObject->Update(dt);
 	}
 }
 
-void Game::Draw(sf::RenderWindow & r)
+void Game::Draw(const sf::RenderWindow & r)
 {
-	for (auto& gameObject : m_gameObjects)
+	for (GameObject* gameObject : m_gameObjects)
 	{
 		gameObject->Draw(r);
 	}

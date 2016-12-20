@@ -1,6 +1,7 @@
 #pragma once
 #include <SFML\Graphics.hpp>
 #include <vector>
+#include "GameObject.h"
 
 class Game
 {
@@ -8,7 +9,7 @@ public:
 	Game();
 
 	void Update(float dt);
-	void Draw(sf::RenderWindow& r);
+	void Draw(const sf::RenderWindow& r);
 
 private:
 	std::vector<GameObject*> m_gameObjects;
