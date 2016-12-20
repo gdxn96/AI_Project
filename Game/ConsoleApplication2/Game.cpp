@@ -3,6 +3,7 @@
 
 Game::Game()
 {
+	m_gameObjects.push_back(new Terrain(500, 1920));
 }
 
 void Game::Update(float dt)
@@ -13,7 +14,7 @@ void Game::Update(float dt)
 	}
 }
 
-void Game::Draw(const sf::RenderWindow & r)
+void Game::Draw(sf::RenderWindow & r)
 {
 	for (GameObject* gameObject : m_gameObjects)
 	{
