@@ -14,10 +14,15 @@
 
 #include "stdafx.h"
 #include <SFML/Graphics.hpp>
+#include "Game.h"
 
 int main()
 {
+	Game game = Game();
 	sf::RenderWindow window(sf::VideoMode(1920, 1080), "Defender");
+
+	sf::Clock deltaClock; // used to calculate dt
+	float dt = 0; // floating point dt as seconds
 
 	while (window.isOpen())
 	{
@@ -27,12 +32,16 @@ int main()
 			if (event.type == sf::Event::Closed)
 				window.close();
 		}
+		game.Update(dt);
 
 		window.clear();
 
 		//draw objects here
+		game.Draw(window);
 
 		window.display();
+
+		dt = deltaClock.restart().asSeconds();
 	}
 
 	return 0;
