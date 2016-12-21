@@ -1,14 +1,20 @@
 #pragma once
 #include "GameObject.h"
-#include "CustomTypes.h"
+#include "Constants.h"
+
+
 
 class Player : public GameObject
 {
 private:
+	const Vector2D m_acceleration;
 	Vector2D m_direction;
-	Vector2D m_maxVelocity;
-	Vector2D m_minVelocity;
+	const Vector2D m_maxVelocity;
 	Vector2D m_velocity;
+
+	void updateVelocity(float dt);
+	float calculateXVelocity(float dt);
+	float calculateYVelocity(float dt);
 
 public:
 	Player();
