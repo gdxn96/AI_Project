@@ -1,10 +1,13 @@
 #pragma once
-#include <SFML\Graphics.hpp>
 
-class GameObject
+#include <SFML\Graphics.hpp>
+#include "EventListener.h"
+
+
+class GameObject : public EventListener
 {
 public:
-	GameObject();
+	GameObject() {};
 	virtual void Update(float dt) = 0;
 	virtual void Draw(const sf::RenderWindow& w) = 0;
 

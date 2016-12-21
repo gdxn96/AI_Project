@@ -3,6 +3,7 @@
 
 Game::Game()
 {
+	m_gameObjects.push_back(new Player());
 }
 
 void Game::Update(float dt)
