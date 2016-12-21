@@ -18,12 +18,15 @@
 
 int main()
 {
-	Game game = Game();
-	sf::RenderWindow window(sf::VideoMode(1920, 1080), "Defender");
+	srand(time(NULL));
+	Vector2D screenSize(1920, 1080);
+	Vector2D levelSize(screenSize.w * 9, screenSize.h);
+	sf::RenderWindow window(sf::VideoMode(screenSize.w, screenSize.h), "Defender");
+	Game game = Game(screenSize, levelSize);
 
 	sf::Clock deltaClock; // used to calculate dt
 	float dt = 0; // floating point dt as seconds
-
+	
 	while (window.isOpen())
 	{
 		sf::Event event;
@@ -31,6 +34,11 @@ int main()
 		{
 			if (event.type == sf::Event::Closed)
 				window.close();
+			//TESTING
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+				game.m_camera.Move(sf::Vector2f(400 * dt, 0));
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+				game.m_camera.Move(sf::Vector2f(-400 * dt, 0));
 		}
 		game.Update(dt);
 

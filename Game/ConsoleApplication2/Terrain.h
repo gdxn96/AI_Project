@@ -4,10 +4,11 @@
 class Terrain : public GameObject
 {
 public:
-	Terrain(int maxPoints, int mapWidth);
+	Terrain(int minY, int maxY, Vector2D screenSize);
 	void Update(float dt) override;
 	void Draw(sf::RenderWindow& r) override;
 
 private:
 	std::vector<sf::Vertex> m_points;
+	std::vector<sf::ConvexShape> m_terrainShapes;
 };
