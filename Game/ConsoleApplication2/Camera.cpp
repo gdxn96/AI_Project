@@ -21,9 +21,9 @@ void Camera::SetCenter(sf::Vector2f center)
 	m_gameView.setCenter(center);
 }
 
-Rect Camera::getViewPort()
+sf::FloatRect Camera::getViewPort(sf::View& v)
 {
-	return Rect(m_gameView.getCenter() - sf::Vector2f(m_gameView.getSize().x / 2, m_gameView.getSize().y / 2), m_gameView.getSize());
+	return sf::FloatRect(v.getCenter() - sf::Vector2f(v.getSize().x / 2, v.getSize().y / 2), v.getSize());
 }
 
 void Camera::RenderObjects(sf::RenderWindow & window, std::vector<GameObject*>& m_gameObjects)
@@ -38,18 +38,45 @@ void Camera::RenderObjects(sf::RenderWindow & window, std::vector<GameObject*>& 
 	}
 	m_minimapView.setCenter(m_gameView.getCenter());
 	window.setView(m_gameView);
+
+	sf::FloatRect viewport = getViewPort(m_gameView);
+
+	//draw game objects
 	for (GameObject* gameObject : m_gameObjects)
 	{
-		gameObject->Draw(window);
-		gameObject->DrawWithXOffset(window, m_levelSize.w);
-	}
-	window.setView(m_minimapView);
-	for (GameObject* gameObject : m_gameObjects)
-	{
-		if (gameObject->IsMiniMapObject())
+		//cull objects not in view
+		sf::FloatRect objectAABB = gameObject->getAABB();
+		if ((objectAABB.left > viewport.left && objectAABB.left < viewport.left + viewport.width) ||
+			(objectAABB.left + objectAABB.width > viewport.left && objectAABB.left + objectAABB.width < viewport.left + viewport.width))
 		{
 			gameObject->Draw(window);
+		}
+		if (objectAABB.left + m_levelSize.w > viewport.left && objectAABB.left + m_levelSize.w < viewport.left + viewport.width ||
+			(objectAABB.left + objectAABB.width + m_levelSize.w > viewport.left && objectAABB.left + objectAABB.width + m_levelSize.w < viewport.left + viewport.width))
+		{
 			gameObject->DrawWithXOffset(window, m_levelSize.w);
+		}
+	}
+	window.setView(m_minimapView);
+
+	viewport = getViewPort(m_minimapView);
+	for (GameObject* gameObject : m_gameObjects)
+	{
+		//cull objects not needed on minimap
+		if (gameObject->IsMiniMapObject())
+		{
+			//cull objects not in view
+			sf::FloatRect objectAABB = gameObject->getAABB();
+			if ((objectAABB.left > viewport.left && objectAABB.left < viewport.left + viewport.width) ||
+				(objectAABB.left + objectAABB.width > viewport.left && objectAABB.left + objectAABB.width < viewport.left + viewport.width))
+			{
+				gameObject->Draw(window);
+			}
+			if (objectAABB.left + m_levelSize.w > viewport.left && objectAABB.left + m_levelSize.w < viewport.left + viewport.width ||
+				(objectAABB.left + objectAABB.width + m_levelSize.w > viewport.left && objectAABB.left + objectAABB.width + m_levelSize.w < viewport.left + viewport.width))
+			{
+				gameObject->DrawWithXOffset(window, m_levelSize.w);
+			}
 		}
 	}
 	renderCameraBounds(window);

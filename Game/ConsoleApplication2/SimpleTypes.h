@@ -6,6 +6,7 @@ public:
 	Vector2D pos;
 	Vector2D size;
 	Rect(Vector2D p, Vector2D s) :pos(p), size(s) {};
+	Rect(sf::FloatRect rect) : pos((rect.left, rect.top), (rect.width, rect.height)){};
 	Rect(float x = 0, float y = 0, float w = 1, float h = 1) :pos(x, y), size(w, h) {};
 	Rect& operator*(float scale)
 	{
