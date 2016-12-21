@@ -5,7 +5,6 @@
 class GameObject
 {
 public:
-	GameObject(Rect bounds = Rect(), bool isMiniMapObject = false) : m_bounds(bounds), m_isMinimapObject(isMiniMapObject) {};
 	GameObject(bool isMiniMapObject = false, Rect bounds = Rect()) : m_bounds(bounds), m_isMinimapObject(isMiniMapObject) {};
 	virtual void Update(float dt) = 0;
 	virtual void Draw(sf::RenderWindow& w) = 0;

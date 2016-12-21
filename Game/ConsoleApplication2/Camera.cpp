@@ -19,7 +19,7 @@ void Camera::SetCenter(sf::Vector2f center)
 
 Rect Camera::getViewPort()
 {
-	return Rect(m_gameView.getCenter() - sf::Vector2f(m_gameView.getCenter().x / 2, m_gameView.getCenter().y / 2), m_gameView.getSize());
+	return Rect(m_gameView.getCenter() - sf::Vector2f(m_gameView.getSize().x / 2, m_gameView.getSize().y / 2), m_gameView.getSize());
 }
 
 void Camera::RenderObjects(sf::RenderWindow & window, std::vector<GameObject*>& m_gameObjects)

@@ -1,12 +1,12 @@
 #include "stdafx.h"
 #include "Terrain.h"
 
-bool valid(int value, int max, int min)
+bool Terrain::valid(int value, int max, int min)
 {
 	return value > min && value < max;
 }
 
-std::vector<int> calculateYValues(float minY, float maxY, float displace, float roughness) 
+std::vector<int> Terrain::calculateYValues(float minY, float maxY, float displace, float roughness) 
 {
 	int power = 2048; // has to be a power of two, since we're getting the midpoint of each line over and over again
 
@@ -42,7 +42,7 @@ std::vector<int> calculateYValues(float minY, float maxY, float displace, float 
 }
 
 
-Terrain::Terrain(int minY, int maxY, Vector2D levelSize): GameObject(true)
+std::vector<TerrainSegment*> Terrain::GenerateTerrain(int minY, int maxY, Vector2D levelSize)
 {
 	sf::ConvexShape s;
 	s.setPointCount(4);
@@ -50,12 +50,12 @@ Terrain::Terrain(int minY, int maxY, Vector2D levelSize): GameObject(true)
 	float xOffset = static_cast<float>(levelSize.w) / yPoints.size();
 	sf::Vertex prev;
 	sf::Vertex current;
+	std::vector<TerrainSegment*> terrainSegments;
 
 	for (int i = 0; i < yPoints.size(); i++)
 	{
 		
 		current = sf::Vertex(sf::Vector2f(i * xOffset, yPoints[i]));
-		m_points.push_back(current);
 		
 		if (i != 0)
 		{
@@ -68,22 +68,12 @@ Terrain::Terrain(int minY, int maxY, Vector2D levelSize): GameObject(true)
 			
 			s.setFillColor(sf::Color(112, 89, 40));
 
-			m_terrainShapes.push_back(s);
+			terrainSegments.push_back(new TerrainSegment(s));
 		}
 
 		prev = current;
 	}
+
+	return terrainSegments;
 }
 
-
-void Terrain::Update(float dt)
-{
-}
-
-void Terrain::Draw(sf::RenderWindow & r)
-{
-	for (sf::ConvexShape terrainShape : m_terrainShapes)
-	{
-		r.draw(terrainShape);
-	}
-}

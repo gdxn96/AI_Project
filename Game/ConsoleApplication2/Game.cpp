@@ -8,7 +8,8 @@ Game::Game(Vector2D screenSize, Vector2D levelSize) :
 {
 	float terrainPeak = screenSize.h * 7.f / 10;
 	float terrainTrough = screenSize.h * 8.f / 10;
-	m_gameObjects.push_back(new Terrain(terrainPeak, terrainTrough, levelSize));
+	std::vector<TerrainSegment*> terrainSegments = Terrain::GenerateTerrain(terrainPeak, terrainTrough, levelSize);
+	m_gameObjects.insert(m_gameObjects.begin(), terrainSegments.begin(), terrainSegments.end());
 }
 
 void Game::Update(float dt)
