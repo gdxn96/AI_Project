@@ -42,12 +42,12 @@ std::vector<int> calculateYValues(float minY, float maxY, float displace, float 
 }
 
 
-Terrain::Terrain(int minY, int maxY, Vector2D screenSize): GameObject(true)
+Terrain::Terrain(int minY, int maxY, Vector2D levelSize): GameObject(true)
 {
 	sf::ConvexShape s;
 	s.setPointCount(4);
-	std::vector<int> yPoints = calculateYValues(minY, maxY, screenSize.h, 0.6f);
-	float xOffset = static_cast<float>(screenSize.w * 9) / yPoints.size();
+	std::vector<int> yPoints = calculateYValues(minY, maxY, levelSize.h, 0.6f);
+	float xOffset = static_cast<float>(levelSize.w) / yPoints.size();
 	sf::Vertex prev;
 	sf::Vertex current;
 
@@ -62,8 +62,8 @@ Terrain::Terrain(int minY, int maxY, Vector2D screenSize): GameObject(true)
 			sf::ConvexShape s;
 			s.setPointCount(4);
 			s.setPoint(0, prev.position);
-			s.setPoint(1, sf::Vector2f(prev.position.x, screenSize.h));
-			s.setPoint(2, sf::Vector2f(current.position.x, screenSize.h));
+			s.setPoint(1, sf::Vector2f(prev.position.x, levelSize.h));
+			s.setPoint(2, sf::Vector2f(current.position.x, levelSize.h));
 			s.setPoint(3, current.position);
 			
 			s.setFillColor(sf::Color(112, 89, 40));

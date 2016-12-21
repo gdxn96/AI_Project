@@ -4,7 +4,7 @@
 class Terrain : public GameObject
 {
 public:
-	Terrain(int minY, int maxY, Vector2D screenSize);
+	Terrain(int minY, int maxY, Vector2D levelSize);
 	void Update(float dt) override;
 	void Draw(sf::RenderWindow& r) override;
 

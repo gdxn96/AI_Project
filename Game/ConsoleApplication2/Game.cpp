@@ -6,7 +6,9 @@ Game::Game(Vector2D screenSize, Vector2D levelSize) :
 	m_levelSize(levelSize), 
 	m_camera(screenSize, levelSize)
 {
-	m_gameObjects.push_back(new Terrain(screenSize.h * 7.f / 10, screenSize.h * 8.f / 10, screenSize));
+	float terrainPeak = screenSize.h * 7.f / 10;
+	float terrainTrough = screenSize.h * 8.f / 10;
+	m_gameObjects.push_back(new Terrain(terrainPeak, terrainTrough, levelSize));
 }
 
 void Game::Update(float dt)
