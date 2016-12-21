@@ -36,9 +36,9 @@ int main()
 				window.close();
 			//TESTING
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
-				game.m_camera.Move(sf::Vector2f(400 * dt, 0));
+				game.m_camera.Move(sf::Vector2f(10000 * dt, 0));
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
-				game.m_camera.Move(sf::Vector2f(-400 * dt, 0));
+				game.m_camera.Move(sf::Vector2f(-10000 * dt, 0));
 		}
 		game.Update(dt);
 

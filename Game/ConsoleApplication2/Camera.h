@@ -13,4 +13,5 @@ public:
 private:
 	void renderCameraBounds(sf::RenderWindow& window);
 	sf::View m_minimapView, m_gameView;
+	Vector2D m_screenSize, m_levelSize;
 };

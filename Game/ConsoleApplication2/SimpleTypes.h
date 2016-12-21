@@ -17,6 +17,11 @@ public:
 		return Rect(this->pos.x / scale, this->pos.y / scale, this->size.w / scale, this->size.h / scale);
 	}
 
+	Rect& operator+(Rect& r)
+	{
+		return Rect(this->pos.x + r.pos.x, this->pos.y + r.pos.y, this->size.w + r.size.w, this->size.h + r.size.h);
+	}
+
 	Vector2D getCentreCopy()
 	{
 		return  Vector2D(this->pos.x + this->size.w / 2, this->pos.y + this->size.h / 2);

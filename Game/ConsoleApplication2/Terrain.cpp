@@ -51,6 +51,7 @@ std::vector<TerrainSegment*> Terrain::GenerateTerrain(int minY, int maxY, Vector
 	sf::Vertex prev;
 	sf::Vertex current;
 	std::vector<TerrainSegment*> terrainSegments;
+	std::vector<sf::Vertex> vertices;
 
 	for (int i = 0; i < yPoints.size(); i++)
 	{
@@ -59,7 +60,6 @@ std::vector<TerrainSegment*> Terrain::GenerateTerrain(int minY, int maxY, Vector
 		
 		if (i != 0)
 		{
-			sf::ConvexShape s;
 			s.setPointCount(4);
 			s.setPoint(0, prev.position);
 			s.setPoint(1, sf::Vector2f(prev.position.x, levelSize.h));
@@ -72,7 +72,19 @@ std::vector<TerrainSegment*> Terrain::GenerateTerrain(int minY, int maxY, Vector
 		}
 
 		prev = current;
+		vertices.push_back(current);
 	}
+
+	//join up first with last point
+	s.setPointCount(4);
+	s.setPoint(0, vertices.back().position - sf::Vector2f(levelSize.x, 0));
+	s.setPoint(1, sf::Vector2f(vertices.back().position.x - levelSize.x, levelSize.h));
+	s.setPoint(2, sf::Vector2f(vertices.front().position.x, levelSize.h));
+	s.setPoint(3, vertices.front().position);
+
+	s.setFillColor(sf::Color(112, 89, 40));
+
+	terrainSegments.push_back(new TerrainSegment(s));
 
 	return terrainSegments;
 }
