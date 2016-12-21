@@ -1,8 +1,14 @@
 #include "stdafx.h"
 #include "Game.h"
 
-Game::Game()
+Game::Game(Vector2D screenSize, Vector2D levelSize) : 
+	m_screenSize(screenSize),
+	m_levelSize(levelSize), 
+	m_camera(screenSize, levelSize)
 {
+	float terrainPeak = screenSize.h * 7.f / 10;
+	float terrainTrough = screenSize.h * 8.f / 10;
+	m_gameObjects.push_back(new Terrain(terrainPeak, terrainTrough, levelSize));
 }
 
 void Game::Update(float dt)
@@ -13,10 +19,7 @@ void Game::Update(float dt)
 	}
 }
 
-void Game::Draw(const sf::RenderWindow & r)
+void Game::Draw(sf::RenderWindow & r)
 {
-	for (GameObject* gameObject : m_gameObjects)
-	{
-		gameObject->Draw(r);
-	}
+	m_camera.RenderObjects(r, m_gameObjects);
 }
