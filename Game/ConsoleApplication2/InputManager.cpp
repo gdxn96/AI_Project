@@ -76,12 +76,16 @@ void InputManager::ProcessInput(sf::RenderWindow* window)
 			{
 			case sf::Keyboard::Up:
 				Dispatch(EventListener::KeyDownEvent::UP);
+				break;
 			case sf::Keyboard::Left:
 				Dispatch(EventListener::KeyDownEvent::LEFT);
+				break;
 			case sf::Keyboard::Down:
 				Dispatch(EventListener::KeyDownEvent::DOWN);
+				break;
 			case sf::Keyboard::Right:
 				Dispatch(EventListener::KeyDownEvent::RIGHT);
+				break;
 			}
 		}
 		else if (evt.type == sf::Event::KeyReleased)
@@ -90,12 +94,16 @@ void InputManager::ProcessInput(sf::RenderWindow* window)
 			{
 			case sf::Keyboard::Up:
 				Dispatch(EventListener::KeyUpEvent::UP);
+				break;
 			case sf::Keyboard::Left:
 				Dispatch(EventListener::KeyUpEvent::LEFT);
+				break;
 			case sf::Keyboard::Down:
 				Dispatch(EventListener::KeyUpEvent::DOWN);
+				break;
 			case sf::Keyboard::Right:
 				Dispatch(EventListener::KeyUpEvent::RIGHT);
+				break;
 			}
 		}
 	}
