@@ -1,11 +1,12 @@
 #include "stdafx.h"
 #include "Player.h"
+#include <iostream>
 
 
 Player::Player()
-	: m_acceleration(1),
-	  m_maxVelocity(sf::Vector2f(4,0)),
-	  m_position(sf::Vector2f(50, 50))
+	: m_acceleration(200),
+	  m_maxSpeed(400),
+	  m_position(sf::Vector2f(950, 530))
 {
 	m_sprite = sf::RectangleShape(sf::Vector2f(20, 20));
 	m_sprite.setPosition(m_position);
@@ -73,7 +74,13 @@ void Player::onKeyUp(KeyUpEvent evt)
 
 void Player::move(float dt)
 {
-	m_position += m_velocity;
+	if (m_direction.y != 0)
+	{
+		int debug = 0;
+	}
+
+	m_position += (m_velocity * dt);
+	m_sprite.setPosition(m_position);
 }
 
 
@@ -82,38 +89,71 @@ void Player::updateVelocity(float dt)
 {
 	float accelerationElapsed = m_acceleration * dt;
 	pair<bool, bool> movingInSameDirection = isMovingInSameDirection();
-	calculateXVelocity(movingInSameDirection.first, accelerationElapsed);
-	calculateYVelocity(movingInSameDirection.second, accelerationElapsed);
+
+	cout << m_direction.x << ", " << m_direction.y << endl;
+
+	if (!(m_direction.x == 0 && m_velocity.x == 0))
+	{
+		calculateXVelocity(movingInSameDirection.first, accelerationElapsed);
+	}
+	
+	if (!(m_direction.y == 0 && m_velocity.y == 0))
+	{
+		calculateYVelocity(movingInSameDirection.second, accelerationElapsed);
+	}
 }
 
 void Player::calculateXVelocity(bool sameDirection, float acceleration)
 {
-	if (sameDirection)
+	float speed = abs(m_velocity.x);
+
+	// If not changing direction AND not at max speed...
+	if (sameDirection && (speed != m_maxSpeed))
 	{
-		m_velocity.x += m_velocity.x < 0 ? -acceleration : acceleration;			// speed up
+		// increase speed
+		speed += acceleration;
+		
+		if (speed > m_maxSpeed)
+		{
+			speed = m_maxSpeed;
+		}
 	}
 	else if (m_direction.x == 0)
 	{
-		m_velocity.x -= m_velocity.x < 0 ? -acceleration : acceleration;			// slow down
+		// decrease speed
+		speed -= acceleration;
+
+		if (speed < 0)
+		{
+			speed = 0;
+		}
 	}
-	else
-	{
-		m_velocity.x = 0;
-	}
+
+	m_velocity.x = (m_direction.x * speed);
 }
 
 void Player::calculateYVelocity(bool sameDirection, float acceleration)
 {
+	float speed = abs(m_velocity.y);
+
 	if (!sameDirection)
 	{
 		if (m_direction.y == 0)
 		{
-			m_velocity.y -= m_velocity.y < 0 ? -acceleration : acceleration;		// slow down
+			// decrease speed
+			speed -= acceleration;
+
+			if (speed < 0)
+			{
+				speed = 0;
+			}
 		}
 		else
 		{
-			m_velocity.y = m_direction.y * m_maxVelocity.y;
+			speed = m_maxSpeed;
 		}
+
+		m_velocity.y = m_direction.y * speed;
 	}
 }
 
@@ -122,8 +162,8 @@ void Player::calculateYVelocity(bool sameDirection, float acceleration)
 pair<bool, bool> Player::isMovingInSameDirection()
 {
 	pair<bool, bool> result;
-	result.first = ((m_direction.x < 0) == (m_velocity.x < 0)) && m_direction.x != 0 && m_velocity.x != 0;
-	result.second = ((m_direction.y < 0) == (m_velocity.y < 0)) && m_direction.y != 0 && m_velocity.y != 0;
+	result.first = ((m_direction.x < 0) == (m_velocity.x < 0));
+	result.second = ((m_direction.y < 0) == (m_velocity.y < 0));
 	return result;
 }
 
@@ -132,3 +172,4 @@ pair<bool, bool> Player::isMovingInSameDirection()
 // 1. KeyDown && Not Same Dir = Change direction
 // 2. KeyDown && Same Dir = Speed up
 // 3. Diagonal work
+// 4. KeyUp = Slow down

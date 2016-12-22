@@ -63,12 +63,12 @@ void InputManager::Dispatch(EventListener::KeyUpEvent evt)
 }
 
 
-void InputManager::ProcessInput(sf::RenderWindow& window)
+void InputManager::ProcessInput(sf::RenderWindow* window)
 {
 	sf::Event evt;
 
 	// while event available for processing...
-	while (window.pollEvent(evt))
+	while (window->pollEvent(evt))
 	{
 		if (evt.type == sf::Event::KeyPressed)
 		{

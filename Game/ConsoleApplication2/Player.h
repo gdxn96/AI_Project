@@ -10,7 +10,7 @@ class Player : public GameObject
 private:
 	const float m_acceleration;
 	sf::Vector2f m_direction;
-	const sf::Vector2f m_maxVelocity;
+	const float m_maxSpeed;
 	sf::Vector2f m_position;
 	sf::RectangleShape m_sprite;
 	sf::Vector2f m_velocity;

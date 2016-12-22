@@ -19,6 +19,7 @@
 int main()
 {
 	Game game = Game();
+	InputManager* input = InputManager::getInstance();
 	sf::RenderWindow window(sf::VideoMode(1920, 1080), "Defender");
 
 	sf::Clock deltaClock; // used to calculate dt
@@ -26,19 +27,17 @@ int main()
 
 	while (window.isOpen())
 	{
-		sf::Event event;
+		/*sf::Event event;
 		while (window.pollEvent(event))
 		{
 			if (event.type == sf::Event::Closed)
 				window.close();
-		}
+		}*/
+
+		input->ProcessInput(&window);
 		game.Update(dt);
-
 		window.clear();
-
-		//draw objects here
 		game.Draw(window);
-
 		window.display();
 
 		dt = deltaClock.restart().asSeconds();
