@@ -6,21 +6,21 @@
 class EventListener
 {
 public:
-	enum GenericEvent 
+	enum class GenericEvent
 	{
-	};
+	};	
 
-	enum KeyDownEvent
+	enum class KeyDownEvent
 	{
-		UP,
+		UP = 1000,
 		LEFT,
 		DOWN,
 		RIGHT
 	};
 
-	enum KeyUpEvent
+	enum class KeyUpEvent
 	{
-		UP,
+		UP = 2000,
 		LEFT,
 		DOWN,
 		RIGHT

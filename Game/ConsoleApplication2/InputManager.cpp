@@ -1,7 +1,8 @@
-
+#include "stdafx.h"
 #include "InputManager.h"
 #include <iostream>
 using namespace std;
+
 
 
 InputManager* InputManager::m_instance = nullptr;
@@ -21,7 +22,8 @@ InputManager* InputManager::getInstance()
 }
 
 
-void InputManager::AddListener(EventListener::Event evt, EventListener* listener)
+
+void InputManager::AddListener(int evt, EventListener* listener)
 {
 	// If listener not previously added...
 	if (listeners.find(evt) == listeners.end())
@@ -33,11 +35,27 @@ void InputManager::AddListener(EventListener::Event evt, EventListener* listener
 }
 
 
-void InputManager::Dispatch(EventListener::Event evt)
+
+void InputManager::Dispatch(EventListener::KeyDownEvent evt)
 {
-	if (listeners.find(evt) != listeners.end())
+	int evtAsInt = static_cast<int>(evt);
+
+	if (listeners.find(evtAsInt) != listeners.end())
 	{
-		for (auto const &listener : *listeners[evt]) 
+		for (auto const &listener : *listeners[evtAsInt])
+		{
+			listener->onEvent(evt);
+		}
+	}
+}
+
+void InputManager::Dispatch(EventListener::KeyUpEvent evt)
+{
+	int evtAsInt = static_cast<int>(evt);
+
+	if (listeners.find(evtAsInt) != listeners.end())
+	{
+		for (auto const &listener : *listeners[evtAsInt])
 		{
 			listener->onEvent(evt);
 		}
@@ -57,13 +75,13 @@ void InputManager::ProcessInput(sf::RenderWindow& window)
 			switch (evt.key.code)
 			{
 			case sf::Keyboard::Up:
-				Dispatch(EventListener::Event::UPKEY_DOWN);
+				Dispatch(EventListener::KeyDownEvent::UP);
 			case sf::Keyboard::Left:
-				Dispatch(EventListener::Event::LEFTKEY_DOWN);
+				Dispatch(EventListener::KeyDownEvent::LEFT);
 			case sf::Keyboard::Down:
-				Dispatch(EventListener::Event::DOWNKEY_DOWN);
+				Dispatch(EventListener::KeyDownEvent::DOWN);
 			case sf::Keyboard::Right:
-				Dispatch(EventListener::Event::RIGHTKEY_DOWN);
+				Dispatch(EventListener::KeyDownEvent::RIGHT);
 			}
 		}
 		else if (evt.type == sf::Event::KeyReleased)
@@ -71,13 +89,13 @@ void InputManager::ProcessInput(sf::RenderWindow& window)
 			switch (evt.key.code)
 			{
 			case sf::Keyboard::Up:
-				Dispatch(EventListener::Event::UPKEY_UP);
+				Dispatch(EventListener::KeyUpEvent::UP);
 			case sf::Keyboard::Left:
-				Dispatch(EventListener::Event::LEFTKEY_UP);
+				Dispatch(EventListener::KeyUpEvent::LEFT);
 			case sf::Keyboard::Down:
-				Dispatch(EventListener::Event::DOWNKEY_UP);
+				Dispatch(EventListener::KeyUpEvent::DOWN);
 			case sf::Keyboard::Right:
-				Dispatch(EventListener::Event::RIGHTKEY_UP);
+				Dispatch(EventListener::KeyUpEvent::RIGHT);
 			}
 		}
 	}

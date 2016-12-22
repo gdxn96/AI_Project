@@ -3,9 +3,12 @@
 
 
 Player::Player()
-	: m_acceleration(Vector2D(1,0)),
-	  m_maxVelocity(Vector2D(4,0))
+	: m_acceleration(1),
+	  m_maxVelocity(sf::Vector2f(4,0)),
+	  m_position(sf::Vector2f(50, 50))
 {
+	m_sprite = sf::RectangleShape(sf::Vector2f(20, 20));
+	m_sprite.setPosition(m_position);
 }
 
 
@@ -17,12 +20,13 @@ Player::~Player()
 void Player::Update(float dt)
 {
 	updateVelocity(dt);
+	move(dt);
 }
 
 
-void Player::Draw(const sf::RenderWindow& w)
+void Player::Draw(sf::RenderWindow& w)
 {
-
+	w.draw(m_sprite);
 }
 
 
@@ -67,23 +71,60 @@ void Player::onKeyUp(KeyUpEvent evt)
 
 
 
+void Player::move(float dt)
+{
+	m_position += m_velocity;
+}
+
+
+
 void Player::updateVelocity(float dt)
 {
-	m_velocity.x = m_direction.x == 0 ? 0 : calculateXVelocity(dt);
-	m_velocity.y = m_direction.y == 0 ? 0 : calculateYVelocity(dt);
+	float accelerationElapsed = m_acceleration * dt;
+	pair<bool, bool> movingInSameDirection = isMovingInSameDirection();
+	calculateXVelocity(movingInSameDirection.first, accelerationElapsed);
+	calculateYVelocity(movingInSameDirection.second, accelerationElapsed);
 }
 
-float Player::calculateXVelocity(float dt)
+void Player::calculateXVelocity(bool sameDirection, float acceleration)
 {
-	/*if (m_velocity.x > 0 && m_direction.x > 0)
+	if (sameDirection)
 	{
-		return 
-	}*/
+		m_velocity.x += m_velocity.x < 0 ? -acceleration : acceleration;			// speed up
+	}
+	else if (m_direction.x == 0)
+	{
+		m_velocity.x -= m_velocity.x < 0 ? -acceleration : acceleration;			// slow down
+	}
+	else
+	{
+		m_velocity.x = 0;
+	}
 }
 
-float Player::calculateYVelocity(float dt)
+void Player::calculateYVelocity(bool sameDirection, float acceleration)
 {
+	if (!sameDirection)
+	{
+		if (m_direction.y == 0)
+		{
+			m_velocity.y -= m_velocity.y < 0 ? -acceleration : acceleration;		// slow down
+		}
+		else
+		{
+			m_velocity.y = m_direction.y * m_maxVelocity.y;
+		}
+	}
+}
 
+
+
+pair<bool, bool> Player::isMovingInSameDirection()
+{
+	pair<bool, bool> result;
+	result.first = ((m_direction.x < 0) == (m_velocity.x < 0)) && m_direction.x != 0 && m_velocity.x != 0;
+	result.second = ((m_direction.y < 0) == (m_velocity.y < 0)) && m_direction.y != 0 && m_velocity.y != 0;
+	return result;
 }
 
 

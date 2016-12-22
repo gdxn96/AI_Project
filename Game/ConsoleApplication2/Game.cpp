@@ -14,7 +14,7 @@ void Game::Update(float dt)
 	}
 }
 
-void Game::Draw(const sf::RenderWindow & r)
+void Game::Draw(sf::RenderWindow & r)
 {
 	for (GameObject* gameObject : m_gameObjects)
 	{

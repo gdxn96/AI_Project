@@ -9,7 +9,7 @@ public:
 	Game();
 
 	void Update(float dt);
-	void Draw(const sf::RenderWindow& r);
+	void Draw(sf::RenderWindow& r);
 
 private:
 	std::vector<GameObject*> m_gameObjects;

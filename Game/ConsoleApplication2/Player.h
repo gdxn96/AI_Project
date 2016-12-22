@@ -2,25 +2,30 @@
 #include "GameObject.h"
 #include "Constants.h"
 
+using namespace std;
 
 
 class Player : public GameObject
 {
 private:
-	const Vector2D m_acceleration;
-	Vector2D m_direction;
-	const Vector2D m_maxVelocity;
-	Vector2D m_velocity;
+	const float m_acceleration;
+	sf::Vector2f m_direction;
+	const sf::Vector2f m_maxVelocity;
+	sf::Vector2f m_position;
+	sf::RectangleShape m_sprite;
+	sf::Vector2f m_velocity;
 
 	void updateVelocity(float dt);
-	float calculateXVelocity(float dt);
-	float calculateYVelocity(float dt);
+	void calculateXVelocity(bool sameDirection, float dt);
+	void calculateYVelocity(bool sameDirection, float dt);
+	pair<bool, bool> isMovingInSameDirection();
+	void move(float dt);
 
 public:
 	Player();
 	~Player();
 	void Update(float dt) override;
-	void Draw(const sf::RenderWindow& w) override;
+	void Draw(sf::RenderWindow& w) override;
 	void onKeyDown(KeyDownEvent evt) override;
 	void onKeyUp(KeyUpEvent evt) override;
 };
