@@ -13,14 +13,15 @@ private:
 	const float m_maxSpeed;
 	sf::Vector2f m_position;
 	sf::RectangleShape m_sprite;
-	sf::Vector2f m_velocity;
+	sf::Vector2f m_targetDirection;
+	sf::Vector2f m_speed;
 
-	void updateVelocity(float dt);
-	void calculateXVelocity(float acceleration);
-	void calculateYVelocity(float acceleration);
-	bool isSameDirection(float direction, float velocity);
-	pair<bool, bool> shouldMove();
 	void move(float dt);
+	void updateDirection();
+	void limitSpeed();
+	void updateXSpeed(float acceleration);
+	void updateYSpeed(float acceleration);
+
 
 public:
 	Player();
