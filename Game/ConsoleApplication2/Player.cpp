@@ -4,7 +4,7 @@
 
 
 Player::Player()
-	: m_acceleration(200),
+	: m_acceleration(800),
 	  m_maxSpeed(400),
 	  m_position(sf::Vector2f(950, 530))
 {
@@ -56,16 +56,16 @@ void Player::onKeyUp(KeyUpEvent evt)
 	switch (evt)
 	{
 	case EventListener::KeyUpEvent::UP:
-		m_direction.y = 0;
+		m_direction.y = m_direction.y == Constants::UP.y ? 0 : m_direction.y;
 		break;
 	case EventListener::KeyUpEvent::LEFT:
-		m_direction.x = 0;
+		m_direction.x = m_direction.x == Constants::LEFT.x ? 0 : m_direction.x;
 		break;
 	case EventListener::KeyUpEvent::DOWN:
-		m_direction.y = 0;
+		m_direction.y = m_direction.y == Constants::DOWN.y ? 0 : m_direction.y;
 		break;
 	case EventListener::KeyUpEvent::RIGHT:
-		m_direction.x = 0;
+		m_direction.x = m_direction.x == Constants::RIGHT.x ? 0 : m_direction.x;
 		break;
 	}
 }
@@ -88,27 +88,26 @@ void Player::move(float dt)
 void Player::updateVelocity(float dt)
 {
 	float accelerationElapsed = m_acceleration * dt;
-	pair<bool, bool> movingInSameDirection = isMovingInSameDirection();
+	pair<bool, bool> mustMove = shouldMove();
 
-	cout << m_direction.x << ", " << m_direction.y << endl;
-
-	if (!(m_direction.x == 0 && m_velocity.x == 0))
+	if (mustMove.first)
 	{
-		calculateXVelocity(movingInSameDirection.first, accelerationElapsed);
+		calculateXVelocity(accelerationElapsed);
 	}
 	
-	if (!(m_direction.y == 0 && m_velocity.y == 0))
+	if (mustMove.second)
 	{
-		calculateYVelocity(movingInSameDirection.second, accelerationElapsed);
+		calculateYVelocity(accelerationElapsed);
 	}
 }
 
-void Player::calculateXVelocity(bool sameDirection, float acceleration)
+void Player::calculateXVelocity(float acceleration)
 {
 	float speed = abs(m_velocity.x);
+	bool sameDirection = isSameDirection(m_direction.x, m_velocity.x);
 
-	// If not changing direction AND not at max speed...
-	if (sameDirection && (speed != m_maxSpeed))
+	// If going in same direction AND not at max speed...
+	if ((sameDirection || m_velocity.x == 0) && (speed != m_maxSpeed))
 	{
 		// increase speed
 		speed += acceleration;
@@ -132,38 +131,40 @@ void Player::calculateXVelocity(bool sameDirection, float acceleration)
 	m_velocity.x = (m_direction.x * speed);
 }
 
-void Player::calculateYVelocity(bool sameDirection, float acceleration)
+void Player::calculateYVelocity(float acceleration)
 {
 	float speed = abs(m_velocity.y);
 
-	if (!sameDirection)
+	if (m_direction.y == 0)
 	{
-		if (m_direction.y == 0)
-		{
-			// decrease speed
-			speed -= acceleration;
+		// decrease speed
+		speed -= acceleration;
 
-			if (speed < 0)
-			{
-				speed = 0;
-			}
-		}
-		else
+		if (speed < 0)
 		{
-			speed = m_maxSpeed;
+			speed = 0;
 		}
-
-		m_velocity.y = m_direction.y * speed;
 	}
+	else
+	{
+		speed = m_maxSpeed;
+	}
+
+	m_velocity.y = m_direction.y * speed;
 }
 
 
 
-pair<bool, bool> Player::isMovingInSameDirection()
+bool Player::isSameDirection(float direction, float velocity)
+{
+	return ((direction < 0) == (velocity < 0));
+}
+
+pair<bool, bool> Player::shouldMove()
 {
 	pair<bool, bool> result;
-	result.first = ((m_direction.x < 0) == (m_velocity.x < 0));
-	result.second = ((m_direction.y < 0) == (m_velocity.y < 0));
+	result.first = !(m_direction.x == 0 && m_velocity.x == 0);
+	result.second = !(m_direction.y == 0 && m_velocity.y == 0);
 	return result;
 }
 

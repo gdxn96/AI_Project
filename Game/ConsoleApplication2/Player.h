@@ -16,9 +16,10 @@ private:
 	sf::Vector2f m_velocity;
 
 	void updateVelocity(float dt);
-	void calculateXVelocity(bool sameDirection, float dt);
-	void calculateYVelocity(bool sameDirection, float dt);
-	pair<bool, bool> isMovingInSameDirection();
+	void calculateXVelocity(float acceleration);
+	void calculateYVelocity(float acceleration);
+	bool isSameDirection(float direction, float velocity);
+	pair<bool, bool> shouldMove();
 	void move(float dt);
 
 public:
