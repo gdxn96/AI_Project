@@ -19,6 +19,7 @@ public:
 	void AddListener(int, EventListener*);
 	void Dispatch(EventListener::KeyDownEvent);
 	void Dispatch(EventListener::KeyUpEvent);
+	void Dispatch(EventListener::GenericEvent);
 	void ProcessInput(sf::RenderWindow* window);
 };
 

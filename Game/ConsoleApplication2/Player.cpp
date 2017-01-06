@@ -3,13 +3,12 @@
 #include <iostream>
 
 
-Player::Player()
-	: m_acceleration(800),
-	  m_maxSpeed(400),
-	  m_position(sf::Vector2f(950, 530))
+Player::Player(sf::Vector2f pos, sf::Vector2f size, sf::Vector2f accel, sf::Vector2f maxSpeed)
+	: MovingGameObject(pos, size, accel, maxSpeed),
+	  m_facingDirection(sf::Vector2f(1, 0)),
+	  m_bulletsPerSecond(10),
+	  m_canShoot(true)
 {
-	m_sprite = sf::RectangleShape(sf::Vector2f(20, 20));
-	m_sprite.setPosition(m_position);
 }
 
 
@@ -20,21 +19,50 @@ Player::~Player()
 
 void Player::Update(float dt)
 {
-	float accelerationElapsed = m_acceleration * dt;
-	updateXSpeed(accelerationElapsed);
-	updateYSpeed(accelerationElapsed);
-	limitSpeed();
-	updateDirection();
-	move(dt);
+	UpdateShootState(dt);
+	UpdateSpeed(dt);
+	UpdateDirection();
+	UpdatePosition(dt);
+
+	for (int i = m_bullets.size() - 1; i >= 0; i--)
+	{
+		if (m_bullets[i]->isAlive())
+		{
+			m_bullets[i]->Update(dt);
+		}
+		else
+		{
+			m_bullets.erase(m_bullets.begin() + i);
+		}
+	}
 }
 
 
 void Player::Draw(sf::RenderWindow& w)
 {
-	w.draw(m_sprite);
+	for (Bullet* bullet : m_bullets)
+	{
+		bullet->Draw(w);
+	}
+
+	w.draw(m_bounds);
 }
 
 
+
+void Player::onGenericEvent(GenericEvent evt)
+{
+	switch (evt)
+	{
+	case EventListener::GenericEvent::SHOOT:
+		if (m_canShoot)
+		{
+			m_canShoot = false;
+			m_timeTillNextShot = 1.0f / m_bulletsPerSecond;
+			m_bullets.push_back(new Bullet(m_position, m_facingDirection));
+		}
+	}
+}
 
 void Player::onKeyDown(KeyDownEvent evt)
 {
@@ -45,12 +73,14 @@ void Player::onKeyDown(KeyDownEvent evt)
 		break;
 	case EventListener::KeyDownEvent::LEFT:
 		m_targetDirection.x = Constants::LEFT.x;
+		m_facingDirection.x = -1;
 		break;
 	case EventListener::KeyDownEvent::DOWN:
 		m_targetDirection.y = Constants::DOWN.y;
 		break;
 	case EventListener::KeyDownEvent::RIGHT:
 		m_targetDirection.x = Constants::RIGHT.x;
+		m_facingDirection.x = 1;
 		break;
 	}
 }
@@ -76,54 +106,30 @@ void Player::onKeyUp(KeyUpEvent evt)
 
 
 
-void Player::updateXSpeed(float acceleration)
+void Player::UpdateSpeed(float dt)
 {
 	if (m_targetDirection.x != 0)
 	{
-		m_speed.x += acceleration;
+		UpdateXSpeed(dt, 1, m_MAXSPEED.x);
 	}
 	else if (m_targetDirection.x == 0 && m_direction.x != 0)
 	{
-		m_speed.x -= acceleration;
+		UpdateXSpeed(dt, -1, 0);
 	}
-}
 
-void Player::updateYSpeed(float acceleration)
-{
 	if (m_targetDirection.y != 0)
 	{
-		m_speed.y = m_maxSpeed;
+		m_speed.y = m_MAXSPEED.y;
 	}
 	else if (m_direction.y != 0)
 	{
-		m_speed.y -= acceleration;
-	}
-}
-
-void Player::limitSpeed()
-{
-	if (m_speed.x < 0)
-	{
-		m_speed.x = 0;
-	}
-	else if (m_speed.x > m_maxSpeed)
-	{
-		m_speed.x = m_maxSpeed;
-	}
-
-	if (m_speed.y < 0)
-	{
-		m_speed.y = 0;
-	}
-	else if (m_speed.y > m_maxSpeed)
-	{
-		m_speed.y = m_maxSpeed;
+		UpdateYSpeed(dt, -1, 0);
 	}
 }
 
 
 
-void Player::updateDirection()
+void Player::UpdateDirection()
 {
 	if (m_speed.x == 0)
 	{
@@ -146,10 +152,15 @@ void Player::updateDirection()
 
 
 
-
-void Player::move(float dt)
+void Player::UpdateShootState(float dt)
 {
-	m_position.x += (m_direction.x * (m_speed.x * dt));
-	m_position.y += (m_direction.y * (m_speed.y * dt));
-	m_sprite.setPosition(m_position);
+	if (!m_canShoot)
+	{
+		m_timeTillNextShot -= dt;
+
+		if (m_timeTillNextShot <= 0)
+		{
+			m_canShoot = true;
+		}
+	}
 }

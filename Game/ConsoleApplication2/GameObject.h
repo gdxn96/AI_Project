@@ -12,5 +12,4 @@ public:
 	virtual void Draw(sf::RenderWindow& w) = 0;
 
 private:
-
 };

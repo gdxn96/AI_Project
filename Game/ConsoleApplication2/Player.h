@@ -1,33 +1,33 @@
 #pragma once
-#include "GameObject.h"
+
 #include "Constants.h"
+#include "Bullet.h"
 
 using namespace std;
 
 
-class Player : public GameObject
+class Player : public MovingGameObject
 {
 private:
-	const float m_acceleration;
-	sf::Vector2f m_direction;
-	const float m_maxSpeed;
-	sf::Vector2f m_position;
-	sf::RectangleShape m_sprite;
 	sf::Vector2f m_targetDirection;
-	sf::Vector2f m_speed;
+	sf::Vector2f m_facingDirection;
 
-	void move(float dt);
-	void updateDirection();
-	void limitSpeed();
-	void updateXSpeed(float acceleration);
-	void updateYSpeed(float acceleration);
+	vector<Bullet*> m_bullets;
+	int m_bulletsPerSecond;
+	bool m_canShoot;
+	float m_timeTillNextShot;
+
+	void UpdateDirection();
+	void UpdateShootState(float dt);
+	void UpdateSpeed(float dt);
 
 
 public:
-	Player();
+	Player(sf::Vector2f pos, sf::Vector2f size, sf::Vector2f accel, sf::Vector2f maxSpeed);
 	~Player();
 	void Update(float dt) override;
 	void Draw(sf::RenderWindow& w) override;
+	void onGenericEvent(GenericEvent evt) override;
 	void onKeyDown(KeyDownEvent evt) override;
 	void onKeyUp(KeyUpEvent evt) override;
 };

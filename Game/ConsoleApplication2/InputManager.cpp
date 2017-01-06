@@ -62,6 +62,19 @@ void InputManager::Dispatch(EventListener::KeyUpEvent evt)
 	}
 }
 
+void InputManager::Dispatch(EventListener::GenericEvent evt)
+{
+	int evtAsInt = static_cast<int>(evt);
+
+	if (listeners.find(evtAsInt) != listeners.end())
+	{
+		for (auto const &listener : *listeners[evtAsInt])
+		{
+			listener->onEvent(evt);
+		}
+	}
+}
+
 
 void InputManager::ProcessInput(sf::RenderWindow* window)
 {
@@ -72,6 +85,7 @@ void InputManager::ProcessInput(sf::RenderWindow* window)
 	{
 		if (evt.type == sf::Event::KeyPressed)
 		{
+			// Movement
 			switch (evt.key.code)
 			{
 			case sf::Keyboard::Up:
@@ -87,9 +101,17 @@ void InputManager::ProcessInput(sf::RenderWindow* window)
 				Dispatch(EventListener::KeyDownEvent::RIGHT);
 				break;
 			}
+
+			// Other													Ensure that other key press events don't compromise movement
+			switch (evt.key.code)
+			{
+			case sf::Keyboard::Space:
+				Dispatch(EventListener::GenericEvent::SHOOT);
+			}
 		}
 		else if (evt.type == sf::Event::KeyReleased)
 		{
+			// Movement
 			switch (evt.key.code)
 			{
 			case sf::Keyboard::Up:
