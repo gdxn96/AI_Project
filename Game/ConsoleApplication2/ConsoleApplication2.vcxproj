@@ -159,6 +159,8 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AIManager.h" />
+    <ClInclude Include="Astronaut.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameObject.h" />
@@ -169,6 +171,8 @@
     <ClInclude Include="Vector2D.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AIManager.cpp" />
+    <ClCompile Include="Astronaut.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="ConsoleApplication2.cpp" />
     <ClCompile Include="Game.cpp" />
