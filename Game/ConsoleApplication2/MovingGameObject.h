@@ -7,45 +7,31 @@
 class MovingGameObject : public GameObject
 {
 public:
-	MovingGameObject() { };
+	// With acceleration
+	MovingGameObject(Rect bounds, Vector2D acceleration, Vector2D maxSpeed, bool isMiniMapObject = false)
+		: GameObject(bounds),
+		m_ACCELERATION(acceleration),
+		m_MAXSPEED(maxSpeed) {}
 
 	// Without acceleration
-	MovingGameObject(sf::Vector2f position, sf::Vector2f size, sf::Vector2f maxSpeed)
-		: m_ACCELERATION(sf::Vector2f(-1, -1)),
+	MovingGameObject(Rect bounds, Vector2D maxSpeed, bool isMiniMapObject = false)
+		: GameObject(bounds),
+		m_ACCELERATION(sf::Vector2f(-1, -1)),
 		m_MAXSPEED(maxSpeed),
-		m_bounds(sf::RectangleShape(size)),
-		m_position(position),
-		m_speed(maxSpeed)
-	{
-		m_bounds.setPosition(m_position);
-	}
-
-	// With acceleration
-	MovingGameObject(sf::Vector2f position, sf::Vector2f size, sf::Vector2f acceleration, sf::Vector2f maxSpeed)	
-		: m_ACCELERATION(acceleration),
-		m_MAXSPEED(maxSpeed),
-		m_bounds(sf::RectangleShape(size)),
-		m_position(position)
-	{
-		m_bounds.setPosition(m_position);
-	}
+		m_speed(maxSpeed) {}
 
 protected:
-	const sf::Vector2f m_ACCELERATION;
-	const sf::Vector2f m_MAXSPEED;
+	const Vector2D m_ACCELERATION;
+	const Vector2D m_MAXSPEED;
 
-	sf::RectangleShape m_bounds;
-
-	sf::Vector2f m_direction;
-	sf::Vector2f m_position;
-	sf::Vector2f m_speed;
+	Vector2D m_direction;
+	Vector2D m_speed;
 
 
 	virtual void UpdatePosition(float dt)
 	{
-		m_position.x += (m_direction.x * (m_speed.x * dt));
-		m_position.y += (m_direction.y * (m_speed.y * dt));
-		m_bounds.setPosition(m_position);
+		m_bounds.pos.x += (m_direction.x * (m_speed.x * dt));
+		m_bounds.pos.y += (m_direction.y * (m_speed.y * dt));
 	}
 
 	virtual void UpdateXSpeed(float dt, int multiplier, float targetSpeed)

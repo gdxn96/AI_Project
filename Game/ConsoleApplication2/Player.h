@@ -9,8 +9,8 @@ using namespace std;
 class Player : public MovingGameObject
 {
 private:
-	sf::Vector2f m_targetDirection;
-	sf::Vector2f m_facingDirection;
+	Vector2D m_targetDirection;
+	Vector2D m_facingDirection;
 
 	vector<Bullet*> m_bullets;
 	int m_bulletsPerSecond;
@@ -23,7 +23,7 @@ private:
 
 
 public:
-	Player(sf::Vector2f pos, sf::Vector2f size, sf::Vector2f accel, sf::Vector2f maxSpeed);
+	Player(Rect bounds, Vector2D accel, Vector2D maxSpeed, bool isMiniMapObject);
 	~Player();
 	void Update(float dt) override;
 	void Draw(sf::RenderWindow& w) override;

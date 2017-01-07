@@ -3,8 +3,8 @@
 #include <iostream>
 
 
-Player::Player(sf::Vector2f pos, sf::Vector2f size, sf::Vector2f accel, sf::Vector2f maxSpeed)
-	: MovingGameObject(pos, size, accel, maxSpeed),
+Player::Player(Rect bounds, Vector2D accel, Vector2D maxSpeed, bool isMiniMapObject = false)
+	: MovingGameObject(bounds, accel, maxSpeed, isMiniMapObject),
 	  m_facingDirection(sf::Vector2f(1, 0)),
 	  m_bulletsPerSecond(10),
 	  m_shooting(false)
@@ -49,7 +49,7 @@ void Player::Draw(sf::RenderWindow& w)
 		bullet->Draw(w);
 	}
 
-	w.draw(m_bounds);
+	w.draw(m_bounds.toSFMLRect());
 }
 
 
@@ -162,6 +162,6 @@ void Player::UpdateShootState(float dt)
 	if (m_timeTillNextShot <= 0)
 	{
 		m_timeTillNextShot = 1.0f / m_bulletsPerSecond;
-		m_bullets.push_back(new Bullet(m_position, m_facingDirection));
+		m_bullets.push_back(new Bullet(m_bounds.getCentreCopy(), m_facingDirection));
 	}
 }

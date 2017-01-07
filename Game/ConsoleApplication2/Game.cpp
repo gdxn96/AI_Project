@@ -3,10 +3,10 @@
 
 Game::Game()
 {
-	GameObject* player = new Player(sf::Vector2f(950, 530),  //pos
-									sf::Vector2f(20, 20),    //size
-									sf::Vector2f(800, 800),  //accel
- 									sf::Vector2f(400, 400)); //maxSpeed
+	GameObject* player = new Player(Rect(Vector2D(950, 530), Vector2D(20, 20)),	//bounds
+									Vector2D(800, 800),							//accel
+									Vector2D(400, 400),							//maxSpeed
+									true);										//isMiniMapObject
  
 	InputManager* input = InputManager::getInstance();
 

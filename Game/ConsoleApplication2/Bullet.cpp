@@ -2,10 +2,8 @@
 #include "Bullet.h"
 
 
-Bullet::Bullet() {};
-
-Bullet::Bullet(sf::Vector2f pos, sf::Vector2f dir) 
-	: MovingGameObject(pos, sf::Vector2f(10, 5), sf::Vector2f(1200, 0)),
+Bullet::Bullet(Vector2D pos, Vector2D dir)
+	: MovingGameObject(Rect(pos, Vector2D(10, 5)), Vector2D(1200, 0)),
 	  m_timeToLive(1)
 {
 	m_direction = dir;
@@ -26,7 +24,7 @@ void Bullet::Update(float dt)
 
 void Bullet::Draw(sf::RenderWindow& w)
 {
-	w.draw(m_bounds);
+	w.draw(m_bounds.toSFMLRect());
 }
 
 bool Bullet::isAlive()

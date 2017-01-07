@@ -9,8 +9,7 @@ private:
 	float m_timeToLive;
 
 public:
-	Bullet();
-	Bullet(sf::Vector2f pos, sf::Vector2f dir);
+	Bullet(Vector2D pos, Vector2D dir);
 	~Bullet();
 	void Update(float dt) override;
 	void Draw(sf::RenderWindow& w) override;
