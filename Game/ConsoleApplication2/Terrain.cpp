@@ -68,7 +68,7 @@ std::vector<TerrainSegment*> Terrain::GenerateTerrain(int minY, int maxY, Vector
 			
 			shape.setFillColor(sf::Color(112, 89, 40));
 
-			terrainSegments.push_back(new TerrainSegment(s));
+			terrainSegments.push_back(new TerrainSegment(shape));
 		}
 
 		prev = currentVertex;
@@ -84,7 +84,7 @@ std::vector<TerrainSegment*> Terrain::GenerateTerrain(int minY, int maxY, Vector
 
 	shape.setFillColor(sf::Color(112, 89, 40));
 
-	terrainSegments.push_back(new TerrainSegment(s));
+	terrainSegments.push_back(new TerrainSegment(shape));
 
 	return terrainSegments;
 }
