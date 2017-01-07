@@ -8,7 +8,8 @@ class EventListener
 public:
 	enum class GenericEvent
 	{
-		SHOOT
+		SHOOT,
+		NO_SHOOT
 	};	
 
 	enum class KeyDownEvent

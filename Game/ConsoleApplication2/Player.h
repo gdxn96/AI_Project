@@ -14,7 +14,7 @@ private:
 
 	vector<Bullet*> m_bullets;
 	int m_bulletsPerSecond;
-	bool m_canShoot;
+	bool m_shooting;
 	float m_timeTillNextShot;
 
 	void UpdateDirection();

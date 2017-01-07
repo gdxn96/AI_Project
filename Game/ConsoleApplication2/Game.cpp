@@ -19,6 +19,7 @@ Game::Game()
 	input->AddListener(static_cast<int>(EventListener::KeyUpEvent::DOWN), player);
 	input->AddListener(static_cast<int>(EventListener::KeyUpEvent::RIGHT), player);
 	input->AddListener(static_cast<int>(EventListener::GenericEvent::SHOOT), player);
+	input->AddListener(static_cast<int>(EventListener::GenericEvent::NO_SHOOT), player);
 
 	m_gameObjects.push_back(player);
 }

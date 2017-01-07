@@ -8,11 +8,24 @@ class MovingGameObject : public GameObject
 {
 public:
 	MovingGameObject() { };
-	MovingGameObject(sf::Vector2f position, sf::Vector2f size, sf::Vector2f acceleration, sf::Vector2f maxSpeed)
+
+	// Without acceleration
+	MovingGameObject(sf::Vector2f position, sf::Vector2f size, sf::Vector2f maxSpeed)
+		: m_ACCELERATION(sf::Vector2f(-1, -1)),
+		m_MAXSPEED(maxSpeed),
+		m_bounds(sf::RectangleShape(size)),
+		m_position(position),
+		m_speed(maxSpeed)
+	{
+		m_bounds.setPosition(m_position);
+	}
+
+	// With acceleration
+	MovingGameObject(sf::Vector2f position, sf::Vector2f size, sf::Vector2f acceleration, sf::Vector2f maxSpeed)	
 		: m_ACCELERATION(acceleration),
-		  m_MAXSPEED(maxSpeed),
-		  m_bounds(sf::RectangleShape(size)),
-		  m_position(position)
+		m_MAXSPEED(maxSpeed),
+		m_bounds(sf::RectangleShape(size)),
+		m_position(position)
 	{
 		m_bounds.setPosition(m_position);
 	}

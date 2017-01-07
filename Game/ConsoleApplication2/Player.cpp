@@ -7,7 +7,7 @@ Player::Player(sf::Vector2f pos, sf::Vector2f size, sf::Vector2f accel, sf::Vect
 	: MovingGameObject(pos, size, accel, maxSpeed),
 	  m_facingDirection(sf::Vector2f(1, 0)),
 	  m_bulletsPerSecond(10),
-	  m_canShoot(true)
+	  m_shooting(false)
 {
 }
 
@@ -19,7 +19,11 @@ Player::~Player()
 
 void Player::Update(float dt)
 {
-	UpdateShootState(dt);
+	if (m_shooting)
+	{
+		UpdateShootState(dt);
+	}
+	
 	UpdateSpeed(dt);
 	UpdateDirection();
 	UpdatePosition(dt);
@@ -55,12 +59,11 @@ void Player::onGenericEvent(GenericEvent evt)
 	switch (evt)
 	{
 	case EventListener::GenericEvent::SHOOT:
-		if (m_canShoot)
-		{
-			m_canShoot = false;
-			m_timeTillNextShot = 1.0f / m_bulletsPerSecond;
-			m_bullets.push_back(new Bullet(m_position, m_facingDirection));
-		}
+		m_shooting = true;
+		break;
+	case EventListener::GenericEvent::NO_SHOOT:
+		m_shooting = false;
+		break;
 	}
 }
 
@@ -154,13 +157,11 @@ void Player::UpdateDirection()
 
 void Player::UpdateShootState(float dt)
 {
-	if (!m_canShoot)
-	{
-		m_timeTillNextShot -= dt;
+	m_timeTillNextShot -= dt;
 
-		if (m_timeTillNextShot <= 0)
-		{
-			m_canShoot = true;
-		}
+	if (m_timeTillNextShot <= 0)
+	{
+		m_timeTillNextShot = 1.0f / m_bulletsPerSecond;
+		m_bullets.push_back(new Bullet(m_position, m_facingDirection));
 	}
 }
