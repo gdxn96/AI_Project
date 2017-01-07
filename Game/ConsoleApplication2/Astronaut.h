@@ -1,19 +1,15 @@
 #pragma once
 
-#include "GameObject.h"
+#include "MovingGameObject.h"
 #include "AIManager.h"
 
 
-class Astronaut : public GameObject
+class Astronaut : public MovingGameObject
 {
 private:
-	Vector2D m_direction;
-	float m_speed;
-	const int m_directionChangeTimeMax; // as seconds
-	float m_directionChangeTimeRemaining;
+	const int m_maxWanderTime; // in seconds
+	float m_wanderTimeRemaining;
 	sf::RectangleShape m_sprite;
-
-	void move(float dt);
 
 public:
 	Astronaut(Rect rectangle, bool isMiniMapObject);

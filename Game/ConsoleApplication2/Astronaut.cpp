@@ -1,38 +1,33 @@
 #include "stdafx.h"
 #include "Astronaut.h"
 
-Astronaut::Astronaut(Rect rectangle = Rect(), bool isMiniMapObject = false)
-	: GameObject(rectangle, isMiniMapObject),
-	  m_directionChangeTimeMax(10),
-	  m_directionChangeTimeRemaining(0),
-	  m_speed(50)
+
+Astronaut::Astronaut(Rect rect = Rect(), bool isMiniMapObject = false)
+	: MovingGameObject(rect, Vector2D(50, 0), isMiniMapObject),
+	  m_maxWanderTime(10),
+	  m_wanderTimeRemaining(0)
 {
-	m_sprite = sf::RectangleShape(sf::Vector2f(m_bounds.size.x, m_bounds.size.y));
-	m_sprite.setPosition(sf::Vector2f(m_bounds.pos.x, m_bounds.pos.y));
+	m_sprite = m_bounds.toSFMLRect();
+	m_sprite.setPosition(m_bounds.pos.toSFMLVector());
 }
+
 
 void Astronaut::Update(float dt)
 {
-	m_directionChangeTimeRemaining -= dt;
+	m_wanderTimeRemaining -= dt;
 
-	if (m_directionChangeTimeRemaining <= 0)
+	if (m_wanderTimeRemaining <= 0)
 	{
-		m_directionChangeTimeRemaining = rand() % (m_directionChangeTimeMax + 1);
+		m_wanderTimeRemaining = rand() % (m_maxWanderTime + 1);
 		m_direction = AIManager::wander();
 	}
 
-	move(dt);
+	UpdatePosition(dt);
+	m_sprite.setPosition(m_bounds.pos.toSFMLVector());
 }
+
 
 void Astronaut::Draw(sf::RenderWindow& w)
 {
 	w.draw(m_sprite);
-}
-
-
-void Astronaut::move(float dt)
-{
-	sf::Vector2f pos = m_sprite.getPosition();
-	pos.x += (m_direction.x * (m_speed * dt));
-	m_sprite.setPosition(pos);
 }
