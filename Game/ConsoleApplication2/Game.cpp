@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "Game.h"
+#include "Astronaut.h"
 
 Game::Game(Vector2D screenSize, Vector2D levelSize) : 
 	m_screenSize(screenSize),
@@ -8,7 +9,9 @@ Game::Game(Vector2D screenSize, Vector2D levelSize) :
 {
 	float terrainPeak = screenSize.h * 7.f / 10;
 	float terrainTrough = screenSize.h * 8.f / 10;
+
 	m_gameObjects.push_back(new Terrain(terrainPeak, terrainTrough, levelSize));
+	m_gameObjects.push_back(new Astronaut(Rect(950, screenSize.h - 150, 10, 20), true));
 }
 
 void Game::Update(float dt)
