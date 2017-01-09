@@ -1,7 +1,11 @@
 #include "stdafx.h"
 #include "Camera.h"
 
-Camera::Camera(Vector2D screenSize, Vector2D levelSize) : m_minimapView(sf::FloatRect(0, 0, levelSize.w, levelSize.h)), m_gameView(sf::FloatRect(0, 0, screenSize.w, screenSize.h))
+Camera::Camera(Vector2D screenSize, Vector2D levelSize) : 
+	m_screenSize(screenSize),
+	m_levelSize(levelSize), 
+	m_minimapView(sf::FloatRect(0, 0, levelSize.w, levelSize.h)), 
+	m_gameView(sf::FloatRect(0, 0, screenSize.w, screenSize.h))
 {
 	m_gameView.setViewport(sf::FloatRect(0, 0, 1, 1)); //percentages
 	m_minimapView.setViewport(sf::FloatRect(0.2f, 0, 0.6f, 0.1f)); //percentages
@@ -17,24 +21,62 @@ void Camera::SetCenter(sf::Vector2f center)
 	m_gameView.setCenter(center);
 }
 
-Rect Camera::getViewPort()
+sf::FloatRect Camera::getViewPort(sf::View& v)
 {
-	return Rect(m_gameView.getCenter() - sf::Vector2f(m_gameView.getCenter().x / 2, m_gameView.getCenter().y / 2), m_gameView.getSize());
+	return sf::FloatRect(v.getCenter() - sf::Vector2f(v.getSize().x / 2, v.getSize().y / 2), v.getSize());
 }
 
 void Camera::RenderObjects(sf::RenderWindow & window, std::vector<GameObject*>& m_gameObjects)
 {
-	window.setView(m_gameView);
-	for (GameObject* gameObject : m_gameObjects)
+	if (m_gameView.getCenter().x > m_levelSize.w * 1.5f)
 	{
-		gameObject->Draw(window);
+		m_gameView.move(sf::Vector2f(-m_levelSize.w, 0));
 	}
-	window.setView(m_minimapView);
+	if (m_gameView.getCenter().x < m_levelSize.w * 0.5f)
+	{
+		m_gameView.move(sf::Vector2f(m_levelSize.w, 0));
+	}
+	m_minimapView.setCenter(m_gameView.getCenter());
+	window.setView(m_gameView);
+
+	sf::FloatRect viewport = getViewPort(m_gameView);
+
+	//draw game objects
 	for (GameObject* gameObject : m_gameObjects)
 	{
-		if (gameObject->IsMiniMapObject())
+		//cull objects not in view
+		sf::FloatRect objectAABB = gameObject->getAABB();
+		if ((objectAABB.left > viewport.left && objectAABB.left < viewport.left + viewport.width) ||
+			(objectAABB.left + objectAABB.width > viewport.left && objectAABB.left + objectAABB.width < viewport.left + viewport.width))
 		{
 			gameObject->Draw(window);
+		}
+		if (objectAABB.left + m_levelSize.w > viewport.left && objectAABB.left + m_levelSize.w < viewport.left + viewport.width ||
+			(objectAABB.left + objectAABB.width + m_levelSize.w > viewport.left && objectAABB.left + objectAABB.width + m_levelSize.w < viewport.left + viewport.width))
+		{
+			gameObject->DrawWithXOffset(window, m_levelSize.w);
+		}
+	}
+	window.setView(m_minimapView);
+
+	viewport = getViewPort(m_minimapView);
+	for (GameObject* gameObject : m_gameObjects)
+	{
+		//cull objects not needed on minimap
+		if (gameObject->IsMiniMapObject())
+		{
+			//cull objects not in view
+			sf::FloatRect objectAABB = gameObject->getAABB();
+			if ((objectAABB.left > viewport.left && objectAABB.left < viewport.left + viewport.width) ||
+				(objectAABB.left + objectAABB.width > viewport.left && objectAABB.left + objectAABB.width < viewport.left + viewport.width))
+			{
+				gameObject->Draw(window);
+			}
+			if (objectAABB.left + m_levelSize.w > viewport.left && objectAABB.left + m_levelSize.w < viewport.left + viewport.width ||
+				(objectAABB.left + objectAABB.width + m_levelSize.w > viewport.left && objectAABB.left + objectAABB.width + m_levelSize.w < viewport.left + viewport.width))
+			{
+				gameObject->DrawWithXOffset(window, m_levelSize.w);
+			}
 		}
 	}
 	renderCameraBounds(window);

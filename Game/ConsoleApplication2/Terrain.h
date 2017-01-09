@@ -1,14 +1,11 @@
 #pragma once
-#include "GameObject.h"
+#include "TerrainSegment.h"
 
-class Terrain : public GameObject
+class Terrain
 {
 public:
-	Terrain(int minY, int maxY, Vector2D levelSize);
-	void Update(float dt) override;
-	void Draw(sf::RenderWindow& r) override;
-
+	static std::vector<TerrainSegment*> GenerateTerrain(int minY, int maxY, Vector2D levelSize);
 private:
-	std::vector<sf::Vertex> m_points;
-	std::vector<sf::ConvexShape> m_terrainShapes;
+	static std::vector<int> calculateYValues(float minY, float maxY, float displace, float roughness);
+	static bool valid(int value, int max, int min);
 };
