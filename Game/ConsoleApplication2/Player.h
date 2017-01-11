@@ -6,7 +6,7 @@
 using namespace std;
 
 
-class Player : public AIGameObject
+class Player : public AIGameObject, public EventListener
 {
 private:
 	Vector2D m_targetDirection;

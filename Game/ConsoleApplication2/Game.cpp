@@ -3,7 +3,7 @@
 
 Game::Game()
 {
-	GameObject* player = new Player(Rect(Vector2D(950, 530), Vector2D(20, 20)),	//bounds
+	Player* player = new Player(Rect(Vector2D(950, 530), Vector2D(20, 20)),	//bounds
 									Vector2D(800, 800),							//accel
 									Vector2D(400, 400),							//maxSpeed
 									true);										//isMiniMapObject

@@ -3,7 +3,7 @@
 #include "SimpleTypes.h"
 #include "EventListener.h"
 
-class GameObject : public EventListener
+class GameObject
 {
 public:
 	GameObject(Rect bounds = Rect(), bool isMiniMapObject = false)
