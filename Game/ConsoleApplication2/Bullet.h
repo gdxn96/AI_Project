@@ -1,11 +1,12 @@
 #pragma once
 
-#include "MovingGameObject.h"
+#include "GameObject.h"
 
 
-class Bullet : public MovingGameObject
+class Bullet : public GameObject
 {
 private:
+	Vector2D m_velocity;
 	float m_timeToLive;
 
 public:

@@ -4,7 +4,7 @@
 
 
 Player::Player(Rect bounds, Vector2D accel, Vector2D maxSpeed, bool isMiniMapObject = false)
-	: MovingGameObject(bounds, accel, maxSpeed, isMiniMapObject),
+	: AIGameObject(bounds, accel, maxSpeed, isMiniMapObject),
 	  m_facingDirection(sf::Vector2f(1, 0)),
 	  m_bulletsPerSecond(10),
 	  m_shooting(false)
@@ -19,26 +19,16 @@ Player::~Player()
 
 void Player::Update(float dt)
 {
+	UpdateSpeed(dt);
+	UpdateDirection();
+	UpdateBullets(dt);
+
 	if (m_shooting)
 	{
 		UpdateShootState(dt);
 	}
-	
-	UpdateSpeed(dt);
-	UpdateDirection();
-	UpdatePosition(dt);
 
-	for (int i = m_bullets.size() - 1; i >= 0; i--)
-	{
-		if (m_bullets[i]->isAlive())
-		{
-			m_bullets[i]->Update(dt);
-		}
-		else
-		{
-			m_bullets.erase(m_bullets.begin() + i);
-		}
-	}
+	AIManager::move(dt, m_bounds.pos, m_speed * m_direction);
 }
 
 
@@ -109,24 +99,47 @@ void Player::onKeyUp(KeyUpEvent evt)
 
 
 
+void Player::UpdateBullets(float dt)
+{
+	for (int i = m_bullets.size() - 1; i >= 0; i--)
+	{
+		if (m_bullets[i]->isAlive())
+		{
+			m_bullets[i]->Update(dt);
+		}
+		else
+		{
+			m_bullets.erase(m_bullets.begin() + i);
+		}
+	}
+}
+
+
+
 void Player::UpdateSpeed(float dt)
 {
 	if (m_targetDirection.x != 0)
 	{
-		UpdateXSpeed(dt, 1, m_MAXSPEED.x);
+		Vector2D accel = Vector2D(ACCELERATION.x, 0);
+		Vector2D targSpeed = Vector2D(MAX_SPEED.x, 0);
+		AIManager::accelerate(dt, m_speed, accel, targSpeed);
 	}
 	else if (m_targetDirection.x == 0 && m_direction.x != 0)
 	{
-		UpdateXSpeed(dt, -1, 0);
+		Vector2D accel = Vector2D(-ACCELERATION.x, 0);
+		Vector2D targSpeed = Vector2D(0, 0);
+		AIManager::accelerate(dt, m_speed, accel, targSpeed);
 	}
 
 	if (m_targetDirection.y != 0)
 	{
-		m_speed.y = m_MAXSPEED.y;
+		m_speed.y = MAX_SPEED.y;
 	}
 	else if (m_direction.y != 0)
 	{
-		UpdateYSpeed(dt, -1, 0);
+		Vector2D accel = Vector2D(0, -ACCELERATION.y);
+		Vector2D targSpeed = Vector2D(0, 0);
+		AIManager::accelerate(dt, m_speed, accel, targSpeed);
 	}
 }
 

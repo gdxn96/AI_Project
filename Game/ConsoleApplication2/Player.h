@@ -2,11 +2,12 @@
 
 #include "Constants.h"
 #include "Bullet.h"
+#include "AIGameObject.h"
 
 using namespace std;
 
 
-class Player : public MovingGameObject
+class Player : public AIGameObject
 {
 private:
 	Vector2D m_targetDirection;
@@ -17,6 +18,7 @@ private:
 	bool m_shooting;
 	float m_timeTillNextShot;
 
+	void UpdateBullets(float dt);
 	void UpdateDirection();
 	void UpdateShootState(float dt);
 	void UpdateSpeed(float dt);
