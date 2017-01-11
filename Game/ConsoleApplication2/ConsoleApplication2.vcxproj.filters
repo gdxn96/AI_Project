@@ -48,10 +48,10 @@
     <ClInclude Include="AIManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="MovingGameObject.h">
+    <ClInclude Include="Constants.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Constants.h">
+    <ClInclude Include="AIGameObject.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

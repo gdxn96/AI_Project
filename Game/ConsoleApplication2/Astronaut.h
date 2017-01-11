@@ -1,10 +1,10 @@
 #pragma once
 
-#include "MovingGameObject.h"
+#include "AIGameObject.h"
 #include "AIManager.h"
 
 
-class Astronaut : public MovingGameObject
+class Astronaut : public AIGameObject
 {
 private:
 	const int m_maxWanderTime; // in seconds
