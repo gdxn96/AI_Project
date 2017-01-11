@@ -15,6 +15,7 @@
 #include "stdafx.h"
 #include <SFML/Graphics.hpp>
 #include "Game.h"
+#include <iostream>
 
 int main()
 {
@@ -23,33 +24,40 @@ int main()
 	Vector2D levelSize(screenSize.w * 9, screenSize.h);
 	sf::RenderWindow window(sf::VideoMode(screenSize.w, screenSize.h), "Defender");
 	Game game = Game(screenSize, levelSize);
+	const float FPS = 1.0f / 60;
 
 	sf::Clock deltaClock; // used to calculate dt
 	float dt = 0; // floating point dt as seconds
 	
 	while (window.isOpen())
 	{
-		sf::Event event;
-		while (window.pollEvent(event))
+		if (dt > FPS)
 		{
-			if (event.type == sf::Event::Closed)
-				window.close();
-			//TESTING
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
-				game.m_camera.Move(sf::Vector2f(10000 * dt, 0));
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
-				game.m_camera.Move(sf::Vector2f(-10000 * dt, 0));
+			deltaClock.restart();
+			sf::Event event;
+			while (window.pollEvent(event))
+			{
+				if (event.type == sf::Event::Closed)
+					window.close();
+				//TESTING
+				if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+					game.m_camera.Move(sf::Vector2f(500 * dt, 0));
+				if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+					game.m_camera.Move(sf::Vector2f(-500 * dt, 0));
+			}
+			game.Update(dt);
+
+			window.clear();
+
+			//draw objects here
+			game.Draw(window);
+
+			window.display();
 		}
-		game.Update(dt);
 
-		window.clear();
+		dt = deltaClock.getElapsedTime().asSeconds();
 
-		//draw objects here
-		game.Draw(window);
-
-		window.display();
-
-		dt = deltaClock.restart().asSeconds();
+		std::cout << dt << std::endl;
 	}
 
 	return 0;
