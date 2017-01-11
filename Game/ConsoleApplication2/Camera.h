@@ -2,6 +2,8 @@
 #include <vector>
 #include "GameObject.h"
 
+class GameObject;
+
 class Camera
 {
 public:
@@ -10,6 +12,8 @@ public:
 	void SetCenter(sf::Vector2f center);
 	sf::FloatRect getViewPort(sf::View& v);
 	void RenderObjects(sf::RenderWindow& window, std::vector<GameObject*>& m_gameObjects);
+	void Wrap(Vector2D& position);
+	void Wrap(sf::FloatRect& bounds);
 private:
 	void renderCameraBounds(sf::RenderWindow& window);
 	sf::View m_minimapView, m_gameView;

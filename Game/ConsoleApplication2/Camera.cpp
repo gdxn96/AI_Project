@@ -82,6 +82,22 @@ void Camera::RenderObjects(sf::RenderWindow & window, std::vector<GameObject*>& 
 	renderCameraBounds(window);
 }
 
+void Camera::Wrap(Vector2D& position)
+{
+	if (position.x > m_levelSize.x)
+	{
+		position.x = static_cast<int>(position.x) % static_cast<int>(m_levelSize.x);
+	}
+}
+
+void Camera::Wrap(sf::FloatRect & bounds)
+{
+	if (bounds.left > m_levelSize.x)
+	{
+		bounds.left = static_cast<int>(bounds.left) % static_cast<int>(m_levelSize.x);
+	}
+}
+
 void Camera::renderCameraBounds(sf::RenderWindow& window)
 {
 	sf::Vector2f offset(40, 40);

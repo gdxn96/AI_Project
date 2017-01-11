@@ -4,6 +4,7 @@
 #include "GameObject.h"
 #include "Terrain.h"
 #include "Camera.h"
+#include "Meteor.h"
 
 class Game
 {
@@ -13,7 +14,7 @@ public:
 	void Draw(sf::RenderWindow& r);
 	Camera m_camera; //testing
 private:
-	std::vector<GameObject*> m_gameObjects;
+	std::vector<GameObject*> m_drawObjects, m_updateObjects;
 	//Camera m_camera;
 	Vector2D m_screenSize, m_levelSize;
 };

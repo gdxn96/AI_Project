@@ -1,7 +1,9 @@
 #pragma once
 #include <SFML\Graphics.hpp>
 #include "SimpleTypes.h"
+#include "Camera.h"
 
+class Camera;
 class GameObject
 {
 public:
@@ -13,6 +15,7 @@ public:
 	virtual sf::FloatRect getAABB() { return m_bounds; };
 	virtual sf::FloatRect getAABBWithXOffset(float xOffset) { sf::FloatRect r = m_bounds; r.left += xOffset; return r; };
 	virtual void setBounds(sf::FloatRect bounds) { m_bounds = bounds; };
+	virtual void wrapPositions(Camera& cam);
 
 protected:
 	bool m_isMinimapObject;
