@@ -1,0 +1,42 @@
+#pragma once
+#include <SFML\Graphics.hpp>
+#include "SimpleTypes.h"
+<<<<<<< HEAD
+#include "EventListener.h"
+=======
+>>>>>>> 4d0f93be3f91522f622f1be3183adc6ee2602bec
+
+class GameObject
+{
+public:
+<<<<<<< HEAD
+	GameObject(Rect bounds = Rect(), bool isMiniMapObject = false)
+		: m_bounds(bounds),
+		m_isMinimapObject(isMiniMapObject) {}
+
+	GameObject(bool isMiniMapObject = false, Rect bounds = Rect())
+		: m_bounds(bounds),
+=======
+	GameObject(Rect bounds = Rect(), bool isMiniMapObject = false) 
+		: m_bounds(bounds), 
+		m_isMinimapObject(isMiniMapObject) {}
+
+	GameObject(bool isMiniMapObject = false, Rect bounds = Rect()) 
+		: m_bounds(bounds), 
+>>>>>>> 4d0f93be3f91522f622f1be3183adc6ee2602bec
+		m_isMinimapObject(isMiniMapObject) {}
+
+	virtual void Update(float dt) = 0;
+	virtual void Draw(sf::RenderWindow& w) = 0;
+	virtual bool IsMiniMapObject() { return m_isMinimapObject; };
+	virtual Rect getAABB() { return m_bounds; };
+	virtual void setBounds(Rect bounds) { m_bounds = bounds; };
+
+protected:
+	bool m_isMinimapObject;
+	Rect m_bounds;
+<<<<<<< HEAD
+};
+=======
+};
+>>>>>>> 4d0f93be3f91522f622f1be3183adc6ee2602bec

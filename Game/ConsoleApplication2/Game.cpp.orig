@@ -7,12 +7,7 @@ Game::Game(Vector2D screenSize, Vector2D levelSize) :
 	m_levelSize(levelSize), 
 	m_camera(screenSize, levelSize)
 {
-	float terrainPeak = screenSize.h * 7.f / 10;
-	float terrainTrough = screenSize.h * 8.f / 10;
-
-	m_gameObjects.push_back(new Terrain(terrainPeak, terrainTrough, levelSize));
-	m_gameObjects.push_back(new Astronaut(Rect(950, screenSize.h - 150, 10, 20), true));
-	
+<<<<<<< HEAD
 	Player* player = new Player(Rect(Vector2D(950, 530), Vector2D(20, 20)),	//bounds
 									Vector2D(800, 800),							//accel
 									Vector2D(400, 400),							//maxSpeed
@@ -32,6 +27,13 @@ Game::Game(Vector2D screenSize, Vector2D levelSize) :
 	input->AddListener(static_cast<int>(EventListener::GenericEvent::NO_SHOOT), player);
 
 	m_gameObjects.push_back(player);
+=======
+	float terrainPeak = screenSize.h * 7.f / 10;
+	float terrainTrough = screenSize.h * 8.f / 10;
+
+	m_gameObjects.push_back(new Terrain(terrainPeak, terrainTrough, levelSize));
+	m_gameObjects.push_back(new Astronaut(Rect(950, screenSize.h - 150, 10, 20), true));
+>>>>>>> 4d0f93be3f91522f622f1be3183adc6ee2602bec
 }
 
 void Game::Update(float dt)
@@ -42,7 +44,17 @@ void Game::Update(float dt)
 	}
 }
 
+<<<<<<< HEAD
 void Game::Draw(sf::RenderWindow& r)
+{
+	for (GameObject* gameObject : m_gameObjects)
+	{
+		gameObject->Draw(r);
+	}
+}
+=======
+void Game::Draw(sf::RenderWindow & r)
 {
 	m_camera.RenderObjects(r, m_gameObjects);
 }
+>>>>>>> 4d0f93be3f91522f622f1be3183adc6ee2602bec
