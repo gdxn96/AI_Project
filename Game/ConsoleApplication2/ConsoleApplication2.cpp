@@ -24,7 +24,7 @@ int main()
 	Vector2D levelSize(screenSize.w * 9, screenSize.h);
 	sf::RenderWindow window(sf::VideoMode(screenSize.w, screenSize.h), "Defender");
 	Game game = Game(screenSize, levelSize);
-	const float FPS = 1.0f / 60;
+	const float FPS = 1.0f / 120;
 
 	sf::Clock deltaClock; // used to calculate dt
 	float dt = 0; // floating point dt as seconds
@@ -41,9 +41,9 @@ int main()
 					window.close();
 				//TESTING
 				if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
-					game.m_camera.Move(sf::Vector2f(500 * dt, 0));
+					game.m_camera.Move(sf::Vector2f(1000 * dt, 0));
 				if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
-					game.m_camera.Move(sf::Vector2f(-500 * dt, 0));
+					game.m_camera.Move(sf::Vector2f(-1000 * dt, 0));
 			}
 			game.Update(dt);
 
@@ -56,8 +56,6 @@ int main()
 		}
 
 		dt = deltaClock.getElapsedTime().asSeconds();
-
-		std::cout << dt << std::endl;
 	}
 
 	return 0;
