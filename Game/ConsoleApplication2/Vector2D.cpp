@@ -2,6 +2,13 @@
 #include "Vector2D.h"
 
 #define M_PI 3.141592654
+
+const Vector2D Vector2D::UP = Vector2D(0, -1);
+const Vector2D Vector2D::LEFT = Vector2D(-1, 0);
+const Vector2D Vector2D::DOWN = Vector2D(0, 1);
+const Vector2D Vector2D::RIGHT = Vector2D(1, 0);
+
+
 Vector2D::Vector2D() : width(x), w(x), height(y), h(y)
 {
 	x = 0.0;

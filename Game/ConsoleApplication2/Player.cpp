@@ -62,17 +62,17 @@ void Player::onKeyDown(KeyDownEvent evt)
 	switch (evt)
 	{
 	case EventListener::KeyDownEvent::UP:
-		m_targetDirection.y = Constants::UP.y;
+		m_targetDirection.y = Vector2D::UP.y;
 		break;
 	case EventListener::KeyDownEvent::LEFT:
-		m_targetDirection.x = Constants::LEFT.x;
+		m_targetDirection.x = Vector2D::LEFT.x;
 		m_facingDirection.x = -1;
 		break;
 	case EventListener::KeyDownEvent::DOWN:
-		m_targetDirection.y = Constants::DOWN.y;
+		m_targetDirection.y = Vector2D::DOWN.y;
 		break;
 	case EventListener::KeyDownEvent::RIGHT:
-		m_targetDirection.x = Constants::RIGHT.x;
+		m_targetDirection.x = Vector2D::RIGHT.x;
 		m_facingDirection.x = 1;
 		break;
 	}
@@ -83,16 +83,16 @@ void Player::onKeyUp(KeyUpEvent evt)
 	switch (evt)
 	{
 	case EventListener::KeyUpEvent::UP:
-		m_targetDirection.y = m_targetDirection.y == Constants::UP.y ? 0 : m_targetDirection.y;
+		m_targetDirection.y = m_targetDirection.y == Vector2D::UP.y ? 0 : m_targetDirection.y;
 		break;
 	case EventListener::KeyUpEvent::LEFT:
-		m_targetDirection.x = m_targetDirection.x == Constants::LEFT.x ? 0 : m_targetDirection.x;
+		m_targetDirection.x = m_targetDirection.x == Vector2D::LEFT.x ? 0 : m_targetDirection.x;
 		break;
 	case EventListener::KeyUpEvent::DOWN:
-		m_targetDirection.y = m_targetDirection.y == Constants::DOWN.y ? 0 : m_targetDirection.y;
+		m_targetDirection.y = m_targetDirection.y == Vector2D::DOWN.y ? 0 : m_targetDirection.y;
 		break;
 	case EventListener::KeyUpEvent::RIGHT:
-		m_targetDirection.x = m_targetDirection.x == Constants::RIGHT.x ? 0 : m_targetDirection.x;
+		m_targetDirection.x = m_targetDirection.x == Vector2D::RIGHT.x ? 0 : m_targetDirection.x;
 		break;
 	}
 }

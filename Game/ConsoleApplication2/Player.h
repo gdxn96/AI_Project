@@ -1,6 +1,5 @@
 #pragma once
 
-#include "Constants.h"
 #include "Bullet.h"
 #include "AIGameObject.h"
 

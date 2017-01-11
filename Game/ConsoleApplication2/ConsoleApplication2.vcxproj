@@ -161,7 +161,6 @@
   <ItemGroup>
     <ClInclude Include="AIManager.h" />
     <ClInclude Include="Bullet.h" />
-    <ClInclude Include="Constants.h" />
     <ClInclude Include="EventListener.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameObject.h" />
@@ -177,7 +176,6 @@
     <ClCompile Include="AIManager.cpp" />
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="ConsoleApplication2.cpp" />
-    <ClCompile Include="Constants.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="Player.cpp" />

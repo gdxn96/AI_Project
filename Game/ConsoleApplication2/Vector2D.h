@@ -85,4 +85,9 @@ public:
 	static float AngleDeg(Vector2D & one, Vector2D & two);
 	//get the angle between 2 points returns as float in radians
 	static float AngleRad(Vector2D & one, Vector2D & two);
+
+	static const Vector2D UP;
+	static const Vector2D LEFT; 
+	static const Vector2D DOWN; 
+	static const Vector2D RIGHT;
 };
