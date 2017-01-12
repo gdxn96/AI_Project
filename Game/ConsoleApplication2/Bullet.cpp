@@ -18,7 +18,7 @@ Bullet::~Bullet() { }
 
 void Bullet::Update(float dt)
 {
-	AIManager::move(dt, m_position, m_velocity);
+	PhysicsManager::move(dt, m_position, m_velocity);
 
 	if (m_timeToLive > 0)
 	{

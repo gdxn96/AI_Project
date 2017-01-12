@@ -6,6 +6,10 @@ void EntityFactory::CreateBullet()
 {
 }
 
+void EntityFactory::CreateMissile()
+{
+}
+
 void EntityFactory::CreateMutant()
 {
 }
@@ -18,8 +22,9 @@ void EntityFactory::CreateAbductor()
 {
 }
 
-void EntityFactory::CreateNest()
+void EntityFactory::CreateNest(Vector2D pos, Vector2D dir, float speed)
 {
+	m_newGameObjects.push_back(new Nest(pos, dir, speed));
 }
 
 std::vector<GameObject*> EntityFactory::getNewObjects()

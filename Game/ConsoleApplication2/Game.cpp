@@ -7,6 +7,8 @@ Game::Game(Vector2D screenSize, Vector2D levelSize) :
 	m_levelSize(levelSize), 
 	m_camera(screenSize, levelSize)
 {
+	PhysicsManager::initialize(sf::FloatRect(0, screenSize.h * 1.f / 10, levelSize.w, screenSize.h * 7.f / 10));
+
 	float terrainPeak = screenSize.h * 7.f / 10;
 	float terrainTrough = screenSize.h * 8.f / 10;
 
@@ -26,6 +28,8 @@ Game::Game(Vector2D screenSize, Vector2D levelSize) :
 		Vector2D(800, 800),							//accel
 		Vector2D(400, 400),							//maxSpeed
 		true);										//isMiniMapObject
+
+	EntityFactory::CreateNest(Vector2D(950, 530), Vector2D(0, 1), 150);
 
 	InputManager* input = InputManager::getInstance();
 
@@ -56,8 +60,8 @@ void Game::Update(float dt)
 
 	if (newObjects.size() != 0)
 	{
-		m_drawObjects.insert(m_drawObjects.begin(), newObjects.begin(), newObjects.end());
-		m_updateObjects.insert(m_updateObjects.begin(), newObjects.begin(), newObjects.end());
+		m_drawObjects.insert(m_drawObjects.end(), newObjects.begin(), newObjects.end());
+		m_updateObjects.insert(m_updateObjects.end(), newObjects.begin(), newObjects.end());
 		EntityFactory::clearObjects();
 	}
 }

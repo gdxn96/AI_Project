@@ -31,7 +31,8 @@ void Player::Update(float dt)
 		UpdateShootState(dt);
 	}
 
-	AIManager::move(dt, m_position, m_speed * m_direction);
+	PhysicsManager::move(dt, m_position, m_speed * m_direction);
+	PhysicsManager::BindPositionToLevel(m_position);
 	m_shape.setPosition(m_position.toSFMLVector());
 	m_bounds.left = m_position.x;
 	m_bounds.top = m_position.y;
@@ -146,13 +147,13 @@ void Player::UpdateSpeed(float dt)
 	{
 		Vector2D accel = Vector2D(ACCELERATION.x, 0);
 		Vector2D targSpeed = Vector2D(MAX_SPEED.x, 0);
-		AIManager::accelerate(dt, m_speed, accel, targSpeed);
+		PhysicsManager::accelerate(dt, m_speed, accel, targSpeed);
 	}
 	else if (m_targetDirection.x == 0 && m_direction.x != 0)
 	{
 		Vector2D accel = Vector2D(-ACCELERATION.x, 0);
 		Vector2D targSpeed = Vector2D(0, 0);
-		AIManager::accelerate(dt, m_speed, accel, targSpeed);
+		PhysicsManager::accelerate(dt, m_speed, accel, targSpeed);
 	}
 
 	if (m_targetDirection.y != 0)
@@ -163,7 +164,7 @@ void Player::UpdateSpeed(float dt)
 	{
 		Vector2D accel = Vector2D(0, -ACCELERATION.y);
 		Vector2D targSpeed = Vector2D(0, 0);
-		AIManager::accelerate(dt, m_speed, accel, targSpeed);
+		PhysicsManager::accelerate(dt, m_speed, accel, targSpeed);
 	}
 }
 

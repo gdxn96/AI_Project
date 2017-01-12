@@ -7,6 +7,7 @@
 #include "Camera.h"
 #include "Meteor.h"
 #include "EntityFactory.h"
+#include "PhysicsManager.h"
 
 class Game
 {

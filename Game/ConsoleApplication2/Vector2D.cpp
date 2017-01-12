@@ -9,19 +9,17 @@ const Vector2D Vector2D::DOWN = Vector2D(0, 1);
 const Vector2D Vector2D::RIGHT = Vector2D(1, 0);
 
 
-Vector2D::Vector2D() : width(x), w(x), height(y), h(y)
+Vector2D::Vector2D() : x(0), y(0)
 {
 	x = 0.0;
 	y = 0.0;
 }
 
-Vector2D::Vector2D(sf::Vector2f v) : width(x), w(x), height(y), h(y)
+Vector2D::Vector2D(sf::Vector2f v) : x(v.x), y(v.y)
 {
-	x = v.x;
-	y = v.y;
 }
 
-Vector2D::Vector2D(float angle) : width(x), w(x), height(y), h(y)
+Vector2D::Vector2D(float angle)
 {
 	x = std::cos(angle);
 	y = std::sin(angle);
@@ -32,14 +30,16 @@ Vector2D::Vector2D(float angle) : width(x), w(x), height(y), h(y)
 
 Vector2D::~Vector2D()
 {}
-Vector2D::Vector2D(float sourceX, float sourceY) : width(x), w(x), height(y), h(y)
+Vector2D::Vector2D(float sourceX, float sourceY) : x(sourceX), y(sourceY)
 {
-	x = sourceX;
-	y = sourceY;
 }
+
 sf::Vector2f Vector2D::toSFMLVector()
 {
 	return sf::Vector2f(x, y);
+}
+Vector2D::Vector2D(const Vector2D & v) : x(v.x), y(v.y)
+{
 }
 Vector2D Vector2D::operator+(const Vector2D &v) const
 {
