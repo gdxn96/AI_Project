@@ -7,18 +7,21 @@ Game::Game(Vector2D screenSize, Vector2D levelSize) :
 	m_levelSize(levelSize), 
 	m_camera(screenSize, levelSize)
 {
+	PhysicsManager::initialize(sf::FloatRect(0, screenSize.h * 1.f / 10, levelSize.w, screenSize.h * 7.f / 10));
+
 	float terrainPeak = screenSize.h * 7.f / 10;
 	float terrainTrough = screenSize.h * 8.f / 10;
 	std::vector<TerrainSegment*> terrainSegments = Terrain::GenerateTerrain(terrainPeak, terrainTrough, levelSize);
 	m_terrainSegments.insert(m_terrainSegments.end(), terrainSegments.begin(), terrainSegments.end());
 
+	EntityFactory::CreateNest(Vector2D(950, 530), Vector2D(0, 1), 150);
 	EntityFactory::CreateMeteor(Vector2D(400, 400), 30, 1000);
 	EntityFactory::CreateAstronaut(sf::Vector2f(950, screenSize.h - 150), sf::Vector2f(10, 20));
 
 	Player* player = new Player(sf::Vector2f(950, 530),	//bounds
 								sf::Vector2f(40, 20),	//size
 								Vector2D(800, 800),		//acceleration
-								Vector2D(400, 400));	//maxSpeed
+								Vector2D(5000, 400));	//maxSpeed
 
 	m_gameObjects.push_back(player);
 }

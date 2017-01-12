@@ -17,7 +17,7 @@ Astronaut::Astronaut(sf::Vector2f position, sf::Vector2f size)
 void Astronaut::Update(float dt)
 {
 	AIManager::wander(dt, m_wanderTimeRemaining, m_maxWanderTime, m_direction, true);
-	AIManager::move(dt, m_position, m_speed * m_direction);
+	PhysicsManager::move(dt, m_position, m_speed * m_direction);
 	m_shape.setPosition(m_position.toSFMLVector());
 }
 

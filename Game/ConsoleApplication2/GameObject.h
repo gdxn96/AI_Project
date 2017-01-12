@@ -2,6 +2,8 @@
 #include <SFML\Graphics.hpp>
 #include "SimpleTypes.h"
 #include "Camera.h"
+#include "PhysicsManager.h"
+#include <iostream>
 
 class Camera;
 class GameObject

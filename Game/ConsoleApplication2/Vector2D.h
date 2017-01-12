@@ -15,8 +15,12 @@ public:
 	/*The x and y values are public to give easier access for
 	outside funtions. Accessors and mutators are not really
 	necessary*/
-	float x, &width, &w;
-	float y, &height, &h;
+	float x;
+	float &width = x;
+	float &w = x;
+	float y;
+	float &height = y;
+	float &h = y;
 	~Vector2D(void);
 	//Constructor assigns the inputs to x and y.
 	Vector2D();
@@ -25,6 +29,8 @@ public:
 	Vector2D(float angle);
 	Vector2D(float, float);
 	sf::Vector2f toSFMLVector();
+	Vector2D(const Vector2D& v);
+
 	/*The following operators simply return Vector2ds that
 	have operations performed on the relative (x, y) values*/
 	Vector2D operator+(const Vector2D&) const;

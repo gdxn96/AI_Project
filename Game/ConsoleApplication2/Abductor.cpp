@@ -25,7 +25,7 @@ void Abductor::Update(float dt)
 		//AIManager::seekToward();
 	}
 
-	AIManager::move(dt, m_position, m_direction * m_speed);
+	PhysicsManager::move(dt, m_position, m_direction * m_speed);
 }
 
 void Abductor::Draw(sf::RenderWindow& window)
