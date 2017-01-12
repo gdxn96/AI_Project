@@ -6,6 +6,7 @@
 #include "Terrain.h"
 #include "Camera.h"
 #include "Meteor.h"
+#include "EntityFactory.h"
 
 class Game
 {

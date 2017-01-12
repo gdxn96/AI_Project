@@ -52,6 +52,10 @@ void Game::Update(float dt)
 		gameObject->Update(dt);
 		gameObject->wrapPositions(m_camera);
 	}
+	vector<GameObject*> newObjects = EntityFactory::getNewObjects();
+	m_drawObjects.insert(m_drawObjects.begin(), newObjects.begin(), newObjects.end());
+	m_updateObjects.insert(m_updateObjects.begin(), newObjects.begin(), newObjects.end());
+	EntityFactory::clearObjects();
 }
 
 void Game::Draw(sf::RenderWindow& r)
