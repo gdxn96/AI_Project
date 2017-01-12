@@ -16,7 +16,7 @@ Game::Game(Vector2D screenSize, Vector2D levelSize) :
 	m_drawObjects.insert(m_drawObjects.begin(), terrainSegments.begin(), terrainSegments.end());
 
 	//test meteor
-	Meteor * m = new Meteor(30.f, 1000.f, Vector2D(1, 0), Vector2D(400, 400));
+	Meteor * m = new Meteor(30.f, 1000.f, Vector2D(-1, 0), Vector2D(400, 400));
 	m_drawObjects.push_back(m);
 	m_updateObjects.push_back(m);
 
@@ -26,7 +26,7 @@ Game::Game(Vector2D screenSize, Vector2D levelSize) :
 
 	Player* player = new Player(Vector2D(950, 530),	//bounds
 		Vector2D(800, 800),							//accel
-		Vector2D(400, 400),							//maxSpeed
+		Vector2D(5000, 5000),							//maxSpeed
 		true);										//isMiniMapObject
 
 	EntityFactory::CreateNest(Vector2D(950, 530), Vector2D(0, 1), 150);

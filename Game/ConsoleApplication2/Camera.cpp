@@ -85,17 +85,25 @@ void Camera::RenderObjects(sf::RenderWindow & window, std::vector<GameObject*>& 
 
 void Camera::Wrap(Vector2D& position)
 {
-	if (position.x > m_levelSize.x)
+	if (position.x > m_levelSize.w)
 	{
-		position.x = static_cast<int>(position.x) % static_cast<int>(m_levelSize.x);
+		position.x -= m_levelSize.w;
+	}
+	else if (position.x < 0)
+	{
+		position.x += m_levelSize.w;
 	}
 }
 
 void Camera::Wrap(sf::FloatRect & bounds)
 {
-	if (bounds.left > m_levelSize.x)
+	if (bounds.left > m_levelSize.w)
 	{
-		bounds.left = static_cast<int>(bounds.left) % static_cast<int>(m_levelSize.x);
+		bounds.left -= m_levelSize.w;
+	}
+	else if (bounds.left < m_levelSize.w)
+	{
+		bounds.left += m_levelSize.w;
 	}
 }
 
