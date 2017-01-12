@@ -48,7 +48,7 @@ int main()
 			window.display();
 		}
 
-		dt = deltaClock.getElapsedTime().asSeconds();
+       		dt = deltaClock.getElapsedTime().asSeconds();
 	}
 
 	return 0;

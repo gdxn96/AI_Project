@@ -10,13 +10,11 @@
 class Game
 {
 public:
-	Camera m_camera; //testing
-
 	Game(Vector2D screenSize, Vector2D levelSize);
 	void Update(float dt);
 	void Draw(sf::RenderWindow& r);
 private:
 	std::vector<GameObject*> m_drawObjects, m_updateObjects;
-	//Camera m_camera;
+	Camera m_camera;
 	Vector2D m_screenSize, m_levelSize;
 };

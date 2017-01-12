@@ -18,6 +18,7 @@ void Camera::Move(sf::Vector2f moveAmount)
 
 void Camera::SetCenter(sf::Vector2f center)
 {
+	center.y = m_levelSize.h / 2;
 	m_gameView.setCenter(center);
 }
 

@@ -26,7 +26,7 @@ public:
 
 	Vector2D getCentreCopy()
 	{
-		return  Vector2D(this->pos.x + this->size.w / 2, this->pos.y + this->size.h / 2);
+ 		return  Vector2D(this->pos.x + this->size.w / 2, this->pos.y + this->size.h / 2);
 	}
 
 	sf::RectangleShape toSFMLRect()
