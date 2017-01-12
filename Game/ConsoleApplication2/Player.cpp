@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "Player.h"
+#include "InputManager.h"
 
 
 Player::Player(sf::Vector2f position, sf::Vector2f size, Vector2D acceleration, Vector2D maxSpeed)
@@ -13,11 +14,28 @@ Player::Player(sf::Vector2f position, sf::Vector2f size, Vector2D acceleration, 
 	  m_shooting(false)
 {
 	m_shape.setPosition(m_position.toSFMLVector());
+	InitializeEvents();
 }
 
 
 Player::~Player()
 {
+}
+
+
+void Player::InitializeEvents()
+{
+	InputManager* input = InputManager::getInstance();
+	input->AddListener(static_cast<int>(EventListener::KeyDownEvent::UP), this);
+	input->AddListener(static_cast<int>(EventListener::KeyDownEvent::LEFT), this);
+	input->AddListener(static_cast<int>(EventListener::KeyDownEvent::DOWN), this);
+	input->AddListener(static_cast<int>(EventListener::KeyDownEvent::RIGHT), this);
+	input->AddListener(static_cast<int>(EventListener::KeyUpEvent::UP), this);
+	input->AddListener(static_cast<int>(EventListener::KeyUpEvent::LEFT), this);
+	input->AddListener(static_cast<int>(EventListener::KeyUpEvent::DOWN), this);
+	input->AddListener(static_cast<int>(EventListener::KeyUpEvent::RIGHT), this);
+	input->AddListener(static_cast<int>(EventListener::GenericEvent::SHOOT), this);
+	input->AddListener(static_cast<int>(EventListener::GenericEvent::NO_SHOOT), this);
 }
 
 

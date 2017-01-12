@@ -36,6 +36,7 @@ private:
 public:
 	Player(sf::Vector2f position, sf::Vector2f size, Vector2D acceleration, Vector2D maxSpeed);
 	~Player();
+	void InitializeEvents();
 	void Update(float dt) override;
 	void Draw(sf::RenderWindow& w) override;
 	void DrawWithXOffset(sf::RenderWindow& window, float xOffset) override;

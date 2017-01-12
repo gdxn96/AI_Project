@@ -12,7 +12,7 @@ class EntityFactory
 public:
 	static void CreateBullet(Vector2D position, Vector2D direction);
 	static void CreateMutant();
-	static void CreateMeteor();
+	static void CreateMeteor(Vector2D position, float radius, float speed);
 	static void CreateAbductor();
 	static void CreateAstronaut(sf::Vector2f position, sf::Vector2f size);
 	static void CreateNest();

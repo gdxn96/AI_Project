@@ -13,8 +13,9 @@ void EntityFactory::CreateMutant()
 {
 }
 
-void EntityFactory::CreateMeteor()
+void EntityFactory::CreateMeteor(Vector2D position, float radius, float speed)
 {
+	m_newGameObjects.push_back(new Meteor(position, radius, speed));
 }
 
 void EntityFactory::CreateAbductor()
