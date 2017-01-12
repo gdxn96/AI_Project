@@ -4,6 +4,8 @@
 #include "Meteor.h"
 #include "Astronaut.h"
 
+class GameObject;
+
 class EntityFactory
 {
 public:

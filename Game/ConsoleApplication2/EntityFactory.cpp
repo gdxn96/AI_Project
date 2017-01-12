@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "EntityFactory.h"
 
+std::vector<GameObject*> EntityFactory::m_newGameObjects;
 void EntityFactory::CreateBullet()
 {
 }
