@@ -17,7 +17,7 @@ void EntityFactory::CreateAbductor()
 {
 }
 
-void EntityFactory::CreateSwarm()
+void EntityFactory::CreateNest()
 {
 }
 

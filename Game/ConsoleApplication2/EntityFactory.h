@@ -11,7 +11,7 @@ public:
 	static void CreateMutant();
 	static void CreateMeteor();
 	static void CreateAbductor();
-	static void CreateSwarm();
+	static void CreateNest();
 	static std::vector<GameObject*> getNewObjects();
 	static void clearObjects();
 private:
