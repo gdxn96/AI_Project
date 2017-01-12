@@ -4,24 +4,22 @@
 #include "AIManager.h"
 
 
-class Astronaut : public GameObject
+class Abductor : GameObject
 {
 private:
-	sf::RectangleShape m_shape;
-
-	// Movement
 	Vector2D m_direction;
+	float m_minPatrolHeight;
+	float m_maxPatrolHeight;
 	Vector2D m_position;
+	sf::RectangleShape m_shape;
 	Vector2D m_speed;
 
-	// Wandering 
-	const int m_maxWanderTime; // in seconds
-	float m_wanderTimeRemaining;
+	bool isInPatrolArea();
 
 public:
-	Astronaut(sf::Vector2f position, sf::Vector2f size);
+	Abductor(sf::Vector2f position, sf::Vector2f size, float minPatrolHeight, float maxPatrolHeight);
+	~Abductor();
 	void Update(float dt) override;
 	void Draw(sf::RenderWindow& window) override;
 	void DrawWithXOffset(sf::RenderWindow& window, float xOffset) override;
-	void wrapPositions(Camera& cam) override;
 };

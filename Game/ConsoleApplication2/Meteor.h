@@ -1,11 +1,12 @@
 #pragma once
 #include "GameObject.h"
 #include "Vector2D.h"
+#include "AIManager.h"
 
 class Meteor : public GameObject
 {
 public:
-	Meteor(float radius, float speed, Vector2D direction, Vector2D position);
+	Meteor(Vector2D position, float radius, float speed);
 	void Update(float dt) override;
 	void Draw(sf::RenderWindow& w) override;
 	void DrawWithXOffset(sf::RenderWindow& window, float xOffset) override;

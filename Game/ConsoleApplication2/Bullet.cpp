@@ -4,7 +4,7 @@
 
 
 Bullet::Bullet(Vector2D pos, Vector2D dir)
-:	GameObject(false, sf::FloatRect(pos.x, pos.y, 10, 5)),
+:	GameObject(sf::FloatRect(pos.x, pos.y, 10, 5)),
 	m_velocity(Vector2D(1200, 0) * dir),
 	m_position(pos),
 	m_timeToLive(1),
@@ -25,6 +25,11 @@ void Bullet::Update(float dt)
 		m_timeToLive -= dt;
 	}
 
+	if (m_timeToLive <= 0)
+	{
+		kill();
+	}
+
 	m_shape.setPosition(m_position.toSFMLVector());
 }
 
@@ -38,9 +43,4 @@ void Bullet::DrawWithXOffset(sf::RenderWindow & window, float xOffset)
 	m_shape.move(sf::Vector2f(xOffset, 0));
 	window.draw(m_shape);
 	m_shape.move(sf::Vector2f(-xOffset, 0));
-}
-
-bool Bullet::isAlive()
-{
-	return m_timeToLive > 0;
 }

@@ -15,8 +15,10 @@ public:
 	Game(Vector2D screenSize, Vector2D levelSize);
 	void Update(float dt);
 	void Draw(sf::RenderWindow& r);
+
 private:
-	std::vector<GameObject*> m_drawObjects, m_updateObjects;
+	std::vector<GameObject*> m_gameObjects;
+	std::vector<GameObject*> m_terrainSegments;
 	Camera m_camera;
 	Vector2D m_screenSize, m_levelSize;
 };

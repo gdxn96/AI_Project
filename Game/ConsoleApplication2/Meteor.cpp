@@ -1,12 +1,16 @@
 #include "stdafx.h"
 #include "Meteor.h"
 
-Meteor::Meteor(float radius, float speed, Vector2D direction, Vector2D position) : GameObject(true), m_position(position), m_speed(speed), m_shape(radius), m_direction(direction)
+Meteor::Meteor(Vector2D position, float radius, float speed) 
+	: GameObject(sf::FloatRect(), true), 
+	  m_position(position), 
+	  m_speed(speed), 
+	  m_shape(radius),
+	  m_direction(1, 0)
 {
 	m_shape.setPosition(position.toSFMLVector());
 	m_bounds.width = radius * 2;
 	m_bounds.height = radius * 2;
-
 	m_bounds.left = m_position.x;
 	m_bounds.top = m_position.y;
 }

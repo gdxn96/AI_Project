@@ -7,7 +7,7 @@ class AIManager
 {
 public:
 	static void wander(float dt, float& timeRemaining, int maxTime, Vector2D& direction, bool horizontalOnly);
-	static void seek();
+	static void seekToward(float dt, Vector2D& position, Vector2D targetPosition);
 	static void evade();
 	static void flock();
 };

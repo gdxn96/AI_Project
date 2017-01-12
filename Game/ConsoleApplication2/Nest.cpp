@@ -2,7 +2,7 @@
 #include "Nest.h"
 
 Nest::Nest(Vector2D pos, Vector2D dir, float speed)
-:	GameObject(true, sf::FloatRect(pos.x, pos.y, 40, 40)),
+:	GameObject(sf::FloatRect(pos.x, pos.y, 40, 40), true),
 	m_shape(sf::Vector2f(40,40)),
 	m_position(pos),
 	m_speed(speed),
