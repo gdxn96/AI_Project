@@ -28,7 +28,7 @@ void AIManager::wander(float dt, float& timeRemaining, int maxTime, Vector2D& di
 	}
 }
 
-void AIManager::seek()
+void AIManager::seekToward(float dt, Vector2D& position, Vector2D targetPosition)
 {
 
 }
