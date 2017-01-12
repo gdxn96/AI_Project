@@ -160,7 +160,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Abductor.h" />
-    <ClInclude Include="AIGameObject.h" />
     <ClInclude Include="AIManager.h" />
     <ClInclude Include="Astronaut.h" />
     <ClInclude Include="Bullet.h" />

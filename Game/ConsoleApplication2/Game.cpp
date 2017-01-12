@@ -18,14 +18,12 @@ Game::Game(Vector2D screenSize, Vector2D levelSize) :
 	m_drawObjects.push_back(m);
 	m_updateObjects.push_back(m);
 
-	Astronaut * a = new Astronaut(Vector2D(950, screenSize.h - 150), true);
-	m_drawObjects.push_back(a);
-	m_updateObjects.push_back(a);
+	EntityFactory::CreateAstronaut(sf::Vector2f(950, screenSize.h - 150), sf::Vector2f(10, 20));
 
-	Player* player = new Player(Vector2D(950, 530),	//bounds
-		Vector2D(800, 800),							//accel
-		Vector2D(400, 400),							//maxSpeed
-		true);										//isMiniMapObject
+	Player* player = new Player(sf::Vector2f(950, 530),	//bounds
+								sf::Vector2f(40, 20),	//size
+								Vector2D(800, 800),		//acceleration
+								Vector2D(400, 400));	//maxSpeed
 
 	InputManager* input = InputManager::getInstance();
 
@@ -56,8 +54,8 @@ void Game::Update(float dt)
 
 	if (newObjects.size() != 0)
 	{
-		m_drawObjects.insert(m_drawObjects.begin(), newObjects.begin(), newObjects.end());
-		m_updateObjects.insert(m_updateObjects.begin(), newObjects.begin(), newObjects.end());
+		m_drawObjects.insert(m_drawObjects.end(), newObjects.begin(), newObjects.end());
+		m_updateObjects.insert(m_updateObjects.end(), newObjects.begin(), newObjects.end());
 		EntityFactory::clearObjects();
 	}
 }

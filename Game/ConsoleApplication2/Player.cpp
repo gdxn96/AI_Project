@@ -1,15 +1,16 @@
 #include "stdafx.h"
 #include "Player.h"
-#include <iostream>
 
 
-Player::Player(Vector2D pos, Vector2D accel, Vector2D maxSpeed, bool isMiniMapObject = false)
-:	AIGameObject(sf::FloatRect(pos.x, pos.y, 20, 20), accel, maxSpeed, isMiniMapObject),
-	m_shape(sf::Vector2f(20, 20)),
-	m_facingDirection(sf::Vector2f(1, 0)),
-	m_bulletsPerSecond(10),
-	m_shooting(false),
-	m_position(pos)
+Player::Player(sf::Vector2f position, sf::Vector2f size, Vector2D acceleration, Vector2D maxSpeed)
+	: GameObject(sf::FloatRect(position, size), true),
+	  ACCELERATION(acceleration),
+	  MAX_SPEED(maxSpeed),
+	  m_position(position),
+	  m_shape(size),
+	  m_facingDirection(1, 0),
+	  m_bulletsPerSecond(10),
+	  m_shooting(false)
 {
 	m_shape.setPosition(m_position.toSFMLVector());
 }
@@ -24,7 +25,6 @@ void Player::Update(float dt)
 {
 	UpdateSpeed(dt);
 	UpdateDirection();
-	UpdateBullets(dt);
 
 	if (m_shooting)
 	{
@@ -38,23 +38,13 @@ void Player::Update(float dt)
 }
 
 
-void Player::Draw(sf::RenderWindow& w)
+void Player::Draw(sf::RenderWindow& window)
 {
-	for (Bullet* bullet : m_bullets)
-	{
-		bullet->Draw(w);
-	}
-
-	w.draw(m_shape);
+	window.draw(m_shape);
 }
 
 void Player::DrawWithXOffset(sf::RenderWindow & window, float xOffset)
 {
-	for (Bullet* bullet : m_bullets)
-	{
-		bullet->DrawWithXOffset(window, xOffset);
-	}
-
 	m_shape.move(sf::Vector2f(xOffset, 0));
 	window.draw(m_shape);
 	m_shape.move(sf::Vector2f(-xOffset, 0));
@@ -123,23 +113,6 @@ void Player::wrapPositions(Camera & cam)
 
 
 
-void Player::UpdateBullets(float dt)
-{
-	for (int i = m_bullets.size() - 1; i >= 0; i--)
-	{
-		if (m_bullets[i]->isAlive())
-		{
-			m_bullets[i]->Update(dt);
-		}
-		else
-		{
-			m_bullets.erase(m_bullets.begin() + i);
-		}
-	}
-}
-
-
-
 void Player::UpdateSpeed(float dt)
 {
 	if (m_targetDirection.x != 0)
@@ -199,6 +172,6 @@ void Player::UpdateShootState(float dt)
 	if (m_timeTillNextShot <= 0)
 	{
 		m_timeTillNextShot = 1.0f / m_bulletsPerSecond;
-		m_bullets.push_back(new Bullet(Rect(m_bounds).getCentreCopy(), m_facingDirection));
+		EntityFactory::CreateBullet(Rect(m_bounds).getCentreCopy(), m_facingDirection);
 	}
 }

@@ -1,7 +1,9 @@
 #include "stdafx.h"
 #include "TerrainSegment.h"
 
-TerrainSegment::TerrainSegment(sf::ConvexShape shape) : GameObject(true, shape.getGlobalBounds()), m_shape(shape)
+TerrainSegment::TerrainSegment(sf::ConvexShape shape) 
+	: GameObject(shape.getGlobalBounds(), true), 
+	  m_shape(shape)
 {
 }
 

@@ -1,34 +1,40 @@
 #pragma once
 
 #include "Bullet.h"
-#include "AIGameObject.h"
+#include "GameObject.h"
 #include "EventListener.h"
+#include "AIManager.h"
+#include "EntityFactory.h"
 
 using namespace std;
 
 
-class Player : public AIGameObject, public EventListener
+class Player : public GameObject, public EventListener
 {
 private:
+	sf::RectangleShape m_shape;
+
+	// Movement
+	const Vector2D ACCELERATION;
+	const Vector2D MAX_SPEED;
+	Vector2D m_direction;
 	Vector2D m_targetDirection;
 	Vector2D m_facingDirection;
 	Vector2D m_position;
+	Vector2D m_speed;
 	
-	sf::RectangleShape m_shape;
-
-	vector<Bullet*> m_bullets;
+	// Bullets
 	int m_bulletsPerSecond;
 	bool m_shooting;
 	float m_timeTillNextShot;
 
-	void UpdateBullets(float dt);
 	void UpdateDirection();
 	void UpdateShootState(float dt);
 	void UpdateSpeed(float dt);
 
 
 public:
-	Player(Vector2D pos, Vector2D accel, Vector2D maxSpeed, bool isMiniMapObject);
+	Player(sf::Vector2f position, sf::Vector2f size, Vector2D acceleration, Vector2D maxSpeed);
 	~Player();
 	void Update(float dt) override;
 	void Draw(sf::RenderWindow& w) override;
