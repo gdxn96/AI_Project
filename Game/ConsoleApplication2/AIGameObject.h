@@ -8,14 +8,14 @@ class AIGameObject : public GameObject
 {
 public:
 	// With acceleration
-	AIGameObject(Rect bounds, Vector2D acceleration, Vector2D maxSpeed, bool isMiniMapObject = false)
-		: GameObject(bounds, isMiniMapObject),
+	AIGameObject(sf::FloatRect bounds, Vector2D acceleration, Vector2D maxSpeed, bool isMiniMapObject = false)
+		: GameObject(isMiniMapObject, bounds),
 		ACCELERATION(acceleration),
 		MAX_SPEED(maxSpeed) {}
 
 	// Without acceleration
-	AIGameObject(Rect bounds, Vector2D maxSpeed, bool isMiniMapObject = false)
-		: GameObject(bounds, isMiniMapObject),
+	AIGameObject(sf::FloatRect bounds, Vector2D maxSpeed, bool isMiniMapObject = false)
+		: GameObject(isMiniMapObject, bounds),
 		ACCELERATION(Vector2D(0, 0)),
 		MAX_SPEED(maxSpeed),
 		m_speed(maxSpeed) {}

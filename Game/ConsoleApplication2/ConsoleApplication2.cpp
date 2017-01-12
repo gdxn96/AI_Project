@@ -15,6 +15,7 @@
 #include "stdafx.h"
 #include <SFML/Graphics.hpp>
 #include "Game.h"
+#include <iostream>
 
 int main()
 {
@@ -24,26 +25,30 @@ int main()
 	Vector2D levelSize(screenSize.w * 9, screenSize.h);
 	sf::RenderWindow window(sf::VideoMode(screenSize.w, screenSize.h), "Defender");
 	Game game = Game(screenSize, levelSize);
+	const float FPS = 1.0f / 120;
 
 	sf::Clock deltaClock; // used to calculate dt
 	float dt = 0; // floating point dt as seconds
 	
 	while (window.isOpen())
 	{
-		/*sf::Event event;
-		while (window.pollEvent(event))
+		if (dt > FPS)
 		{
-			if (event.type == sf::Event::Closed)
-				window.close();
-		}*/
+			deltaClock.restart();
 
-		input->ProcessInput(&window);
-		game.Update(dt);
-		window.clear();
-		game.Draw(window);
-		window.display();
+			input->ProcessInput(&window);
 
-		dt = deltaClock.restart().asSeconds();
+			game.Update(dt);
+
+			window.clear();
+
+			//draw objects here
+			game.Draw(window);
+
+			window.display();
+		}
+
+		dt = deltaClock.getElapsedTime().asSeconds();
 	}
 
 	return 0;

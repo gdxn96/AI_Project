@@ -3,12 +3,15 @@
 #include <iostream>
 
 
-Player::Player(Rect bounds, Vector2D accel, Vector2D maxSpeed, bool isMiniMapObject = false)
-	: AIGameObject(bounds, accel, maxSpeed, isMiniMapObject),
-	  m_facingDirection(sf::Vector2f(1, 0)),
-	  m_bulletsPerSecond(10),
-	  m_shooting(false)
+Player::Player(Vector2D pos, Vector2D accel, Vector2D maxSpeed, bool isMiniMapObject = false)
+:	AIGameObject(sf::FloatRect(pos.x, pos.y, 20, 20), accel, maxSpeed, isMiniMapObject),
+	m_shape(sf::Vector2f(20, 20)),
+	m_facingDirection(sf::Vector2f(1, 0)),
+	m_bulletsPerSecond(10),
+	m_shooting(false),
+	m_position(pos)
 {
+	m_shape.setPosition(m_position.toSFMLVector());
 }
 
 
@@ -28,7 +31,10 @@ void Player::Update(float dt)
 		UpdateShootState(dt);
 	}
 
-	AIManager::move(dt, m_bounds.pos, m_speed * m_direction);
+	AIManager::move(dt, m_position, m_speed * m_direction);
+	m_shape.setPosition(m_position.toSFMLVector());
+	m_bounds.left = m_position.x;
+	m_bounds.top = m_position.y;
 }
 
 
@@ -39,10 +45,20 @@ void Player::Draw(sf::RenderWindow& w)
 		bullet->Draw(w);
 	}
 
-	w.draw(m_bounds.toSFMLRect());
+	w.draw(m_shape);
 }
 
+void Player::DrawWithXOffset(sf::RenderWindow & window, float xOffset)
+{
+	for (Bullet* bullet : m_bullets)
+	{
+		bullet->DrawWithXOffset(window, xOffset);
+	}
 
+	m_shape.move(sf::Vector2f(xOffset, 0));
+	window.draw(m_shape);
+	m_shape.move(sf::Vector2f(-xOffset, 0));
+}
 
 void Player::onGenericEvent(GenericEvent evt)
 {
@@ -95,6 +111,14 @@ void Player::onKeyUp(KeyUpEvent evt)
 		m_targetDirection.x = m_targetDirection.x == Vector2D::RIGHT.x ? 0 : m_targetDirection.x;
 		break;
 	}
+}
+
+void Player::wrapPositions(Camera & cam)
+{
+	cam.Wrap(m_position);
+	m_shape.setPosition(m_position.toSFMLVector());
+
+	cam.SetCenter(m_position.toSFMLVector());
 }
 
 
@@ -175,6 +199,6 @@ void Player::UpdateShootState(float dt)
 	if (m_timeTillNextShot <= 0)
 	{
 		m_timeTillNextShot = 1.0f / m_bulletsPerSecond;
-		m_bullets.push_back(new Bullet(m_bounds.getCentreCopy(), m_facingDirection));
+		m_bullets.push_back(new Bullet(Rect(m_bounds).getCentreCopy(), m_facingDirection));
 	}
 }

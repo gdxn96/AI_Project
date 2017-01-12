@@ -10,14 +10,23 @@ Game::Game(Vector2D screenSize, Vector2D levelSize) :
 	float terrainPeak = screenSize.h * 7.f / 10;
 	float terrainTrough = screenSize.h * 8.f / 10;
 
-	m_gameObjects.push_back(new Terrain(terrainPeak, terrainTrough, levelSize));
-	m_gameObjects.push_back(new Astronaut(Rect(950, screenSize.h - 150, 10, 20), true));
-	
-	Player* player = new Player(Rect(Vector2D(950, 530), Vector2D(20, 20)),	//bounds
-									Vector2D(800, 800),							//accel
-									Vector2D(400, 400),							//maxSpeed
-									true);										//isMiniMapObject
- 
+	std::vector<TerrainSegment*> terrainSegments = Terrain::GenerateTerrain(terrainPeak, terrainTrough, levelSize);
+	m_drawObjects.insert(m_drawObjects.begin(), terrainSegments.begin(), terrainSegments.end());
+
+	//test meteor
+	Meteor * m = new Meteor(30.f, 1000.f, Vector2D(1, 0), Vector2D(400, 400));
+	m_drawObjects.push_back(m);
+	m_updateObjects.push_back(m);
+
+	Astronaut * a = new Astronaut(Vector2D(950, screenSize.h - 150), true);
+	m_drawObjects.push_back(a);
+	m_updateObjects.push_back(a);
+
+	Player* player = new Player(Vector2D(950, 530),	//bounds
+		Vector2D(800, 800),							//accel
+		Vector2D(400, 400),							//maxSpeed
+		true);										//isMiniMapObject
+
 	InputManager* input = InputManager::getInstance();
 
 	input->AddListener(static_cast<int>(EventListener::KeyDownEvent::UP), player);
@@ -31,18 +40,21 @@ Game::Game(Vector2D screenSize, Vector2D levelSize) :
 	input->AddListener(static_cast<int>(EventListener::GenericEvent::SHOOT), player);
 	input->AddListener(static_cast<int>(EventListener::GenericEvent::NO_SHOOT), player);
 
-	m_gameObjects.push_back(player);
+	m_drawObjects.push_back(player);
+	m_updateObjects.push_back(player);
 }
 
 void Game::Update(float dt)
 {
-	for (GameObject* gameObject : m_gameObjects)
+	int i = 0;
+	for (GameObject* gameObject : m_updateObjects)
 	{
 		gameObject->Update(dt);
+		gameObject->wrapPositions(m_camera);
 	}
 }
 
 void Game::Draw(sf::RenderWindow& r)
 {
-	m_camera.RenderObjects(r, m_gameObjects);
+	m_camera.RenderObjects(r, m_drawObjects);
 }
