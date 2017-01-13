@@ -42,6 +42,14 @@ void PhysicsManager::BindPositionToLevel(Vector2D& m_position)
 	}
 }
 
+void PhysicsManager::VerticalWrapPosition(Vector2D & m_position)
+{
+	if (m_position.y > m_levelBounds.height * 1.5f)
+	{
+		m_position.y = -m_levelBounds.height * .5f;
+	}
+}
+
 void PhysicsManager::initialize(sf::FloatRect levelBounds)
 {
 	m_levelBounds = levelBounds;

@@ -8,14 +8,15 @@ Game::Game(Vector2D screenSize, Vector2D levelSize) :
 	m_camera(screenSize, levelSize)
 {
 	PhysicsManager::initialize(sf::FloatRect(0, screenSize.h * 1.f / 10, levelSize.w, screenSize.h * 7.f / 10));
-
+	EntityFactory::initialize(sf::FloatRect(0, 0, levelSize.w, screenSize.h));
 	float terrainPeak = screenSize.h * 7.f / 10;
 	float terrainTrough = screenSize.h * 8.f / 10;
 	std::vector<TerrainSegment*> terrainSegments = Terrain::GenerateTerrain(terrainPeak, terrainTrough, levelSize);
 	m_terrainSegments.insert(m_terrainSegments.end(), terrainSegments.begin(), terrainSegments.end());
 
 	EntityFactory::CreateNest(Vector2D(950, 530), Vector2D(0, 1), 150);
-	EntityFactory::CreateMeteor(Vector2D(400, 400), 30, 1000);
+	EntityFactory::CreateMeteor();
+	EntityFactory::CreateMeteor(); EntityFactory::CreateMeteor(); EntityFactory::CreateMeteor(); EntityFactory::CreateMeteor(); EntityFactory::CreateMeteor(); EntityFactory::CreateMeteor(); EntityFactory::CreateMeteor(); EntityFactory::CreateMeteor(); EntityFactory::CreateMeteor(); EntityFactory::CreateMeteor(); EntityFactory::CreateMeteor(); EntityFactory::CreateMeteor();
 	EntityFactory::CreateAstronaut(sf::Vector2f(950, screenSize.h - 150), sf::Vector2f(10, 20));
 
 	Player* player = new Player(sf::Vector2f(950, 530),	//bounds

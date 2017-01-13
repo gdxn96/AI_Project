@@ -3,6 +3,7 @@
 
 
 std::vector<GameObject*> EntityFactory::m_newGameObjects;
+sf::FloatRect EntityFactory::m_levelSize = sf::FloatRect();
 
 void EntityFactory::CreateBullet(Vector2D position, Vector2D direction)
 {
@@ -17,8 +18,11 @@ void EntityFactory::CreateMutant()
 {
 }
 
-void EntityFactory::CreateMeteor(Vector2D position, float radius, float speed)
+void EntityFactory::CreateMeteor()
 {
+	Vector2D position = Vector2D(RandomFloat(0, m_levelSize.width), -m_levelSize.width * 0.1f);
+	float radius = RandomFloat(30, 80);
+	float speed = RandomFloat(50, 150);
 	m_newGameObjects.push_back(new Meteor(position, radius, speed));
 }
 
@@ -45,4 +49,9 @@ std::vector<GameObject*> EntityFactory::getNewObjects()
 void EntityFactory::clearObjects()
 {
 	m_newGameObjects.clear();
+}
+
+void EntityFactory::initialize(sf::FloatRect levelSize)
+{
+	m_levelSize = levelSize;
 }

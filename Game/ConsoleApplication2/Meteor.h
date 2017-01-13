@@ -2,6 +2,7 @@
 #include "GameObject.h"
 #include "Vector2D.h"
 #include "AIManager.h"
+#include "EntityFactory.h"
 
 class Meteor : public GameObject
 {
