@@ -4,13 +4,15 @@
 
 
 Bullet::Bullet(Vector2D pos, Vector2D dir)
-:	GameObject(sf::FloatRect(pos.x, pos.y, 10, 5)),
+:	GameObject(sf::FloatRect(pos.x, pos.y, 20, 10)),
 	m_velocity(Vector2D(1200, 0) * dir),
 	m_position(pos),
 	m_timeToLive(1),
-	m_shape(sf::Vector2f(10,5))
+	m_shape(sf::Vector2f(20,10))
 {
 	m_shape.setPosition(m_position.toSFMLVector());
+	m_bounds.left = m_position.x;
+	m_bounds.top = m_position.y;
 }
 
 Bullet::~Bullet() { }
@@ -19,17 +21,24 @@ Bullet::~Bullet() { }
 void Bullet::Update(float dt)
 {
 	PhysicsManager::move(dt, m_position, m_velocity);
-
+	
 	if (m_timeToLive > 0)
 	{
 		m_timeToLive -= dt;
 	}
-
-	if (m_timeToLive <= 0)
+	else
 	{
 		kill();
 	}
 
+	m_shape.setPosition(m_position.toSFMLVector());
+	m_bounds.left = m_position.x;
+	m_bounds.top = m_position.y;
+}
+
+void Bullet::wrapPositions(Camera & cam)
+{
+	cam.Wrap(m_position);
 	m_shape.setPosition(m_position.toSFMLVector());
 }
 

@@ -16,7 +16,7 @@ public:
 	Bullet(Vector2D pos, Vector2D dir);
 	~Bullet();
 	void Update(float dt) override;
+	void wrapPositions(Camera & cam) override;
 	void Draw(sf::RenderWindow& w) override;
 	void DrawWithXOffset(sf::RenderWindow& window, float xOffset) override;
-	bool isAlive();
 };
