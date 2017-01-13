@@ -16,6 +16,7 @@ private:
 	Vector2D m_position;
 	Vector2D m_direction;
 	float m_speed;
-	float m_timeUntilChangeDirection = 0, MAX_TIME = 5;
+	float m_timeUntilChangeDirection;
+	const int MAX_TIME;
 	sf::RectangleShape m_shape;
 };

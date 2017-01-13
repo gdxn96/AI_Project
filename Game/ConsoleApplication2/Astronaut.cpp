@@ -19,6 +19,7 @@ void Astronaut::Update(float dt)
 	AIManager::wander(dt, m_wanderTimeRemaining, m_maxWanderTime, m_direction, true);
 	PhysicsManager::move(dt, m_position, m_speed * m_direction);
 	m_shape.setPosition(m_position.toSFMLVector());
+	m_bounds.left = m_position.x;
 }
 
 

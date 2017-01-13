@@ -6,7 +6,9 @@ Nest::Nest(Vector2D pos, Vector2D dir, float speed)
 	m_shape(sf::Vector2f(40,40)),
 	m_position(pos),
 	m_speed(speed),
-	m_direction(dir)
+	m_direction(dir),
+	MAX_TIME(10),
+	m_timeUntilChangeDirection(0)
 {
 	m_shape.setPosition(pos.toSFMLVector());
 	m_shape.setFillColor(sf::Color::Yellow);
