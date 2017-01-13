@@ -17,7 +17,6 @@ Meteor::Meteor(Vector2D position, float radius, float speed)
 
 void Meteor::Update(float dt)
 {
-	std::cout << m_position.x << std::endl;
 	m_position += m_direction * m_speed * dt;
 	m_shape.setPosition(m_position.toSFMLVector());
 

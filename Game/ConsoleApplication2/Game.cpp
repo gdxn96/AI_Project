@@ -17,7 +17,7 @@ Game::Game(Vector2D screenSize, Vector2D levelSize) :
 	EntityFactory::CreateNest(Vector2D(950, 530), Vector2D(0, 1), 150);
 	EntityFactory::CreateMeteor(Vector2D(400, 400), 30, 1000);
 	EntityFactory::CreateAstronaut(sf::Vector2f(950, screenSize.h - 150));
-	EntityFactory::CreateAbductor(sf::Vector2f(950, 200));
+	EntityFactory::CreateAbductor(sf::Vector2f(750, 200));
 
 	Player* player = new Player(sf::Vector2f(950, 530),	//bounds
 								sf::Vector2f(40, 20),	//size
