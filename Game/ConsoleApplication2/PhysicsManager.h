@@ -10,6 +10,8 @@ public:
 	static void BindPositionToLevel(Vector2D& m_position, Vector2D& m_direction);
 	static void BindPositionToLevel(Vector2D& m_position);
 
+	static void VerticalWrapPosition(Vector2D& m_position);
+
 	static void initialize(sf::FloatRect levelBounds);
 private:
 	static sf::FloatRect m_levelBounds;
