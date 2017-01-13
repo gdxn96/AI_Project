@@ -11,6 +11,8 @@ public:
 	static void BindPositionToLevel(Vector2D& m_position);
 	static float getDistance(Vector2D position1, Vector2D position2);
 
+	static void VerticalWrapPosition(Vector2D& m_position);
+
 	static void initialize(sf::FloatRect levelBounds);
 private:
 	static sf::FloatRect m_levelBounds;

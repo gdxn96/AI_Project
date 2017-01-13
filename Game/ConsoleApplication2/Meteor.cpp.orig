@@ -17,9 +17,13 @@ Meteor::Meteor(Vector2D position, float radius, float speed)
 
 void Meteor::Update(float dt)
 {
+<<<<<<< HEAD
+	m_position += m_direction * m_speed * dt;
+=======
 	PhysicsManager::move(dt, m_position, m_direction * m_speed);
 	PhysicsManager::VerticalWrapPosition(m_position);
 	
+>>>>>>> 504f931d4b7c3f86aeaefbbfb0457e7d5a125259
 	m_shape.setPosition(m_position.toSFMLVector());
 	m_bounds.left = m_position.x;
 	m_bounds.top = m_position.y;
