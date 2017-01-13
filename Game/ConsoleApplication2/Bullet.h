@@ -18,5 +18,4 @@ public:
 	void Update(float dt) override;
 	void Draw(sf::RenderWindow& w) override;
 	void DrawWithXOffset(sf::RenderWindow& window, float xOffset) override;
-	bool isAlive();
 };

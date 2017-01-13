@@ -42,6 +42,11 @@ void PhysicsManager::BindPositionToLevel(Vector2D& m_position)
 	}
 }
 
+float PhysicsManager::getDistance(Vector2D position1, Vector2D position2)
+{
+	return Vector2D::Distance(position1, position2);
+}
+
 void PhysicsManager::initialize(sf::FloatRect levelBounds)
 {
 	m_levelBounds = levelBounds;
