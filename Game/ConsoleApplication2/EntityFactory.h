@@ -17,11 +17,13 @@ public:
 	static void CreateNest(Vector2D pos, Vector2D dir, float speed);
 	static void CreateAstronaut(sf::Vector2f position, sf::Vector2f size);
 	static std::vector<GameObject*> getNewObjects();
+	static std::vector<GameObject*> getNewObjectsBehind();
 	static void clearObjects();
 
 	static void initialize(sf::FloatRect levelSize);
 private:
 	static std::vector<GameObject*> m_newGameObjects;
+	static std::vector<GameObject*> m_newGameObjectsBehind;
 	static sf::FloatRect m_levelSize;
 };
 
