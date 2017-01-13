@@ -41,6 +41,16 @@ sf::Vector2f Vector2D::toSFMLVector()
 Vector2D::Vector2D(const Vector2D & v) : x(v.x), y(v.y)
 {
 }
+void Vector2D::limit(float maxMagnitude)
+{
+	if (this->Magnitude() > maxMagnitude)
+	{
+		Vector2D v = Vector2D(this->Normalize() * maxMagnitude);
+		this->x = v.x;
+		this->y = v.y;
+	}
+}
+
 Vector2D Vector2D::operator+(const Vector2D &v) const
 {
 	return Vector2D(x + v.x, y + v.y);

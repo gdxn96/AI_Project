@@ -162,6 +162,7 @@
     <ClInclude Include="Abductor.h" />
     <ClInclude Include="AIManager.h" />
     <ClInclude Include="Astronaut.h" />
+    <ClInclude Include="Boid.h" />
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Constants.h" />
@@ -185,6 +186,7 @@
     <ClCompile Include="Abductor.cpp" />
     <ClCompile Include="AIManager.cpp" />
     <ClCompile Include="Astronaut.cpp" />
+    <ClCompile Include="Boid.cpp" />
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="ConsoleApplication2.cpp" />

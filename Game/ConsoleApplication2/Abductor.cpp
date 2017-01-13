@@ -22,7 +22,7 @@ void Abductor::Update(float dt)
 {
 	if (isInPatrolArea())
 	{
-		//AIManager::seekToward();
+		//Boid::seekToward();
 	}
 
 	PhysicsManager::move(dt, m_position, m_direction * m_speed);

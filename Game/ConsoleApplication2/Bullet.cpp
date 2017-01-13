@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "Bullet.h"
-#include "AIManager.h"
+#include "Boid.h"
 
 
 Bullet::Bullet(Vector2D pos, Vector2D dir)

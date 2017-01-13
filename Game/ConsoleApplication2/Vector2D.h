@@ -30,6 +30,7 @@ public:
 	Vector2D(float, float);
 	sf::Vector2f toSFMLVector();
 	Vector2D(const Vector2D& v);
+	void limit(float maxMagnitude);
 
 	/*The following operators simply return Vector2ds that
 	have operations performed on the relative (x, y) values*/
