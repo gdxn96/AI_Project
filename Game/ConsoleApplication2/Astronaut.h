@@ -15,7 +15,7 @@ private:
 	Vector2D m_speed;
 
 	// Wandering 
-	const int m_maxWanderTime; // in seconds
+	const int MAX_WANDER_TIME; // in seconds
 	float m_wanderTimeRemaining;
 
 public:
@@ -24,4 +24,5 @@ public:
 	void Draw(sf::RenderWindow& window) override;
 	void DrawWithXOffset(sf::RenderWindow& window, float xOffset) override;
 	void wrapPositions(Camera& cam) override;
+	Vector2D getPosition();
 };

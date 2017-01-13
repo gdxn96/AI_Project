@@ -202,3 +202,9 @@ void Player::UpdateShootState(float dt)
 		EntityFactory::CreateBullet(Rect(m_bounds).getCentreCopy(), m_facingDirection);
 	}
 }
+
+
+Vector2D Player::getPosition()
+{
+	return m_position;
+}

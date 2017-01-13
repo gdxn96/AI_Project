@@ -44,5 +44,6 @@ public:
 	void onKeyDown(KeyDownEvent evt) override;
 	void onKeyUp(KeyUpEvent evt) override;
 	void wrapPositions(Camera& cam) override;
+	Vector2D getPosition();
 };
 

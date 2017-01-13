@@ -12,8 +12,13 @@ public:
 	static void CreateMissile();
 	static void CreateBullet(Vector2D position, Vector2D direction);
 	static void CreateMutant();
-	static void CreateMeteor();
+<<<<<<< HEAD
+	static void CreateMeteor(Vector2D position, float radius, float speed);
 	static void CreateAbductor(sf::Vector2f position);
+=======
+	static void CreateMeteor();
+	static void CreateAbductor();
+>>>>>>> 504f931d4b7c3f86aeaefbbfb0457e7d5a125259
 	static void CreateNest(Vector2D pos, Vector2D dir, float speed);
 	static void CreateAstronaut(sf::Vector2f position);
 	static std::vector<GameObject*> getNewObjects();

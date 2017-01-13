@@ -7,7 +7,7 @@ Astronaut::Astronaut(sf::Vector2f position, sf::Vector2f size)
     m_position(position),
 	m_speed(50, 0),
 	m_wanderTimeRemaining(0),
-	m_maxWanderTime(3)
+	MAX_WANDER_TIME(3)
 {
 	m_shape = sf::RectangleShape(sf::Vector2f(10, 20));
 	m_shape.setPosition(m_position.toSFMLVector());
@@ -16,7 +16,7 @@ Astronaut::Astronaut(sf::Vector2f position, sf::Vector2f size)
 
 void Astronaut::Update(float dt)
 {
-	AIManager::wander(dt, m_wanderTimeRemaining, m_maxWanderTime, m_direction, true);
+	AIManager::wander(dt, m_wanderTimeRemaining, MAX_WANDER_TIME, m_direction, true);
 	PhysicsManager::move(dt, m_position, m_speed * m_direction);
 	m_shape.setPosition(m_position.toSFMLVector());
 	m_bounds.left = m_position.x;
@@ -39,4 +39,10 @@ void Astronaut::wrapPositions(Camera & cam)
 {
 	cam.Wrap(m_position);
 	m_shape.setPosition(m_position.toSFMLVector());
+}
+
+
+Vector2D Astronaut::getPosition()
+{
+	return m_position;
 }
