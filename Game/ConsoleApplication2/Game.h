@@ -17,7 +17,7 @@ public:
 	void Draw(sf::RenderWindow& r);
 
 private:
-	std::vector<GameObject*> m_gameObjects;
+	std::vector<GameObject*> m_gameObjects, m_gameObjectsBehind;
 	std::vector<GameObject*> m_terrainSegments;
 	Camera m_camera;
 	Vector2D m_screenSize, m_levelSize;

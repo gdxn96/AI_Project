@@ -90,7 +90,7 @@ void Player::onKeyDown(KeyDownEvent evt)
 		m_targetDirection.y = Vector2D::UP.y;
 		break;
 	case EventListener::KeyDownEvent::LEFT:
-		if (m_targetDirection.x == Vector2D::RIGHT.x || m_targetDirection.x == 0)
+		if (m_targetDirection.x == Vector2D::RIGHT.x || m_targetDirection.x == 0 && m_direction.x == 1)
 		{
 			m_speed = 0;
 		}
@@ -101,7 +101,7 @@ void Player::onKeyDown(KeyDownEvent evt)
 		m_targetDirection.y = Vector2D::DOWN.y;
 		break;
 	case EventListener::KeyDownEvent::RIGHT:
-		if (m_targetDirection.x == Vector2D::LEFT.x || m_targetDirection.x == 0)
+		if (m_targetDirection.x == Vector2D::LEFT.x || m_targetDirection.x == 0 && m_direction.x == -1)
 		{
 			m_speed = 0;
 		}
@@ -201,4 +201,10 @@ void Player::UpdateShootState(float dt)
 		m_timeTillNextShot = 1.0f / m_bulletsPerSecond;
 		EntityFactory::CreateBullet(Rect(m_bounds).getCentreCopy(), m_facingDirection);
 	}
+}
+
+
+Vector2D Player::getPosition()
+{
+	return m_position;
 }
