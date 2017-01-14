@@ -3,6 +3,8 @@
 #include "GameObject.h"
 #include "AIManager.h"
 
+class Astronaut;
+
 
 class Abductor : public GameObject
 {

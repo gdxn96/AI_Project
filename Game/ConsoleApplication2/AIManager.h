@@ -31,6 +31,6 @@ public:
 
 private:
 	static Player* m_player;
-	static vector<Astronaut*> m_astronauts;
+	static std::vector<Astronaut*> m_astronauts;
 	static sf::FloatRect m_levelBounds;
 };
