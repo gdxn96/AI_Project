@@ -345,9 +345,14 @@ void AIManager::process()
 {
 	for (Astronaut* astronaut : m_astronauts)
 	{
-		std::sort(m_abductors.begin(), m_abductors.end(),
-			[&](Abductor* a, Abductor* b) {return Vector2D::DistanceSq(a->getPosition(), astronaut->getPosition()) > Vector2D::DistanceSq(b->getPosition(), astronaut->getPosition()); });
-		m_abductors.front()->setTargetAstronaut(astronaut);
+		for (Abductor* a : m_abductors)
+		{
+			if (Vector2D::DistanceSq(a->getPosition(), astronaut->getPosition()))
+			{
+				a->setClosestAstronaut(astronaut);
+			}
+		}
+
 	}
 }
 

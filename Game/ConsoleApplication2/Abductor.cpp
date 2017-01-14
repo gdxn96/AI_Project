@@ -29,9 +29,9 @@ void Abductor::Update(float dt)
 		float distanceFromAstronaut = m_seekDistance + 1; //default more than seek distance
 		Vector2D astronautPosition;
 
-		if (m_targetAstronaut != nullptr)
+		if (m_closestAstronaut != nullptr)
 		{
-			astronautPosition = m_targetAstronaut->getPosition();
+			astronautPosition = m_closestAstronaut->getPosition();
 			distanceFromAstronaut = Vector2D::Distance(m_position, astronautPosition);
 		}
 
@@ -85,9 +85,9 @@ void Abductor::wrapPositions(Camera& cam)
 	m_shape.setPosition(m_position.toSFMLVector());
 }
 
-void Abductor::setTargetAstronaut(Astronaut * a)
+void Abductor::setClosestAstronaut(Astronaut * a)
 {
-	m_targetAstronaut = a;
+	m_closestAstronaut = a;
 }
 
 Vector2D Abductor::getPosition()

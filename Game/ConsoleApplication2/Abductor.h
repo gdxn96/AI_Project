@@ -18,7 +18,7 @@ private:
 	Vector2D m_speed;
 	const int MAX_WANDER_TIME;
 	float m_wanderTimeRemaining;
-	Astronaut* m_targetAstronaut;
+	Astronaut* m_closestAstronaut;
 
 	bool isInPatrolArea();
 
@@ -29,7 +29,7 @@ public:
 	void Draw(sf::RenderWindow& window) override;
 	void DrawWithXOffset(sf::RenderWindow& window, float xOffset) override;
 	void wrapPositions(Camera& cam);
-	void setTargetAstronaut(Astronaut* a);
+	void setClosestAstronaut(Astronaut* a);
 
 	Vector2D getPosition() override;
 	Vector2D getVelocity() override;
