@@ -42,6 +42,7 @@ void Astronaut::wrapPositions(Camera & cam)
 }
 
 
+
 Vector2D Astronaut::getPosition()
 {
 	return m_position;

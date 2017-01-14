@@ -24,5 +24,6 @@ public:
 	void Draw(sf::RenderWindow& window) override;
 	void DrawWithXOffset(sf::RenderWindow& window, float xOffset) override;
 	void wrapPositions(Camera& cam) override;
+	Vector2D getOffsetedPosition();
 	Vector2D getPosition();
 };

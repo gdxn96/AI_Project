@@ -6,6 +6,14 @@
 
 Player* AIManager::m_player = nullptr;
 vector<Astronaut*> AIManager::m_astronauts;
+sf::FloatRect AIManager::m_levelBounds = sf::FloatRect();
+
+
+
+void AIManager::initialize(sf::FloatRect levelBounds)
+{
+	m_levelBounds = levelBounds;
+}
 
 
 
@@ -40,29 +48,29 @@ Vector2D AIManager::getPlayerPos()
 
 Vector2D AIManager::getClosestAstronautPos(Vector2D position)
 {
-	int index = 0;
 	float closestDistance = std::numeric_limits<float>::max();
+	Vector2D closestPosition = NULL;
 	
 	for (int i = 0; i < m_astronauts.size(); i++)
 	{
-		Vector2D astronautPosition = m_astronauts[i]->getPosition();
-		float newDistance = Vector2D::Distance(position, astronautPosition);
+		Vector2D astronautPositions[2] = {
+			m_astronauts[i]->getPosition(),
+			m_astronauts[i]->getPosition() + Vector2D(m_levelBounds.width, 0)
+		};
 
-		if (newDistance < closestDistance)
+		for (int i = 0; i < 2; i++)
 		{
-			index = i;
-			closestDistance = newDistance;
+			float newDistance = Vector2D::Distance(position, astronautPositions[i]);
+
+			if (newDistance < closestDistance)
+			{
+				closestDistance = newDistance;
+				closestPosition = astronautPositions[i];
+			}
 		}
 	}
 
-	if (index < m_astronauts.size())
-	{
-		return m_astronauts[index]->getPosition();
-	}
-	else
-	{
-		return NULL;
-	}
+	return closestPosition;
 }
 
 

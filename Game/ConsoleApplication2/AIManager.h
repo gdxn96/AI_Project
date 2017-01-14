@@ -3,12 +3,18 @@
 #include "Astronaut.h"
 #include "Player.h"
 #include <vector>
+
 class Player;
 class Astronaut;
+
+using namespace std;
+
 
 class AIManager
 {
 public:
+	static void initialize(sf::FloatRect levelBounds);
+
 	static void registerPlayer(Player* player);
 	static void registerAstronaut(Astronaut* astronaut);
 
@@ -25,5 +31,6 @@ public:
 
 private:
 	static Player* m_player;
-	static std::vector<Astronaut*> m_astronauts;
+	static vector<Astronaut*> m_astronauts;
+	static sf::FloatRect m_levelBounds;
 };

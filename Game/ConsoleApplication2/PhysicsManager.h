@@ -9,7 +9,6 @@ public:
 	static void accelerate(float dt, Vector2D& speed, Vector2D acceleration, Vector2D targetSpeed);
 	static void BindPositionToLevel(Vector2D& m_position, Vector2D& m_direction);
 	static void BindPositionToLevel(Vector2D& m_position);
-	static float getDistance(Vector2D position1, Vector2D position2);
 
 	static void VerticalWrapPosition(Vector2D& m_position);
 
