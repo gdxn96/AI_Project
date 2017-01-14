@@ -97,4 +97,5 @@ public:
 	static const Vector2D LEFT; 
 	static const Vector2D DOWN; 
 	static const Vector2D RIGHT;
+	static const Vector2D ZERO;
 };

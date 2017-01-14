@@ -5,6 +5,7 @@
 
 Abductor::Abductor(sf::Vector2f position, sf::Vector2f size, float minPatrolHeight, float maxPatrolHeight)
 	: GameObject(sf::FloatRect(position, size), true),
+	  Boid(true),
 	  m_patrolArea(0, maxPatrolHeight, 0, minPatrolHeight),
 	  m_position(position),
 	  m_seekDistance(400),
@@ -14,6 +15,7 @@ Abductor::Abductor(sf::Vector2f position, sf::Vector2f size, float minPatrolHeig
 	  m_wanderTimeRemaining(0)
 {
 	m_shape.setPosition(m_position.toSFMLVector());
+	m_bounds.left = m_position.x;
 }
 
 Abductor::~Abductor() { }
@@ -24,8 +26,14 @@ void Abductor::Update(float dt)
 {
 	if (isInPatrolArea())
 	{
-		Vector2D astronautPosition = AIManager::getClosestAstronautPos(m_position);
-		float distanceFromAstronaut = Vector2D::Distance(m_position, astronautPosition);
+		float distanceFromAstronaut = m_seekDistance + 1; //default more than seek distance
+		Vector2D astronautPosition;
+
+		if (m_targetAstronaut != nullptr)
+		{
+			astronautPosition = m_targetAstronaut->getPosition();
+			distanceFromAstronaut = Vector2D::Distance(m_position, astronautPosition);
+		}
 
 		if (distanceFromAstronaut < m_seekDistance)
 		{
@@ -35,13 +43,20 @@ void Abductor::Update(float dt)
 		{
 			AIManager::wander(dt, m_wanderTimeRemaining, MAX_WANDER_TIME, m_direction);
 		}
+
+		
 	}
 	else
 	{
 		AIManager::seekToward(m_position, Vector2D(m_position.x, m_patrolArea.top), m_direction);
 	}
 
-	PhysicsManager::move(dt, m_position, m_direction * m_speed);
+	m_velocity = m_direction * m_speed;
+	Vector2D a;
+	AIManager::flock(this, a, m_position, m_velocity, 8000, 8000);
+	PhysicsManager::accelerate(dt, m_velocity, a, Vector2D(8000, 8000));
+	
+	PhysicsManager::move(dt, m_position, m_velocity);
 }
 
 void Abductor::Draw(sf::RenderWindow& window)
@@ -68,4 +83,24 @@ void Abductor::wrapPositions(Camera& cam)
 {
 	cam.Wrap(m_position);
 	m_shape.setPosition(m_position.toSFMLVector());
+}
+
+void Abductor::setTargetAstronaut(Astronaut * a)
+{
+	m_targetAstronaut = a;
+}
+
+Vector2D Abductor::getPosition()
+{
+	return m_position;
+}
+
+Vector2D Abductor::getVelocity()
+{
+	return m_direction * m_speed;
+}
+
+bool Abductor::isPredator()
+{
+	return false;
 }

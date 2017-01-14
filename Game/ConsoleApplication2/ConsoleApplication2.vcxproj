@@ -186,6 +186,7 @@
     <ClCompile Include="Abductor.cpp" />
     <ClCompile Include="AIManager.cpp" />
     <ClCompile Include="Astronaut.cpp" />
+    <ClCompile Include="Boid.cpp" />
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="ConsoleApplication2.cpp" />

@@ -14,7 +14,8 @@ private:
 public:
 	GameObject(sf::FloatRect bounds, bool isMiniMapObject = false)
 		: m_isMinimapObject(isMiniMapObject),
-		  m_bounds(bounds) {};
+		  m_bounds(bounds),
+		  m_alive(true){};
 
 	virtual void Update(float dt) = 0;
 	virtual void Draw(sf::RenderWindow& window) = 0;

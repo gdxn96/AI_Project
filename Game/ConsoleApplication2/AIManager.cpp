@@ -6,6 +6,9 @@
 
 Player* AIManager::m_player = nullptr;
 vector<Astronaut*> AIManager::m_astronauts;
+std::vector<Boid*> AIManager::m_swarmObjects;
+std::vector<Boid*> AIManager::m_flockObjects;
+std::vector<Abductor*> AIManager::m_abductors;
 
 
 
@@ -17,6 +20,28 @@ void AIManager::registerPlayer(Player* player)
 void AIManager::registerAstronaut(Astronaut* astronaut)
 {
 	m_astronauts.push_back(astronaut);
+}
+
+void AIManager::registerSwarmBoid(Boid * b)
+{
+	m_swarmObjects.push_back(b);
+}
+
+void AIManager::registerFlockBoid(Boid * b)
+{
+	m_flockObjects.push_back(b);
+	Abductor * a = dynamic_cast<Abductor*>(b);
+	if (a != nullptr)
+	{
+		m_abductors.push_back(a);
+	}
+}
+
+void AIManager::unregisterBoid(Boid * b)
+{
+	std::remove(m_flockObjects.begin(), m_flockObjects.end(), b);
+	std::remove(m_abductors.begin(), m_abductors.end(), b);
+	std::remove(m_swarmObjects.begin(), m_swarmObjects.end(), b);
 }
 
 
@@ -164,7 +189,7 @@ Vector2D AIManager::Alignment(std::vector<Boid*> flockObjects, Vector2D& positio
 {
 	// If the Boid we're looking at is a predator, do not run the alignment
 	// algorithm
-	//if (predator == true)
+	//if (predator == true) 
 	//	return Vector2D(0,0);
 	float neighbordist = 50;
 
@@ -180,7 +205,7 @@ Vector2D AIManager::Alignment(std::vector<Boid*> flockObjects, Vector2D& positio
 		}
 	}
 	// If there are flockObjects close enough for alignment...
-	if (count > 0)
+	if (count > 0) 
 	{
 		sum = sum / (float)count;// Divide sum by the number of close flockObjects (average of velocity)
 		sum = sum.Normalize();	   		// Turn sum into a unit vector, and
@@ -248,8 +273,16 @@ Vector2D AIManager::seek(Vector2D targetPos, Vector2D& velocity, Vector2D& accel
 
 //Applies all three laws for the flock of flockObjects and modifies to keep them from
 //breaking the laws.
-void AIManager::flock(std::vector<Boid*> v, Vector2D& acceleration, Vector2D& position, Vector2D& velocity, const float maxSpeed, const float maxAcceleration, bool predator)
+void AIManager::flock(Boid* b, Vector2D& acceleration, Vector2D& position, Vector2D& velocity, const float maxSpeed, const float maxAcceleration, bool predator)
 {
+	std::vector<Boid*> v;
+	for (Boid* n : m_flockObjects)
+	{
+		if (b->getPosition().Distance(n->getPosition(), b->getPosition()) < 500)
+		{
+			v.push_back(n);
+		}
+	}
 	Vector2D sep = Separation(v, position, velocity, maxSpeed, maxAcceleration, predator);
 	Vector2D ali = Alignment(v, position, velocity, maxSpeed, maxAcceleration);
 	Vector2D coh = Cohesion(v, position, velocity, acceleration, maxSpeed, maxAcceleration);
@@ -263,7 +296,7 @@ void AIManager::flock(std::vector<Boid*> v, Vector2D& acceleration, Vector2D& po
 	acceleration += sep + ali + coh;
 }
 
-void AIManager::swarm(std::vector<Boid *> v, Vector2D& position, Vector2D& acceleration)
+void AIManager::swarm(Boid * b, Vector2D& position, Vector2D& acceleration)
 {
 	/*		Lenard-Jones Potential function
 	Vector R = me.position - you.position
@@ -272,6 +305,15 @@ void AIManager::swarm(std::vector<Boid *> v, Vector2D& position, Vector2D& accel
 	R.normalise()
 	force = force + R*U
 	*/
+
+	std::vector<Boid*> v;
+	for (Boid* n : m_swarmObjects)
+	{
+		if (b->getPosition().Distance(n->getPosition(), b->getPosition()) < 500)
+		{
+			v.push_back(n);
+		}
+	}
 
 	float A = 0.1;
 	float B = 0.8;
@@ -297,5 +339,15 @@ void AIManager::swarm(std::vector<Boid *> v, Vector2D& position, Vector2D& accel
 	}
 
 	acceleration += sum;
+}
+
+void AIManager::process()
+{
+	for (Astronaut* astronaut : m_astronauts)
+	{
+		std::sort(m_abductors.begin(), m_abductors.end(),
+			[&](Abductor* a, Abductor* b) {return Vector2D::DistanceSq(a->getPosition(), astronaut->getPosition()) > Vector2D::DistanceSq(b->getPosition(), astronaut->getPosition()); });
+		m_abductors.front()->setTargetAstronaut(astronaut);
+	}
 }
 
