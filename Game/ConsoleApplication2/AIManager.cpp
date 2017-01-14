@@ -356,9 +356,6 @@ void AIManager::process()
 				closest = a;
 			}
 		}
-		if (closest != nullptr)
-		{
-			closest->setClosestAstronaut(astronaut);
-		}
+		closest->setClosestAstronaut(astronaut);
 	}
 }

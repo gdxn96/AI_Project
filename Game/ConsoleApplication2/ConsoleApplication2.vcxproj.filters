@@ -59,6 +59,7 @@
       <Filter>Source</Filter>
     </ClCompile>
     <ClCompile Include="Boid.cpp" />
+    <ClCompile Include="Mutant.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Abductor.h">
@@ -125,6 +126,9 @@
       <Filter>Header</Filter>
     </ClInclude>
     <ClInclude Include="Boid.h">
+      <Filter>Header</Filter>
+    </ClInclude>
+    <ClInclude Include="Mutant.h">
       <Filter>Header</Filter>
     </ClInclude>
   </ItemGroup>
