@@ -25,9 +25,35 @@ Abductor::~Abductor() { }
 
 void Abductor::Update(float dt)
 {
+<<<<<<< HEAD
 	UpdateState();
 
 	switch (m_currentState)
+=======
+	if (isInPatrolArea())
+	{
+		float distanceFromAstronaut = m_seekDistance + 1; //default more than seek distance
+		Vector2D astronautPosition;
+
+		if (m_closestAstronaut != nullptr)
+		{
+			astronautPosition = m_closestAstronaut->getPosition();
+			distanceFromAstronaut = Vector2D::Distance(m_position, astronautPosition);
+		}
+
+		if (distanceFromAstronaut < m_seekDistance)
+		{
+			AIManager::seekToward(m_position, astronautPosition, m_direction);
+		}
+		else
+		{
+			AIManager::wander(dt, m_wanderTimeRemaining, MAX_WANDER_TIME, m_direction);
+		}
+
+		
+	}
+	else
+>>>>>>> f6aa1ab4d79de4ff8f90024acfcf127953de7df0
 	{
 	case m_states::TOSURFACE:
 		AIManager::seekToward(m_position, Vector2D(m_position.x, m_patrolArea.top), m_direction);
@@ -43,7 +69,12 @@ void Abductor::Update(float dt)
 		break;
 	}
 
-	PhysicsManager::move(dt, m_position, m_direction * m_speed);
+	m_velocity = m_direction * m_speed;
+	Vector2D a;
+	AIManager::flock(this, a, m_position, m_velocity, 8000, 8000);
+	PhysicsManager::accelerate(dt, m_velocity, a, Vector2D(8000, 8000));
+	
+	PhysicsManager::move(dt, m_position, m_velocity);
 }
 
 void Abductor::UpdateState()

@@ -1,7 +1,5 @@
 #include "stdafx.h"
 #include "Bullet.h"
-#include "AIManager.h"
-
 
 Bullet::Bullet(Vector2D pos, Vector2D dir)
 :	GameObject(sf::FloatRect(pos.x, pos.y, 20, 10)),

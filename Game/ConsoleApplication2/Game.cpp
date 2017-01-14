@@ -16,10 +16,11 @@ Game::Game(Vector2D screenSize, Vector2D levelSize) :
 
 	EntityFactory::CreateNest(Vector2D(950, 530), Vector2D(0, 1), 150);
 
-	EntityFactory::CreateAstronaut(sf::Vector2f(950, screenSize.h - 150));
+	//EntityFactory::CreateAstronaut(sf::Vector2f(950, screenSize.h - 150));
 	EntityFactory::CreateAbductor(sf::Vector2f(750, 200));
 	for (int i = 0; i < 15; i++)
 	{
+		EntityFactory::CreateAbductor(sf::Vector2f(750, 200));
 		EntityFactory::CreateMeteor();
 	}
 	
@@ -35,6 +36,7 @@ Game::Game(Vector2D screenSize, Vector2D levelSize) :
 
 void Game::Update(float dt)
 {
+	AIManager::process();
 	vector<GameObject*> newObjects = EntityFactory::getNewObjects();
 	vector<GameObject*> newObjectsBehind = EntityFactory::getNewObjectsBehind();
 	if (newObjects.size() != 0)

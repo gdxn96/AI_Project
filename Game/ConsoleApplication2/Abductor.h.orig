@@ -5,7 +5,10 @@
 #include "Astronaut.h"
 
 class Astronaut;
+<<<<<<< HEAD
 
+=======
+>>>>>>> f6aa1ab4d79de4ff8f90024acfcf127953de7df0
 
 class Abductor : public GameObject, public Boid
 {
@@ -14,7 +17,11 @@ private:
 
 	// Movement
 	Vector2D m_direction;
+<<<<<<< HEAD
+=======
 	Vector2D m_velocity;
+	sf::FloatRect m_patrolArea;
+>>>>>>> f6aa1ab4d79de4ff8f90024acfcf127953de7df0
 	Vector2D m_position;
 	Vector2D m_speed;
 

@@ -58,6 +58,7 @@
     <ClCompile Include="Vector2D.cpp">
       <Filter>Source</Filter>
     </ClCompile>
+    <ClCompile Include="Boid.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Abductor.h">
@@ -121,6 +122,9 @@
       <Filter>Header</Filter>
     </ClInclude>
     <ClInclude Include="Vector2D.h">
+      <Filter>Header</Filter>
+    </ClInclude>
+    <ClInclude Include="Boid.h">
       <Filter>Header</Filter>
     </ClInclude>
   </ItemGroup>

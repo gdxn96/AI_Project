@@ -6,17 +6,20 @@
 
 Player* AIManager::m_player = nullptr;
 vector<Astronaut*> AIManager::m_astronauts;
+<<<<<<< HEAD
 sf::FloatRect AIManager::m_levelBounds = sf::FloatRect();
 
 
-std::vector<Boid*> AIManager::m_swarmObjects;
-std::vector<Boid*> AIManager::m_flockObjects;
-std::vector<Abductor*> AIManager::m_abductors;
 
 void AIManager::initialize(sf::FloatRect levelBounds)
 {
 	m_levelBounds = levelBounds;
 }
+=======
+std::vector<Boid*> AIManager::m_swarmObjects;
+std::vector<Boid*> AIManager::m_flockObjects;
+std::vector<Abductor*> AIManager::m_abductors;
+>>>>>>> f6aa1ab4d79de4ff8f90024acfcf127953de7df0
 
 
 
