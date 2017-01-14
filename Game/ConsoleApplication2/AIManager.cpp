@@ -345,14 +345,20 @@ void AIManager::process()
 {
 	for (Astronaut* astronaut : m_astronauts)
 	{
+		float lowest = std::numeric_limits<float>::max();
+		Abductor* closest = nullptr;
 		for (Abductor* a : m_abductors)
 		{
-			if (Vector2D::DistanceSq(a->getPosition(), astronaut->getPosition()))
+			float dist = Vector2D::DistanceSq(a->getPosition(), astronaut->getPosition());
+			if (dist < lowest)
 			{
-				a->setClosestAstronaut(astronaut);
+				lowest = dist;
+				closest = a;
 			}
 		}
-
+		if (closest != nullptr)
+		{
+			closest->setClosestAstronaut(astronaut);
+		}
 	}
 }
-
