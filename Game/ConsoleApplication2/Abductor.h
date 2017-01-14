@@ -2,12 +2,15 @@
 
 #include "GameObject.h"
 #include "AIManager.h"
+#include "Astronaut.h"
 
+class Astronaut;
 
-class Abductor : public GameObject
+class Abductor : public GameObject, public Boid
 {
 private:
 	Vector2D m_direction;
+	Vector2D m_velocity;
 	sf::FloatRect m_patrolArea;
 	Vector2D m_position;
 	float m_seekDistance;
@@ -15,6 +18,7 @@ private:
 	Vector2D m_speed;
 	const int MAX_WANDER_TIME;
 	float m_wanderTimeRemaining;
+	Astronaut* m_closestAstronaut;
 
 	bool isInPatrolArea();
 
@@ -25,4 +29,9 @@ public:
 	void Draw(sf::RenderWindow& window) override;
 	void DrawWithXOffset(sf::RenderWindow& window, float xOffset) override;
 	void wrapPositions(Camera& cam);
+	void setClosestAstronaut(Astronaut* a);
+
+	Vector2D getPosition() override;
+	Vector2D getVelocity() override;
+	bool isPredator() override;
 };

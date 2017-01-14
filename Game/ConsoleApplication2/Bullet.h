@@ -1,7 +1,6 @@
 #pragma once
-
 #include "GameObject.h"
-
+#include "AIManager.h"
 
 class Bullet : public GameObject
 {
