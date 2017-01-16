@@ -172,6 +172,7 @@
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="Meteor.h" />
+    <ClInclude Include="Mutant.h" />
     <ClInclude Include="Nest.h" />
     <ClInclude Include="PhysicsManager.h" />
     <ClInclude Include="Player.h" />

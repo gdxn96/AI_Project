@@ -5,10 +5,7 @@
 #include "Astronaut.h"
 
 class Astronaut;
-<<<<<<< HEAD
 
-=======
->>>>>>> f6aa1ab4d79de4ff8f90024acfcf127953de7df0
 
 class Abductor : public GameObject, public Boid
 {
@@ -17,11 +14,7 @@ private:
 
 	// Movement
 	Vector2D m_direction;
-<<<<<<< HEAD
-=======
 	Vector2D m_velocity;
-	sf::FloatRect m_patrolArea;
->>>>>>> f6aa1ab4d79de4ff8f90024acfcf127953de7df0
 	Vector2D m_position;
 	Vector2D m_speed;
 
@@ -30,6 +23,7 @@ private:
 	const int MAX_WANDER_TIME;
 	float m_wanderTimeRemaining;
 	Astronaut* m_closestAstronaut;
+<<<<<<< HEAD
 
 	// States
 	int m_currentState;
@@ -41,6 +35,9 @@ private:
 	float m_seekDistance;
 	Astronaut* m_closestAstronaut;
 
+=======
+	Vector2D m_closestAstronautPosition;
+>>>>>>> 1e3809cede84fcc1c1ad939b796ed30beeba28c8
 	bool isInPatrolArea();
 	bool shouldAbductAstronaut();
 	bool shouldSeekAstronaut();
@@ -54,7 +51,7 @@ public:
 	void Draw(sf::RenderWindow& window) override;
 	void DrawWithXOffset(sf::RenderWindow& window, float xOffset) override;
 	void wrapPositions(Camera& cam);
-	void setClosestAstronaut(Astronaut* a);
+	void setClosestAstronaut(Vector2D position, Astronaut* a);
 
 	Vector2D getPosition() override;
 	Vector2D getVelocity() override;

@@ -23,7 +23,7 @@ private:
 	const int MAX_WANDER_TIME;
 	float m_wanderTimeRemaining;
 	Astronaut* m_closestAstronaut;
-
+	Vector2D m_closestAstronautPosition;
 	// States
 	int m_currentState;
 	enum m_states { TOSURFACE, PATROL, SEEK, ABDUCT };
@@ -47,7 +47,7 @@ public:
 	void Draw(sf::RenderWindow& window) override;
 	void DrawWithXOffset(sf::RenderWindow& window, float xOffset) override;
 	void wrapPositions(Camera& cam);
-	void setClosestAstronaut(Astronaut* a);
+	void setClosestAstronaut(Vector2D position, Astronaut* a);
 
 	Vector2D getPosition() override;
 	Vector2D getVelocity() override;

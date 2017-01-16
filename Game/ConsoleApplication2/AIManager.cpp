@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "AIManager.h"
 #include <limits.h>
+#include <algorithm>
 
 
 
@@ -12,6 +13,7 @@ sf::FloatRect AIManager::m_levelBounds = sf::FloatRect();
 std::vector<Boid*> AIManager::m_swarmObjects;
 std::vector<Boid*> AIManager::m_flockObjects;
 std::vector<Abductor*> AIManager::m_abductors;
+Vector2D AIManager::m_levelSize;
 
 void AIManager::initialize(sf::FloatRect levelBounds)
 {
@@ -122,6 +124,11 @@ void AIManager::evadeFrom(Vector2D position, Vector2D targetPosition, Vector2D& 
 {
 	direction = position - targetPosition;
 	direction = direction.Normalize();
+}
+
+void AIManager::initialize(Vector2D levelSize)
+{
+	m_levelSize = levelSize;
 }
 
 // Function that checks and modifies the distance
@@ -353,14 +360,26 @@ void AIManager::process()
 {
 	for (Astronaut* astronaut : m_astronauts)
 	{
+		float lowest = std::numeric_limits<float>::max();
+		Abductor* closest = nullptr;
+		Vector2D closestPos = NULL;
 		for (Abductor* a : m_abductors)
 		{
-			if (Vector2D::DistanceSq(a->getPosition(), astronaut->getPosition()))
+			float dist = Vector2D::DistanceSq(a->getPosition(), astronaut->getPosition());
+			float dist2 = Vector2D::DistanceSq(a->getPosition(), (astronaut->getPosition() + Vector2D(m_levelSize.w * 9, 0)));
+			if (dist < lowest)
 			{
-				a->setClosestAstronaut(astronaut);
+				lowest = dist;
+				closest = a;
+				closestPos = astronaut->getPosition();
+			}
+			if (dist2 < lowest)
+			{
+				lowest = dist2;
+				closest = a;
+				closestPos = (astronaut->getPosition() + Vector2D(m_levelSize.w * 9, 0));
 			}
 		}
-
+		closest->setClosestAstronaut(closestPos, astronaut);
 	}
 }
-
