@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "AIManager.h"
 #include <limits.h>
+#include <algorithm>
 
 
 
@@ -9,6 +10,7 @@ vector<Astronaut*> AIManager::m_astronauts;
 std::vector<Boid*> AIManager::m_swarmObjects;
 std::vector<Boid*> AIManager::m_flockObjects;
 std::vector<Abductor*> AIManager::m_abductors;
+Vector2D AIManager::m_levelSize;
 
 
 
@@ -114,6 +116,11 @@ void AIManager::evadeFrom(Vector2D position, Vector2D targetPosition, Vector2D& 
 {
 	direction = position - targetPosition;
 	direction = direction.Normalize();
+}
+
+void AIManager::initialize(Vector2D levelSize)
+{
+	m_levelSize = levelSize;
 }
 
 // Function that checks and modifies the distance
@@ -349,7 +356,7 @@ void AIManager::process()
 		Abductor* closest = nullptr;
 		for (Abductor* a : m_abductors)
 		{
-			float dist = Vector2D::DistanceSq(a->getPosition(), astronaut->getPosition());
+			float dist = std::min(Vector2D::DistanceSq(a->getPosition(), astronaut->getPosition()), Vector2D::DistanceSq(a->getPosition(), (astronaut->getPosition() + Vector2D(m_levelSize.w * 9, 0))));
 			if (dist < lowest)
 			{
 				lowest = dist;
