@@ -354,15 +354,24 @@ void AIManager::process()
 	{
 		float lowest = std::numeric_limits<float>::max();
 		Abductor* closest = nullptr;
+		Vector2D closestPos = NULL;
 		for (Abductor* a : m_abductors)
 		{
-			float dist = std::min(Vector2D::DistanceSq(a->getPosition(), astronaut->getPosition()), Vector2D::DistanceSq(a->getPosition(), (astronaut->getPosition() + Vector2D(m_levelSize.w * 9, 0))));
+			float dist = Vector2D::DistanceSq(a->getPosition(), astronaut->getPosition());
+			float dist2 = Vector2D::DistanceSq(a->getPosition(), (astronaut->getPosition() + Vector2D(m_levelSize.w * 9, 0)));
 			if (dist < lowest)
 			{
 				lowest = dist;
 				closest = a;
+				closestPos = astronaut->getPosition();
+			}
+			if (dist2 < lowest)
+			{
+				lowest = dist2;
+				closest = a;
+				closestPos = (astronaut->getPosition() + Vector2D(m_levelSize.w * 9, 0));
 			}
 		}
-		closest->setClosestAstronaut(astronaut);
+		closest->setClosestAstronaut(closestPos, astronaut);
 	}
 }

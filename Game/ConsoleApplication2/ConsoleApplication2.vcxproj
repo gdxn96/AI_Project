@@ -197,7 +197,6 @@
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="Meteor.cpp" />
-    <ClCompile Include="Mutant.cpp" />
     <ClCompile Include="Nest.cpp" />
     <ClCompile Include="PhysicsManager.cpp" />
     <ClCompile Include="Player.cpp" />

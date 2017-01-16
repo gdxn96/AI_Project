@@ -85,8 +85,9 @@ void Abductor::wrapPositions(Camera& cam)
 	m_shape.setPosition(m_position.toSFMLVector());
 }
 
-void Abductor::setClosestAstronaut(Astronaut * a)
+void Abductor::setClosestAstronaut(Vector2D position, Astronaut * a)
 {
+	m_closestAstronautPosition = position;
 	m_closestAstronaut = a;
 }
 
