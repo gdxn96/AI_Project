@@ -31,6 +31,7 @@ void EntityFactory::CreateAbductor(sf::Vector2f position)
 {
 	Abductor* abductor = new Abductor(position, sf::Vector2f(30, 30), 450, 580);
 	m_newGameObjects.push_back(abductor);
+	AIManager::registerAbductor(abductor);
 }
 
 void EntityFactory::CreateAstronaut(sf::Vector2f position)

@@ -22,17 +22,16 @@ private:
 	sf::FloatRect m_patrolArea;
 	const int MAX_WANDER_TIME;
 	float m_wanderTimeRemaining;
-	Astronaut* m_closestAstronaut;
-	Vector2D m_closestAstronautPosition;
+
 	// States
 	int m_currentState;
-	enum m_states { TOSURFACE, PATROL, SEEK, ABDUCT };
+	enum m_states { TOSURFACE, PATROL, PATROL_EXIT, SEEK, ABDUCT };
 
 	// Actions
 	float m_abductDistance;
-	Vector2D m_closestAstronautPos;
-	float m_seekDistance;
 	Astronaut* m_closestAstronaut;
+	Vector2D m_closestAstronautPosition;
+	float m_seekDistance;
 
 	bool isInPatrolArea();
 	bool shouldAbductAstronaut();

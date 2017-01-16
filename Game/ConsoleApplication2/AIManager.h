@@ -15,6 +15,9 @@ class Abductor;
 
 using namespace std;
 
+typedef pair<int, float> AbductorDistance; // index, distance
+
+
 
 class AIManager
 {
@@ -29,8 +32,10 @@ public:
 	static void swarm(Boid * b, Vector2D & position, Vector2D & acceleration);
 
 	static void process();
+	static vector<AbductorDistance> findClosestAbductors(Vector2D position);
 
 	static void registerPlayer(Player* player);
+	static void registerAbductor(Abductor* abductor);
 	static void registerAstronaut(Astronaut* astronaut);
 
 	static void registerSwarmBoid(Boid* b);
@@ -42,7 +47,6 @@ public:
 	static void unregisterAstronaut(Astronaut* astronaut);
 
 	static Vector2D getPlayerPos();
-	static Vector2D getClosestAstronautPos(Vector2D position);
 
 	static void wander(float dt, float& timeRemaining, int maxTime, Vector2D& direction, bool horizontalOnly = false);
 	static void seekToward(Vector2D position, Vector2D targetPosition, Vector2D& direction);
