@@ -16,6 +16,15 @@ void PhysicsManager::accelerate(float dt, Vector2D& speed, Vector2D acceleration
 	speed.y = abs(speed.y - targetSpeed.y) <= abs(speedChange.y) * 2 ? targetSpeed.y : speed.y;
 }
 
+
+void PhysicsManager::accelerateVelocity(float dt, Vector2D& velocity, Vector2D acceleration, const float speedLimit)
+{
+	velocity += acceleration * dt;
+	Vector2D dir = velocity.Normalize();
+	velocity.x = dir.x * std::min(speedLimit, abs(velocity.x));
+	velocity.y = dir.y * std::min(speedLimit, abs(velocity.y));
+}
+
 void PhysicsManager::BindPositionToLevel(Vector2D& m_position, Vector2D& m_direction)
 {
 	if (m_position.y < m_levelBounds.top)

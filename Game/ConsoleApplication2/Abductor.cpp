@@ -83,6 +83,7 @@ void Abductor::wrapPositions(Camera& cam)
 {
 	cam.Wrap(m_position);
 	m_shape.setPosition(m_position.toSFMLVector());
+	m_bounds.left = m_position.x;
 }
 
 void Abductor::setClosestAstronaut(Astronaut * a)

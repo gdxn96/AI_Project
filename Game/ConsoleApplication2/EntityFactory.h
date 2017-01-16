@@ -5,11 +5,12 @@
 #include "Astronaut.h"
 #include "Nest.h"
 #include "Abductor.h"
+#include "Mutant.h"
 
 class EntityFactory
 {
 public:
-	static void CreateMissile();
+	static void CreateMissile(Vector2D position);
 	static void CreateBullet(Vector2D position, Vector2D direction);
 	static void CreateMutant();
 	static void CreateMeteor();

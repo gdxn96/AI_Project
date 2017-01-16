@@ -63,6 +63,31 @@ Vector2D AIManager::getPlayerPos()
 	return m_player->getPosition();
 }
 
+Vector2D AIManager::getClosestPlayerPos(Vector2D pos)
+{
+	Vector2D caseA, caseB, caseC;
+	caseA = m_player->getPosition();
+	caseB = caseA + Vector2D(1920*9,0);
+	caseC = caseA - Vector2D(1920 * 9, 0);
+
+	float distA = Vector2D::DistanceSq(pos, caseA);
+	float distB = Vector2D::DistanceSq(pos, caseB);
+	float distC = Vector2D::DistanceSq(pos, caseC);
+
+	if (distA < distB && distA < distC)
+	{
+		return caseA;
+	}
+	else if (distB < distC && distB < distA)
+	{
+		return caseB;
+	}
+	else
+	{
+		return caseC;
+	}
+}
+
 Vector2D AIManager::getClosestAstronautPos(Vector2D position)
 {
 	int index = 0;
@@ -90,8 +115,6 @@ Vector2D AIManager::getClosestAstronautPos(Vector2D position)
 	}
 }
 
-
-
 void AIManager::wander(float dt, float& timeRemaining, int maxTime, Vector2D& direction, bool horizontalOnly)
 {
 	timeRemaining -= dt;
@@ -99,8 +122,15 @@ void AIManager::wander(float dt, float& timeRemaining, int maxTime, Vector2D& di
 	if (timeRemaining <= 0)
 	{
 		timeRemaining = rand() % (maxTime + 1);
-		direction.x = rand() & 1 ? 1 : -1;
-		direction.y = horizontalOnly ? 0 : (rand() & 1 ? 1 : -1);
+		if (!horizontalOnly)
+		{
+			direction = Vector2D(RandomFloat(0, 2 * 3.14));
+		}
+		else
+		{
+			direction.y = 0;
+			direction.x = rand() & true ? 1 : -1; //best loc ever
+		}
 	}
 }
 
@@ -114,6 +144,13 @@ void AIManager::evadeFrom(Vector2D position, Vector2D targetPosition, Vector2D& 
 {
 	direction = position - targetPosition;
 	direction = direction.Normalize();
+}
+
+void AIManager::avoid(Vector2D position, Vector2D targetPosition, Vector2D & acceleration, const float maxAccel)
+{
+	float disSq = Vector2D::DistanceSq(position, targetPosition);
+	Vector2D x = (position - targetPosition).Normalize();
+	acceleration += x * std::min(0.1f * disSq, maxAccel);
 }
 
 // Function that checks and modifies the distance
@@ -296,7 +333,7 @@ void AIManager::flock(Boid* b, Vector2D& acceleration, Vector2D& position, Vecto
 	acceleration += sep + ali + coh;
 }
 
-void AIManager::swarm(Boid * b, Vector2D& position, Vector2D& acceleration)
+void AIManager::swarm(Boid * b, Vector2D position, Vector2D& acceleration)
 {
 	/*		Lenard-Jones Potential function
 	Vector R = me.position - you.position
@@ -309,16 +346,16 @@ void AIManager::swarm(Boid * b, Vector2D& position, Vector2D& acceleration)
 	std::vector<Boid*> v;
 	for (Boid* n : m_swarmObjects)
 	{
-		if (b->getPosition().Distance(n->getPosition(), b->getPosition()) < 500)
+		if (b->getPosition().Distance(n->getPosition(), b->getPosition()) < 300)
 		{
 			v.push_back(n);
 		}
 	}
 
-	float A = 0.1;
-	float B = 0.8;
-	float N = 0.4;
-	float M = 0.8;
+	float A = 0.1f;
+	float B = 0.8f;
+	float N = 0.4f;
+	float M = 0.8f;
 	float D;
 	float U = 0;
 	Vector2D R;

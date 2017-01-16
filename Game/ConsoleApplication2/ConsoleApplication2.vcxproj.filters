@@ -58,7 +58,13 @@
     <ClCompile Include="Vector2D.cpp">
       <Filter>Source</Filter>
     </ClCompile>
-    <ClCompile Include="Boid.cpp" />
+    <ClCompile Include="Boid.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Mutant.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Missile.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Abductor.h">
@@ -125,6 +131,12 @@
       <Filter>Header</Filter>
     </ClInclude>
     <ClInclude Include="Boid.h">
+      <Filter>Header</Filter>
+    </ClInclude>
+    <ClInclude Include="Mutant.h">
+      <Filter>Header</Filter>
+    </ClInclude>
+    <ClInclude Include="Missile.h">
       <Filter>Header</Filter>
     </ClInclude>
   </ItemGroup>
