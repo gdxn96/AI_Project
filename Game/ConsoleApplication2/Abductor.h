@@ -11,6 +11,7 @@ class Abductor : public GameObject, public Boid
 {
 private:
 	sf::RectangleShape m_shape;
+	Vector2D m_size;
 
 	// Movement
 	Vector2D m_direction;
@@ -25,7 +26,7 @@ private:
 
 	// States
 	int m_currentState;
-	enum m_states { TOSURFACE, PATROL, PATROL_EXIT, SEEK, ABDUCT };
+	enum m_states { TOSURFACE, PATROL, PATROL_EXIT, SEEK, ABDUCT, TRANSFORM };
 
 	// Actions
 	float m_abductDistance;
@@ -47,8 +48,11 @@ public:
 	void DrawWithXOffset(sf::RenderWindow& window, float xOffset) override;
 	void wrapPositions(Camera& cam);
 	void setClosestAstronaut(Vector2D position, Astronaut* a);
+	void dropAstronaut();
 
 	Vector2D getPosition() override;
 	Vector2D getVelocity() override;
+	bool isAbducting();
 	bool isPredator() override;
+	bool shouldTransform();
 };

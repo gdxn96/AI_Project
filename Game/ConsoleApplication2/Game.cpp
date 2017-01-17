@@ -33,10 +33,10 @@ void Game::CreatePlayer()
 
 void Game::CreateEntities(Vector2D screenSize)
 {
-	EntityFactory::CreateAstronaut(sf::Vector2f(950, screenSize.h - 150));
+	EntityFactory::CreateAstronaut(950);
 	EntityFactory::CreateNest(Vector2D(950, 530), Vector2D(0, 1), 150);
 	EntityFactory::CreateAbductor(sf::Vector2f(800, 200));
-	EntityFactory::CreateAbductor(sf::Vector2f(700, 200));
+	//EntityFactory::CreateAbductor(sf::Vector2f(700, 200));
 
 	for (int i = 0; i < 15; i++)
 	{

@@ -6,9 +6,10 @@
 Abductor::Abductor(sf::Vector2f position, sf::Vector2f size, float minPatrolHeight, float maxPatrolHeight)
 	: GameObject(sf::FloatRect(position, size), true),
 	  Boid(true),
-	  m_patrolArea(0, maxPatrolHeight, 0, maxPatrolHeight - minPatrolHeight),
+	  m_patrolArea(0, maxPatrolHeight, 0, minPatrolHeight - maxPatrolHeight),
 	  m_position(position),
 	  m_seekDistance(400),
+	  m_size(size),
 	  m_abductDistance(100),
 	  m_shape(size),
 	  m_speed(300, 200),
@@ -30,6 +31,9 @@ void Abductor::Update(float dt)
 {
 	UpdateState();
 
+	Vector2D astronautSize, sizeDiff, abductPosition;
+	float abductPositionX, abductPositionY;
+
 	switch (m_currentState)
 	{
 	case m_states::TOSURFACE:
@@ -42,9 +46,19 @@ void Abductor::Update(float dt)
 		m_direction.y *= -1;
 		break;
 	case m_states::SEEK:
-		AIManager::seekToward(m_position, m_closestAstronautPosition, m_direction);
+		astronautSize = m_closestAstronaut->getSize();
+		sizeDiff = m_size - astronautSize;
+		abductPositionX = m_closestAstronautPosition.x - sizeDiff.x / 2;
+		abductPositionY = m_closestAstronautPosition.y - m_size.y;
+		abductPosition = Vector2D(abductPositionX, abductPositionY);
+		AIManager::seekToward(m_position, abductPosition, m_direction);
 		break;
 	case m_states::ABDUCT:
+		AIManager::seekToward(m_position, Vector2D(m_position.x, 0), m_direction);
+		m_closestAstronaut->setPosition(Vector2D(m_closestAstronautPosition.x, m_position.y + m_size.h));
+		break;
+	case m_states::TRANSFORM:
+		m_direction = Vector2D(0, 0);
 		break;
 	}
 
@@ -83,12 +97,19 @@ void Abductor::UpdateState()
 			cout << "Patrolling" << endl;
 		}
 	case m_states::SEEK:
-		/*if (shouldAbductAstronaut())
+		if (shouldAbductAstronaut())
 		{
 			m_currentState = m_states::ABDUCT;
 			cout << "Abducting Astronaut" << endl;
-		}*/
+		}
 		break;
+	case m_states::ABDUCT:
+		if (m_position.y <= 0)
+		{
+			m_closestAstronaut->kill();
+			m_currentState = m_states::TRANSFORM;
+			cout << "Transforming" << endl;
+		}
 	}
 }
 
@@ -120,7 +141,7 @@ bool Abductor::shouldSeekAstronaut()
 bool Abductor::shouldAbductAstronaut()
 {
 	float distanceFromAstronaut = Vector2D::Distance(m_position, m_closestAstronautPosition);
-	return distanceFromAstronaut <= m_abductDistance;
+	return (distanceFromAstronaut <= m_size.y + 5);
 }
 
 
@@ -129,6 +150,13 @@ void Abductor::wrapPositions(Camera& cam)
 	cam.Wrap(m_position);
 	m_shape.setPosition(m_position.toSFMLVector());
 }
+
+void Abductor::dropAstronaut()
+{
+	m_closestAstronaut->setBeingAbducted(false);
+}
+
+
 
 void Abductor::setClosestAstronaut(Vector2D position, Astronaut * a)
 {
@@ -146,7 +174,17 @@ Vector2D Abductor::getVelocity()
 	return m_velocity;
 }
 
+bool Abductor::isAbducting()
+{
+	return m_currentState == m_states::ABDUCT;
+}
+
 bool Abductor::isPredator()
 {
 	return false;
+}
+
+bool Abductor::shouldTransform()
+{
+	return m_currentState == m_states::TRANSFORM;
 }
