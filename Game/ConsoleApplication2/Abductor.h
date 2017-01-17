@@ -10,6 +10,7 @@ class Astronaut;
 class Abductor : public GameObject, public Boid
 {
 private:
+	static int count;
 	sf::RectangleShape m_shape;
 	Vector2D m_size;
 
@@ -41,6 +42,7 @@ private:
 
 
 public:
+	int id;
 	Abductor(sf::Vector2f position, sf::Vector2f size, float minPatrolHeight, float maxPatrolHeight);
 	virtual ~Abductor();
 	void Update(float dt) override;
@@ -55,6 +57,7 @@ public:
 	Vector2D getPosition() override;
 	Vector2D getVelocity() override;
 	bool isAbducting();
+	bool isPatrolling();
 	bool isPredator() override;
 	bool shouldTransform();
 };

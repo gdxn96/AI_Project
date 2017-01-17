@@ -46,7 +46,6 @@ public:
 	static Vector2D getPlayerPos();
 
 	static Vector2D getClosestPlayerPos(Vector2D pos);
-	static Vector2D getClosestAstronautPos(Vector2D position);
 
 	static void wanderThrust(float dt, float& timeUntilDecelerate, float MAXTIME, Vector2D& velocity, Vector2D& acceleration, const float MAX_ACCEL);
 

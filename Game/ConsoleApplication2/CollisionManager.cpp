@@ -6,6 +6,7 @@ CollisionManager::m_playerBullets,
 CollisionManager::m_meteors,
 CollisionManager::m_enemies,
 CollisionManager::m_enemyBullets;
+Camera* CollisionManager::m_camera = nullptr;
 
 bool CollisionManager::Collides(GameObject * a, GameObject * b)
 {
@@ -46,5 +47,5 @@ void CollisionManager::CheckCollisions()
 
 void CollisionManager::RegisterCamera(Camera & cam)
 {
-	m_camera = cam;
+	m_camera = &(cam);
 }
