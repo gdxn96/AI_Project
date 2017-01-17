@@ -32,7 +32,6 @@ public:
 	static void swarm(Boid * b, Vector2D & position, Vector2D & acceleration);
 
 	static void process();
-	static vector<AbductorDistance> findClosestAbductors(Vector2D position);
 
 	static void registerPlayer(Player* player);
 	static void registerAbductor(Abductor* abductor);
@@ -48,7 +47,8 @@ public:
 
 	static Vector2D getPlayerPos();
 
-	static void wander(float dt, float& timeRemaining, int maxTime, Vector2D& direction, bool horizontalOnly = false);
+	static void wander(float dt, float& timeRemaining, int maxTime, Vector2D& direction);
+	static void wanderHorizontal(float dt, float& timeRemaining, int maxTime, Vector2D& direction);
 	static void seekToward(Vector2D position, Vector2D targetPosition, Vector2D& direction);
 	static void evadeFrom(Vector2D position, Vector2D targetPosition, Vector2D& direction);
 

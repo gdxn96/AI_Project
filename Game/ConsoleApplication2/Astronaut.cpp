@@ -23,7 +23,7 @@ void Astronaut::Update(float dt)
 	{
 		if (isOnGround())
 		{
-			AIManager::wander(dt, m_wanderTimeRemaining, MAX_WANDER_TIME, m_direction, true);
+			AIManager::wanderHorizontal(dt, m_wanderTimeRemaining, MAX_WANDER_TIME, m_direction);
 			PhysicsManager::move(dt, m_position, m_speed * m_direction);
 			m_shape.setPosition(m_position.toSFMLVector());
 			m_bounds.left = m_position.x;

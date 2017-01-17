@@ -75,7 +75,7 @@ Vector2D AIManager::getPlayerPos()
 
 
 
-void AIManager::wander(float dt, float& timeRemaining, int maxTime, Vector2D& direction, bool horizontalOnly)
+void AIManager::wander(float dt, float& timeRemaining, int maxTime, Vector2D& direction)
 {
 	timeRemaining -= dt;
 
@@ -83,6 +83,17 @@ void AIManager::wander(float dt, float& timeRemaining, int maxTime, Vector2D& di
 	{
 		timeRemaining = rand() % (maxTime + 1);
 		direction = Vector2D(RandomFloat(0, 2 * 3.14));
+	}
+}
+
+void AIManager::wanderHorizontal(float dt, float& timeRemaining, int maxTime, Vector2D& direction)
+{
+	timeRemaining -= dt;
+
+	if (timeRemaining <= 0)
+	{
+		timeRemaining = rand() % (maxTime + 1);
+		direction.x = rand() & true ? 1 : -1;
 	}
 }
 
@@ -332,34 +343,37 @@ void AIManager::process()
 {
 	for (Astronaut* astronaut : m_astronauts)
 	{
-		float closestDistance = std::numeric_limits<float>::max();
-		Abductor* closestAbductor = nullptr;
-		Vector2D closestAstronautPosition = NULL;
-
-		for (Abductor* a : m_abductors)
+		if (astronaut->isOnGround())
 		{
-			if (a->isAbducting() == false)
+			float closestDistance = std::numeric_limits<float>::max();
+			Abductor* closestAbductor = nullptr;
+			Vector2D closestAstronautPosition = NULL;
+
+			for (Abductor* a : m_abductors)
 			{
-				float dist = Vector2D::DistanceSq(a->getPosition(), astronaut->getPosition());
-				float dist2 = Vector2D::DistanceSq(a->getPosition(), (astronaut->getPosition() + Vector2D(m_levelSize.w * 9, 0)));
-				if (dist < closestDistance)
+				if (a->isAbducting() == false)
 				{
-					closestDistance = dist;
-					closestAbductor = a;
-					closestAstronautPosition = astronaut->getPosition();
-				}
-				if (dist2 < closestDistance)
-				{
-					closestDistance = dist2;
-					closestAbductor = a;
-					closestAstronautPosition = (astronaut->getPosition() + Vector2D(m_levelSize.w * 9, 0));
+					float dist = Vector2D::DistanceSq(a->getPosition(), astronaut->getPosition());
+					float dist2 = Vector2D::DistanceSq(a->getPosition(), (astronaut->getPosition() + Vector2D(m_levelSize.w * 9, 0)));
+					if (dist < closestDistance)
+					{
+						closestDistance = dist;
+						closestAbductor = a;
+						closestAstronautPosition = astronaut->getPosition();
+					}
+					if (dist2 < closestDistance)
+					{
+						closestDistance = dist2;
+						closestAbductor = a;
+						closestAstronautPosition = (astronaut->getPosition() + Vector2D(m_levelSize.w * 9, 0));
+					}
 				}
 			}
-		}
 
-		if (closestAbductor != nullptr)
-		{
-			closestAbductor->setClosestAstronaut(closestAstronautPosition, astronaut);
+			if (closestAbductor != nullptr)
+			{
+				closestAbductor->setClosestAstronaut(closestAstronautPosition, astronaut);
+			}
 		}
 	}
 }

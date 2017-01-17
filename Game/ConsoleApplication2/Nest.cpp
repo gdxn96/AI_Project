@@ -21,7 +21,7 @@ void Nest::Draw(sf::RenderWindow & window)
 
 void Nest::Update(float dt)
 {
-	AIManager::wander(dt, m_timeUntilChangeDirection, MAX_TIME, m_direction, false);
+	AIManager::wander(dt, m_timeUntilChangeDirection, MAX_TIME, m_direction);
 	PhysicsManager::move(dt, m_position, m_direction * m_speed);
 	PhysicsManager::BindPositionToLevel(m_position, m_direction);
 
