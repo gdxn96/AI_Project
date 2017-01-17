@@ -4,6 +4,7 @@
 #include "Camera.h"
 #include "PhysicsManager.h"
 #include <iostream>
+#include "AssetLoader.h"
 
 class Camera;
 class GameObject

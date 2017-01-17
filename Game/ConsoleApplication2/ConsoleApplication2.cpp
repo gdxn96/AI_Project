@@ -16,6 +16,7 @@
 #include <SFML/Graphics.hpp>
 #include "Game.h"
 #include <iostream>
+#include "AssetLoader.h"
 
 int main()
 {
@@ -26,6 +27,9 @@ int main()
 	sf::RenderWindow window(sf::VideoMode(screenSize.w, screenSize.h), "Defender");
 	Game game = Game(screenSize, levelSize);
 	const float FPS = 1.0f / 120;
+
+	AssetLoader::getInstance()->loadTextures("./loadFiles/loadTextures.txt");
+	AssetLoader::getInstance()->loadAssetQueue();
 
 	sf::Clock deltaClock; // used to calculate dt
 	float dt = 0; // floating point dt as seconds

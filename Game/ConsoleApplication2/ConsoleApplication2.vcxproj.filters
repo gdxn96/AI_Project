@@ -70,6 +70,9 @@
     <ClCompile Include="CollisionManager.cpp">
       <Filter>Source</Filter>
     </ClCompile>
+    <ClCompile Include="AssetLoader.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Abductor.h">
@@ -145,6 +148,12 @@
       <Filter>Header</Filter>
     </ClInclude>
     <ClInclude Include="CollisionManager.h">
+      <Filter>Header</Filter>
+    </ClInclude>
+    <ClInclude Include="AssetLoader.h">
+      <Filter>Header</Filter>
+    </ClInclude>
+    <ClInclude Include="Asset.h">
       <Filter>Header</Filter>
     </ClInclude>
   </ItemGroup>

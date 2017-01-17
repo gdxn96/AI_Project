@@ -163,6 +163,8 @@
   <ItemGroup>
     <ClInclude Include="Abductor.h" />
     <ClInclude Include="AIManager.h" />
+    <ClInclude Include="Asset.h" />
+    <ClInclude Include="AssetLoader.h" />
     <ClInclude Include="Astronaut.h" />
     <ClInclude Include="Boid.h" />
     <ClInclude Include="Bullet.h" />
@@ -190,6 +192,7 @@
   <ItemGroup>
     <ClCompile Include="Abductor.cpp" />
     <ClCompile Include="AIManager.cpp" />
+    <ClCompile Include="AssetLoader.cpp" />
     <ClCompile Include="Astronaut.cpp" />
     <ClCompile Include="Boid.cpp" />
     <ClCompile Include="Bullet.cpp" />
