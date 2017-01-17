@@ -13,74 +13,88 @@ Game::Game(Vector2D screenSize, Vector2D levelSize) :
 	float terrainTrough = screenSize.h * 8.f / 10;
 	std::vector<TerrainSegment*> terrainSegments = Terrain::GenerateTerrain(terrainPeak, terrainTrough, levelSize);
 	m_terrainSegments.insert(m_terrainSegments.end(), terrainSegments.begin(), terrainSegments.end());
+	CreatePlayer();
+	CreateEntities(screenSize);
+}
 
-	EntityFactory::CreateNest(Vector2D(950, 530), Vector2D(0, 1), 500);
 
-	//EntityFactory::CreateAstronaut(sf::Vector2f(950, screenSize.h - 150));
-	EntityFactory::CreateAbductor(sf::Vector2f(750, 200));
-	for (int i = 0; i < 15; i++)
-	{
-		EntityFactory::CreateAbductor(sf::Vector2f(750, 200));
-		EntityFactory::CreateMeteor();
-		EntityFactory::CreateMutant();
-	}
-	
-
-	Player* player = new Player(sf::Vector2f(950, 530),	//bounds
-								sf::Vector2f(40, 20),	//size
-								Vector2D(800, 800),		//acceleration
-								Vector2D(5000, 400));	//maxSpeed
+void Game::CreatePlayer()
+{
+	Player* player = new Player(
+		sf::Vector2f(950, 530),	//bounds
+		sf::Vector2f(40, 20),	//size
+		Vector2D(800, 800),		//acceleration
+		Vector2D(5000, 400)		//maxSpeed
+	);
 
 	AIManager::registerPlayer(player);
 	m_gameObjects.push_back(player);
 }
 
+void Game::CreateEntities(Vector2D screenSize)
+{
+	EntityFactory::CreateNest(Vector2D(950, 530), Vector2D(0, 1), 500);
+	EntityFactory::CreateAbductor(sf::Vector2f(800, 200));
+	EntityFactory::CreateAbductor(sf::Vector2f(700, 200));
+
+	for (int i = 0; i < 15; i++)
+	{
+		if (i % 2 == 0)
+			EntityFactory::CreateAstronaut(400 + (i * 30));
+		//EntityFactory::CreateAstronaut(800 + (i * 30));
+		EntityFactory::CreateAbductor(sf::Vector2f(750, 200));
+		EntityFactory::CreateMeteor();
+		EntityFactory::CreateMutant(Vector2D(RandomFloat(0, m_levelSize.width), 0));
+	}
+}
+
+
 void Game::Update(float dt)
 {
 	AIManager::process();
+	AddNewGameObjects();
+	UpdateGameObjectList(dt, m_gameObjects);
+	UpdateGameObjectList(dt, m_gameObjectsBehind);
+}
+
+
+void Game::AddNewGameObjects()
+{
 	vector<GameObject*> newObjects = EntityFactory::getNewObjects();
 	vector<GameObject*> newObjectsBehind = EntityFactory::getNewObjectsBehind();
+
 	if (newObjects.size() != 0)
 	{
 		m_gameObjects.insert(m_gameObjects.begin(), newObjects.begin(), newObjects.end());
 	}
+
 	if (newObjectsBehind.size() != 0)
 	{
 		m_gameObjectsBehind.insert(m_gameObjectsBehind.begin(), newObjectsBehind.begin(), newObjectsBehind.end());
 	}
 
 	EntityFactory::clearObjects();
+}
 
-	for (int i = m_gameObjects.size() - 1; i >= 0; i--)
+
+void Game::UpdateGameObjectList(float dt, std::vector<GameObject*>& list)
+{
+	for (int i = list.size() - 1; i >= 0; i--)
 	{
-		GameObject* gameObject = m_gameObjects[i];
+		GameObject* gameObject = list[i];
 
 		if (gameObject->isAlive())
 		{
-			m_gameObjects[i]->Update(dt);
-			m_gameObjects[i]->wrapPositions(m_camera);
+			list[i]->Update(dt);
+			list[i]->wrapPositions(m_camera);
 		}
 		else
 		{
-			m_gameObjects.erase(m_gameObjects.begin() + i);
-		}
-	}
-
-	for (int i = m_gameObjectsBehind.size() - 1; i >= 0; i--)
-	{
-		GameObject* gameObject = m_gameObjectsBehind[i];
-
-		if (gameObject->isAlive())
-		{
-			m_gameObjectsBehind[i]->Update(dt);
-			m_gameObjectsBehind[i]->wrapPositions(m_camera);
-		}
-		else
-		{
-			m_gameObjectsBehind.erase(m_gameObjectsBehind.begin() + i);
+			list.erase(list.begin() + i);
 		}
 	}
 }
+
 
 void Game::Draw(sf::RenderWindow& r)
 {
