@@ -14,7 +14,7 @@ Game::Game(Vector2D screenSize, Vector2D levelSize) :
 	std::vector<TerrainSegment*> terrainSegments = Terrain::GenerateTerrain(terrainPeak, terrainTrough, levelSize);
 	m_terrainSegments.insert(m_terrainSegments.end(), terrainSegments.begin(), terrainSegments.end());
 
-	EntityFactory::CreateNest(Vector2D(950, 530), Vector2D(0, 1), 200);
+	EntityFactory::CreateNest(Vector2D(950, 530), Vector2D(0, 1), 500);
 
 	//EntityFactory::CreateAstronaut(sf::Vector2f(950, screenSize.h - 150));
 	EntityFactory::CreateAbductor(sf::Vector2f(750, 200));

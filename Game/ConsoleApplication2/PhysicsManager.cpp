@@ -21,8 +21,7 @@ void PhysicsManager::accelerateVelocity(float dt, Vector2D& velocity, Vector2D a
 {
 	velocity += acceleration * dt;
 	Vector2D dir = velocity.Normalize();
-	velocity.x = dir.x * std::min(speedLimit, abs(velocity.x));
-	velocity.y = dir.y * std::min(speedLimit, abs(velocity.y));
+	velocity.limit(speedLimit);
 }
 
 void PhysicsManager::BindPositionToLevel(Vector2D& m_position, Vector2D& m_direction)
@@ -49,6 +48,11 @@ void PhysicsManager::BindPositionToLevel(Vector2D& m_position)
 	{
 		m_position.y = m_levelBounds.height + m_levelBounds.top;
 	}
+}
+
+void PhysicsManager::ApplyFriction(float dt, Vector2D & velocity, float mFriction)
+{
+	velocity = velocity * ((1 - mFriction) * dt);
 }
 
 void PhysicsManager::VerticalWrapPosition(Vector2D & m_position)

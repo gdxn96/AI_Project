@@ -8,12 +8,12 @@ Nest::Nest(Vector2D pos, Vector2D dir, float speed)
 	m_position(pos),
 	m_direction((0,0)),
 	m_velocity(dir * speed),
-	MAX_TIME(10),
+	MAX_TIME(5),
 	m_timeUntilChangeDirection(0),
 	m_state(WANDERING),
 	MAX_TIME_UNTIL_SHOOT(5),
 	m_timeUntilShoot(0),
-	MAX_ACCEL(20),
+	MAX_ACCEL(50000),
 	MAX_SPEED(speed)
 {
 	m_shape.setPosition(pos.toSFMLVector());
@@ -28,17 +28,14 @@ void Nest::Draw(sf::RenderWindow & window)
 void Nest::Update(float dt)
 {
 	m_timeUntilShoot -= dt;
-	m_acceleration = 0;
 
 	switch (m_state)
 	{
 	case WANDERING:
 		
-		AIManager::wander(dt, m_timeUntilChangeDirection, MAX_TIME, m_direction, false);
-		m_velocity = m_direction * MAX_SPEED;
-		PhysicsManager::move(dt, m_position, m_velocity);
+		AIManager::wanderThrust(dt, m_timeUntilChangeDirection, MAX_TIME, m_velocity, m_acceleration, MAX_ACCEL);
 
-		if (Vector2D::Distance(AIManager::getClosestPlayerPos(m_position), m_position) < 500)
+		if (Vector2D::Distance(AIManager::getClosestPlayerPos(m_position), m_position) < 800)
 		{
 			m_state = EVADING;
 		}
@@ -51,10 +48,9 @@ void Nest::Update(float dt)
 		}
 
 		AIManager::avoid(m_position, AIManager::getClosestPlayerPos(m_position), m_acceleration, MAX_ACCEL);
-		PhysicsManager::accelerateVelocity(dt, m_velocity, m_acceleration, MAX_SPEED);
-		PhysicsManager::move(dt, m_position, m_velocity);
+		
 
-		if (Vector2D::Distance(AIManager::getClosestPlayerPos(m_position), m_position) > 1200)
+		if (Vector2D::Distance(AIManager::getClosestPlayerPos(m_position), m_position) > 1400)
 		{
 			m_state = WANDERING;
 			m_timeUntilChangeDirection = 0;
@@ -65,7 +61,11 @@ void Nest::Update(float dt)
 		break;
 	}
 
+	PhysicsManager::accelerateVelocity(dt, m_velocity, m_acceleration, MAX_SPEED);
+	PhysicsManager::move(dt, m_position, m_velocity);
 	PhysicsManager::BindPositionToLevel(m_position, m_velocity);
+	PhysicsManager::BindPositionToLevel(m_position, m_acceleration);
+	PhysicsManager::ApplyFriction(dt, m_velocity, 0.1f);
 
 	m_shape.setPosition(m_position.toSFMLVector());
 	m_bounds.left = m_position.x;

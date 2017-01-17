@@ -40,6 +40,7 @@ public:
 	static Vector2D getClosestAstronautPos(Vector2D position);
 
 	static void wander(float dt, float& timeRemaining, int maxTime, Vector2D& direction, bool horizontalOnly = false);
+	static void wanderThrust(float dt, float& timeUntilDecelerate, float MAXTIME, Vector2D& velocity, Vector2D& acceleration, const float MAX_ACCEL);
 	static void seekToward(Vector2D position, Vector2D targetPosition, Vector2D& direction);
 	static void evadeFrom(Vector2D position, Vector2D targetPosition, Vector2D& direction);
 	static void avoid(Vector2D position, Vector2D targetPosition, Vector2D& acceleration, const float maxAccel);

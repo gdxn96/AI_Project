@@ -18,6 +18,6 @@ private:
 	enum States {ATTACKING, SEEKING};
 	States m_state;
 	Vector2D m_position, m_acceleration, m_velocity;
-	const float MAX_SPEED;
+	const float MAX_SPEED, MAX_ACCEL;
 	sf::RectangleShape m_shape;
 };

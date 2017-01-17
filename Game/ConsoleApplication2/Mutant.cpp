@@ -7,7 +7,8 @@
 Mutant::Mutant(Vector2D pos) : 
 	Boid(false), 
 	GameObject(sf::FloatRect(pos.x, pos.y, 20, 20)), 
-	MAX_SPEED(500), 
+	MAX_SPEED(rand() % 1000 + 1000), 
+	MAX_ACCEL(rand() % 500 + 500),
 	m_state(SEEKING), 
 	m_shape(sf::RectangleShape(sf::Vector2f(20, 20)))
 {
@@ -31,27 +32,25 @@ bool Mutant::isPredator()
 
 void Mutant::Update(float dt)
 {
-	Vector2D direction;
-	
+	Vector2D dir(0, 0);
 	switch (m_state)
 	{
 	case Mutant::ATTACKING:
-		EntityFactory::CreateBullet(m_position, direction);
+		if (m_velocity.x != 0)
+			EntityFactory::CreateBullet(m_position, (pow((m_position - AIManager::getClosestPlayerPos(m_position)).x, 0),0));
 		break;
 	case Mutant::SEEKING:
-		AIManager::seekToward(m_position, AIManager::getClosestPlayerPos(m_position), direction);
-		m_velocity = direction * MAX_SPEED;
+		AIManager::seekToward(m_position, AIManager::getClosestPlayerPos(m_position), dir);
+		m_acceleration = dir * MAX_ACCEL;
 		break;
 	default:
 		break;
 	}
 
 	AIManager::swarm(this, m_position, m_acceleration);
-	PhysicsManager::accelerateVelocity(dt, m_velocity, m_acceleration, MAX_SPEED);
+	PhysicsManager::accelerateVelocity(dt, m_velocity, m_acceleration, MAX_ACCEL);
 	PhysicsManager::move(dt, m_position, m_velocity);
-
-	cout << m_position.x << endl;
-
+	
 	m_shape.setPosition(m_position.toSFMLVector());
 	m_bounds.left = m_position.x;
 }

@@ -134,6 +134,26 @@ void AIManager::wander(float dt, float& timeRemaining, int maxTime, Vector2D& di
 	}
 }
 
+void AIManager::wanderThrust(float dt, float& timeUntilDecelerate, float MAXTIME, Vector2D& velocity, Vector2D& acceleration, const float MAX_ACCEL)
+{
+	timeUntilDecelerate -= dt;
+	Vector2D direction;
+	float mag;
+
+	if (timeUntilDecelerate <= 0)
+	{
+		acceleration = (0,0);
+
+		if (velocity.Magnitude() <= 50)
+		{
+			timeUntilDecelerate = MAXTIME;
+			mag = RandomFloat(MAX_ACCEL * .5f, MAX_ACCEL);
+			direction = Vector2D(RandomFloat(0, 2 * 3.14));
+			acceleration += direction * mag;
+		}
+	}
+}
+
 void AIManager::seekToward(Vector2D position, Vector2D targetPosition, Vector2D& direction)
 {
 	direction = targetPosition - position;
