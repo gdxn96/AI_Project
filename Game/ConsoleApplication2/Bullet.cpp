@@ -3,11 +3,13 @@
 
 Bullet::Bullet(Vector2D pos, Vector2D dir)
 :	GameObject(sf::FloatRect(pos.x, pos.y, 20, 10)),
-	m_velocity(Vector2D(1200, 0) * dir),
+	m_velocity(Vector2D(1200, 1200) * dir),
 	m_position(pos),
 	m_timeToLive(1),
 	m_shape(sf::Vector2f(20,10))
 {
+	float angle = Vector2D::AngleDeg(m_velocity, Vector2D(0));
+	m_shape.setRotation(angle);
 	m_shape.setPosition(m_position.toSFMLVector());
 	m_bounds.left = m_position.x;
 	m_bounds.top = m_position.y;
