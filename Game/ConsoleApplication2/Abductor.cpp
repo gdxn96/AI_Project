@@ -31,27 +31,21 @@ void Abductor::Update(float dt)
 {
 	UpdateState();
 
-	Vector2D astronautSize, sizeDiff, abductPosition;
-	float abductPositionX, abductPositionY;
-
 	switch (m_currentState)
 	{
 	case m_states::TOSURFACE:
 		AIManager::seekToward(m_position, Vector2D(m_position.x, m_patrolArea.top), m_direction);
 		break;
 	case m_states::PATROL:
-		AIManager::wander(dt, m_wanderTimeRemaining, MAX_WANDER_TIME, m_direction);
+		AIManager::wander(dt, m_wanderTimeRemaining, MAX_WANDER_TIME, m_direction); 
+		calculateAbductPosition();
 		break;
 	case m_states::PATROL_EXIT:
 		m_direction.y *= -1;
 		break;
 	case m_states::SEEK:
-		astronautSize = m_closestAstronaut->getSize();
-		sizeDiff = m_size - astronautSize;
-		abductPositionX = m_closestAstronautPosition.x - sizeDiff.x / 2;
-		abductPositionY = m_closestAstronautPosition.y - m_size.y;
-		abductPosition = Vector2D(abductPositionX, abductPositionY);
-		AIManager::seekToward(m_position, abductPosition, m_direction);
+		calculateAbductPosition();
+		AIManager::seekToward(m_position, m_abductPosition, m_direction);
 		break;
 	case m_states::ABDUCT:
 		AIManager::seekToward(m_position, Vector2D(m_position.x, 0), m_direction);
@@ -127,6 +121,16 @@ void Abductor::DrawWithXOffset(sf::RenderWindow& window, float xOffset)
 
 
 
+void Abductor::calculateAbductPosition()
+{
+	Vector2D sizeDiff = m_size - m_closestAstronaut->getSize();
+	float abductPositionX = m_closestAstronautPosition.x - sizeDiff.w / 2;
+	float abductPositionY = m_closestAstronautPosition.y - m_size.h;
+	m_abductPosition = Vector2D(abductPositionX, abductPositionY);
+}
+
+
+
 bool Abductor::isInPatrolArea()
 {
 	return m_position.y >= m_patrolArea.top && m_position.y <= m_patrolArea.top + m_patrolArea.height;
@@ -140,8 +144,8 @@ bool Abductor::shouldSeekAstronaut()
 
 bool Abductor::shouldAbductAstronaut()
 {
-	float distanceFromAstronaut = Vector2D::Distance(m_position, m_closestAstronautPosition);
-	return (distanceFromAstronaut <= m_size.y + 5);
+	float distanceFromAbductPosition = Vector2D::Distance(m_position, m_abductPosition);
+	return (distanceFromAbductPosition <= 0.5f);
 }
 
 

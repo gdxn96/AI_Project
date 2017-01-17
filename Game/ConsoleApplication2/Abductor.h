@@ -30,6 +30,7 @@ private:
 
 	// Actions
 	float m_abductDistance;
+	Vector2D m_abductPosition;
 	Astronaut* m_closestAstronaut;
 	Vector2D m_closestAstronautPosition;
 	float m_seekDistance;
@@ -49,6 +50,7 @@ public:
 	void wrapPositions(Camera& cam);
 	void setClosestAstronaut(Vector2D position, Astronaut* a);
 	void dropAstronaut();
+	void calculateAbductPosition();
 
 	Vector2D getPosition() override;
 	Vector2D getVelocity() override;
