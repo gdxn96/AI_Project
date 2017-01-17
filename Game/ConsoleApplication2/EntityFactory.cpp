@@ -7,15 +7,26 @@
 #include "Nest.h"
 #include "Abductor.h"
 #include "Mutant.h"
+#include "CollisionManager.h"
 
 int EntityFactory::m_numAbductors = 0;
 std::vector<GameObject*> EntityFactory::m_newGameObjects;
 std::vector<GameObject*> EntityFactory::m_newGameObjectsBehind;
 sf::FloatRect EntityFactory::m_levelSize = sf::FloatRect();
 
-void EntityFactory::CreateBullet(Vector2D position, Vector2D direction)
+void EntityFactory::CreateBullet(Vector2D position, Vector2D direction, bool isEnemyBullet)
 {
-	m_newGameObjects.push_back(new Bullet(position, direction));
+	Bullet* bullet = new Bullet(position, direction);
+	m_newGameObjects.push_back(bullet);
+
+	if (!isEnemyBullet)
+	{
+		CollisionManager::RegisterPlayerBullet(bullet);
+	}
+	else
+	{
+		CollisionManager::RegisterEnemyBullet(bullet);
+	}
 }
 
 void EntityFactory::CreateMissile(Vector2D position)
@@ -25,7 +36,9 @@ void EntityFactory::CreateMissile(Vector2D position)
 
 void EntityFactory::CreateMutant(Vector2D position)
 {
-	m_newGameObjects.push_back(new Mutant(position));
+	Mutant* m = new Mutant(position);
+	m_newGameObjects.push_back(m);
+	CollisionManager::RegisterEnemy(m);
 }
 
 void EntityFactory::CreateMeteor()
@@ -48,6 +61,8 @@ void EntityFactory::CreateAbductor(sf::Vector2f position)
 		AIManager::registerAbductor(abductor);
 
 		m_numAbductors++;
+
+		CollisionManager::RegisterEnemy(abductor);
 	}
 }
 
@@ -62,7 +77,9 @@ void EntityFactory::CreateAstronaut(float xPosition)
 
 void EntityFactory::CreateNest(Vector2D pos, Vector2D dir, float speed)
 {
-	m_newGameObjects.push_back(new Nest(pos, dir, speed));
+	Nest* nest = new Nest(pos, dir, speed);
+	m_newGameObjects.push_back(nest);
+	CollisionManager::RegisterEnemy(nest);
 }
 
 std::vector<GameObject*> EntityFactory::getNewObjects()

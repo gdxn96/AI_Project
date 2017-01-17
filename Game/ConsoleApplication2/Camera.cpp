@@ -117,3 +117,28 @@ void Camera::renderCameraBounds(sf::RenderWindow& window)
 	rect.setOutlineThickness(20);
 	window.draw(rect);
 }
+
+
+std::vector<GameObject*> Camera::getObjectsInViewPort(std::vector<GameObject*> objects)
+{
+	std::vector<GameObject*> results;
+	sf::FloatRect viewport = getViewPort(m_gameView);
+	//draw game objects
+	for (GameObject* gameObject : objects)
+	{
+		//cull objects not in view
+		sf::FloatRect objectAABB = gameObject->getAABB();
+		if ((objectAABB.left > viewport.left && objectAABB.left < viewport.left + viewport.width) ||
+			(objectAABB.left + objectAABB.width > viewport.left && objectAABB.left + objectAABB.width < viewport.left + viewport.width))
+		{
+			results.push_back(gameObject);
+		}
+		else if (objectAABB.left + m_levelSize.w > viewport.left && objectAABB.left + m_levelSize.w < viewport.left + viewport.width ||
+			(objectAABB.left + objectAABB.width + m_levelSize.w > viewport.left && objectAABB.left + objectAABB.width + m_levelSize.w < viewport.left + viewport.width))
+		{
+			results.push_back(gameObject);
+		}
+	}
+
+	return results;
+}
