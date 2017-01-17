@@ -13,10 +13,16 @@ public:
 	void wrapPositions(Camera& cam) override;
 
 private:
+	enum States {WANDERING, EVADING};
 	Vector2D m_position;
-	Vector2D m_direction;
-	float m_speed;
+	Vector2D m_velocity, m_direction;
+	const float MAX_SPEED;
 	float m_timeUntilChangeDirection;
+	float m_timeUntilShoot;
+	const float MAX_TIME_UNTIL_SHOOT;
 	const int MAX_TIME;
 	sf::RectangleShape m_shape;
+	States m_state;
+	const float MAX_ACCEL;
+	Vector2D m_acceleration;
 };

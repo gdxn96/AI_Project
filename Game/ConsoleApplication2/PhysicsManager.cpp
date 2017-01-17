@@ -16,6 +16,14 @@ void PhysicsManager::accelerate(float dt, Vector2D& speed, Vector2D acceleration
 	speed.y = abs(speed.y - targetSpeed.y) <= abs(speedChange.y) * 2 ? targetSpeed.y : speed.y;
 }
 
+
+void PhysicsManager::accelerateVelocity(float dt, Vector2D& velocity, Vector2D acceleration, const float speedLimit)
+{
+	velocity += acceleration * dt;
+	Vector2D dir = velocity.Normalize();
+	velocity.limit(speedLimit);
+}
+
 void PhysicsManager::BindPositionToLevel(Vector2D& m_position, Vector2D& m_direction)
 {
 	if (m_position.y < m_levelBounds.top)
@@ -40,6 +48,11 @@ void PhysicsManager::BindPositionToLevel(Vector2D& m_position)
 	{
 		m_position.y = m_levelBounds.height + m_levelBounds.top;
 	}
+}
+
+void PhysicsManager::ApplyFriction(float dt, Vector2D & velocity, float mFriction)
+{
+	velocity = velocity * ((1 - mFriction) * dt);
 }
 
 void PhysicsManager::VerticalWrapPosition(Vector2D & m_position)

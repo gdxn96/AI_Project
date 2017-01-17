@@ -59,7 +59,7 @@ void Abductor::Update(float dt)
 		m_closestAstronaut->setPosition(Vector2D(m_closestAstronautPosition.x, m_position.y + m_size.h));
 		break;
 	case m_states::TRANSFORM:
-		EntityFactory::CreateMutant(m_position, m_size);
+		EntityFactory::CreateMutant(m_position);
 		m_closestAstronaut->kill();
 		kill();
 		break;
@@ -170,6 +170,7 @@ void Abductor::wrapPositions(Camera& cam)
 {
 	cam.Wrap(m_position);
 	m_shape.setPosition(m_position.toSFMLVector());
+	m_bounds.left = m_position.x;
 }
 
 void Abductor::dropAstronaut()

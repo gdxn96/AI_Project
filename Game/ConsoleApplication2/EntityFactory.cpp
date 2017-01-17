@@ -1,5 +1,12 @@
 #include "stdafx.h"
 #include "EntityFactory.h"
+#include "Missile.h"
+#include "Bullet.h"
+#include "Meteor.h"
+#include "Astronaut.h"
+#include "Nest.h"
+#include "Abductor.h"
+#include "Mutant.h"
 
 
 std::vector<GameObject*> EntityFactory::m_newGameObjects;
@@ -11,13 +18,14 @@ void EntityFactory::CreateBullet(Vector2D position, Vector2D direction)
 	m_newGameObjects.push_back(new Bullet(position, direction));
 }
 
-void EntityFactory::CreateMissile()
+void EntityFactory::CreateMissile(Vector2D position)
 {
+	m_newGameObjects.push_back(new Missile(position));
 }
 
-void EntityFactory::CreateMutant(Vector2D position, Vector2D size)
+void EntityFactory::CreateMutant(Vector2D position)
 {
-	// Do shiz
+	m_newGameObjects.push_back(new Mutant(position));
 }
 
 void EntityFactory::CreateMeteor()
