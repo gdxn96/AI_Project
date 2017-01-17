@@ -173,6 +173,7 @@ void Abductor::wrapPositions(Camera& cam)
 	cam.Wrap(m_position);
 	m_shape.setPosition(m_position.toSFMLVector());
 	m_bounds.left = m_position.x;
+	m_bounds.top = m_position.y;
 }
 
 void Abductor::dropAstronaut()

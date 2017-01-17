@@ -14,11 +14,19 @@ std::vector<GameObject*> EntityFactory::m_newGameObjects;
 std::vector<GameObject*> EntityFactory::m_newGameObjectsBehind;
 sf::FloatRect EntityFactory::m_levelSize = sf::FloatRect();
 
-void EntityFactory::CreateBullet(Vector2D position, Vector2D direction)
+void EntityFactory::CreateBullet(Vector2D position, Vector2D direction, bool isEnemyBullet)
 {
 	auto bullet = new Bullet(position, direction);
 	m_newGameObjects.push_back(bullet);
-	CollisionManager::RegisterPlayerBullet(bullet);
+
+	if (!isEnemyBullet)
+	{
+		CollisionManager::RegisterPlayerBullet(bullet);
+	}
+	else
+	{
+		CollisionManager::RegisterEnemyBullet(bullet);
+	}
 }
 
 void EntityFactory::CreateMissile(Vector2D position)

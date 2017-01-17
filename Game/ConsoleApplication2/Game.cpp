@@ -58,7 +58,6 @@ void Game::Update(float dt)
 	AddNewGameObjects();
 	UpdateGameObjectList(dt, m_gameObjects);
 	UpdateGameObjectList(dt, m_gameObjectsBehind);
-
 	CollisionManager::CheckCollisions();
 }
 
@@ -88,9 +87,9 @@ void Game::UpdateGameObjectList(float dt, std::vector<GameObject*>& list)
 	{
 		if (!(*it)->isAlive())
 		{
+			CollisionManager::deregisterGameObject(*(it));
 			delete * it;
 			it = list.erase(it);
-			CollisionManager::deregisterGameObject(*(it));
 		}
 		else 
 		{

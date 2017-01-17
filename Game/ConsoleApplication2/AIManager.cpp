@@ -89,11 +89,10 @@ void AIManager::registerFlockBoid(Boid * b)
 
 void AIManager::unregisterBoid(Boid * b)
 {
-	std::remove(m_flockObjects.begin(), m_flockObjects.end(), b);
-	std::remove(m_abductors.begin(), m_abductors.end(), b);
-	std::remove(m_swarmObjects.begin(), m_swarmObjects.end(), b);
+	m_flockObjects.erase(std::remove(m_flockObjects.begin(), m_flockObjects.end(), b), m_flockObjects.end());
+	m_abductors.erase(std::remove(m_abductors.begin(), m_abductors.end(), b), m_abductors.end());
+	m_swarmObjects.erase(std::remove(m_swarmObjects.begin(), m_swarmObjects.end(), b), m_swarmObjects.end());
 }
-
 
 
 void AIManager::unregisterPlayer()
@@ -432,7 +431,10 @@ void AIManager::process()
 				closestPos = (astronaut->getPosition() + Vector2D(m_levelBounds.width * 9, 0));
 			}
 		}
-		closest->setClosestAstronaut(closestPos, astronaut);
+		if (closest != nullptr)
+		{
+			closest->setClosestAstronaut(closestPos, astronaut);
+		}
 
 		if (astronaut->isOnGround())
 		{

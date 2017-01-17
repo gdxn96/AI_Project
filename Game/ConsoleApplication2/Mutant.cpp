@@ -41,7 +41,7 @@ void Mutant::Update(float dt)
 	{
 		if (m_timeUntilShoot < 0)
 		{
-			EntityFactory::CreateBullet(m_position, (playerPos - m_position).Normalize());
+			EntityFactory::CreateBullet(m_position, (playerPos - m_position).Normalize(), true);
 			m_timeUntilShoot = MAX_TIME_UNTIL_SHOOT;
 		}
 	}
@@ -54,6 +54,7 @@ void Mutant::Update(float dt)
 	
 	m_shape.setPosition(m_position.toSFMLVector());
 	m_bounds.left = m_position.x;
+	m_bounds.top = m_position.y;
 }
 
 void Mutant::Draw(sf::RenderWindow& w)
