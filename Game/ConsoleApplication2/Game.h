@@ -13,7 +13,11 @@ class Game
 {
 public:
 	Game(Vector2D screenSize, Vector2D levelSize);
+	void CreatePlayer();
+	void CreateEntities(Vector2D screenSize);
 	void Update(float dt);
+	void UpdateGameObjectList(float dt, std::vector<GameObject*>& list);
+	void AddNewGameObjects();
 	void Draw(sf::RenderWindow& r);
 
 private:

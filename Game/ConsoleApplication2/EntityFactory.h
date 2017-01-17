@@ -11,11 +11,11 @@ class EntityFactory
 public:
 	static void CreateMissile();
 	static void CreateBullet(Vector2D position, Vector2D direction);
-	static void CreateMutant();
+	static void CreateMutant(Vector2D position, Vector2D size);
 	static void CreateMeteor();
 	static void CreateAbductor(sf::Vector2f position);
 	static void CreateNest(Vector2D pos, Vector2D dir, float speed);
-	static void CreateAstronaut(sf::Vector2f position);
+	static void CreateAstronaut(float xPosition);
 	static std::vector<GameObject*> getNewObjects();
 	static std::vector<GameObject*> getNewObjectsBehind();
 	static void clearObjects();

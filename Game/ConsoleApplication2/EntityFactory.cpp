@@ -15,8 +15,9 @@ void EntityFactory::CreateMissile()
 {
 }
 
-void EntityFactory::CreateMutant()
+void EntityFactory::CreateMutant(Vector2D position, Vector2D size)
 {
+	// Do shiz
 }
 
 void EntityFactory::CreateMeteor()
@@ -29,13 +30,19 @@ void EntityFactory::CreateMeteor()
 
 void EntityFactory::CreateAbductor(sf::Vector2f position)
 {
-	Abductor* abductor = new Abductor(position, sf::Vector2f(30, 30), 450, 580);
+	sf::Vector2f size(30, 30);
+	float minPatrolHeight = m_levelSize.height * 0.75f;
+	float maxPatrolHeight = m_levelSize.height * 0.6f;
+	Abductor* abductor = new Abductor(position, size, minPatrolHeight, maxPatrolHeight);
 	m_newGameObjects.push_back(abductor);
+	AIManager::registerAbductor(abductor);
 }
 
-void EntityFactory::CreateAstronaut(sf::Vector2f position)
+void EntityFactory::CreateAstronaut(float xPosition)
 {
-	Astronaut* astronaut = new Astronaut(position, sf::Vector2f(10, 20));
+	sf::Vector2f position(xPosition, m_levelSize.height * 0.8f);
+	sf::Vector2f size(10, 20);
+	Astronaut* astronaut = new Astronaut(position, size);
 	AIManager::registerAstronaut(astronaut);
 	m_newGameObjects.push_back(astronaut);
 }
