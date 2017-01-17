@@ -45,9 +45,9 @@ void CollisionManager::deregisterGameObject(GameObject * g)
 
 void CollisionManager::CheckCollisions()
 {
-	for (auto& bullet : m_playerBullets)
+	for (GameObject* bullet : m_playerBullets)
 	{
-		for (auto& enemy : m_enemies)
+		for (GameObject* enemy : m_enemies)
 		{
 			if (Collides(enemy, bullet))
 			{

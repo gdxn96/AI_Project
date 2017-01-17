@@ -16,7 +16,7 @@ sf::FloatRect EntityFactory::m_levelSize = sf::FloatRect();
 
 void EntityFactory::CreateBullet(Vector2D position, Vector2D direction, bool isEnemyBullet)
 {
-	auto bullet = new Bullet(position, direction);
+	Bullet* bullet = new Bullet(position, direction);
 	m_newGameObjects.push_back(bullet);
 
 	if (!isEnemyBullet)
@@ -36,7 +36,7 @@ void EntityFactory::CreateMissile(Vector2D position)
 
 void EntityFactory::CreateMutant(Vector2D position)
 {
-	auto m = new Mutant(position);
+	Mutant* m = new Mutant(position);
 	m_newGameObjects.push_back(m);
 	CollisionManager::RegisterEnemy(m);
 }
@@ -77,7 +77,7 @@ void EntityFactory::CreateAstronaut(float xPosition)
 
 void EntityFactory::CreateNest(Vector2D pos, Vector2D dir, float speed)
 {
-	auto nest = new Nest(pos, dir, speed);
+	Nest* nest = new Nest(pos, dir, speed);
 	m_newGameObjects.push_back(nest);
 	CollisionManager::RegisterEnemy(nest);
 }
