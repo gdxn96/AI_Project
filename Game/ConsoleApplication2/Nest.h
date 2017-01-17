@@ -12,6 +12,8 @@ public:
 	void DrawWithXOffset(sf::RenderWindow& window, float xOffset) override;
 	void wrapPositions(Camera& cam) override;
 
+	void SpawnAbductors(float dt);
+
 private:
 	enum States {WANDERING, EVADING};
 	Vector2D m_position;
@@ -20,6 +22,9 @@ private:
 	float m_timeUntilChangeDirection;
 	float m_timeUntilShoot;
 	const float MAX_TIME_UNTIL_SHOOT;
+
+	float m_timeUntilAbductorSpawn;
+	const float MAX_TIME_UNTIL_ABDUCTOR_SPAWN;
 	const int MAX_TIME;
 	sf::RectangleShape m_shape;
 	States m_state;

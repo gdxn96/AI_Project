@@ -17,6 +17,8 @@ public:
 		  m_bounds(bounds),
 		  m_alive(true){};
 
+	virtual ~GameObject() {};
+
 	virtual void Update(float dt) = 0;
 	virtual void Draw(sf::RenderWindow& window) = 0;
 	virtual void DrawWithXOffset(sf::RenderWindow& window, float xOffset) = 0;

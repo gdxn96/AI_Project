@@ -15,7 +15,8 @@ Bullet::Bullet(Vector2D pos, Vector2D dir)
 	m_bounds.top = m_position.y;
 }
 
-Bullet::~Bullet() { }
+Bullet::~Bullet() { 
+}
 
 
 void Bullet::Update(float dt)

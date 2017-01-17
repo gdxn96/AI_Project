@@ -84,19 +84,19 @@ void Game::AddNewGameObjects()
 
 void Game::UpdateGameObjectList(float dt, std::vector<GameObject*>& list)
 {
-	for (int i = list.size() - 1; i >= 0; i--)
+	for (auto& it = list.begin(); it != list.end(); )
 	{
-		GameObject* gameObject = list[i];
-
-		if (gameObject->isAlive())
+		if (!(*it)->isAlive())
 		{
-			list[i]->Update(dt);
-			list[i]->wrapPositions(m_camera);
+			delete * it;
+			it = list.erase(it);
+			CollisionManager::deregisterGameObject(*(it));
 		}
-		else
+		else 
 		{
-			CollisionManager::deregisterGameObject(*(list.begin() + i));
-			list.erase(list.begin() + i);
+			(*it)->Update(dt);
+			(*it)->wrapPositions(m_camera);
+			++it;
 		}
 	}
 }
