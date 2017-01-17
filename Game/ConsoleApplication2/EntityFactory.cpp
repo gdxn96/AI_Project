@@ -8,7 +8,7 @@
 #include "Abductor.h"
 #include "Mutant.h"
 
-
+int EntityFactory::m_numAbductors = 0;
 std::vector<GameObject*> EntityFactory::m_newGameObjects;
 std::vector<GameObject*> EntityFactory::m_newGameObjectsBehind;
 sf::FloatRect EntityFactory::m_levelSize = sf::FloatRect();
@@ -38,12 +38,17 @@ void EntityFactory::CreateMeteor()
 
 void EntityFactory::CreateAbductor(sf::Vector2f position)
 {
-	sf::Vector2f size(30, 30);
-	float minPatrolHeight = m_levelSize.height * 0.75f;
-	float maxPatrolHeight = m_levelSize.height * 0.6f;
-	Abductor* abductor = new Abductor(position, size, minPatrolHeight, maxPatrolHeight);
-	m_newGameObjects.push_back(abductor);
-	AIManager::registerAbductor(abductor);
+	if (m_numAbductors < 20)
+	{
+		sf::Vector2f size(30, 30);
+		float minPatrolHeight = m_levelSize.height * 0.75f;
+		float maxPatrolHeight = m_levelSize.height * 0.6f;
+		Abductor* abductor = new Abductor(position, size, minPatrolHeight, maxPatrolHeight);
+		m_newGameObjects.push_back(abductor);
+		AIManager::registerAbductor(abductor);
+
+		m_numAbductors++;
+	}
 }
 
 void EntityFactory::CreateAstronaut(float xPosition)
@@ -74,6 +79,11 @@ void EntityFactory::clearObjects()
 {
 	m_newGameObjects.clear();
 	m_newGameObjectsBehind.clear();
+}
+
+void EntityFactory::abductorDeathNotify()
+{
+	m_numAbductors--;
 }
 
 void EntityFactory::initialize(sf::FloatRect levelSize)

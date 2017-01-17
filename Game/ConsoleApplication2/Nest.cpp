@@ -14,7 +14,9 @@ Nest::Nest(Vector2D pos, Vector2D dir, float speed)
 	MAX_TIME_UNTIL_SHOOT(5),
 	m_timeUntilShoot(0),
 	MAX_ACCEL(50000),
-	MAX_SPEED(speed)
+	MAX_SPEED(speed),
+	MAX_TIME_UNTIL_ABDUCTOR_SPAWN(5),
+	m_timeUntilAbductorSpawn(0)
 {
 	m_shape.setPosition(pos.toSFMLVector());
 	m_shape.setFillColor(sf::Color::Yellow);
@@ -67,6 +69,8 @@ void Nest::Update(float dt)
 	PhysicsManager::BindPositionToLevel(m_position, m_acceleration);
 	PhysicsManager::ApplyFriction(dt, m_velocity, 0.1f);
 
+	SpawnAbductors(dt);
+
 	m_shape.setPosition(m_position.toSFMLVector());
 	m_bounds.left = m_position.x;
 	m_bounds.top = m_position.y;
@@ -84,4 +88,14 @@ void Nest::wrapPositions(Camera & cam)
 {
 	cam.Wrap(m_position);
 	m_shape.setPosition(m_position.toSFMLVector());
+}
+
+void Nest::SpawnAbductors(float dt)
+{
+	m_timeUntilAbductorSpawn -= dt;
+	if (m_timeUntilAbductorSpawn < 0)
+	{
+		EntityFactory::CreateAbductor(m_position.toSFMLVector());
+		m_timeUntilAbductorSpawn = MAX_TIME_UNTIL_ABDUCTOR_SPAWN;
+	}
 }

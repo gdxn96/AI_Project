@@ -29,6 +29,8 @@ Abductor::~Abductor()
 	{
 		dropAstronaut();
 	}
+	AIManager::unregisterBoid(this);
+	EntityFactory::abductorDeathNotify();
 }
 
 
