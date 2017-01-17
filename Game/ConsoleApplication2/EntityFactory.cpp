@@ -46,7 +46,10 @@ void EntityFactory::CreateMeteor()
 	Vector2D position = Vector2D(RandomFloat(0, m_levelSize.width), -m_levelSize.width * 0.05f);
 	float radius = RandomFloat(30, 80);
 	float speed = RandomFloat(100, 200);  
-	m_newGameObjectsBehind.push_back(new Meteor(position, radius, speed));
+	Meteor* meteor = new Meteor(position, radius, speed);
+	m_newGameObjectsBehind.push_back(meteor);
+	AIManager::registerMeteor(meteor);
+	CollisionManager::RegisterMeteor(meteor);
 }
 
 void EntityFactory::CreateAbductor(sf::Vector2f position)

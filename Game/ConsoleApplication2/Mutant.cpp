@@ -8,7 +8,7 @@ Mutant::Mutant(Vector2D pos) :
 	Boid(false),
 	GameObject(sf::FloatRect(pos.x, pos.y, 20, 20)),
 	MAX_SPEED(rand() % 1000 + 1000),
-	MAX_ACCEL(rand() % 500 + 500),
+	MAX_ACCEL(rand() % 1000 + 1000),
 	m_shape(sf::RectangleShape(sf::Vector2f(20, 20))),
 	MAX_TIME_UNTIL_SHOOT(0.2f),
 	m_timeUntilShoot(0)
@@ -48,6 +48,7 @@ void Mutant::Update(float dt)
 	AIManager::seekToward(m_position, playerPos, dir);
 	m_acceleration = dir * MAX_ACCEL;
 
+	AIManager::avoidObstacles(m_position, m_acceleration, MAX_ACCEL);
 	AIManager::swarm(this, m_position, m_acceleration);
 	PhysicsManager::accelerateVelocity(dt, m_velocity, m_acceleration, MAX_ACCEL);
 	PhysicsManager::move(dt, m_position, m_velocity);

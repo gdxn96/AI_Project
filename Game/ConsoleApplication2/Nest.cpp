@@ -62,7 +62,7 @@ void Nest::Update(float dt)
 	default:
 		break;
 	}
-
+	AIManager::avoidObstacles(m_position, m_acceleration, MAX_ACCEL);
 	PhysicsManager::accelerateVelocity(dt, m_velocity, m_acceleration, MAX_SPEED);
 	PhysicsManager::move(dt, m_position, m_velocity);
 	PhysicsManager::BindPositionToLevel(m_position, m_velocity);

@@ -6,12 +6,14 @@
 #include "Astronaut.h"
 #include "Player.h"
 #include "Abductor.h"
+#include "Meteor.h"
 #include <vector>
 
 class Player;
 class Astronaut;
 class Boid;
 class Abductor;
+class Meteor;
 
 using namespace std;
 
@@ -35,13 +37,17 @@ public:
 	static void registerPlayer(Player* player);
 	static void registerAbductor(Abductor* abductor);
 	static void registerAstronaut(Astronaut* astronaut);
+	static void registerMeteor(Meteor* m);
 
+	static void unregisterMeteor(Meteor* m);
 	static void registerSwarmBoid(Boid* b);
 	static void registerFlockBoid(Boid* b);
 	static void unregisterBoid(Boid* b);
 
 	static void unregisterPlayer();
 	static void unregisterAstronaut(Astronaut* astronaut);
+
+	static void avoidObstacles(Vector2D m_position, Vector2D& acceleration, const float MAX_ACCEL);
 
 	static Vector2D getPlayerPos();
 
@@ -66,4 +72,5 @@ private:
 	static std::vector<Boid*> m_swarmObjects;
 	static std::vector<Boid*> m_flockObjects;
 	static std::vector<Abductor*> m_abductors;
+	static std::vector<Meteor*> m_meteors;
 };

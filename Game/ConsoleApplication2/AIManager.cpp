@@ -9,6 +9,7 @@ vector<Astronaut*> AIManager::m_astronauts;
 std::vector<Boid*> AIManager::m_swarmObjects;
 std::vector<Boid*> AIManager::m_flockObjects;
 std::vector<Abductor*> AIManager::m_abductors;
+std::vector<Meteor*> AIManager::m_meteors;
 sf::FloatRect AIManager::m_levelBounds = sf::FloatRect();
 
 void AIManager::wanderThrust(float dt, float& timeUntilDecelerate, float MAXTIME, Vector2D& velocity, Vector2D& acceleration, const float MAX_ACCEL)
@@ -77,6 +78,16 @@ void AIManager::registerAstronaut(Astronaut* astronaut)
 	m_astronauts.push_back(astronaut);
 }
 
+void AIManager::registerMeteor(Meteor * m)
+{
+	m_meteors.push_back(m);
+}
+
+void AIManager::unregisterMeteor(Meteor * m)
+{
+	m_meteors.erase(std::remove(m_meteors.begin(), m_meteors.end(), m), m_meteors.end());
+}
+
 void AIManager::registerSwarmBoid(Boid * b)
 {
 	m_swarmObjects.push_back(b);
@@ -105,7 +116,18 @@ void AIManager::unregisterAstronaut(Astronaut* astronaut)
 	std::remove(m_astronauts.begin(), m_astronauts.end(), astronaut);
 }
 
-
+void AIManager::avoidObstacles(Vector2D position, Vector2D & acceleration, const float MAX_ACCEL)
+{
+	for (Meteor* m : m_meteors)
+	{
+		if (Vector2D::Distance(m->getPosition(), position) < 100)
+		{
+			float disSq = Vector2D::DistanceSq(position, m->getPosition());
+			Vector2D x = (position - m->getPosition()).Normalize();
+			acceleration += x * std::min(0.8f * disSq, MAX_ACCEL);
+		}
+	}
+}
 
 Vector2D AIManager::getPlayerPos()
 {

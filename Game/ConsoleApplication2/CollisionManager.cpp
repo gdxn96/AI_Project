@@ -57,6 +57,17 @@ void CollisionManager::CheckCollisions()
 			}
 		}
 	}
+
+	for (GameObject* meteor : m_meteors)
+	{
+		for (GameObject* enemy : m_enemies)
+		{
+			if (Collides(enemy, meteor))
+			{
+				enemy->kill();
+			}
+		}
+	}
 }
 
 void CollisionManager::RegisterCamera(Camera & cam)
