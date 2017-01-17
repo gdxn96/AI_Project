@@ -12,7 +12,7 @@ Abductor::Abductor(sf::Vector2f position, sf::Vector2f size, float minPatrolHeig
 	  m_size(size),
 	  m_abductDistance(100),
 	  m_shape(size),
-	  m_speed(200, 200),
+	  m_speed(75, 125),
 	  MAX_WANDER_TIME(10),
 	  m_wanderTimeRemaining(0)
 {
