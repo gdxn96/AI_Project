@@ -474,7 +474,5 @@ void AIManager::jumpToRandomPosition(Vector2D& position)
 {
 	float x = rand() % (int)m_levelBounds.width;
 	float y = rand() % (int)m_levelBounds.height;
-
-	position.x = m_levelBounds.left + x;
-	position.y = m_levelBounds.top + y;
+	position = Vector2D(m_levelBounds.left + x, m_levelBounds.top + y);
 }
