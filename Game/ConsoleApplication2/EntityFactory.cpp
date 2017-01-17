@@ -15,8 +15,9 @@ void EntityFactory::CreateMissile()
 {
 }
 
-void EntityFactory::CreateMutant()
+void EntityFactory::CreateMutant(Vector2D position, Vector2D size)
 {
+	// Do shiz
 }
 
 void EntityFactory::CreateMeteor()

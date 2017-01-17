@@ -23,7 +23,13 @@ Abductor::Abductor(sf::Vector2f position, sf::Vector2f size, float minPatrolHeig
 	m_bounds.left = m_position.x;
 }
 
-Abductor::~Abductor() { }
+Abductor::~Abductor() 
+{
+	if (m_closestAstronaut != nullptr)
+	{
+		dropAstronaut();
+	}
+}
 
 
 
@@ -39,6 +45,7 @@ void Abductor::Update(float dt)
 	case m_states::PATROL:
 		AIManager::wander(dt, m_wanderTimeRemaining, MAX_WANDER_TIME, m_direction); 
 		calculateAbductPosition();
+		AIManager::flock(this, Vector2D(), m_position, m_velocity, 200, 0);
 		break;
 	case m_states::PATROL_EXIT:
 		m_direction.y *= -1;
@@ -52,12 +59,13 @@ void Abductor::Update(float dt)
 		m_closestAstronaut->setPosition(Vector2D(m_closestAstronautPosition.x, m_position.y + m_size.h));
 		break;
 	case m_states::TRANSFORM:
-		m_direction = Vector2D(0, 0);
+		EntityFactory::CreateMutant(m_position, m_size);
+		m_closestAstronaut->kill();
+		kill();
 		break;
 	}
 
 	m_velocity = m_direction * m_speed;
-	AIManager::flock(this, Vector2D(), m_position, m_velocity, 200, 0);
 	PhysicsManager::move(dt, m_position, m_velocity);
 }
 
@@ -100,7 +108,6 @@ void Abductor::UpdateState()
 	case m_states::ABDUCT:
 		if (m_position.y <= 0)
 		{
-			m_closestAstronaut->kill();
 			m_currentState = m_states::TRANSFORM;
 			cout << "Transforming" << endl;
 		}
@@ -123,10 +130,13 @@ void Abductor::DrawWithXOffset(sf::RenderWindow& window, float xOffset)
 
 void Abductor::calculateAbductPosition()
 {
-	Vector2D sizeDiff = m_size - m_closestAstronaut->getSize();
-	float abductPositionX = m_closestAstronautPosition.x - sizeDiff.w / 2;
-	float abductPositionY = m_closestAstronautPosition.y - m_size.h;
-	m_abductPosition = Vector2D(abductPositionX, abductPositionY);
+	if (m_closestAstronaut != nullptr)
+	{
+		Vector2D sizeDiff = m_size - m_closestAstronaut->getSize();
+		float abductPositionX = m_closestAstronautPosition.x - sizeDiff.w / 2;
+		float abductPositionY = m_closestAstronautPosition.y - m_size.h;
+		m_abductPosition = Vector2D(abductPositionX, abductPositionY);
+	}
 }
 
 
@@ -138,8 +148,15 @@ bool Abductor::isInPatrolArea()
 
 bool Abductor::shouldSeekAstronaut()
 {
-	float distanceFromAstronaut = Vector2D::Distance(m_position, m_closestAstronautPosition);
-	return distanceFromAstronaut <= m_seekDistance;
+	bool result = false;
+
+	if (m_closestAstronaut != nullptr)
+	{
+		float distanceFromAstronaut = Vector2D::Distance(m_position, m_closestAstronautPosition);
+		result = distanceFromAstronaut <= m_seekDistance;
+	}
+	
+	return result;
 }
 
 bool Abductor::shouldAbductAstronaut()
