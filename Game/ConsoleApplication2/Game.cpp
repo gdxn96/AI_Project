@@ -7,7 +7,9 @@ Game::Game(Vector2D screenSize, Vector2D levelSize) :
 	m_levelSize(levelSize), 
 	m_camera(screenSize, levelSize)
 {
-	PhysicsManager::initialize(sf::FloatRect(0, screenSize.h * 1.f / 10, levelSize.w, screenSize.h * 7.f / 10));
+	sf::FloatRect levelBounds(0, screenSize.h * 1.f / 10, levelSize.w, screenSize.h * 7.f / 10);
+	AIManager::initialize(levelBounds);
+	PhysicsManager::initialize(levelBounds);
 	EntityFactory::initialize(sf::FloatRect(0, 0, levelSize.w, screenSize.h));
 	float terrainPeak = screenSize.h * 7.f / 10;
 	float terrainTrough = screenSize.h * 8.f / 10;

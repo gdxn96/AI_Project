@@ -11,7 +11,8 @@ Player::Player(sf::Vector2f position, sf::Vector2f size, Vector2D acceleration, 
 	  m_shape(size),
 	  m_facingDirection(1, 0),
 	  m_bulletsPerSecond(10),
-	  m_shooting(false)
+	  m_shooting(false),
+	  m_canHyperjump(true)
 {
 	m_shape.setPosition(m_position.toSFMLVector());
 	InitializeEvents();
@@ -36,6 +37,7 @@ void Player::InitializeEvents()
 	input->AddListener(static_cast<int>(EventListener::KeyUpEvent::RIGHT), this);
 	input->AddListener(static_cast<int>(EventListener::GenericEvent::SHOOT), this);
 	input->AddListener(static_cast<int>(EventListener::GenericEvent::NO_SHOOT), this);
+	input->AddListener(static_cast<int>(EventListener::GenericEvent::HYPERJUMP), this);
 }
 
 
@@ -78,6 +80,12 @@ void Player::onGenericEvent(GenericEvent evt)
 		break;
 	case EventListener::GenericEvent::NO_SHOOT:
 		m_shooting = false;
+		break;
+	case EventListener::GenericEvent::HYPERJUMP:
+		if (m_canHyperjump)
+		{
+			AIManager::jumpToRandomPosition(m_position);
+		}
 		break;
 	}
 }
@@ -129,6 +137,7 @@ void Player::onKeyUp(KeyUpEvent evt)
 		break;
 	}
 }
+
 
 void Player::wrapPositions(Camera & cam)
 {

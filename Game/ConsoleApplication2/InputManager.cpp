@@ -102,6 +102,12 @@ void InputManager::ProcessInput(sf::RenderWindow* window)
 			case sf::Keyboard::Space:
 				Dispatch(EventListener::GenericEvent::SHOOT);
 				break;
+			case sf::Keyboard::A:
+				Dispatch(EventListener::GenericEvent::HYPERJUMP);
+				break;
+			case sf::Keyboard::S:
+				Dispatch(EventListener::GenericEvent::SMART_BOMB);
+				break;
 			}
 		}
 		else if (evt.type == sf::Event::KeyReleased)
