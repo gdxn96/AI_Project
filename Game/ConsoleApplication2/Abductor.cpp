@@ -2,7 +2,6 @@
 #include "Abductor.h"
 
 
-
 Abductor::Abductor(sf::Vector2f position, sf::Vector2f size, float minPatrolHeight, float maxPatrolHeight)
 	: GameObject(sf::FloatRect(position, size), true),
 	  Boid(true),
@@ -12,7 +11,7 @@ Abductor::Abductor(sf::Vector2f position, sf::Vector2f size, float minPatrolHeig
 	  m_size(size),
 	  m_abductDistance(100),
 	  m_shape(size),
-	  m_speed(300, 200),
+	  m_speed(75, 125),
 	  MAX_WANDER_TIME(10),
 	  m_wanderTimeRemaining(0)
 {
@@ -79,39 +78,34 @@ void Abductor::UpdateState()
 		if (isInPatrolArea())
 		{
 			m_currentState = m_states::PATROL;
-			cout << "Patrolling" << endl;
 		}
 		break;
 	case m_states::PATROL:
 		if (!isInPatrolArea())
 		{
 			m_currentState = m_states::PATROL_EXIT;
-			cout << "Leaving Patrol Area" << endl;
 		}
 		else if (shouldSeekAstronaut())
 		{
 			m_currentState = m_states::SEEK;
-			cout << "Seeking Astronaut" << endl;
 		}
 		break;
 	case m_states::PATROL_EXIT:
 		if (isInPatrolArea())
 		{
 			m_currentState = m_states::PATROL;
-			cout << "Patrolling" << endl;
 		}
 	case m_states::SEEK:
 		if (shouldAbductAstronaut())
 		{
 			m_currentState = m_states::ABDUCT;
-			cout << "Abducting Astronaut" << endl;
+			m_closestAstronaut->setBeingAbducted();
 		}
 		break;
 	case m_states::ABDUCT:
 		if (m_position.y <= 0)
 		{
 			m_currentState = m_states::TRANSFORM;
-			cout << "Transforming" << endl;
 		}
 	}
 }
@@ -164,7 +158,7 @@ bool Abductor::shouldSeekAstronaut()
 bool Abductor::shouldAbductAstronaut()
 {
 	float distanceFromAbductPosition = Vector2D::Distance(m_position, m_abductPosition);
-	return (distanceFromAbductPosition <= 0.5f);
+	return (distanceFromAbductPosition <= 1);
 }
 
 
@@ -178,7 +172,7 @@ void Abductor::wrapPositions(Camera& cam)
 
 void Abductor::dropAstronaut()
 {
-	m_closestAstronaut->setBeingAbducted(false);
+	m_closestAstronaut->setFalling();
 }
 
 
@@ -202,6 +196,11 @@ Vector2D Abductor::getVelocity()
 bool Abductor::isAbducting()
 {
 	return m_currentState == m_states::ABDUCT;
+}
+
+bool Abductor::isPatrolling()
+{
+	return m_currentState == m_states::PATROL;
 }
 
 bool Abductor::isPredator()

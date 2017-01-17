@@ -55,6 +55,7 @@ public:
 	Vector2D getPosition() override;
 	Vector2D getVelocity() override;
 	bool isAbducting();
+	bool isPatrolling();
 	bool isPredator() override;
 	bool shouldTransform();
 };
