@@ -6,7 +6,7 @@ class EntityFactory
 {
 public:
 	static void CreateMissile(Vector2D position);
-	static void CreateBullet(Vector2D position, Vector2D direction);
+	static void CreateBullet(Vector2D position, Vector2D direction, bool enemyBullet=false);
 	static void CreateMutant(Vector2D position);
 	static void CreateMeteor();
 	static void CreateAbductor(sf::Vector2f position);

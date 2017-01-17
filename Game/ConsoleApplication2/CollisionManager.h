@@ -20,5 +20,5 @@ private:
 									m_meteors,
 									m_enemies,
 									m_enemyBullets;
-	static Camera& m_camera;
+	static Camera* m_camera;
 };

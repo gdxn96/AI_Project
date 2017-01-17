@@ -7,6 +7,8 @@ CollisionManager::m_meteors,
 CollisionManager::m_enemies,
 CollisionManager::m_enemyBullets;
 
+Camera* CollisionManager::m_camera = nullptr;
+
 bool CollisionManager::Collides(GameObject * a, GameObject * b)
 {
 	return a->getAABB().intersects(b->getAABB());
@@ -34,17 +36,30 @@ void CollisionManager::RegisterEnemy(GameObject * g)
 
 void CollisionManager::deregisterGameObject(GameObject * g)
 {
-	std::remove(m_enemies.begin(), m_enemies.end(), g);
-	std::remove(m_playerBullets.begin(), m_playerBullets.end(), g);
-	std::remove(m_meteors.begin(), m_meteors.end(), g);
-	std::remove(m_enemyBullets.begin(), m_enemyBullets.end(), g);
+	m_enemies.erase(std::remove(m_enemies.begin(), m_enemies.end(), g), m_enemies.end());
+	m_playerBullets.erase(std::remove(m_playerBullets.begin(), m_playerBullets.end(), g), m_playerBullets.end());
+	m_meteors.erase(std::remove(m_meteors.begin(), m_meteors.end(), g), m_meteors.end());
+	m_enemyBullets.erase(std::remove(m_enemyBullets.begin(), m_enemyBullets.end(), g), m_enemyBullets.end());
 }
+
 
 void CollisionManager::CheckCollisions()
 {
+	for (GameObject* bullet : m_playerBullets)
+	{
+		for (GameObject* enemy : m_enemies)
+		{
+			if (Collides(enemy, bullet))
+			{
+				enemy->kill();
+				bullet->kill();
+				break;
+			}
+		}
+	}
 }
 
 void CollisionManager::RegisterCamera(Camera & cam)
 {
-	m_camera = cam;
+	m_camera = &(cam);
 }
