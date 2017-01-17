@@ -16,6 +16,7 @@ public:
 	void Wrap(sf::FloatRect& bounds);
 private:
 	void renderCameraBounds(sf::RenderWindow& window);
+	std::vector<GameObject*> getObjectsInViewPort(std::vector<GameObject*> objects);
 	sf::View m_minimapView, m_gameView;
 	Vector2D m_screenSize, m_levelSize;
 };
