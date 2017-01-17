@@ -1,6 +1,12 @@
 #include "stdafx.h"
 #include "EntityFactory.h"
 #include "Missile.h"
+#include "Bullet.h"
+#include "Meteor.h"
+#include "Astronaut.h"
+#include "Nest.h"
+#include "Abductor.h"
+#include "Mutant.h"
 
 
 std::vector<GameObject*> EntityFactory::m_newGameObjects;

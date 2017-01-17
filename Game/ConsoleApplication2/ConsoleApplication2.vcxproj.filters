@@ -61,10 +61,12 @@
     <ClCompile Include="Boid.cpp">
       <Filter>Source</Filter>
     </ClCompile>
+    <ClCompile Include="Missile.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
     <ClCompile Include="Mutant.cpp">
       <Filter>Source</Filter>
     </ClCompile>
-    <ClCompile Include="Missile.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Abductor.h">

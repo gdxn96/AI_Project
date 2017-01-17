@@ -1,11 +1,6 @@
 #pragma once
 #include "GameObject.h"
-#include "Bullet.h"
-#include "Meteor.h"
-#include "Astronaut.h"
-#include "Nest.h"
-#include "Abductor.h"
-#include "Mutant.h"
+
 
 class EntityFactory
 {

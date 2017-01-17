@@ -44,11 +44,13 @@ public:
 	static void seekToward(Vector2D position, Vector2D targetPosition, Vector2D& direction);
 	static void evadeFrom(Vector2D position, Vector2D targetPosition, Vector2D& direction);
 	static void avoid(Vector2D position, Vector2D targetPosition, Vector2D& acceleration, const float maxAccel);
-
+	static void initialize(Vector2D levelSize);
+	
 private:
 	static Player* m_player;
 	static std::vector<Astronaut*> m_astronauts;
 	static std::vector<Boid*> m_swarmObjects;
 	static std::vector<Boid*> m_flockObjects;
 	static std::vector<Abductor*> m_abductors;
+	static Vector2D m_levelSize;
 };

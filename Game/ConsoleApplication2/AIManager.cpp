@@ -1,17 +1,59 @@
 #include "stdafx.h"
 #include "AIManager.h"
 #include <limits.h>
-
-
+#include <algorithm>
 
 Player* AIManager::m_player = nullptr;
 vector<Astronaut*> AIManager::m_astronauts;
 std::vector<Boid*> AIManager::m_swarmObjects;
 std::vector<Boid*> AIManager::m_flockObjects;
 std::vector<Abductor*> AIManager::m_abductors;
+Vector2D AIManager::m_levelSize;
 
+void AIManager::wanderThrust(float dt, float& timeUntilDecelerate, float MAXTIME, Vector2D& velocity, Vector2D& acceleration, const float MAX_ACCEL)
+{
+	timeUntilDecelerate -= dt;
+	Vector2D direction;
+	float mag;
 
+	if (timeUntilDecelerate <= 0)
+	{
+		acceleration = (0,0);
 
+		if (velocity.Magnitude() <= 50)
+		{
+			timeUntilDecelerate = MAXTIME;
+			mag = RandomFloat(MAX_ACCEL * .5f, MAX_ACCEL);
+			direction = Vector2D(RandomFloat(0, 2 * 3.14));
+			acceleration += direction * mag;
+		}
+	}
+}
+
+Vector2D AIManager::getClosestPlayerPos(Vector2D pos)
+{
+	Vector2D caseA, caseB, caseC;
+	caseA = m_player->getPosition();
+	caseB = caseA + Vector2D(1920*9,0);
+	caseC = caseA - Vector2D(1920 * 9, 0);
+
+	float distA = Vector2D::DistanceSq(pos, caseA);
+	float distB = Vector2D::DistanceSq(pos, caseB);
+	float distC = Vector2D::DistanceSq(pos, caseC);
+
+	if (distA < distB && distA < distC)
+	{
+		return caseA;
+	}
+	else if (distB < distC && distB < distA)
+	{
+		return caseB;
+	}
+	else
+	{
+		return caseC;
+	}
+}
 void AIManager::registerPlayer(Player* player)
 {
 	m_player = player;
@@ -63,31 +105,6 @@ Vector2D AIManager::getPlayerPos()
 	return m_player->getPosition();
 }
 
-Vector2D AIManager::getClosestPlayerPos(Vector2D pos)
-{
-	Vector2D caseA, caseB, caseC;
-	caseA = m_player->getPosition();
-	caseB = caseA + Vector2D(1920*9,0);
-	caseC = caseA - Vector2D(1920 * 9, 0);
-
-	float distA = Vector2D::DistanceSq(pos, caseA);
-	float distB = Vector2D::DistanceSq(pos, caseB);
-	float distC = Vector2D::DistanceSq(pos, caseC);
-
-	if (distA < distB && distA < distC)
-	{
-		return caseA;
-	}
-	else if (distB < distC && distB < distA)
-	{
-		return caseB;
-	}
-	else
-	{
-		return caseC;
-	}
-}
-
 Vector2D AIManager::getClosestAstronautPos(Vector2D position)
 {
 	int index = 0;
@@ -115,6 +132,8 @@ Vector2D AIManager::getClosestAstronautPos(Vector2D position)
 	}
 }
 
+
+
 void AIManager::wander(float dt, float& timeRemaining, int maxTime, Vector2D& direction, bool horizontalOnly)
 {
 	timeRemaining -= dt;
@@ -122,35 +141,8 @@ void AIManager::wander(float dt, float& timeRemaining, int maxTime, Vector2D& di
 	if (timeRemaining <= 0)
 	{
 		timeRemaining = rand() % (maxTime + 1);
-		if (!horizontalOnly)
-		{
-			direction = Vector2D(RandomFloat(0, 2 * 3.14));
-		}
-		else
-		{
-			direction.y = 0;
-			direction.x = rand() & true ? 1 : -1; //best loc ever
-		}
-	}
-}
-
-void AIManager::wanderThrust(float dt, float& timeUntilDecelerate, float MAXTIME, Vector2D& velocity, Vector2D& acceleration, const float MAX_ACCEL)
-{
-	timeUntilDecelerate -= dt;
-	Vector2D direction;
-	float mag;
-
-	if (timeUntilDecelerate <= 0)
-	{
-		acceleration = (0,0);
-
-		if (velocity.Magnitude() <= 50)
-		{
-			timeUntilDecelerate = MAXTIME;
-			mag = RandomFloat(MAX_ACCEL * .5f, MAX_ACCEL);
-			direction = Vector2D(RandomFloat(0, 2 * 3.14));
-			acceleration += direction * mag;
-		}
+		direction.x = rand() & 1 ? 1 : -1;
+		direction.y = horizontalOnly ? 0 : (rand() & 1 ? 1 : -1);
 	}
 }
 
@@ -166,11 +158,9 @@ void AIManager::evadeFrom(Vector2D position, Vector2D targetPosition, Vector2D& 
 	direction = direction.Normalize();
 }
 
-void AIManager::avoid(Vector2D position, Vector2D targetPosition, Vector2D & acceleration, const float maxAccel)
+void AIManager::initialize(Vector2D levelSize)
 {
-	float disSq = Vector2D::DistanceSq(position, targetPosition);
-	Vector2D x = (position - targetPosition).Normalize();
-	acceleration += x * std::min(0.1f * disSq, maxAccel);
+	m_levelSize = levelSize;
 }
 
 // Function that checks and modifies the distance
@@ -398,18 +388,37 @@ void AIManager::swarm(Boid * b, Vector2D position, Vector2D& acceleration)
 	acceleration += sum;
 }
 
+void AIManager::avoid(Vector2D position, Vector2D targetPosition, Vector2D & acceleration, const float maxAccel)
+{
+	float disSq = Vector2D::DistanceSq(position, targetPosition);
+	Vector2D x = (position - targetPosition).Normalize();
+	acceleration += x * std::min(0.1f * disSq, maxAccel);
+}
+
 void AIManager::process()
 {
 	for (Astronaut* astronaut : m_astronauts)
 	{
+		float lowest = std::numeric_limits<float>::max();
+		Abductor* closest = nullptr;
+		Vector2D closestPos = NULL;
 		for (Abductor* a : m_abductors)
 		{
-			if (Vector2D::DistanceSq(a->getPosition(), astronaut->getPosition()))
+			float dist = Vector2D::DistanceSq(a->getPosition(), astronaut->getPosition());
+			float dist2 = Vector2D::DistanceSq(a->getPosition(), (astronaut->getPosition() + Vector2D(m_levelSize.w * 9, 0)));
+			if (dist < lowest)
 			{
-				a->setClosestAstronaut(astronaut);
+				lowest = dist;
+				closest = a;
+				closestPos = astronaut->getPosition();
+			}
+			if (dist2 < lowest)
+			{
+				lowest = dist2;
+				closest = a;
+				closestPos = (astronaut->getPosition() + Vector2D(m_levelSize.w * 9, 0));
 			}
 		}
-
+		closest->setClosestAstronaut(closestPos, astronaut);
 	}
 }
-
