@@ -15,12 +15,15 @@ public:
 	static std::vector<GameObject*> getNewObjects();
 	static std::vector<GameObject*> getNewObjectsBehind();
 	static void clearObjects();
+	static void abductorDeathNotify();
 
 	static void initialize(sf::FloatRect levelSize);
 private:
 	static std::vector<GameObject*> m_newGameObjects;
 	static std::vector<GameObject*> m_newGameObjectsBehind;
 	static sf::FloatRect m_levelSize;
+
+	static int m_numAbductors;
 };
 
 inline float RandomFloat(float a, float b) {

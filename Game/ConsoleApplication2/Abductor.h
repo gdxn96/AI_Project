@@ -42,7 +42,7 @@ private:
 
 public:
 	Abductor(sf::Vector2f position, sf::Vector2f size, float minPatrolHeight, float maxPatrolHeight);
-	~Abductor();
+	virtual ~Abductor();
 	void Update(float dt) override;
 	void UpdateState();
 	void Draw(sf::RenderWindow& window) override;
