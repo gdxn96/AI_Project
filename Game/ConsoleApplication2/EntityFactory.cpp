@@ -49,6 +49,7 @@ void EntityFactory::CreateMeteor()
 	Meteor* meteor = new Meteor(position, radius, speed);
 	m_newGameObjectsBehind.push_back(meteor);
 	AIManager::registerMeteor(meteor);
+	CollisionManager::RegisterMeteor(meteor);
 }
 
 void EntityFactory::CreateAbductor(sf::Vector2f position)

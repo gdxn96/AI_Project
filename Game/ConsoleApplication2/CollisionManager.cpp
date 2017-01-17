@@ -65,7 +65,6 @@ void CollisionManager::CheckCollisions()
 			if (Collides(enemy, meteor))
 			{
 				enemy->kill();
-				break;
 			}
 		}
 	}
