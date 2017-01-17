@@ -9,7 +9,9 @@ public:
 	enum class GenericEvent
 	{
 		SHOOT,
-		NO_SHOOT
+		NO_SHOOT,
+		HYPERJUMP,
+		SMART_BOMB
 	};	
 
 	enum class KeyDownEvent

@@ -56,6 +56,8 @@ public:
 	static void seekToward(Vector2D position, Vector2D targetPosition, Vector2D& direction);
 	static void evadeFrom(Vector2D position, Vector2D targetPosition, Vector2D& direction);
 	static void avoid(Vector2D position, Vector2D targetPosition, Vector2D& acceleration, const float maxAccel);
+
+	static void jumpToRandomPosition(Vector2D& position);
 	
 private:
 	static Player* m_player;

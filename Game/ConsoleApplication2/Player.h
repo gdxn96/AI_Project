@@ -28,6 +28,9 @@ private:
 	bool m_shooting;
 	float m_timeTillNextShot;
 
+	// Power ups
+	bool m_canHyperjump;
+
 	void UpdateDirection();
 	void UpdateShootState(float dt);
 	void UpdateSpeed(float dt);
