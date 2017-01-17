@@ -167,6 +167,7 @@
     <ClInclude Include="Boid.h" />
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="Camera.h" />
+    <ClInclude Include="CollisionManager.h" />
     <ClInclude Include="Constants.h" />
     <ClInclude Include="EntityFactory.h" />
     <ClInclude Include="EventListener.h" />
@@ -193,6 +194,7 @@
     <ClCompile Include="Boid.cpp" />
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="CollisionManager.cpp" />
     <ClCompile Include="ConsoleApplication2.cpp" />
     <ClCompile Include="Constantscpp.cpp" />
     <ClCompile Include="EntityFactory.cpp" />

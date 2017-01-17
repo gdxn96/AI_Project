@@ -67,6 +67,9 @@
     <ClCompile Include="Mutant.cpp">
       <Filter>Source</Filter>
     </ClCompile>
+    <ClCompile Include="CollisionManager.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Abductor.h">
@@ -139,6 +142,9 @@
       <Filter>Header</Filter>
     </ClInclude>
     <ClInclude Include="Missile.h">
+      <Filter>Header</Filter>
+    </ClInclude>
+    <ClInclude Include="CollisionManager.h">
       <Filter>Header</Filter>
     </ClInclude>
   </ItemGroup>
