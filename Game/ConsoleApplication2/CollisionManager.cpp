@@ -8,8 +8,6 @@ CollisionManager::m_enemies,
 CollisionManager::m_enemyBullets;
 Camera* CollisionManager::m_camera = nullptr;
 
-Camera* CollisionManager::m_camera = nullptr;
-
 bool CollisionManager::Collides(GameObject * a, GameObject * b)
 {
 	return a->getAABB().intersects(b->getAABB());

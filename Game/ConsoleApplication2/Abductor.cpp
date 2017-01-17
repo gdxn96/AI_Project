@@ -2,7 +2,6 @@
 #include "Abductor.h"
 
 
-int Abductor::count = 0;
 Abductor::Abductor(sf::Vector2f position, sf::Vector2f size, float minPatrolHeight, float maxPatrolHeight)
 	: GameObject(sf::FloatRect(position, size), true),
 	  Boid(true),
@@ -16,8 +15,6 @@ Abductor::Abductor(sf::Vector2f position, sf::Vector2f size, float minPatrolHeig
 	  MAX_WANDER_TIME(10),
 	  m_wanderTimeRemaining(0)
 {
-	id = count;
-	count++;
 	m_currentState = m_states::TOSURFACE;
 	m_shape.setPosition(m_position.toSFMLVector());
 	sf::Color darkGreen = sf::Color(76, 153, 0, 255);
@@ -81,62 +78,34 @@ void Abductor::UpdateState()
 		if (isInPatrolArea())
 		{
 			m_currentState = m_states::PATROL;
-			if (id == 0)
-			{
-				cout << "patrolling" << endl;
-			}
 		}
 		break;
 	case m_states::PATROL:
 		if (!isInPatrolArea())
 		{
 			m_currentState = m_states::PATROL_EXIT;
-			if (id == 0)
-			{
-				cout << "exit patrolling" << endl;
-			}
 		}
 		else if (shouldSeekAstronaut())
 		{
 			m_currentState = m_states::SEEK;
-
-			if (id == 0)
-			{
-				cout << "seeking" << endl;
-			}
 		}
 		break;
 	case m_states::PATROL_EXIT:
 		if (isInPatrolArea())
 		{
 			m_currentState = m_states::PATROL;
-
-			if (id == 0)
-			{
-				cout << "patrolling" << endl;
-			}
 		}
 	case m_states::SEEK:
 		if (shouldAbductAstronaut())
 		{
 			m_currentState = m_states::ABDUCT;
 			m_closestAstronaut->setBeingAbducted();
-
-			if (id == 0)
-			{
-				cout << "abducting" << endl;
-			}
 		}
 		break;
 	case m_states::ABDUCT:
 		if (m_position.y <= 0)
 		{
 			m_currentState = m_states::TRANSFORM;
-
-			if (id == 0)
-			{
-				cout << "transforming" << endl;
-			}
 		}
 	}
 }
