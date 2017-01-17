@@ -15,9 +15,9 @@ public:
 	void DrawWithXOffset(sf::RenderWindow& window, float xOffset);
 	void wrapPositions(Camera & cam);
 private:
-	enum States {ATTACKING, SEEKING};
-	States m_state;
 	Vector2D m_position, m_acceleration, m_velocity;
 	const float MAX_SPEED, MAX_ACCEL;
 	sf::RectangleShape m_shape;
+	float m_timeUntilShoot;
+	const float MAX_TIME_UNTIL_SHOOT;
 };

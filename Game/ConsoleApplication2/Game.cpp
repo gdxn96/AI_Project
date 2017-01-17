@@ -43,7 +43,6 @@ void Game::CreateEntities(Vector2D screenSize)
 	{
 		if (i % 2 == 0)
 			EntityFactory::CreateAstronaut(400 + (i * 30));
-		//EntityFactory::CreateAstronaut(800 + (i * 30));
 		EntityFactory::CreateAbductor(sf::Vector2f(750, 200));
 		EntityFactory::CreateMeteor();
 		EntityFactory::CreateMutant(Vector2D(RandomFloat(0, m_levelSize.width), 0));

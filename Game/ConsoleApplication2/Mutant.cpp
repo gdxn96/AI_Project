@@ -4,14 +4,16 @@
 #include "AIManager.h"
 #include "EntityFactory.h"
 
-Mutant::Mutant(Vector2D pos) : 
-	Boid(false), 
-	GameObject(sf::FloatRect(pos.x, pos.y, 20, 20)), 
-	MAX_SPEED(rand() % 1000 + 1000), 
+Mutant::Mutant(Vector2D pos) :
+	Boid(false),
+	GameObject(sf::FloatRect(pos.x, pos.y, 20, 20)),
+	MAX_SPEED(rand() % 1000 + 1000),
 	MAX_ACCEL(rand() % 500 + 500),
-	m_state(SEEKING), 
-	m_shape(sf::RectangleShape(sf::Vector2f(20, 20)))
+	m_shape(sf::RectangleShape(sf::Vector2f(20, 20))),
+	MAX_TIME_UNTIL_SHOOT(0.2f),
+	m_timeUntilShoot(0)
 {
+	m_shape.setFillColor(sf::Color::Cyan);
 	m_shape.setPosition(m_position.toSFMLVector());
 }
 
@@ -32,20 +34,19 @@ bool Mutant::isPredator()
 
 void Mutant::Update(float dt)
 {
+	m_timeUntilShoot -= dt;
 	Vector2D dir(0, 0);
-	switch (m_state)
+	Vector2D playerPos = AIManager::getClosestPlayerPos(m_position);
+	if (Vector2D::Distance(playerPos, m_position) < 400)
 	{
-	case Mutant::ATTACKING:
-		if (m_velocity.x != 0)
-			EntityFactory::CreateBullet(m_position, (pow((m_position - AIManager::getClosestPlayerPos(m_position)).x, 0),0));
-		break;
-	case Mutant::SEEKING:
-		AIManager::seekToward(m_position, AIManager::getClosestPlayerPos(m_position), dir);
-		m_acceleration = dir * MAX_ACCEL;
-		break;
-	default:
-		break;
+		if (m_timeUntilShoot < 0)
+		{
+			EntityFactory::CreateBullet(m_position, (playerPos - m_position).Normalize());
+			m_timeUntilShoot = MAX_TIME_UNTIL_SHOOT;
+		}
 	}
+	AIManager::seekToward(m_position, playerPos, dir);
+	m_acceleration = dir * MAX_ACCEL;
 
 	AIManager::swarm(this, m_position, m_acceleration);
 	PhysicsManager::accelerateVelocity(dt, m_velocity, m_acceleration, MAX_ACCEL);
