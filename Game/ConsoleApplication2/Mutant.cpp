@@ -48,6 +48,7 @@ void Mutant::Update(float dt)
 	AIManager::seekToward(m_position, playerPos, dir);
 	m_acceleration = dir * MAX_ACCEL;
 
+	AIManager::avoidObstacles(m_position, m_acceleration, MAX_ACCEL);
 	AIManager::swarm(this, m_position, m_acceleration);
 	PhysicsManager::accelerateVelocity(dt, m_velocity, m_acceleration, MAX_ACCEL);
 	PhysicsManager::move(dt, m_position, m_velocity);

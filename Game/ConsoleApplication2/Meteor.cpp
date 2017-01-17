@@ -15,6 +15,11 @@ Meteor::Meteor(Vector2D position, float radius, float speed)
 	m_bounds.top = m_position.y;
 }
 
+Meteor::~Meteor()
+{
+	AIManager::unregisterMeteor(this);
+}
+
 void Meteor::Update(float dt)
 {
 	PhysicsManager::move(dt, m_position, m_direction * m_speed);
@@ -48,4 +53,9 @@ void Meteor::wrapPositions(Camera & cam)
 {
 	cam.Wrap(m_position);
 	m_shape.setPosition(m_position.toSFMLVector());
+}
+
+Vector2D Meteor::getPosition()
+{
+	return m_position + Vector2D(m_bounds.width / 2, m_bounds.width / 2);
 }
