@@ -7,6 +7,8 @@ CollisionManager::m_meteors,
 CollisionManager::m_enemies,
 CollisionManager::m_enemyBullets;
 
+Camera* CollisionManager::m_camera = nullptr;
+
 bool CollisionManager::Collides(GameObject * a, GameObject * b)
 {
 	return a->getAABB().intersects(b->getAABB());
@@ -42,9 +44,20 @@ void CollisionManager::deregisterGameObject(GameObject * g)
 
 void CollisionManager::CheckCollisions()
 {
+	for (auto& bullet : m_playerBullets)
+	{
+		for (auto& enemy : m_enemies)
+		{
+			if (Collides(enemy, bullet))
+			{
+				enemy->kill();
+				bullet->kill();
+			}
+		}
+	}
 }
 
 void CollisionManager::RegisterCamera(Camera & cam)
 {
-	m_camera = cam;
+	m_camera = &(cam);
 }
