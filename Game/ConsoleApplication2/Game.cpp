@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "Game.h"
 #include "Astronaut.h"
+#include "CollisionManager.h"
 
 Game::Game(Vector2D screenSize, Vector2D levelSize) : 
 	m_screenSize(screenSize),
@@ -17,6 +18,7 @@ Game::Game(Vector2D screenSize, Vector2D levelSize) :
 	m_terrainSegments.insert(m_terrainSegments.end(), terrainSegments.begin(), terrainSegments.end());
 	CreatePlayer();
 	CreateEntities(screenSize);
+	CollisionManager::RegisterCamera(m_camera);
 }
 
 
@@ -56,6 +58,8 @@ void Game::Update(float dt)
 	AddNewGameObjects();
 	UpdateGameObjectList(dt, m_gameObjects);
 	UpdateGameObjectList(dt, m_gameObjectsBehind);
+
+	CollisionManager::CheckCollisions();
 }
 
 
@@ -91,6 +95,7 @@ void Game::UpdateGameObjectList(float dt, std::vector<GameObject*>& list)
 		}
 		else
 		{
+			CollisionManager::deregisterGameObject(*(list.begin() + i));
 			list.erase(list.begin() + i);
 		}
 	}
