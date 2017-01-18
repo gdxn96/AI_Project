@@ -5,6 +5,9 @@ TerrainSegment::TerrainSegment(sf::ConvexShape shape)
 	: GameObject(shape.getGlobalBounds(), true), 
 	  m_shape(shape)
 {
+	sf::Texture* texture = AssetLoader::getInstance()->findTextureByKey("terrain");
+	texture->setRepeated(true);
+	m_shape.setTexture(texture);
 }
 
 void TerrainSegment::Update(float dt)

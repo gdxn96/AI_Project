@@ -17,6 +17,7 @@ Astronaut::Astronaut(sf::Vector2f position, sf::Vector2f size)
 {
 	m_shape = sf::RectangleShape(sf::Vector2f(10, 20));
 	m_shape.setPosition(m_position.toSFMLVector());
+	m_shape.setTexture(AssetLoader::getInstance()->findTextureByKey("astronaut"));
 }
 
 

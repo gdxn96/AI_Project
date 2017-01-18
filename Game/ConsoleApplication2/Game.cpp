@@ -8,6 +8,10 @@ Game::Game(Vector2D screenSize, Vector2D levelSize) :
 	m_levelSize(levelSize), 
 	m_camera(screenSize, levelSize)
 {
+	AssetLoader* assets = AssetLoader::getInstance();
+	assets->loadTextures("./loadFiles/loadTextures.txt");
+	assets->loadAssetQueue();
+
 	sf::FloatRect levelBounds(0, screenSize.h * 1.f / 10, levelSize.w, screenSize.h * 7.f / 10);
 	AIManager::initialize(levelBounds);
 	PhysicsManager::initialize(levelBounds);
@@ -32,7 +36,7 @@ void Game::CreatePlayer()
 {
 	Player* player = new Player(
 		sf::Vector2f(950, 530),	//bounds
-		sf::Vector2f(40, 20),	//size
+		sf::Vector2f(80, 40),	//size
 		Vector2D(800, 800),		//acceleration
 		Vector2D(5000, 400)		//maxSpeed
 	);

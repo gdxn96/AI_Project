@@ -1,0 +1,13 @@
+abductor assets/abductor.png
+astronaut assets/astronaut.png
+background assets/bgr.png
+bullet assets/pokeball.png
+emp assets/emp.png
+firerate assets/firerate.png
+hyperjump assets/hyperjump.png
+invincibility assets/invincibility.png
+meteor assets/asteroid.png
+missile assets/missile.png
+nest assets/nest.png
+player assets/player.png
+terrain assets/terrain.png

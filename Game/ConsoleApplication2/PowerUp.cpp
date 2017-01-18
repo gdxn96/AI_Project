@@ -8,12 +8,11 @@ PowerUp::PowerUp(int type, sf::Vector2f position, sf::Vector2f size)
 	  m_timeToLive(10),
 	  m_position(position)
 {
-	initializeColor();
 	m_shape = sf::RectangleShape(size);
 	m_shape.setPosition(position);
-	m_shape.setFillColor(m_color);
 	m_bounds.left = m_position.x;
 	m_bounds.top = m_position.y;
+	initializeTexture();
 }
 
 
@@ -22,21 +21,21 @@ PowerUp::~PowerUp()
 }
 
 
-void PowerUp::initializeColor()
+void PowerUp::initializeTexture()
 {
 	switch (m_type)
 	{
 	case PowerUpTypes::HYPERJUMP:
-		m_color = sf::Color(255, 140, 241, 255); // pink
+		m_shape.setTexture(AssetLoader::getInstance()->findTextureByKey("hyperjump"));
 		break;
 	case PowerUpTypes::MORE_FIRE_RATE:
-		m_color = sf::Color(140, 255, 142, 255); // light green
+		m_shape.setTexture(AssetLoader::getInstance()->findTextureByKey("firerate"));
 		break;
 	case PowerUpTypes::INVINCIBILITY:
-		m_color = sf::Color(252, 30, 30, 255); // Red
+		m_shape.setTexture(AssetLoader::getInstance()->findTextureByKey("invincibility"));
 		break;
 	case PowerUpTypes::EMP:
-		m_color = sf::Color(30, 215, 252, 255); // light blue
+		m_shape.setTexture(AssetLoader::getInstance()->findTextureByKey("emp"));
 		break;
 	}
 }

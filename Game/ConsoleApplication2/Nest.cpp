@@ -3,8 +3,8 @@
 #include "EntityFactory.h"
 
 Nest::Nest(Vector2D pos, Vector2D dir, float speed)
-	: HealthObject(50, sf::FloatRect(pos.x, pos.y, 40, 40), true),
-	m_shape(sf::Vector2f(40, 40)),
+	: HealthObject(50, sf::FloatRect(pos.x, pos.y, 121, 80), true),
+	m_shape(sf::Vector2f(121, 80)),
 	m_position(pos),
 	m_direction((0,0)),
 	m_velocity(dir * speed),
@@ -21,7 +21,8 @@ Nest::Nest(Vector2D pos, Vector2D dir, float speed)
 	m_timetillEMPEnds(0)
 {
 	m_shape.setPosition(pos.toSFMLVector());
-	m_shape.setFillColor(sf::Color::Yellow);
+	//m_shape.setFillColor(sf::Color::Yellow);
+	m_shape.setTexture(AssetLoader::getInstance()->findTextureByKey("nest"));
 }
 
 void Nest::Draw(sf::RenderWindow & window)

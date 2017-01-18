@@ -66,7 +66,7 @@ std::vector<TerrainSegment*> Terrain::GenerateTerrain(int minY, int maxY, Vector
 			shape.setPoint(2, sf::Vector2f(currentVertex.position.x, levelSize.h));
 			shape.setPoint(3, currentVertex.position);
 			
-			shape.setFillColor(sf::Color(112, 89, 40));
+			shape.setFillColor(sf::Color(0, 144, 255, 255));
 
 			terrainSegments.push_back(new TerrainSegment(shape));
 		}
@@ -82,7 +82,7 @@ std::vector<TerrainSegment*> Terrain::GenerateTerrain(int minY, int maxY, Vector
 	shape.setPoint(2, sf::Vector2f(vertices.front().position.x, levelSize.h));
 	shape.setPoint(3, vertices.front().position);
 
-	shape.setFillColor(sf::Color(112, 89, 40));
+	shape.setFillColor(sf::Color(0, 144, 255, 255));
 
 	terrainSegments.push_back(new TerrainSegment(shape));
 
