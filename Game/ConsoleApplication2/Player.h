@@ -5,6 +5,7 @@
 #include "EventListener.h"
 #include "AIManager.h"
 #include "EntityFactory.h"
+#include "CollisionManager.h"
 
 using namespace std;
 
@@ -30,10 +31,14 @@ private:
 
 	// Power ups
 	bool m_canHyperjump;
+	bool m_canUseSmartBomb;
+	float BOMB_COOLDOWN;
+	float m_timeTillBombActive;
 
 	void UpdateDirection();
 	void UpdateShootState(float dt);
 	void UpdateSpeed(float dt);
+	void UpdateSmartBomb(float dt);
 
 
 public:

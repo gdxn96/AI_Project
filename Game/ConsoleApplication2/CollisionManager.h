@@ -13,6 +13,7 @@ public:
 	static void RegisterEnemy(GameObject* g);
 	static void deregisterGameObject(GameObject* g);
 	static void CheckCollisions();
+	static std::vector<GameObject*> GetObjectsOnScreen();
 
 	static void RegisterCamera(Camera& cam);
 private:

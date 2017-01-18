@@ -69,6 +69,18 @@ void CollisionManager::CheckCollisions()
 	}
 }
 
+std::vector<GameObject*> CollisionManager::GetObjectsOnScreen()
+{
+	std::vector<GameObject*> objects;
+	std::vector<GameObject*> enemiesOnScreen = m_camera->getObjectsInViewPort(m_enemies);
+	std::vector<GameObject*> enemyBulletsOnScreen = m_camera->getObjectsInViewPort(m_enemyBullets);
+
+	objects.insert(objects.end(), enemiesOnScreen.begin(), enemiesOnScreen.end());
+	objects.insert(objects.end(), enemyBulletsOnScreen.begin(), enemyBulletsOnScreen.end());
+
+	return objects;
+}
+
 void CollisionManager::RegisterCamera(Camera & cam)
 {
 	m_camera = &(cam);

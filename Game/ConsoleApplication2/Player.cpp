@@ -12,7 +12,9 @@ Player::Player(sf::Vector2f position, sf::Vector2f size, Vector2D acceleration, 
 	  m_facingDirection(1, 0),
 	  m_bulletsPerSecond(10),
 	  m_shooting(false),
-	  m_canHyperjump(true)
+	  m_canHyperjump(true),
+	  m_canUseSmartBomb(true),
+	  BOMB_COOLDOWN(60)
 {
 	m_shape.setPosition(m_position.toSFMLVector());
 	InitializeEvents();
@@ -38,6 +40,7 @@ void Player::InitializeEvents()
 	input->AddListener(static_cast<int>(EventListener::GenericEvent::SHOOT), this);
 	input->AddListener(static_cast<int>(EventListener::GenericEvent::NO_SHOOT), this);
 	input->AddListener(static_cast<int>(EventListener::GenericEvent::HYPERJUMP), this);
+	input->AddListener(static_cast<int>(EventListener::GenericEvent::SMART_BOMB), this);
 }
 
 
@@ -45,6 +48,7 @@ void Player::Update(float dt)
 {
 	UpdateSpeed(dt);
 	UpdateDirection();
+	UpdateSmartBomb(dt);
 
 	if (m_shooting)
 	{
@@ -85,6 +89,19 @@ void Player::onGenericEvent(GenericEvent evt)
 		if (m_canHyperjump)
 		{
 			AIManager::jumpToRandomPosition(m_position);
+		}
+		break;
+	case EventListener::GenericEvent::SMART_BOMB:
+		if (m_canUseSmartBomb)
+		{
+			std::vector<GameObject*> objectsOnScreen = CollisionManager::GetObjectsOnScreen();
+			m_canUseSmartBomb = false;
+			m_timeTillBombActive = BOMB_COOLDOWN;
+
+			for (GameObject* object : objectsOnScreen)
+			{
+				object->kill();
+			}
 		}
 		break;
 	}
@@ -173,6 +190,19 @@ void Player::UpdateSpeed(float dt)
 		Vector2D accel = Vector2D(0, -ACCELERATION.y);
 		Vector2D targSpeed = Vector2D(0, 0);
 		PhysicsManager::accelerate(dt, m_speed, accel, targSpeed);
+	}
+}
+
+void Player::UpdateSmartBomb(float dt)
+{
+	if (!m_canUseSmartBomb)
+	{
+		m_timeTillBombActive -= dt;
+
+		if (m_timeTillBombActive <= 0)
+		{
+			m_canUseSmartBomb = true;
+		}
 	}
 }
 
