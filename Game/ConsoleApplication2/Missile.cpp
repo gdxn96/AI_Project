@@ -3,19 +3,19 @@
 #include "AIManager.h"
 
 Missile::Missile(Vector2D pos)
-	: GameObject(sf::FloatRect(pos.x, pos.y, 20, 10)),
+	: GameObject(sf::FloatRect(pos.x, pos.y, 30, 15)),
 	m_position(pos),
 	m_velocity((0,0)),
 	m_acceleration((0,0)),
 	m_timeToLive(10),
-	m_shape(sf::Vector2f(20, 10)),
+	m_shape(sf::Vector2f(30, 15)),
 	MAX_SPEED(800),
 	Damageable(40)
 {
 	m_shape.setPosition(m_position.toSFMLVector());
 	m_bounds.left = m_position.x;
 	m_bounds.top = m_position.y;
-	m_shape.setFillColor(sf::Color::Red);
+	m_shape.setTexture(AssetLoader::getInstance()->findTextureByKey("missile"));
 }
 
 void Missile::Update(float dt)

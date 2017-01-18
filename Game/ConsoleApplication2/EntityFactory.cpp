@@ -61,7 +61,7 @@ void EntityFactory::CreateAbductor(sf::Vector2f position)
 {
 	if (m_numAbductors < 20)
 	{
-		sf::Vector2f size(30, 30);
+		sf::Vector2f size(60, 60);
 		float minPatrolHeight = m_levelSize.height * 0.75f;
 		float maxPatrolHeight = m_levelSize.height * 0.6f;
 		Abductor* abductor = new Abductor(position, size, minPatrolHeight, maxPatrolHeight);
@@ -79,7 +79,7 @@ void EntityFactory::CreateAbductor(sf::Vector2f position)
 void EntityFactory::CreateAstronaut(float xPosition)
 {
 	sf::Vector2f position(xPosition, m_levelSize.height * 0.8f);
-	sf::Vector2f size(10, 20);
+	sf::Vector2f size(20, 40);
 	Astronaut* astronaut = new Astronaut(position, size);
 	AIManager::registerAstronaut(astronaut);
 	m_newGameObjects.push_back(astronaut);
@@ -88,8 +88,7 @@ void EntityFactory::CreateAstronaut(float xPosition)
 
 void EntityFactory::CreatePowerUp(int type, sf::Vector2f position)
 {
-	cout << "power up created" << endl;
-	GameObject* powerup = new PowerUp(type, position, sf::Vector2f(20, 20));
+	GameObject* powerup = new PowerUp(type, position, sf::Vector2f(50, 50));
 	CollisionManager::RegisterPowerup(powerup);
 	m_newGameObjects.push_back(powerup);
 }

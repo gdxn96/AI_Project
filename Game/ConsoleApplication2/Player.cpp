@@ -14,16 +14,17 @@ Player::Player(sf::Vector2f position, sf::Vector2f size, Vector2D acceleration, 
 	  m_bulletsPerSecond(5),
 	  MAX_FIRERATE(10),
 	  m_shooting(false),
-	  m_canHyperjump(true),
+	  m_canHyperjump(false),
 	  m_canUseSmartBomb(true),
 	  BOMB_COOLDOWN(60),
 	  MAX_TIME_INCREASED_FIRE_RATE(5),
 	  m_timeTillIncreasedFireRateEnds(0),
 	  MAX_INVINCIBILITY_TIME(5),
 	  m_timeTillInvincibilityEnds(0),
-	  m_canUseEMP(true)
+	  m_canUseEMP(false)
 {
 	m_shape.setPosition(m_position.toSFMLVector());
+	m_shape.setTexture(AssetLoader::getInstance()->findTextureByKey("player"));
 	InitializeEvents();
 }
 

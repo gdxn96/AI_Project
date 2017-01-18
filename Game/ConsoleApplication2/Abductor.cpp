@@ -23,7 +23,7 @@ Abductor::Abductor(sf::Vector2f position, sf::Vector2f size, float minPatrolHeig
 	m_currentState = m_states::TOSURFACE;
 	m_shape.setPosition(m_position.toSFMLVector());
 	sf::Color darkGreen = sf::Color(76, 153, 0, 255);
-	m_shape.setFillColor(darkGreen);
+	m_shape.setTexture(AssetLoader::getInstance()->findTextureByKey("abductor"));
 	m_bounds.left = m_position.x;
 }
 
@@ -102,13 +102,19 @@ void Abductor::UpdateShooting(float dt)
 
 		if (m_timeTillFire <= 0)
 		{
-			Vector2D playerPos = AIManager::getPlayerPos();
+			m_timeTillFire = FIRE_RATE;
+			Vector2D playerPos = AIManager::getClosestPlayerPos(m_position);
 
 			if (Vector2D::Distance(m_position, playerPos) < FIRE_RANGE)
 			{
-				m_timeTillFire = FIRE_RATE;
 				EntityFactory::CreateBullet(m_position, (playerPos - m_position).Normalize(), true);
 			}
+			/*else
+			{
+				cout << "PlayerPos: " << playerPos.x << ", " << playerPos.y << endl;
+				cout << "MyPos: " << m_position.x << ", " << m_position.y << endl;
+				cout << "---------------" << endl;
+			}*/
 		}
 	}
 }

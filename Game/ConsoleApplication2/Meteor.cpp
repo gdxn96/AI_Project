@@ -8,11 +8,13 @@ Meteor::Meteor(Vector2D position, float radius, float speed)
 	  m_shape(radius),
 	  m_direction(RandomFloat(0, 3.14f))
 {
-	m_shape.setPosition(position.toSFMLVector());
 	m_bounds.width = radius * 2;
 	m_bounds.height = radius * 2;
 	m_bounds.left = m_position.x;
 	m_bounds.top = m_position.y;
+
+	m_shape.setPosition(position.toSFMLVector());
+	m_shape.setTexture(AssetLoader::getInstance()->findTextureByKey("meteor"));
 }
 
 Meteor::~Meteor()

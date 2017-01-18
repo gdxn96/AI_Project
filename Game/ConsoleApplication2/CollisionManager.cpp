@@ -80,13 +80,18 @@ void CollisionManager::CheckCollisions()
 		}
 	}
 
+	
 	for (GameObject* bullet : m_enemyBullets)
 	{
 		if (m_player != nullptr)
 		if (Collides(m_player, bullet))
 		{
-			Damageable* b = dynamic_cast<Damageable*>(bullet);
-			m_player->Damage(b->getDamage());
+			if (m_player->isInvincible() == false)
+			{
+				cout << "getting damaged" << endl;
+				Damageable* b = dynamic_cast<Damageable*>(bullet);
+				m_player->Damage(b->getDamage());
+			}
 			bullet->kill();
 			break;
 		}

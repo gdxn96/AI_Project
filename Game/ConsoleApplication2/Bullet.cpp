@@ -2,7 +2,7 @@
 #include "Bullet.h"
 
 Bullet::Bullet(Vector2D pos, Vector2D dir)
-:	GameObject(sf::FloatRect(pos.x, pos.y, 20, 10)),
+:	GameObject(sf::FloatRect(pos.x, pos.y, 20, 20)),
 	Damageable(20),
 	m_velocity(Vector2D(1200, 1200) * dir),
 	m_position(pos),
@@ -14,6 +14,7 @@ Bullet::Bullet(Vector2D pos, Vector2D dir)
 	m_shape.setPosition(m_position.toSFMLVector());
 	m_bounds.left = m_position.x;
 	m_bounds.top = m_position.y;
+	m_shape.setTexture(AssetLoader::getInstance()->findTextureByKey("bullet"));
 }
 
 Bullet::~Bullet() { 
