@@ -11,9 +11,12 @@ Abductor::Abductor(sf::Vector2f position, sf::Vector2f size, float minPatrolHeig
 	  m_size(size),
 	  m_abductDistance(100),
 	  m_shape(size),
-	  m_speed(75, 125),
+	  m_speed(150, 250),
 	  MAX_WANDER_TIME(10),
-	  m_wanderTimeRemaining(0)
+	  m_wanderTimeRemaining(0),
+	  FIRE_RANGE(400),
+	  FIRE_RATE(1),
+      m_timeTillFire(0.1f)
 {
 	m_currentState = m_states::TOSURFACE;
 	m_shape.setPosition(m_position.toSFMLVector());
@@ -37,6 +40,7 @@ Abductor::~Abductor()
 void Abductor::Update(float dt)
 {
 	UpdateState();
+	UpdateShooting(dt);
 
 	switch (m_currentState)
 	{
@@ -70,6 +74,26 @@ void Abductor::Update(float dt)
 	PhysicsManager::move(dt, m_position, m_velocity);
 }
 
+void Abductor::UpdateShooting(float dt)
+{
+	if (m_timeTillFire > 0)
+	{
+		m_timeTillFire -= dt;
+
+		if (m_timeTillFire <= 0)
+		{
+			Vector2D playerPos = AIManager::getPlayerPos();
+
+			if (Vector2D::Distance(m_position, playerPos) < FIRE_RANGE)
+			{
+				cout << "FIRE" << endl;
+				m_timeTillFire = FIRE_RATE;
+				EntityFactory::CreateBullet(m_position, (playerPos - m_position).Normalize(), true);
+			}
+		}
+	}
+}
+
 void Abductor::UpdateState()
 {
 	switch (m_currentState)
@@ -101,6 +125,10 @@ void Abductor::UpdateState()
 			m_currentState = m_states::ABDUCT;
 			m_closestAstronaut->setBeingAbducted();
 		}
+		/*else if (!isInPatrolArea())
+		{
+			m_currentState = m_states::PATROL_EXIT;
+		}*/
 		break;
 	case m_states::ABDUCT:
 		if (m_position.y <= 0)

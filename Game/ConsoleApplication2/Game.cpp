@@ -45,7 +45,7 @@ void Game::CreateEntities(Vector2D screenSize)
 			EntityFactory::CreateAstronaut(400 + (i * 30));
 
 		EntityFactory::CreateMeteor();
-		EntityFactory::CreateMutant(Vector2D(RandomFloat(0, m_levelSize.width), 0));
+		//EntityFactory::CreateMutant(Vector2D(RandomFloat(0, m_levelSize.width), 0));
 	}
 }
 

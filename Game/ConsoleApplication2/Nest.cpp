@@ -15,7 +15,7 @@ Nest::Nest(Vector2D pos, Vector2D dir, float speed)
 	m_timeUntilShoot(0),
 	MAX_ACCEL(50000),
 	MAX_SPEED(speed),
-	MAX_TIME_UNTIL_ABDUCTOR_SPAWN(5),
+	MAX_TIME_UNTIL_ABDUCTOR_SPAWN(10),
 	m_timeUntilAbductorSpawn(0)
 {
 	m_shape.setPosition(pos.toSFMLVector());

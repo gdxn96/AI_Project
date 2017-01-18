@@ -34,6 +34,9 @@ private:
 	Astronaut* m_closestAstronaut;
 	Vector2D m_closestAstronautPosition;
 	float m_seekDistance;
+	const int FIRE_RANGE;
+	const float FIRE_RATE;
+	float m_timeTillFire;
 
 	bool isInPatrolArea();
 	bool shouldAbductAstronaut();
@@ -44,6 +47,7 @@ public:
 	Abductor(sf::Vector2f position, sf::Vector2f size, float minPatrolHeight, float maxPatrolHeight);
 	virtual ~Abductor();
 	void Update(float dt) override;
+	void UpdateShooting(float dt);
 	void UpdateState();
 	void Draw(sf::RenderWindow& window) override;
 	void DrawWithXOffset(sf::RenderWindow& window, float xOffset) override;
