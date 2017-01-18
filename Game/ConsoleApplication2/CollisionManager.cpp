@@ -103,6 +103,9 @@ void CollisionManager::CheckCollisions()
 				case PowerUpTypes::HYPERJUMP:
 					m_player->setCanUseHyperjump();
 					break;
+				case PowerUpTypes::MORE_FIRE_RATE:
+					m_player->increaseFireRate();
+					break;
 				}
 
 				powerup->kill();

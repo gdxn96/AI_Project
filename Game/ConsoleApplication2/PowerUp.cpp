@@ -26,6 +26,8 @@ void PowerUp::initializeColor()
 	{
 	case PowerUpTypes::HYPERJUMP:
 		m_color = sf::Color(66, 134, 244, 255);
+	case PowerUpTypes::MORE_FIRE_RATE:
+		m_color = sf::Color(215, 244, 66, 255);
 	}
 }
 

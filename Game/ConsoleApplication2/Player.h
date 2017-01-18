@@ -28,17 +28,22 @@ private:
 	int m_bulletsPerSecond;
 	bool m_shooting;
 	float m_timeTillNextShot;
+	int NORMAL_FIRERATE;
+	int MAX_FIRERATE;
 
 	// Power ups
 	bool m_canHyperjump;
 	bool m_canUseSmartBomb;
 	float BOMB_COOLDOWN;
 	float m_timeTillBombActive;
+	float m_timeTillIncreasedFireRateEnds;
+	const int MAX_TIME_INCREASED_FIRE_RATE;
 
 	void UpdateDirection();
 	void UpdateShootState(float dt);
 	void UpdateSpeed(float dt);
 	void UpdateSmartBomb(float dt);
+	void UpdateIncreasedFireRate(float dt);
 
 
 public:
@@ -54,5 +59,6 @@ public:
 	void wrapPositions(Camera& cam) override;
 	Vector2D getPosition();
 	void setCanUseHyperjump();
+	void increaseFireRate();
 };
 

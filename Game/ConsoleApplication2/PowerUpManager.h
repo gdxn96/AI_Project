@@ -2,6 +2,7 @@
 
 #include <vector>
 #include "HyperJumpGenerator.h"
+#include "FireRatePowerupGenerator.h"
 
 using namespace std;
 
