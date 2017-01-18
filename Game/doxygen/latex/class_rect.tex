@@ -1,0 +1,114 @@
+\hypertarget{class_rect}{}\section{Rect Class Reference}
+\label{class_rect}\index{Rect@{Rect}}
+
+
+{\ttfamily \#include $<$Simple\+Types.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_rect_aa012b316b26079135d9ba828a1330f25}{Rect} (\hyperlink{class_vector2_d}{Vector2D} p, \hyperlink{class_vector2_d}{Vector2D} s)
+\item 
+\hyperlink{class_rect_aed61433871ffc936171fb1b3b3e3d594}{Rect} (float x=0, float y=0, float w=1, float h=1)
+\item 
+\hyperlink{class_rect_a5a9cc5f94ff1406c02032bb3676d63e5}{Rect} (sf\+::\+Float\+Rect \&r)
+\item 
+\hyperlink{class_rect}{Rect} \& \hyperlink{class_rect_a6e26d2923ad8159589fc12e7e857b21a}{operator$\ast$} (float scale)
+\item 
+\hyperlink{class_rect}{Rect} \& \hyperlink{class_rect_a60d8364198cd7377ebe07ecff6283e49}{operator/} (float scale)
+\item 
+\hyperlink{class_rect}{Rect} \& \hyperlink{class_rect_a9ceb8cc44e42709056d20d4bbdca15d7}{operator+} (\hyperlink{class_rect}{Rect} \&r)
+\item 
+\hyperlink{class_vector2_d}{Vector2D} \hyperlink{class_rect_a50af4844d2bd0beb72b75a9890067e43}{get\+Centre\+Copy} ()
+\item 
+sf\+::\+Rectangle\+Shape \hyperlink{class_rect_a76b9893692559088ccb285e9c3e012c8}{to\+S\+F\+M\+L\+Rect} ()
+\item 
+bool \hyperlink{class_rect_a81e3d93bf30b2b695058b774f42b4e76}{contains\+Point} (\hyperlink{class_vector2_d}{Vector2D} pt)
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_vector2_d}{Vector2D} \hyperlink{class_rect_adb745feadff27b831623019704522ec6}{pos}
+\item 
+\hyperlink{class_vector2_d}{Vector2D} \hyperlink{class_rect_a1e41d6169d2df56206b3c671480f6e9c}{size}
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_rect_aa012b316b26079135d9ba828a1330f25}{}\label{class_rect_aa012b316b26079135d9ba828a1330f25} 
+\index{Rect@{Rect}!Rect@{Rect}}
+\index{Rect@{Rect}!Rect@{Rect}}
+\subsubsection{\texorpdfstring{Rect()}{Rect()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily Rect\+::\+Rect (\begin{DoxyParamCaption}\item[{\hyperlink{class_vector2_d}{Vector2D}}]{p,  }\item[{\hyperlink{class_vector2_d}{Vector2D}}]{s }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\hypertarget{class_rect_aed61433871ffc936171fb1b3b3e3d594}{}\label{class_rect_aed61433871ffc936171fb1b3b3e3d594} 
+\index{Rect@{Rect}!Rect@{Rect}}
+\index{Rect@{Rect}!Rect@{Rect}}
+\subsubsection{\texorpdfstring{Rect()}{Rect()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily Rect\+::\+Rect (\begin{DoxyParamCaption}\item[{float}]{x = {\ttfamily 0},  }\item[{float}]{y = {\ttfamily 0},  }\item[{float}]{w = {\ttfamily 1},  }\item[{float}]{h = {\ttfamily 1} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\hypertarget{class_rect_a5a9cc5f94ff1406c02032bb3676d63e5}{}\label{class_rect_a5a9cc5f94ff1406c02032bb3676d63e5} 
+\index{Rect@{Rect}!Rect@{Rect}}
+\index{Rect@{Rect}!Rect@{Rect}}
+\subsubsection{\texorpdfstring{Rect()}{Rect()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily Rect\+::\+Rect (\begin{DoxyParamCaption}\item[{sf\+::\+Float\+Rect \&}]{r }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_rect_a81e3d93bf30b2b695058b774f42b4e76}{}\label{class_rect_a81e3d93bf30b2b695058b774f42b4e76} 
+\index{Rect@{Rect}!contains\+Point@{contains\+Point}}
+\index{contains\+Point@{contains\+Point}!Rect@{Rect}}
+\subsubsection{\texorpdfstring{contains\+Point()}{containsPoint()}}
+{\footnotesize\ttfamily bool Rect\+::contains\+Point (\begin{DoxyParamCaption}\item[{\hyperlink{class_vector2_d}{Vector2D}}]{pt }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\hypertarget{class_rect_a50af4844d2bd0beb72b75a9890067e43}{}\label{class_rect_a50af4844d2bd0beb72b75a9890067e43} 
+\index{Rect@{Rect}!get\+Centre\+Copy@{get\+Centre\+Copy}}
+\index{get\+Centre\+Copy@{get\+Centre\+Copy}!Rect@{Rect}}
+\subsubsection{\texorpdfstring{get\+Centre\+Copy()}{getCentreCopy()}}
+{\footnotesize\ttfamily \hyperlink{class_vector2_d}{Vector2D} Rect\+::get\+Centre\+Copy (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\hypertarget{class_rect_a6e26d2923ad8159589fc12e7e857b21a}{}\label{class_rect_a6e26d2923ad8159589fc12e7e857b21a} 
+\index{Rect@{Rect}!operator$\ast$@{operator$\ast$}}
+\index{operator$\ast$@{operator$\ast$}!Rect@{Rect}}
+\subsubsection{\texorpdfstring{operator$\ast$()}{operator*()}}
+{\footnotesize\ttfamily \hyperlink{class_rect}{Rect}\& Rect\+::operator$\ast$ (\begin{DoxyParamCaption}\item[{float}]{scale }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\hypertarget{class_rect_a9ceb8cc44e42709056d20d4bbdca15d7}{}\label{class_rect_a9ceb8cc44e42709056d20d4bbdca15d7} 
+\index{Rect@{Rect}!operator+@{operator+}}
+\index{operator+@{operator+}!Rect@{Rect}}
+\subsubsection{\texorpdfstring{operator+()}{operator+()}}
+{\footnotesize\ttfamily \hyperlink{class_rect}{Rect}\& Rect\+::operator+ (\begin{DoxyParamCaption}\item[{\hyperlink{class_rect}{Rect} \&}]{r }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\hypertarget{class_rect_a60d8364198cd7377ebe07ecff6283e49}{}\label{class_rect_a60d8364198cd7377ebe07ecff6283e49} 
+\index{Rect@{Rect}!operator/@{operator/}}
+\index{operator/@{operator/}!Rect@{Rect}}
+\subsubsection{\texorpdfstring{operator/()}{operator/()}}
+{\footnotesize\ttfamily \hyperlink{class_rect}{Rect}\& Rect\+::operator/ (\begin{DoxyParamCaption}\item[{float}]{scale }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\hypertarget{class_rect_a76b9893692559088ccb285e9c3e012c8}{}\label{class_rect_a76b9893692559088ccb285e9c3e012c8} 
+\index{Rect@{Rect}!to\+S\+F\+M\+L\+Rect@{to\+S\+F\+M\+L\+Rect}}
+\index{to\+S\+F\+M\+L\+Rect@{to\+S\+F\+M\+L\+Rect}!Rect@{Rect}}
+\subsubsection{\texorpdfstring{to\+S\+F\+M\+L\+Rect()}{toSFMLRect()}}
+{\footnotesize\ttfamily sf\+::\+Rectangle\+Shape Rect\+::to\+S\+F\+M\+L\+Rect (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{class_rect_adb745feadff27b831623019704522ec6}{}\label{class_rect_adb745feadff27b831623019704522ec6} 
+\index{Rect@{Rect}!pos@{pos}}
+\index{pos@{pos}!Rect@{Rect}}
+\subsubsection{\texorpdfstring{pos}{pos}}
+{\footnotesize\ttfamily \hyperlink{class_vector2_d}{Vector2D} Rect\+::pos}
+
+\hypertarget{class_rect_a1e41d6169d2df56206b3c671480f6e9c}{}\label{class_rect_a1e41d6169d2df56206b3c671480f6e9c} 
+\index{Rect@{Rect}!size@{size}}
+\index{size@{size}!Rect@{Rect}}
+\subsubsection{\texorpdfstring{size}{size}}
+{\footnotesize\ttfamily \hyperlink{class_vector2_d}{Vector2D} Rect\+::size}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Console\+Application2/\hyperlink{_simple_types_8h}{Simple\+Types.\+h}\end{DoxyCompactItemize}

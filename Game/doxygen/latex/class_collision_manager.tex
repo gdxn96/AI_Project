@@ -1,0 +1,114 @@
+\hypertarget{class_collision_manager}{}\section{Collision\+Manager Class Reference}
+\label{class_collision_manager}\index{Collision\+Manager@{Collision\+Manager}}
+
+
+{\ttfamily \#include $<$Collision\+Manager.\+h$>$}
+
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static bool \hyperlink{class_collision_manager_aa9b79541a4307b66c82f3d7317c5cd05}{Collides} (\hyperlink{class_game_object}{Game\+Object} $\ast$a, \hyperlink{class_game_object}{Game\+Object} $\ast$b)
+\item 
+static void \hyperlink{class_collision_manager_ab7a081fdf66095154b83df5849064353}{Register\+Enemy\+Bullet} (\hyperlink{class_game_object}{Game\+Object} $\ast$g)
+\item 
+static void \hyperlink{class_collision_manager_a26e2211bb479786aa286e27725047426}{Register\+Meteor} (\hyperlink{class_game_object}{Game\+Object} $\ast$g)
+\item 
+static void \hyperlink{class_collision_manager_a95a12017947b40b2faf8f6b860124608}{Register\+Player\+Bullet} (\hyperlink{class_game_object}{Game\+Object} $\ast$g)
+\item 
+static void \hyperlink{class_collision_manager_ac3abdbcb7fa79059bf44ceffc56a88d9}{Register\+Enemy} (\hyperlink{class_game_object}{Game\+Object} $\ast$g)
+\item 
+static void \hyperlink{class_collision_manager_ac68a7240e24d4744b2aca2082482bc61}{Register\+Powerup} (\hyperlink{class_game_object}{Game\+Object} $\ast$powerup)
+\item 
+static void \hyperlink{class_collision_manager_a33a480a6e9e10810e5bb59d486c1b54a}{Register\+Player} (\hyperlink{class_game_object}{Game\+Object} $\ast$player)
+\item 
+static void \hyperlink{class_collision_manager_a96f0e816e92567c5563d6cc095203e92}{deregister\+Game\+Object} (\hyperlink{class_game_object}{Game\+Object} $\ast$g)
+\item 
+static void \hyperlink{class_collision_manager_aa1c1b2c09960c0bad6b9c980324f9f92}{Check\+Collisions} ()
+\item 
+static std\+::vector$<$ \hyperlink{class_game_object}{Game\+Object} $\ast$ $>$ \hyperlink{class_collision_manager_aae72acb1f514ba8ef4a3b7e5e9a82291}{Get\+Objects\+On\+Screen} ()
+\item 
+static std\+::vector$<$ \hyperlink{class_game_object}{Game\+Object} $\ast$ $>$ \hyperlink{class_collision_manager_a9edffbdcca1e34b3fb326ab8addec480}{Get\+Enemies\+On\+Screen} ()
+\item 
+static void \hyperlink{class_collision_manager_ad0c0a951de17cc2fc6ffceffd56784dd}{Register\+Camera} (\hyperlink{class_camera}{Camera} \&cam)
+\end{DoxyCompactItemize}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_collision_manager_aa1c1b2c09960c0bad6b9c980324f9f92}{}\label{class_collision_manager_aa1c1b2c09960c0bad6b9c980324f9f92} 
+\index{Collision\+Manager@{Collision\+Manager}!Check\+Collisions@{Check\+Collisions}}
+\index{Check\+Collisions@{Check\+Collisions}!Collision\+Manager@{Collision\+Manager}}
+\subsubsection{\texorpdfstring{Check\+Collisions()}{CheckCollisions()}}
+{\footnotesize\ttfamily void Collision\+Manager\+::\+Check\+Collisions (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\hypertarget{class_collision_manager_aa9b79541a4307b66c82f3d7317c5cd05}{}\label{class_collision_manager_aa9b79541a4307b66c82f3d7317c5cd05} 
+\index{Collision\+Manager@{Collision\+Manager}!Collides@{Collides}}
+\index{Collides@{Collides}!Collision\+Manager@{Collision\+Manager}}
+\subsubsection{\texorpdfstring{Collides()}{Collides()}}
+{\footnotesize\ttfamily bool Collision\+Manager\+::\+Collides (\begin{DoxyParamCaption}\item[{\hyperlink{class_game_object}{Game\+Object} $\ast$}]{a,  }\item[{\hyperlink{class_game_object}{Game\+Object} $\ast$}]{b }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\hypertarget{class_collision_manager_a96f0e816e92567c5563d6cc095203e92}{}\label{class_collision_manager_a96f0e816e92567c5563d6cc095203e92} 
+\index{Collision\+Manager@{Collision\+Manager}!deregister\+Game\+Object@{deregister\+Game\+Object}}
+\index{deregister\+Game\+Object@{deregister\+Game\+Object}!Collision\+Manager@{Collision\+Manager}}
+\subsubsection{\texorpdfstring{deregister\+Game\+Object()}{deregisterGameObject()}}
+{\footnotesize\ttfamily void Collision\+Manager\+::deregister\+Game\+Object (\begin{DoxyParamCaption}\item[{\hyperlink{class_game_object}{Game\+Object} $\ast$}]{g }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\hypertarget{class_collision_manager_a9edffbdcca1e34b3fb326ab8addec480}{}\label{class_collision_manager_a9edffbdcca1e34b3fb326ab8addec480} 
+\index{Collision\+Manager@{Collision\+Manager}!Get\+Enemies\+On\+Screen@{Get\+Enemies\+On\+Screen}}
+\index{Get\+Enemies\+On\+Screen@{Get\+Enemies\+On\+Screen}!Collision\+Manager@{Collision\+Manager}}
+\subsubsection{\texorpdfstring{Get\+Enemies\+On\+Screen()}{GetEnemiesOnScreen()}}
+{\footnotesize\ttfamily std\+::vector$<$ \hyperlink{class_game_object}{Game\+Object} $\ast$ $>$ Collision\+Manager\+::\+Get\+Enemies\+On\+Screen (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\hypertarget{class_collision_manager_aae72acb1f514ba8ef4a3b7e5e9a82291}{}\label{class_collision_manager_aae72acb1f514ba8ef4a3b7e5e9a82291} 
+\index{Collision\+Manager@{Collision\+Manager}!Get\+Objects\+On\+Screen@{Get\+Objects\+On\+Screen}}
+\index{Get\+Objects\+On\+Screen@{Get\+Objects\+On\+Screen}!Collision\+Manager@{Collision\+Manager}}
+\subsubsection{\texorpdfstring{Get\+Objects\+On\+Screen()}{GetObjectsOnScreen()}}
+{\footnotesize\ttfamily std\+::vector$<$ \hyperlink{class_game_object}{Game\+Object} $\ast$ $>$ Collision\+Manager\+::\+Get\+Objects\+On\+Screen (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\hypertarget{class_collision_manager_ad0c0a951de17cc2fc6ffceffd56784dd}{}\label{class_collision_manager_ad0c0a951de17cc2fc6ffceffd56784dd} 
+\index{Collision\+Manager@{Collision\+Manager}!Register\+Camera@{Register\+Camera}}
+\index{Register\+Camera@{Register\+Camera}!Collision\+Manager@{Collision\+Manager}}
+\subsubsection{\texorpdfstring{Register\+Camera()}{RegisterCamera()}}
+{\footnotesize\ttfamily void Collision\+Manager\+::\+Register\+Camera (\begin{DoxyParamCaption}\item[{\hyperlink{class_camera}{Camera} \&}]{cam }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\hypertarget{class_collision_manager_ac3abdbcb7fa79059bf44ceffc56a88d9}{}\label{class_collision_manager_ac3abdbcb7fa79059bf44ceffc56a88d9} 
+\index{Collision\+Manager@{Collision\+Manager}!Register\+Enemy@{Register\+Enemy}}
+\index{Register\+Enemy@{Register\+Enemy}!Collision\+Manager@{Collision\+Manager}}
+\subsubsection{\texorpdfstring{Register\+Enemy()}{RegisterEnemy()}}
+{\footnotesize\ttfamily void Collision\+Manager\+::\+Register\+Enemy (\begin{DoxyParamCaption}\item[{\hyperlink{class_game_object}{Game\+Object} $\ast$}]{g }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\hypertarget{class_collision_manager_ab7a081fdf66095154b83df5849064353}{}\label{class_collision_manager_ab7a081fdf66095154b83df5849064353} 
+\index{Collision\+Manager@{Collision\+Manager}!Register\+Enemy\+Bullet@{Register\+Enemy\+Bullet}}
+\index{Register\+Enemy\+Bullet@{Register\+Enemy\+Bullet}!Collision\+Manager@{Collision\+Manager}}
+\subsubsection{\texorpdfstring{Register\+Enemy\+Bullet()}{RegisterEnemyBullet()}}
+{\footnotesize\ttfamily void Collision\+Manager\+::\+Register\+Enemy\+Bullet (\begin{DoxyParamCaption}\item[{\hyperlink{class_game_object}{Game\+Object} $\ast$}]{g }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\hypertarget{class_collision_manager_a26e2211bb479786aa286e27725047426}{}\label{class_collision_manager_a26e2211bb479786aa286e27725047426} 
+\index{Collision\+Manager@{Collision\+Manager}!Register\+Meteor@{Register\+Meteor}}
+\index{Register\+Meteor@{Register\+Meteor}!Collision\+Manager@{Collision\+Manager}}
+\subsubsection{\texorpdfstring{Register\+Meteor()}{RegisterMeteor()}}
+{\footnotesize\ttfamily void Collision\+Manager\+::\+Register\+Meteor (\begin{DoxyParamCaption}\item[{\hyperlink{class_game_object}{Game\+Object} $\ast$}]{g }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\hypertarget{class_collision_manager_a33a480a6e9e10810e5bb59d486c1b54a}{}\label{class_collision_manager_a33a480a6e9e10810e5bb59d486c1b54a} 
+\index{Collision\+Manager@{Collision\+Manager}!Register\+Player@{Register\+Player}}
+\index{Register\+Player@{Register\+Player}!Collision\+Manager@{Collision\+Manager}}
+\subsubsection{\texorpdfstring{Register\+Player()}{RegisterPlayer()}}
+{\footnotesize\ttfamily void Collision\+Manager\+::\+Register\+Player (\begin{DoxyParamCaption}\item[{\hyperlink{class_game_object}{Game\+Object} $\ast$}]{player }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\hypertarget{class_collision_manager_a95a12017947b40b2faf8f6b860124608}{}\label{class_collision_manager_a95a12017947b40b2faf8f6b860124608} 
+\index{Collision\+Manager@{Collision\+Manager}!Register\+Player\+Bullet@{Register\+Player\+Bullet}}
+\index{Register\+Player\+Bullet@{Register\+Player\+Bullet}!Collision\+Manager@{Collision\+Manager}}
+\subsubsection{\texorpdfstring{Register\+Player\+Bullet()}{RegisterPlayerBullet()}}
+{\footnotesize\ttfamily void Collision\+Manager\+::\+Register\+Player\+Bullet (\begin{DoxyParamCaption}\item[{\hyperlink{class_game_object}{Game\+Object} $\ast$}]{g }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\hypertarget{class_collision_manager_ac68a7240e24d4744b2aca2082482bc61}{}\label{class_collision_manager_ac68a7240e24d4744b2aca2082482bc61} 
+\index{Collision\+Manager@{Collision\+Manager}!Register\+Powerup@{Register\+Powerup}}
+\index{Register\+Powerup@{Register\+Powerup}!Collision\+Manager@{Collision\+Manager}}
+\subsubsection{\texorpdfstring{Register\+Powerup()}{RegisterPowerup()}}
+{\footnotesize\ttfamily void Collision\+Manager\+::\+Register\+Powerup (\begin{DoxyParamCaption}\item[{\hyperlink{class_game_object}{Game\+Object} $\ast$}]{powerup }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Console\+Application2/\hyperlink{_collision_manager_8h}{Collision\+Manager.\+h}\item 
+Console\+Application2/\hyperlink{_collision_manager_8cpp}{Collision\+Manager.\+cpp}\end{DoxyCompactItemize}

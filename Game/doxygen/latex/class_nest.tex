@@ -1,0 +1,116 @@
+\hypertarget{class_nest}{}\section{Nest Class Reference}
+\label{class_nest}\index{Nest@{Nest}}
+
+
+{\ttfamily \#include $<$Nest.\+h$>$}
+
+Inheritance diagram for Nest\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{class_nest}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_nest_a66b6012b3a0d2a9b00ec66cf5d312394}{Nest} (\hyperlink{class_vector2_d}{Vector2D} pos, \hyperlink{class_vector2_d}{Vector2D} dir, float speed)
+\item 
+void \hyperlink{class_nest_a5d38f9e047947336dd2830e936ce2386}{Draw} (sf\+::\+Render\+Window \&window) override
+\item 
+void \hyperlink{class_nest_a00bd75873d812a893b20b0391ca117b4}{Update} (float dt) override
+\item 
+void \hyperlink{class_nest_a43f88fdd7366b39bd7614f26433afe10}{Draw\+With\+X\+Offset} (sf\+::\+Render\+Window \&window, float x\+Offset) override
+\item 
+void \hyperlink{class_nest_a763db342ea691c22d37b4905c1d022fa}{wrap\+Positions} (\hyperlink{class_camera}{Camera} \&cam) override
+\item 
+void \hyperlink{class_nest_a981ac754a770ac168f034cb139b7726b}{Spawn\+Abductors} (float dt)
+\item 
+void \hyperlink{class_nest_a22039effa771e65a683e2dd084c04ded}{destroy\+Electrics} ()
+\item 
+void \hyperlink{class_nest_aa5a8307172777c880ba2747719a6a0f7}{set\+GroundY} (float y)
+\item 
+bool \hyperlink{class_nest_a436c3e1024545b8ce632105d2fac2c54}{is\+Under\+E\+MP} ()
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_nest_a66b6012b3a0d2a9b00ec66cf5d312394}{}\label{class_nest_a66b6012b3a0d2a9b00ec66cf5d312394} 
+\index{Nest@{Nest}!Nest@{Nest}}
+\index{Nest@{Nest}!Nest@{Nest}}
+\subsubsection{\texorpdfstring{Nest()}{Nest()}}
+{\footnotesize\ttfamily Nest\+::\+Nest (\begin{DoxyParamCaption}\item[{\hyperlink{class_vector2_d}{Vector2D}}]{pos,  }\item[{\hyperlink{class_vector2_d}{Vector2D}}]{dir,  }\item[{float}]{speed }\end{DoxyParamCaption})}
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_nest_a22039effa771e65a683e2dd084c04ded}{}\label{class_nest_a22039effa771e65a683e2dd084c04ded} 
+\index{Nest@{Nest}!destroy\+Electrics@{destroy\+Electrics}}
+\index{destroy\+Electrics@{destroy\+Electrics}!Nest@{Nest}}
+\subsubsection{\texorpdfstring{destroy\+Electrics()}{destroyElectrics()}}
+{\footnotesize\ttfamily void Nest\+::destroy\+Electrics (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\hypertarget{class_nest_a5d38f9e047947336dd2830e936ce2386}{}\label{class_nest_a5d38f9e047947336dd2830e936ce2386} 
+\index{Nest@{Nest}!Draw@{Draw}}
+\index{Draw@{Draw}!Nest@{Nest}}
+\subsubsection{\texorpdfstring{Draw()}{Draw()}}
+{\footnotesize\ttfamily void Nest\+::\+Draw (\begin{DoxyParamCaption}\item[{sf\+::\+Render\+Window \&}]{window }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \hyperlink{class_game_object_a0bd45eb831b3d0959eb498cad3e412ce}{Game\+Object}.
+
+\hypertarget{class_nest_a43f88fdd7366b39bd7614f26433afe10}{}\label{class_nest_a43f88fdd7366b39bd7614f26433afe10} 
+\index{Nest@{Nest}!Draw\+With\+X\+Offset@{Draw\+With\+X\+Offset}}
+\index{Draw\+With\+X\+Offset@{Draw\+With\+X\+Offset}!Nest@{Nest}}
+\subsubsection{\texorpdfstring{Draw\+With\+X\+Offset()}{DrawWithXOffset()}}
+{\footnotesize\ttfamily void Nest\+::\+Draw\+With\+X\+Offset (\begin{DoxyParamCaption}\item[{sf\+::\+Render\+Window \&}]{window,  }\item[{float}]{x\+Offset }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \hyperlink{class_game_object_a8a3c07e92775fe00baa9e661fefb224e}{Game\+Object}.
+
+\hypertarget{class_nest_a436c3e1024545b8ce632105d2fac2c54}{}\label{class_nest_a436c3e1024545b8ce632105d2fac2c54} 
+\index{Nest@{Nest}!is\+Under\+E\+MP@{is\+Under\+E\+MP}}
+\index{is\+Under\+E\+MP@{is\+Under\+E\+MP}!Nest@{Nest}}
+\subsubsection{\texorpdfstring{is\+Under\+E\+M\+P()}{isUnderEMP()}}
+{\footnotesize\ttfamily bool Nest\+::is\+Under\+E\+MP (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\hypertarget{class_nest_aa5a8307172777c880ba2747719a6a0f7}{}\label{class_nest_aa5a8307172777c880ba2747719a6a0f7} 
+\index{Nest@{Nest}!set\+GroundY@{set\+GroundY}}
+\index{set\+GroundY@{set\+GroundY}!Nest@{Nest}}
+\subsubsection{\texorpdfstring{set\+Ground\+Y()}{setGroundY()}}
+{\footnotesize\ttfamily void Nest\+::set\+GroundY (\begin{DoxyParamCaption}\item[{float}]{y }\end{DoxyParamCaption})}
+
+\hypertarget{class_nest_a981ac754a770ac168f034cb139b7726b}{}\label{class_nest_a981ac754a770ac168f034cb139b7726b} 
+\index{Nest@{Nest}!Spawn\+Abductors@{Spawn\+Abductors}}
+\index{Spawn\+Abductors@{Spawn\+Abductors}!Nest@{Nest}}
+\subsubsection{\texorpdfstring{Spawn\+Abductors()}{SpawnAbductors()}}
+{\footnotesize\ttfamily void Nest\+::\+Spawn\+Abductors (\begin{DoxyParamCaption}\item[{float}]{dt }\end{DoxyParamCaption})}
+
+\hypertarget{class_nest_a00bd75873d812a893b20b0391ca117b4}{}\label{class_nest_a00bd75873d812a893b20b0391ca117b4} 
+\index{Nest@{Nest}!Update@{Update}}
+\index{Update@{Update}!Nest@{Nest}}
+\subsubsection{\texorpdfstring{Update()}{Update()}}
+{\footnotesize\ttfamily void Nest\+::\+Update (\begin{DoxyParamCaption}\item[{float}]{dt }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \hyperlink{class_game_object_a93ed63df640deb516a020530e7f8e045}{Game\+Object}.
+
+\hypertarget{class_nest_a763db342ea691c22d37b4905c1d022fa}{}\label{class_nest_a763db342ea691c22d37b4905c1d022fa} 
+\index{Nest@{Nest}!wrap\+Positions@{wrap\+Positions}}
+\index{wrap\+Positions@{wrap\+Positions}!Nest@{Nest}}
+\subsubsection{\texorpdfstring{wrap\+Positions()}{wrapPositions()}}
+{\footnotesize\ttfamily void Nest\+::wrap\+Positions (\begin{DoxyParamCaption}\item[{\hyperlink{class_camera}{Camera} \&}]{cam }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \hyperlink{class_game_object_a53b129d55688652e25e6515d80e669ca}{Game\+Object}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Console\+Application2/\hyperlink{_nest_8h}{Nest.\+h}\item 
+Console\+Application2/\hyperlink{_nest_8cpp}{Nest.\+cpp}\end{DoxyCompactItemize}

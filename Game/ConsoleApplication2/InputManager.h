@@ -17,6 +17,7 @@ public:
 	~InputManager();
 	static InputManager* getInstance();
 	void AddListener(int, EventListener*);
+	void NukeListenerMap();
 	void Dispatch(EventListener::KeyDownEvent);
 	void Dispatch(EventListener::KeyUpEvent);
 	void Dispatch(EventListener::GenericEvent);

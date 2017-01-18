@@ -17,7 +17,7 @@ sf::FloatRect EntityFactory::m_levelSize = sf::FloatRect();
 
 void EntityFactory::CreateBullet(Vector2D position, Vector2D direction, bool isEnemyBullet)
 {
-	Bullet* bullet = new Bullet(position, direction);
+	GameObject* bullet = new Bullet(position, direction);
 	m_newGameObjects.push_back(bullet);
 
 	if (!isEnemyBullet)
@@ -32,7 +32,7 @@ void EntityFactory::CreateBullet(Vector2D position, Vector2D direction, bool isE
 
 void EntityFactory::CreateMissile(Vector2D position)
 {
-	Missile* m = new Missile(position);
+	GameObject* m = new Missile(position);
 	m_newGameObjects.push_back(m);
 	CollisionManager::RegisterEnemyBullet(m);
 }

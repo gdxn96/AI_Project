@@ -34,16 +34,16 @@ Game::Game(Vector2D screenSize, Vector2D levelSize) :
 
 void Game::CreatePlayer()
 {
-	Player* player = new Player(
+	m_player = new Player(
 		sf::Vector2f(950, 530),	//bounds
 		sf::Vector2f(80, 40),	//size
 		Vector2D(800, 800),		//acceleration
 		Vector2D(5000, 400)		//maxSpeed
 	);
 
-	AIManager::registerPlayer(player);
-	CollisionManager::RegisterPlayer(player);
-	m_gameObjects.push_back(player);
+	AIManager::registerPlayer(m_player);
+	CollisionManager::RegisterPlayer(m_player);
+	m_gameObjects.push_back(m_player);
 }
 
 void Game::CreateEntities(Vector2D screenSize)
@@ -67,6 +67,20 @@ void Game::Update(float dt)
 	UpdateGameObjectList(dt, m_gameObjectsBehind);
 	CollisionManager::CheckCollisions();
 	m_powerupManager.Update(dt);
+}
+
+void Game::RestartGame()
+{
+	/*for (auto& g : m_gameObjects)
+	{
+		g->kill();
+	}
+	for (auto& g : m_gameObjectsBehind)
+	{
+		g->kill();
+	}
+	CreateEntities(m_screenSize);
+	CreatePlayer();*/
 }
 
 
@@ -96,6 +110,11 @@ void Game::UpdateGameObjectList(float dt, std::vector<GameObject*>& list)
 		if (!(*it)->isAlive())
 		{
 			CollisionManager::deregisterGameObject(*(it));
+			if (*(it) == m_player)
+			{
+				InputManager::getInstance()->NukeListenerMap();
+				RestartGame();
+			}
 			delete * it;
 			it = list.erase(it);
 		}

@@ -1,0 +1,242 @@
+\hypertarget{class_a_i_manager}{}\section{A\+I\+Manager Class Reference}
+\label{class_a_i_manager}\index{A\+I\+Manager@{A\+I\+Manager}}
+
+
+{\ttfamily \#include $<$A\+I\+Manager.\+h$>$}
+
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \hyperlink{class_a_i_manager_a9ac554c9d74432fe3ef74fedab936847}{initialize} (sf\+::\+Float\+Rect level\+Bounds)
+\item 
+static \hyperlink{class_vector2_d}{Vector2D} \hyperlink{class_a_i_manager_a5d0b2b08188e1e3ccf816480e70cd123}{Separation} (std\+::vector$<$ \hyperlink{class_boid}{Boid} $\ast$$>$ flock\+Objects, \hyperlink{class_vector2_d}{Vector2D} \&position, \hyperlink{class_vector2_d}{Vector2D} \&velocity, const float max\+Speed, const float max\+Acceleration, bool predator=false)
+\item 
+static \hyperlink{class_vector2_d}{Vector2D} \hyperlink{class_a_i_manager_afe3cf14648ae243d21f4cabaa8cc2ec1}{Alignment} (std\+::vector$<$ \hyperlink{class_boid}{Boid} $\ast$$>$ flock\+Objects, \hyperlink{class_vector2_d}{Vector2D} \&position, \hyperlink{class_vector2_d}{Vector2D} \&velocity, const float max\+Speed, const float max\+Acceleration)
+\item 
+static \hyperlink{class_vector2_d}{Vector2D} \hyperlink{class_a_i_manager_ae70e083ab30b71c15384f5bdb345b462}{Cohesion} (std\+::vector$<$ \hyperlink{class_boid}{Boid} $\ast$$>$ flock\+Objects, \hyperlink{class_vector2_d}{Vector2D} \&position, \hyperlink{class_vector2_d}{Vector2D} \&velocity, \hyperlink{class_vector2_d}{Vector2D} \&acceleration, const float max\+Speed, const float max\+Acceleration)
+\item 
+static \hyperlink{class_vector2_d}{Vector2D} \hyperlink{class_a_i_manager_a6fb60f6d1707822f1d692272467cc06e}{seek} (\hyperlink{class_vector2_d}{Vector2D} target, \hyperlink{class_vector2_d}{Vector2D} \&velocity, \hyperlink{class_vector2_d}{Vector2D} \&acceleration, const float max\+Speed, const float max\+Acceleration)
+\item 
+static void \hyperlink{class_a_i_manager_ac57a276bbab23a0db4aafe9392dea156}{flock} (\hyperlink{class_boid}{Boid} $\ast$b, \hyperlink{class_vector2_d}{Vector2D} \&acceleration, \hyperlink{class_vector2_d}{Vector2D} \&position, \hyperlink{class_vector2_d}{Vector2D} \&velocity, const float max\+Speed, const float max\+Acceleration, bool predator=false)
+\item 
+static void \hyperlink{class_a_i_manager_a69a2ee2acf0bc9a11370a2f2aa88e986}{swarm} (\hyperlink{class_boid}{Boid} $\ast$b, \hyperlink{class_vector2_d}{Vector2D} position, \hyperlink{class_vector2_d}{Vector2D} \&acceleration)
+\item 
+static void \hyperlink{class_a_i_manager_aaa175d0e5d024f0965e3acd2e53f4fbd}{process} ()
+\item 
+static void \hyperlink{class_a_i_manager_a2154de38a09bfcd16ddc202c56467b0b}{register\+Player} (\hyperlink{class_player}{Player} $\ast$player)
+\item 
+static void \hyperlink{class_a_i_manager_a254b2cb95e86b6056c7625782f846a83}{register\+Abductor} (\hyperlink{class_abductor}{Abductor} $\ast$abductor)
+\item 
+static void \hyperlink{class_a_i_manager_af4c426ea6624b3fddebae90b38e60f8e}{register\+Astronaut} (\hyperlink{class_astronaut}{Astronaut} $\ast$astronaut)
+\item 
+static void \hyperlink{class_a_i_manager_aef2cec33330d60136ce1a3c1fa6ddf3d}{register\+Meteor} (\hyperlink{class_meteor}{Meteor} $\ast$m)
+\item 
+static void \hyperlink{class_a_i_manager_ae95e3ce383599bba475efd56c1659e8c}{unregister\+Meteor} (\hyperlink{class_meteor}{Meteor} $\ast$m)
+\item 
+static void \hyperlink{class_a_i_manager_ae76cc0872ad978e4a36ab41522bb1ea4}{register\+Swarm\+Boid} (\hyperlink{class_boid}{Boid} $\ast$b)
+\item 
+static void \hyperlink{class_a_i_manager_a5104415d465d8b6f73999cf5623b20a5}{register\+Flock\+Boid} (\hyperlink{class_boid}{Boid} $\ast$b)
+\item 
+static void \hyperlink{class_a_i_manager_accc5ec3be7c8df6f72aa519e47454a6d}{unregister\+Boid} (\hyperlink{class_boid}{Boid} $\ast$b)
+\item 
+static void \hyperlink{class_a_i_manager_a372acb15818c45e4f84848103d5afecf}{unregister\+Player} ()
+\item 
+static void \hyperlink{class_a_i_manager_a202fdf78a138904ef96a3a5b5ccbbe30}{unregister\+Astronaut} (\hyperlink{class_astronaut}{Astronaut} $\ast$astronaut)
+\item 
+static void \hyperlink{class_a_i_manager_a54dd2607612cbbfbfa4253e44645b74f}{avoid\+Obstacles} (\hyperlink{class_vector2_d}{Vector2D} m\+\_\+position, \hyperlink{class_vector2_d}{Vector2D} \&acceleration, const float M\+A\+X\+\_\+\+A\+C\+C\+EL)
+\item 
+static \hyperlink{class_vector2_d}{Vector2D} \hyperlink{class_a_i_manager_ae15963d08e5b13b33c44d2f018b7d53c}{get\+Player\+Pos} ()
+\item 
+static \hyperlink{class_vector2_d}{Vector2D} \hyperlink{class_a_i_manager_a1b2223e6059e0b5d303dbb1845ec252a}{get\+Closest\+Player\+Pos} (\hyperlink{class_vector2_d}{Vector2D} pos)
+\item 
+static void \hyperlink{class_a_i_manager_adac775408b1f5657948ac68876633ad6}{wander\+Thrust} (float dt, float \&time\+Until\+Decelerate, float M\+A\+X\+T\+I\+ME, \hyperlink{class_vector2_d}{Vector2D} \&velocity, \hyperlink{class_vector2_d}{Vector2D} \&acceleration, const float M\+A\+X\+\_\+\+A\+C\+C\+EL)
+\item 
+static void \hyperlink{class_a_i_manager_affdb0ecab44ebf429f5d8a3f08051416}{wander} (float dt, float \&time\+Remaining, int max\+Time, \hyperlink{class_vector2_d}{Vector2D} \&direction)
+\item 
+static void \hyperlink{class_a_i_manager_a130f5f0727fd01841265946e533de685}{wander\+Horizontal} (float dt, float \&time\+Remaining, int max\+Time, \hyperlink{class_vector2_d}{Vector2D} \&direction)
+\item 
+static void \hyperlink{class_a_i_manager_af83d3d5dc2b853811b92c463a88e434f}{seek\+Toward} (\hyperlink{class_vector2_d}{Vector2D} position, \hyperlink{class_vector2_d}{Vector2D} target\+Position, \hyperlink{class_vector2_d}{Vector2D} \&direction)
+\item 
+static void \hyperlink{class_a_i_manager_a9b04dd523dfb195990b365bacfcd1e92}{evade\+From} (\hyperlink{class_vector2_d}{Vector2D} position, \hyperlink{class_vector2_d}{Vector2D} target\+Position, \hyperlink{class_vector2_d}{Vector2D} \&direction)
+\item 
+static void \hyperlink{class_a_i_manager_ad4c0ad994de9e3d1a4780dd4050da257}{avoid} (\hyperlink{class_vector2_d}{Vector2D} position, \hyperlink{class_vector2_d}{Vector2D} target\+Position, \hyperlink{class_vector2_d}{Vector2D} \&acceleration, const float max\+Accel)
+\item 
+static void \hyperlink{class_a_i_manager_a96ee060f8e8d6f01280c2eff2d66ea6a}{jump\+To\+Random\+Position} (\hyperlink{class_vector2_d}{Vector2D} \&position)
+\end{DoxyCompactItemize}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_a_i_manager_afe3cf14648ae243d21f4cabaa8cc2ec1}{}\label{class_a_i_manager_afe3cf14648ae243d21f4cabaa8cc2ec1} 
+\index{A\+I\+Manager@{A\+I\+Manager}!Alignment@{Alignment}}
+\index{Alignment@{Alignment}!A\+I\+Manager@{A\+I\+Manager}}
+\subsubsection{\texorpdfstring{Alignment()}{Alignment()}}
+{\footnotesize\ttfamily \hyperlink{class_vector2_d}{Vector2D} A\+I\+Manager\+::\+Alignment (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \hyperlink{class_boid}{Boid} $\ast$$>$}]{flock\+Objects,  }\item[{\hyperlink{class_vector2_d}{Vector2D} \&}]{position,  }\item[{\hyperlink{class_vector2_d}{Vector2D} \&}]{velocity,  }\item[{const float}]{max\+Speed,  }\item[{const float}]{max\+Acceleration }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\hypertarget{class_a_i_manager_ad4c0ad994de9e3d1a4780dd4050da257}{}\label{class_a_i_manager_ad4c0ad994de9e3d1a4780dd4050da257} 
+\index{A\+I\+Manager@{A\+I\+Manager}!avoid@{avoid}}
+\index{avoid@{avoid}!A\+I\+Manager@{A\+I\+Manager}}
+\subsubsection{\texorpdfstring{avoid()}{avoid()}}
+{\footnotesize\ttfamily void A\+I\+Manager\+::avoid (\begin{DoxyParamCaption}\item[{\hyperlink{class_vector2_d}{Vector2D}}]{position,  }\item[{\hyperlink{class_vector2_d}{Vector2D}}]{target\+Position,  }\item[{\hyperlink{class_vector2_d}{Vector2D} \&}]{acceleration,  }\item[{const float}]{max\+Accel }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\hypertarget{class_a_i_manager_a54dd2607612cbbfbfa4253e44645b74f}{}\label{class_a_i_manager_a54dd2607612cbbfbfa4253e44645b74f} 
+\index{A\+I\+Manager@{A\+I\+Manager}!avoid\+Obstacles@{avoid\+Obstacles}}
+\index{avoid\+Obstacles@{avoid\+Obstacles}!A\+I\+Manager@{A\+I\+Manager}}
+\subsubsection{\texorpdfstring{avoid\+Obstacles()}{avoidObstacles()}}
+{\footnotesize\ttfamily void A\+I\+Manager\+::avoid\+Obstacles (\begin{DoxyParamCaption}\item[{\hyperlink{class_vector2_d}{Vector2D}}]{m\+\_\+position,  }\item[{\hyperlink{class_vector2_d}{Vector2D} \&}]{acceleration,  }\item[{const float}]{M\+A\+X\+\_\+\+A\+C\+C\+EL }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\hypertarget{class_a_i_manager_ae70e083ab30b71c15384f5bdb345b462}{}\label{class_a_i_manager_ae70e083ab30b71c15384f5bdb345b462} 
+\index{A\+I\+Manager@{A\+I\+Manager}!Cohesion@{Cohesion}}
+\index{Cohesion@{Cohesion}!A\+I\+Manager@{A\+I\+Manager}}
+\subsubsection{\texorpdfstring{Cohesion()}{Cohesion()}}
+{\footnotesize\ttfamily \hyperlink{class_vector2_d}{Vector2D} A\+I\+Manager\+::\+Cohesion (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \hyperlink{class_boid}{Boid} $\ast$$>$}]{flock\+Objects,  }\item[{\hyperlink{class_vector2_d}{Vector2D} \&}]{position,  }\item[{\hyperlink{class_vector2_d}{Vector2D} \&}]{velocity,  }\item[{\hyperlink{class_vector2_d}{Vector2D} \&}]{acceleration,  }\item[{const float}]{max\+Speed,  }\item[{const float}]{max\+Acceleration }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\hypertarget{class_a_i_manager_a9b04dd523dfb195990b365bacfcd1e92}{}\label{class_a_i_manager_a9b04dd523dfb195990b365bacfcd1e92} 
+\index{A\+I\+Manager@{A\+I\+Manager}!evade\+From@{evade\+From}}
+\index{evade\+From@{evade\+From}!A\+I\+Manager@{A\+I\+Manager}}
+\subsubsection{\texorpdfstring{evade\+From()}{evadeFrom()}}
+{\footnotesize\ttfamily void A\+I\+Manager\+::evade\+From (\begin{DoxyParamCaption}\item[{\hyperlink{class_vector2_d}{Vector2D}}]{position,  }\item[{\hyperlink{class_vector2_d}{Vector2D}}]{target\+Position,  }\item[{\hyperlink{class_vector2_d}{Vector2D} \&}]{direction }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\hypertarget{class_a_i_manager_ac57a276bbab23a0db4aafe9392dea156}{}\label{class_a_i_manager_ac57a276bbab23a0db4aafe9392dea156} 
+\index{A\+I\+Manager@{A\+I\+Manager}!flock@{flock}}
+\index{flock@{flock}!A\+I\+Manager@{A\+I\+Manager}}
+\subsubsection{\texorpdfstring{flock()}{flock()}}
+{\footnotesize\ttfamily void A\+I\+Manager\+::flock (\begin{DoxyParamCaption}\item[{\hyperlink{class_boid}{Boid} $\ast$}]{b,  }\item[{\hyperlink{class_vector2_d}{Vector2D} \&}]{acceleration,  }\item[{\hyperlink{class_vector2_d}{Vector2D} \&}]{position,  }\item[{\hyperlink{class_vector2_d}{Vector2D} \&}]{velocity,  }\item[{const float}]{max\+Speed,  }\item[{const float}]{max\+Acceleration,  }\item[{bool}]{predator = {\ttfamily false} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\hypertarget{class_a_i_manager_a1b2223e6059e0b5d303dbb1845ec252a}{}\label{class_a_i_manager_a1b2223e6059e0b5d303dbb1845ec252a} 
+\index{A\+I\+Manager@{A\+I\+Manager}!get\+Closest\+Player\+Pos@{get\+Closest\+Player\+Pos}}
+\index{get\+Closest\+Player\+Pos@{get\+Closest\+Player\+Pos}!A\+I\+Manager@{A\+I\+Manager}}
+\subsubsection{\texorpdfstring{get\+Closest\+Player\+Pos()}{getClosestPlayerPos()}}
+{\footnotesize\ttfamily \hyperlink{class_vector2_d}{Vector2D} A\+I\+Manager\+::get\+Closest\+Player\+Pos (\begin{DoxyParamCaption}\item[{\hyperlink{class_vector2_d}{Vector2D}}]{pos }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\hypertarget{class_a_i_manager_ae15963d08e5b13b33c44d2f018b7d53c}{}\label{class_a_i_manager_ae15963d08e5b13b33c44d2f018b7d53c} 
+\index{A\+I\+Manager@{A\+I\+Manager}!get\+Player\+Pos@{get\+Player\+Pos}}
+\index{get\+Player\+Pos@{get\+Player\+Pos}!A\+I\+Manager@{A\+I\+Manager}}
+\subsubsection{\texorpdfstring{get\+Player\+Pos()}{getPlayerPos()}}
+{\footnotesize\ttfamily \hyperlink{class_vector2_d}{Vector2D} A\+I\+Manager\+::get\+Player\+Pos (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\hypertarget{class_a_i_manager_a9ac554c9d74432fe3ef74fedab936847}{}\label{class_a_i_manager_a9ac554c9d74432fe3ef74fedab936847} 
+\index{A\+I\+Manager@{A\+I\+Manager}!initialize@{initialize}}
+\index{initialize@{initialize}!A\+I\+Manager@{A\+I\+Manager}}
+\subsubsection{\texorpdfstring{initialize()}{initialize()}}
+{\footnotesize\ttfamily void A\+I\+Manager\+::initialize (\begin{DoxyParamCaption}\item[{sf\+::\+Float\+Rect}]{level\+Bounds }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\hypertarget{class_a_i_manager_a96ee060f8e8d6f01280c2eff2d66ea6a}{}\label{class_a_i_manager_a96ee060f8e8d6f01280c2eff2d66ea6a} 
+\index{A\+I\+Manager@{A\+I\+Manager}!jump\+To\+Random\+Position@{jump\+To\+Random\+Position}}
+\index{jump\+To\+Random\+Position@{jump\+To\+Random\+Position}!A\+I\+Manager@{A\+I\+Manager}}
+\subsubsection{\texorpdfstring{jump\+To\+Random\+Position()}{jumpToRandomPosition()}}
+{\footnotesize\ttfamily void A\+I\+Manager\+::jump\+To\+Random\+Position (\begin{DoxyParamCaption}\item[{\hyperlink{class_vector2_d}{Vector2D} \&}]{position }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\hypertarget{class_a_i_manager_aaa175d0e5d024f0965e3acd2e53f4fbd}{}\label{class_a_i_manager_aaa175d0e5d024f0965e3acd2e53f4fbd} 
+\index{A\+I\+Manager@{A\+I\+Manager}!process@{process}}
+\index{process@{process}!A\+I\+Manager@{A\+I\+Manager}}
+\subsubsection{\texorpdfstring{process()}{process()}}
+{\footnotesize\ttfamily void A\+I\+Manager\+::process (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\hypertarget{class_a_i_manager_a254b2cb95e86b6056c7625782f846a83}{}\label{class_a_i_manager_a254b2cb95e86b6056c7625782f846a83} 
+\index{A\+I\+Manager@{A\+I\+Manager}!register\+Abductor@{register\+Abductor}}
+\index{register\+Abductor@{register\+Abductor}!A\+I\+Manager@{A\+I\+Manager}}
+\subsubsection{\texorpdfstring{register\+Abductor()}{registerAbductor()}}
+{\footnotesize\ttfamily void A\+I\+Manager\+::register\+Abductor (\begin{DoxyParamCaption}\item[{\hyperlink{class_abductor}{Abductor} $\ast$}]{abductor }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\hypertarget{class_a_i_manager_af4c426ea6624b3fddebae90b38e60f8e}{}\label{class_a_i_manager_af4c426ea6624b3fddebae90b38e60f8e} 
+\index{A\+I\+Manager@{A\+I\+Manager}!register\+Astronaut@{register\+Astronaut}}
+\index{register\+Astronaut@{register\+Astronaut}!A\+I\+Manager@{A\+I\+Manager}}
+\subsubsection{\texorpdfstring{register\+Astronaut()}{registerAstronaut()}}
+{\footnotesize\ttfamily void A\+I\+Manager\+::register\+Astronaut (\begin{DoxyParamCaption}\item[{\hyperlink{class_astronaut}{Astronaut} $\ast$}]{astronaut }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\hypertarget{class_a_i_manager_a5104415d465d8b6f73999cf5623b20a5}{}\label{class_a_i_manager_a5104415d465d8b6f73999cf5623b20a5} 
+\index{A\+I\+Manager@{A\+I\+Manager}!register\+Flock\+Boid@{register\+Flock\+Boid}}
+\index{register\+Flock\+Boid@{register\+Flock\+Boid}!A\+I\+Manager@{A\+I\+Manager}}
+\subsubsection{\texorpdfstring{register\+Flock\+Boid()}{registerFlockBoid()}}
+{\footnotesize\ttfamily void A\+I\+Manager\+::register\+Flock\+Boid (\begin{DoxyParamCaption}\item[{\hyperlink{class_boid}{Boid} $\ast$}]{b }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\hypertarget{class_a_i_manager_aef2cec33330d60136ce1a3c1fa6ddf3d}{}\label{class_a_i_manager_aef2cec33330d60136ce1a3c1fa6ddf3d} 
+\index{A\+I\+Manager@{A\+I\+Manager}!register\+Meteor@{register\+Meteor}}
+\index{register\+Meteor@{register\+Meteor}!A\+I\+Manager@{A\+I\+Manager}}
+\subsubsection{\texorpdfstring{register\+Meteor()}{registerMeteor()}}
+{\footnotesize\ttfamily void A\+I\+Manager\+::register\+Meteor (\begin{DoxyParamCaption}\item[{\hyperlink{class_meteor}{Meteor} $\ast$}]{m }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\hypertarget{class_a_i_manager_a2154de38a09bfcd16ddc202c56467b0b}{}\label{class_a_i_manager_a2154de38a09bfcd16ddc202c56467b0b} 
+\index{A\+I\+Manager@{A\+I\+Manager}!register\+Player@{register\+Player}}
+\index{register\+Player@{register\+Player}!A\+I\+Manager@{A\+I\+Manager}}
+\subsubsection{\texorpdfstring{register\+Player()}{registerPlayer()}}
+{\footnotesize\ttfamily void A\+I\+Manager\+::register\+Player (\begin{DoxyParamCaption}\item[{\hyperlink{class_player}{Player} $\ast$}]{player }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\hypertarget{class_a_i_manager_ae76cc0872ad978e4a36ab41522bb1ea4}{}\label{class_a_i_manager_ae76cc0872ad978e4a36ab41522bb1ea4} 
+\index{A\+I\+Manager@{A\+I\+Manager}!register\+Swarm\+Boid@{register\+Swarm\+Boid}}
+\index{register\+Swarm\+Boid@{register\+Swarm\+Boid}!A\+I\+Manager@{A\+I\+Manager}}
+\subsubsection{\texorpdfstring{register\+Swarm\+Boid()}{registerSwarmBoid()}}
+{\footnotesize\ttfamily void A\+I\+Manager\+::register\+Swarm\+Boid (\begin{DoxyParamCaption}\item[{\hyperlink{class_boid}{Boid} $\ast$}]{b }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\hypertarget{class_a_i_manager_a6fb60f6d1707822f1d692272467cc06e}{}\label{class_a_i_manager_a6fb60f6d1707822f1d692272467cc06e} 
+\index{A\+I\+Manager@{A\+I\+Manager}!seek@{seek}}
+\index{seek@{seek}!A\+I\+Manager@{A\+I\+Manager}}
+\subsubsection{\texorpdfstring{seek()}{seek()}}
+{\footnotesize\ttfamily \hyperlink{class_vector2_d}{Vector2D} A\+I\+Manager\+::seek (\begin{DoxyParamCaption}\item[{\hyperlink{class_vector2_d}{Vector2D}}]{target,  }\item[{\hyperlink{class_vector2_d}{Vector2D} \&}]{velocity,  }\item[{\hyperlink{class_vector2_d}{Vector2D} \&}]{acceleration,  }\item[{const float}]{max\+Speed,  }\item[{const float}]{max\+Acceleration }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\hypertarget{class_a_i_manager_af83d3d5dc2b853811b92c463a88e434f}{}\label{class_a_i_manager_af83d3d5dc2b853811b92c463a88e434f} 
+\index{A\+I\+Manager@{A\+I\+Manager}!seek\+Toward@{seek\+Toward}}
+\index{seek\+Toward@{seek\+Toward}!A\+I\+Manager@{A\+I\+Manager}}
+\subsubsection{\texorpdfstring{seek\+Toward()}{seekToward()}}
+{\footnotesize\ttfamily void A\+I\+Manager\+::seek\+Toward (\begin{DoxyParamCaption}\item[{\hyperlink{class_vector2_d}{Vector2D}}]{position,  }\item[{\hyperlink{class_vector2_d}{Vector2D}}]{target\+Position,  }\item[{\hyperlink{class_vector2_d}{Vector2D} \&}]{direction }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\hypertarget{class_a_i_manager_a5d0b2b08188e1e3ccf816480e70cd123}{}\label{class_a_i_manager_a5d0b2b08188e1e3ccf816480e70cd123} 
+\index{A\+I\+Manager@{A\+I\+Manager}!Separation@{Separation}}
+\index{Separation@{Separation}!A\+I\+Manager@{A\+I\+Manager}}
+\subsubsection{\texorpdfstring{Separation()}{Separation()}}
+{\footnotesize\ttfamily \hyperlink{class_vector2_d}{Vector2D} A\+I\+Manager\+::\+Separation (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \hyperlink{class_boid}{Boid} $\ast$$>$}]{flock\+Objects,  }\item[{\hyperlink{class_vector2_d}{Vector2D} \&}]{position,  }\item[{\hyperlink{class_vector2_d}{Vector2D} \&}]{velocity,  }\item[{const float}]{max\+Speed,  }\item[{const float}]{max\+Acceleration,  }\item[{bool}]{predator = {\ttfamily false} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\hypertarget{class_a_i_manager_a69a2ee2acf0bc9a11370a2f2aa88e986}{}\label{class_a_i_manager_a69a2ee2acf0bc9a11370a2f2aa88e986} 
+\index{A\+I\+Manager@{A\+I\+Manager}!swarm@{swarm}}
+\index{swarm@{swarm}!A\+I\+Manager@{A\+I\+Manager}}
+\subsubsection{\texorpdfstring{swarm()}{swarm()}}
+{\footnotesize\ttfamily void A\+I\+Manager\+::swarm (\begin{DoxyParamCaption}\item[{\hyperlink{class_boid}{Boid} $\ast$}]{b,  }\item[{\hyperlink{class_vector2_d}{Vector2D}}]{position,  }\item[{\hyperlink{class_vector2_d}{Vector2D} \&}]{acceleration }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\hypertarget{class_a_i_manager_a202fdf78a138904ef96a3a5b5ccbbe30}{}\label{class_a_i_manager_a202fdf78a138904ef96a3a5b5ccbbe30} 
+\index{A\+I\+Manager@{A\+I\+Manager}!unregister\+Astronaut@{unregister\+Astronaut}}
+\index{unregister\+Astronaut@{unregister\+Astronaut}!A\+I\+Manager@{A\+I\+Manager}}
+\subsubsection{\texorpdfstring{unregister\+Astronaut()}{unregisterAstronaut()}}
+{\footnotesize\ttfamily void A\+I\+Manager\+::unregister\+Astronaut (\begin{DoxyParamCaption}\item[{\hyperlink{class_astronaut}{Astronaut} $\ast$}]{astronaut }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\hypertarget{class_a_i_manager_accc5ec3be7c8df6f72aa519e47454a6d}{}\label{class_a_i_manager_accc5ec3be7c8df6f72aa519e47454a6d} 
+\index{A\+I\+Manager@{A\+I\+Manager}!unregister\+Boid@{unregister\+Boid}}
+\index{unregister\+Boid@{unregister\+Boid}!A\+I\+Manager@{A\+I\+Manager}}
+\subsubsection{\texorpdfstring{unregister\+Boid()}{unregisterBoid()}}
+{\footnotesize\ttfamily void A\+I\+Manager\+::unregister\+Boid (\begin{DoxyParamCaption}\item[{\hyperlink{class_boid}{Boid} $\ast$}]{b }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\hypertarget{class_a_i_manager_ae95e3ce383599bba475efd56c1659e8c}{}\label{class_a_i_manager_ae95e3ce383599bba475efd56c1659e8c} 
+\index{A\+I\+Manager@{A\+I\+Manager}!unregister\+Meteor@{unregister\+Meteor}}
+\index{unregister\+Meteor@{unregister\+Meteor}!A\+I\+Manager@{A\+I\+Manager}}
+\subsubsection{\texorpdfstring{unregister\+Meteor()}{unregisterMeteor()}}
+{\footnotesize\ttfamily void A\+I\+Manager\+::unregister\+Meteor (\begin{DoxyParamCaption}\item[{\hyperlink{class_meteor}{Meteor} $\ast$}]{m }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\hypertarget{class_a_i_manager_a372acb15818c45e4f84848103d5afecf}{}\label{class_a_i_manager_a372acb15818c45e4f84848103d5afecf} 
+\index{A\+I\+Manager@{A\+I\+Manager}!unregister\+Player@{unregister\+Player}}
+\index{unregister\+Player@{unregister\+Player}!A\+I\+Manager@{A\+I\+Manager}}
+\subsubsection{\texorpdfstring{unregister\+Player()}{unregisterPlayer()}}
+{\footnotesize\ttfamily void A\+I\+Manager\+::unregister\+Player (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\hypertarget{class_a_i_manager_affdb0ecab44ebf429f5d8a3f08051416}{}\label{class_a_i_manager_affdb0ecab44ebf429f5d8a3f08051416} 
+\index{A\+I\+Manager@{A\+I\+Manager}!wander@{wander}}
+\index{wander@{wander}!A\+I\+Manager@{A\+I\+Manager}}
+\subsubsection{\texorpdfstring{wander()}{wander()}}
+{\footnotesize\ttfamily void A\+I\+Manager\+::wander (\begin{DoxyParamCaption}\item[{float}]{dt,  }\item[{float \&}]{time\+Remaining,  }\item[{int}]{max\+Time,  }\item[{\hyperlink{class_vector2_d}{Vector2D} \&}]{direction }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\hypertarget{class_a_i_manager_a130f5f0727fd01841265946e533de685}{}\label{class_a_i_manager_a130f5f0727fd01841265946e533de685} 
+\index{A\+I\+Manager@{A\+I\+Manager}!wander\+Horizontal@{wander\+Horizontal}}
+\index{wander\+Horizontal@{wander\+Horizontal}!A\+I\+Manager@{A\+I\+Manager}}
+\subsubsection{\texorpdfstring{wander\+Horizontal()}{wanderHorizontal()}}
+{\footnotesize\ttfamily void A\+I\+Manager\+::wander\+Horizontal (\begin{DoxyParamCaption}\item[{float}]{dt,  }\item[{float \&}]{time\+Remaining,  }\item[{int}]{max\+Time,  }\item[{\hyperlink{class_vector2_d}{Vector2D} \&}]{direction }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\hypertarget{class_a_i_manager_adac775408b1f5657948ac68876633ad6}{}\label{class_a_i_manager_adac775408b1f5657948ac68876633ad6} 
+\index{A\+I\+Manager@{A\+I\+Manager}!wander\+Thrust@{wander\+Thrust}}
+\index{wander\+Thrust@{wander\+Thrust}!A\+I\+Manager@{A\+I\+Manager}}
+\subsubsection{\texorpdfstring{wander\+Thrust()}{wanderThrust()}}
+{\footnotesize\ttfamily void A\+I\+Manager\+::wander\+Thrust (\begin{DoxyParamCaption}\item[{float}]{dt,  }\item[{float \&}]{time\+Until\+Decelerate,  }\item[{float}]{M\+A\+X\+T\+I\+ME,  }\item[{\hyperlink{class_vector2_d}{Vector2D} \&}]{velocity,  }\item[{\hyperlink{class_vector2_d}{Vector2D} \&}]{acceleration,  }\item[{const float}]{M\+A\+X\+\_\+\+A\+C\+C\+EL }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Console\+Application2/\hyperlink{_a_i_manager_8h}{A\+I\+Manager.\+h}\item 
+Console\+Application2/\hyperlink{_a_i_manager_8cpp}{A\+I\+Manager.\+cpp}\end{DoxyCompactItemize}

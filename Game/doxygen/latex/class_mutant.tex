@@ -1,0 +1,144 @@
+\hypertarget{class_mutant}{}\section{Mutant Class Reference}
+\label{class_mutant}\index{Mutant@{Mutant}}
+
+
+{\ttfamily \#include $<$Mutant.\+h$>$}
+
+Inheritance diagram for Mutant\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{class_mutant}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_mutant_aa054e45e945caaef4ca7777fa32190c2}{Mutant} (\hyperlink{class_vector2_d}{Vector2D} pos)
+\item 
+\hyperlink{class_vector2_d}{Vector2D} \hyperlink{class_mutant_a9c3ab53037fc85159e02643ecfe46717}{get\+Position} ()
+\item 
+\hyperlink{class_vector2_d}{Vector2D} \hyperlink{class_mutant_af26928fa19102fe5ebea774819c4c565}{get\+Velocity} ()
+\item 
+bool \hyperlink{class_mutant_a3416c1b42eb1e02bdcd4066109a28812}{is\+Predator} ()
+\item 
+void \hyperlink{class_mutant_a69243115d28b18f3ac9803f66e8f8644}{Update} (float dt)
+\item 
+void \hyperlink{class_mutant_a024a5caac9b29a79a4a505d36cfd3122}{Draw} (sf\+::\+Render\+Window \&window)
+\item 
+void \hyperlink{class_mutant_a540fbecede166bd9c4ac68cbed72bc92}{Draw\+With\+X\+Offset} (sf\+::\+Render\+Window \&window, float x\+Offset)
+\item 
+void \hyperlink{class_mutant_a3bc5b923cb3605ddd10a5064ec904d29}{wrap\+Positions} (\hyperlink{class_camera}{Camera} \&cam)
+\item 
+void \hyperlink{class_mutant_a5bbd6188efe9a18fa208bdaaf011ccdc}{destroy\+Electrics} ()
+\item 
+void \hyperlink{class_mutant_ac411f16b95e51f8e3c8c694425865785}{set\+GroundY} (float y)
+\item 
+bool \hyperlink{class_mutant_a67fc6ef40353436d04d847f49254fa0b}{is\+Under\+E\+MP} ()
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_mutant_aa054e45e945caaef4ca7777fa32190c2}{}\label{class_mutant_aa054e45e945caaef4ca7777fa32190c2} 
+\index{Mutant@{Mutant}!Mutant@{Mutant}}
+\index{Mutant@{Mutant}!Mutant@{Mutant}}
+\subsubsection{\texorpdfstring{Mutant()}{Mutant()}}
+{\footnotesize\ttfamily Mutant\+::\+Mutant (\begin{DoxyParamCaption}\item[{\hyperlink{class_vector2_d}{Vector2D}}]{pos }\end{DoxyParamCaption})}
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_mutant_a5bbd6188efe9a18fa208bdaaf011ccdc}{}\label{class_mutant_a5bbd6188efe9a18fa208bdaaf011ccdc} 
+\index{Mutant@{Mutant}!destroy\+Electrics@{destroy\+Electrics}}
+\index{destroy\+Electrics@{destroy\+Electrics}!Mutant@{Mutant}}
+\subsubsection{\texorpdfstring{destroy\+Electrics()}{destroyElectrics()}}
+{\footnotesize\ttfamily void Mutant\+::destroy\+Electrics (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\hypertarget{class_mutant_a024a5caac9b29a79a4a505d36cfd3122}{}\label{class_mutant_a024a5caac9b29a79a4a505d36cfd3122} 
+\index{Mutant@{Mutant}!Draw@{Draw}}
+\index{Draw@{Draw}!Mutant@{Mutant}}
+\subsubsection{\texorpdfstring{Draw()}{Draw()}}
+{\footnotesize\ttfamily void Mutant\+::\+Draw (\begin{DoxyParamCaption}\item[{sf\+::\+Render\+Window \&}]{window }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Implements \hyperlink{class_game_object_a0bd45eb831b3d0959eb498cad3e412ce}{Game\+Object}.
+
+\hypertarget{class_mutant_a540fbecede166bd9c4ac68cbed72bc92}{}\label{class_mutant_a540fbecede166bd9c4ac68cbed72bc92} 
+\index{Mutant@{Mutant}!Draw\+With\+X\+Offset@{Draw\+With\+X\+Offset}}
+\index{Draw\+With\+X\+Offset@{Draw\+With\+X\+Offset}!Mutant@{Mutant}}
+\subsubsection{\texorpdfstring{Draw\+With\+X\+Offset()}{DrawWithXOffset()}}
+{\footnotesize\ttfamily void Mutant\+::\+Draw\+With\+X\+Offset (\begin{DoxyParamCaption}\item[{sf\+::\+Render\+Window \&}]{window,  }\item[{float}]{x\+Offset }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Implements \hyperlink{class_game_object_a8a3c07e92775fe00baa9e661fefb224e}{Game\+Object}.
+
+\hypertarget{class_mutant_a9c3ab53037fc85159e02643ecfe46717}{}\label{class_mutant_a9c3ab53037fc85159e02643ecfe46717} 
+\index{Mutant@{Mutant}!get\+Position@{get\+Position}}
+\index{get\+Position@{get\+Position}!Mutant@{Mutant}}
+\subsubsection{\texorpdfstring{get\+Position()}{getPosition()}}
+{\footnotesize\ttfamily \hyperlink{class_vector2_d}{Vector2D} Mutant\+::get\+Position (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Implements \hyperlink{class_boid_a32f7601f73e7a109bbd79d43b15d2272}{Boid}.
+
+\hypertarget{class_mutant_af26928fa19102fe5ebea774819c4c565}{}\label{class_mutant_af26928fa19102fe5ebea774819c4c565} 
+\index{Mutant@{Mutant}!get\+Velocity@{get\+Velocity}}
+\index{get\+Velocity@{get\+Velocity}!Mutant@{Mutant}}
+\subsubsection{\texorpdfstring{get\+Velocity()}{getVelocity()}}
+{\footnotesize\ttfamily \hyperlink{class_vector2_d}{Vector2D} Mutant\+::get\+Velocity (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Implements \hyperlink{class_boid_a58472dead1db1399b75090bf48184619}{Boid}.
+
+\hypertarget{class_mutant_a3416c1b42eb1e02bdcd4066109a28812}{}\label{class_mutant_a3416c1b42eb1e02bdcd4066109a28812} 
+\index{Mutant@{Mutant}!is\+Predator@{is\+Predator}}
+\index{is\+Predator@{is\+Predator}!Mutant@{Mutant}}
+\subsubsection{\texorpdfstring{is\+Predator()}{isPredator()}}
+{\footnotesize\ttfamily bool Mutant\+::is\+Predator (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Implements \hyperlink{class_boid_afdc731ff7d6b7f471c202c191c4abf77}{Boid}.
+
+\hypertarget{class_mutant_a67fc6ef40353436d04d847f49254fa0b}{}\label{class_mutant_a67fc6ef40353436d04d847f49254fa0b} 
+\index{Mutant@{Mutant}!is\+Under\+E\+MP@{is\+Under\+E\+MP}}
+\index{is\+Under\+E\+MP@{is\+Under\+E\+MP}!Mutant@{Mutant}}
+\subsubsection{\texorpdfstring{is\+Under\+E\+M\+P()}{isUnderEMP()}}
+{\footnotesize\ttfamily bool Mutant\+::is\+Under\+E\+MP (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\hypertarget{class_mutant_ac411f16b95e51f8e3c8c694425865785}{}\label{class_mutant_ac411f16b95e51f8e3c8c694425865785} 
+\index{Mutant@{Mutant}!set\+GroundY@{set\+GroundY}}
+\index{set\+GroundY@{set\+GroundY}!Mutant@{Mutant}}
+\subsubsection{\texorpdfstring{set\+Ground\+Y()}{setGroundY()}}
+{\footnotesize\ttfamily void Mutant\+::set\+GroundY (\begin{DoxyParamCaption}\item[{float}]{y }\end{DoxyParamCaption})}
+
+\hypertarget{class_mutant_a69243115d28b18f3ac9803f66e8f8644}{}\label{class_mutant_a69243115d28b18f3ac9803f66e8f8644} 
+\index{Mutant@{Mutant}!Update@{Update}}
+\index{Update@{Update}!Mutant@{Mutant}}
+\subsubsection{\texorpdfstring{Update()}{Update()}}
+{\footnotesize\ttfamily void Mutant\+::\+Update (\begin{DoxyParamCaption}\item[{float}]{dt }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Implements \hyperlink{class_game_object_a93ed63df640deb516a020530e7f8e045}{Game\+Object}.
+
+\hypertarget{class_mutant_a3bc5b923cb3605ddd10a5064ec904d29}{}\label{class_mutant_a3bc5b923cb3605ddd10a5064ec904d29} 
+\index{Mutant@{Mutant}!wrap\+Positions@{wrap\+Positions}}
+\index{wrap\+Positions@{wrap\+Positions}!Mutant@{Mutant}}
+\subsubsection{\texorpdfstring{wrap\+Positions()}{wrapPositions()}}
+{\footnotesize\ttfamily void Mutant\+::wrap\+Positions (\begin{DoxyParamCaption}\item[{\hyperlink{class_camera}{Camera} \&}]{cam }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Reimplemented from \hyperlink{class_game_object_a53b129d55688652e25e6515d80e669ca}{Game\+Object}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Console\+Application2/\hyperlink{_mutant_8h}{Mutant.\+h}\item 
+Console\+Application2/\hyperlink{_mutant_8cpp}{Mutant.\+cpp}\end{DoxyCompactItemize}

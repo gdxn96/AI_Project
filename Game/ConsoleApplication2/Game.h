@@ -17,6 +17,7 @@ public:
 	void CreatePlayer();
 	void CreateEntities(Vector2D screenSize);
 	void Update(float dt);
+	void RestartGame();
 	void UpdateGameObjectList(float dt, std::vector<GameObject*>& list);
 	void AddNewGameObjects();
 	void Draw(sf::RenderWindow& r);
@@ -27,4 +28,5 @@ private:
 	Camera m_camera;
 	Vector2D m_screenSize, m_levelSize;
 	PowerUpManager m_powerupManager;
+	Player* m_player;
 };
