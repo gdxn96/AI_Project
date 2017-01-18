@@ -22,7 +22,6 @@ InputManager* InputManager::getInstance()
 }
 
 
-
 void InputManager::AddListener(int evt, EventListener* listener)
 {
 	// If listener not previously added...
@@ -32,6 +31,11 @@ void InputManager::AddListener(int evt, EventListener* listener)
 	}
 
 	listeners[evt]->push_back(listener);
+}
+
+void InputManager::NukeListenerMap()
+{
+	listeners.clear();
 }
 
 

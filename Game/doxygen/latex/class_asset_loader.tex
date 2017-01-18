@@ -1,0 +1,196 @@
+\hypertarget{class_asset_loader}{}\section{Asset\+Loader Class Reference}
+\label{class_asset_loader}\index{Asset\+Loader@{Asset\+Loader}}
+
+
+{\ttfamily \#include $<$Asset\+Loader.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_asset_loader_a4f49d2d68ee1413e1f18dc7f4d003f0c}{$\sim$\+Asset\+Loader} ()
+\item 
+bool \hyperlink{class_asset_loader_a02606bccd43e16913919b3e081f74f3e}{exists} (string key)
+\item 
+void \hyperlink{class_asset_loader_a682bc76f35e281e4f6cf3d7b19388bbb}{empty\+Map} ()
+\item 
+void \hyperlink{class_asset_loader_ae902ff7d59878412699ae1dd5e3b1fc0}{add\+Texture\+To\+Cache} (string name, string \+\_\+texture\+File\+Path)
+\item 
+sf\+::\+Texture $\ast$ \hyperlink{class_asset_loader_a0f8159b836b5d23aadf4439cba9d5e84}{find\+Texture\+By\+Key} (string key)
+\item 
+void \hyperlink{class_asset_loader_ad5e2c8b9ad7ce00249f9ff5404d7363c}{load\+Textures} (string img\+Data\+Dir)
+\item 
+void \hyperlink{class_asset_loader_aaba5217d0cfe6203f3f47d3eb5dbe50c}{add\+Asset\+To\+Queue} (\hyperlink{struct_asset}{Asset} $\ast$asset)
+\item 
+void \hyperlink{class_asset_loader_a20c0aca89038b89980be63b7639c89ff}{load\+Asset\+Queue} ()
+\item 
+void \hyperlink{class_asset_loader_acf07e2074a4c86f3312d2c162ae5a40b}{load\+Asset} (\hyperlink{struct_asset}{Asset} $\ast$asset)
+\item 
+string \hyperlink{class_asset_loader_aa91b6dc15ed3f4befbd0c74bc1d7f040}{get\+Loading\+Asset} ()
+\item 
+int \hyperlink{class_asset_loader_a2b6e924a1ded0e1758a608757e6886fe}{get\+Num\+Loaded} ()
+\item 
+int \hyperlink{class_asset_loader_a5c122cf239d342643f38bb9dd3de7996}{get\+Num\+To\+Load} ()
+\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \hyperlink{class_asset_loader}{Asset\+Loader} $\ast$ \hyperlink{class_asset_loader_a84f304e93bb704447080e2e722e6d413}{get\+Instance} ()
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{class_asset_loader_a02a029329bac26f078cc8a8248b484ad}{add\+To\+Image\+Cache} (string name, string \+\_\+texture\+File\+Path)
+\item 
+\hyperlink{class_asset_loader_ae090ac88a0e6df2c7cc560da9f4c4f25}{Asset\+Loader} ()
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+map$<$ string, sf\+::\+Texture $\ast$ $>$ \hyperlink{class_asset_loader_a1420f613835a3aa5ca97affb12b31da8}{image\+Cache}
+\item 
+vector$<$ \hyperlink{struct_asset}{Asset} $\ast$ $>$ \hyperlink{class_asset_loader_a9b8deb026e3b796b37c99cb1253d7868}{asset\+Queue}
+\item 
+int \hyperlink{class_asset_loader_a46d605269740622e52033a2d15f1041a}{m\+\_\+assets\+Loaded}
+\item 
+string \hyperlink{class_asset_loader_ad7816a644b0358ff24f308beb6c27b1e}{m\+\_\+current\+Asset}
+\end{DoxyCompactItemize}
+\subsection*{Static Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static \hyperlink{class_asset_loader}{Asset\+Loader} $\ast$ \hyperlink{class_asset_loader_a8109777021214db1df6aace310c9f842}{instance} = nullptr
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_asset_loader_a4f49d2d68ee1413e1f18dc7f4d003f0c}{}\label{class_asset_loader_a4f49d2d68ee1413e1f18dc7f4d003f0c} 
+\index{Asset\+Loader@{Asset\+Loader}!````~Asset\+Loader@{$\sim$\+Asset\+Loader}}
+\index{````~Asset\+Loader@{$\sim$\+Asset\+Loader}!Asset\+Loader@{Asset\+Loader}}
+\subsubsection{\texorpdfstring{$\sim$\+Asset\+Loader()}{~AssetLoader()}}
+{\footnotesize\ttfamily Asset\+Loader\+::$\sim$\+Asset\+Loader (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\hypertarget{class_asset_loader_ae090ac88a0e6df2c7cc560da9f4c4f25}{}\label{class_asset_loader_ae090ac88a0e6df2c7cc560da9f4c4f25} 
+\index{Asset\+Loader@{Asset\+Loader}!Asset\+Loader@{Asset\+Loader}}
+\index{Asset\+Loader@{Asset\+Loader}!Asset\+Loader@{Asset\+Loader}}
+\subsubsection{\texorpdfstring{Asset\+Loader()}{AssetLoader()}}
+{\footnotesize\ttfamily Asset\+Loader\+::\+Asset\+Loader (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_asset_loader_aaba5217d0cfe6203f3f47d3eb5dbe50c}{}\label{class_asset_loader_aaba5217d0cfe6203f3f47d3eb5dbe50c} 
+\index{Asset\+Loader@{Asset\+Loader}!add\+Asset\+To\+Queue@{add\+Asset\+To\+Queue}}
+\index{add\+Asset\+To\+Queue@{add\+Asset\+To\+Queue}!Asset\+Loader@{Asset\+Loader}}
+\subsubsection{\texorpdfstring{add\+Asset\+To\+Queue()}{addAssetToQueue()}}
+{\footnotesize\ttfamily void Asset\+Loader\+::add\+Asset\+To\+Queue (\begin{DoxyParamCaption}\item[{\hyperlink{struct_asset}{Asset} $\ast$}]{asset }\end{DoxyParamCaption})}
+
+\hypertarget{class_asset_loader_ae902ff7d59878412699ae1dd5e3b1fc0}{}\label{class_asset_loader_ae902ff7d59878412699ae1dd5e3b1fc0} 
+\index{Asset\+Loader@{Asset\+Loader}!add\+Texture\+To\+Cache@{add\+Texture\+To\+Cache}}
+\index{add\+Texture\+To\+Cache@{add\+Texture\+To\+Cache}!Asset\+Loader@{Asset\+Loader}}
+\subsubsection{\texorpdfstring{add\+Texture\+To\+Cache()}{addTextureToCache()}}
+{\footnotesize\ttfamily void Asset\+Loader\+::add\+Texture\+To\+Cache (\begin{DoxyParamCaption}\item[{string}]{name,  }\item[{string}]{\+\_\+texture\+File\+Path }\end{DoxyParamCaption})}
+
+\hypertarget{class_asset_loader_a02a029329bac26f078cc8a8248b484ad}{}\label{class_asset_loader_a02a029329bac26f078cc8a8248b484ad} 
+\index{Asset\+Loader@{Asset\+Loader}!add\+To\+Image\+Cache@{add\+To\+Image\+Cache}}
+\index{add\+To\+Image\+Cache@{add\+To\+Image\+Cache}!Asset\+Loader@{Asset\+Loader}}
+\subsubsection{\texorpdfstring{add\+To\+Image\+Cache()}{addToImageCache()}}
+{\footnotesize\ttfamily void Asset\+Loader\+::add\+To\+Image\+Cache (\begin{DoxyParamCaption}\item[{string}]{name,  }\item[{string}]{\+\_\+texture\+File\+Path }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\hypertarget{class_asset_loader_a682bc76f35e281e4f6cf3d7b19388bbb}{}\label{class_asset_loader_a682bc76f35e281e4f6cf3d7b19388bbb} 
+\index{Asset\+Loader@{Asset\+Loader}!empty\+Map@{empty\+Map}}
+\index{empty\+Map@{empty\+Map}!Asset\+Loader@{Asset\+Loader}}
+\subsubsection{\texorpdfstring{empty\+Map()}{emptyMap()}}
+{\footnotesize\ttfamily void Asset\+Loader\+::empty\+Map (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\hypertarget{class_asset_loader_a02606bccd43e16913919b3e081f74f3e}{}\label{class_asset_loader_a02606bccd43e16913919b3e081f74f3e} 
+\index{Asset\+Loader@{Asset\+Loader}!exists@{exists}}
+\index{exists@{exists}!Asset\+Loader@{Asset\+Loader}}
+\subsubsection{\texorpdfstring{exists()}{exists()}}
+{\footnotesize\ttfamily bool Asset\+Loader\+::exists (\begin{DoxyParamCaption}\item[{string}]{key }\end{DoxyParamCaption})}
+
+\hypertarget{class_asset_loader_a0f8159b836b5d23aadf4439cba9d5e84}{}\label{class_asset_loader_a0f8159b836b5d23aadf4439cba9d5e84} 
+\index{Asset\+Loader@{Asset\+Loader}!find\+Texture\+By\+Key@{find\+Texture\+By\+Key}}
+\index{find\+Texture\+By\+Key@{find\+Texture\+By\+Key}!Asset\+Loader@{Asset\+Loader}}
+\subsubsection{\texorpdfstring{find\+Texture\+By\+Key()}{findTextureByKey()}}
+{\footnotesize\ttfamily sf\+::\+Texture $\ast$ Asset\+Loader\+::find\+Texture\+By\+Key (\begin{DoxyParamCaption}\item[{string}]{key }\end{DoxyParamCaption})}
+
+\hypertarget{class_asset_loader_a84f304e93bb704447080e2e722e6d413}{}\label{class_asset_loader_a84f304e93bb704447080e2e722e6d413} 
+\index{Asset\+Loader@{Asset\+Loader}!get\+Instance@{get\+Instance}}
+\index{get\+Instance@{get\+Instance}!Asset\+Loader@{Asset\+Loader}}
+\subsubsection{\texorpdfstring{get\+Instance()}{getInstance()}}
+{\footnotesize\ttfamily \hyperlink{class_asset_loader}{Asset\+Loader} $\ast$ Asset\+Loader\+::get\+Instance (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\hypertarget{class_asset_loader_aa91b6dc15ed3f4befbd0c74bc1d7f040}{}\label{class_asset_loader_aa91b6dc15ed3f4befbd0c74bc1d7f040} 
+\index{Asset\+Loader@{Asset\+Loader}!get\+Loading\+Asset@{get\+Loading\+Asset}}
+\index{get\+Loading\+Asset@{get\+Loading\+Asset}!Asset\+Loader@{Asset\+Loader}}
+\subsubsection{\texorpdfstring{get\+Loading\+Asset()}{getLoadingAsset()}}
+{\footnotesize\ttfamily string Asset\+Loader\+::get\+Loading\+Asset (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\hypertarget{class_asset_loader_a2b6e924a1ded0e1758a608757e6886fe}{}\label{class_asset_loader_a2b6e924a1ded0e1758a608757e6886fe} 
+\index{Asset\+Loader@{Asset\+Loader}!get\+Num\+Loaded@{get\+Num\+Loaded}}
+\index{get\+Num\+Loaded@{get\+Num\+Loaded}!Asset\+Loader@{Asset\+Loader}}
+\subsubsection{\texorpdfstring{get\+Num\+Loaded()}{getNumLoaded()}}
+{\footnotesize\ttfamily int Asset\+Loader\+::get\+Num\+Loaded (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\hypertarget{class_asset_loader_a5c122cf239d342643f38bb9dd3de7996}{}\label{class_asset_loader_a5c122cf239d342643f38bb9dd3de7996} 
+\index{Asset\+Loader@{Asset\+Loader}!get\+Num\+To\+Load@{get\+Num\+To\+Load}}
+\index{get\+Num\+To\+Load@{get\+Num\+To\+Load}!Asset\+Loader@{Asset\+Loader}}
+\subsubsection{\texorpdfstring{get\+Num\+To\+Load()}{getNumToLoad()}}
+{\footnotesize\ttfamily int Asset\+Loader\+::get\+Num\+To\+Load (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\hypertarget{class_asset_loader_acf07e2074a4c86f3312d2c162ae5a40b}{}\label{class_asset_loader_acf07e2074a4c86f3312d2c162ae5a40b} 
+\index{Asset\+Loader@{Asset\+Loader}!load\+Asset@{load\+Asset}}
+\index{load\+Asset@{load\+Asset}!Asset\+Loader@{Asset\+Loader}}
+\subsubsection{\texorpdfstring{load\+Asset()}{loadAsset()}}
+{\footnotesize\ttfamily void Asset\+Loader\+::load\+Asset (\begin{DoxyParamCaption}\item[{\hyperlink{struct_asset}{Asset} $\ast$}]{asset }\end{DoxyParamCaption})}
+
+\hypertarget{class_asset_loader_a20c0aca89038b89980be63b7639c89ff}{}\label{class_asset_loader_a20c0aca89038b89980be63b7639c89ff} 
+\index{Asset\+Loader@{Asset\+Loader}!load\+Asset\+Queue@{load\+Asset\+Queue}}
+\index{load\+Asset\+Queue@{load\+Asset\+Queue}!Asset\+Loader@{Asset\+Loader}}
+\subsubsection{\texorpdfstring{load\+Asset\+Queue()}{loadAssetQueue()}}
+{\footnotesize\ttfamily void Asset\+Loader\+::load\+Asset\+Queue (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\hypertarget{class_asset_loader_ad5e2c8b9ad7ce00249f9ff5404d7363c}{}\label{class_asset_loader_ad5e2c8b9ad7ce00249f9ff5404d7363c} 
+\index{Asset\+Loader@{Asset\+Loader}!load\+Textures@{load\+Textures}}
+\index{load\+Textures@{load\+Textures}!Asset\+Loader@{Asset\+Loader}}
+\subsubsection{\texorpdfstring{load\+Textures()}{loadTextures()}}
+{\footnotesize\ttfamily void Asset\+Loader\+::load\+Textures (\begin{DoxyParamCaption}\item[{string}]{img\+Data\+Dir }\end{DoxyParamCaption})}
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{class_asset_loader_a9b8deb026e3b796b37c99cb1253d7868}{}\label{class_asset_loader_a9b8deb026e3b796b37c99cb1253d7868} 
+\index{Asset\+Loader@{Asset\+Loader}!asset\+Queue@{asset\+Queue}}
+\index{asset\+Queue@{asset\+Queue}!Asset\+Loader@{Asset\+Loader}}
+\subsubsection{\texorpdfstring{asset\+Queue}{assetQueue}}
+{\footnotesize\ttfamily vector$<$\hyperlink{struct_asset}{Asset}$\ast$$>$ Asset\+Loader\+::asset\+Queue\hspace{0.3cm}{\ttfamily [protected]}}
+
+\hypertarget{class_asset_loader_a1420f613835a3aa5ca97affb12b31da8}{}\label{class_asset_loader_a1420f613835a3aa5ca97affb12b31da8} 
+\index{Asset\+Loader@{Asset\+Loader}!image\+Cache@{image\+Cache}}
+\index{image\+Cache@{image\+Cache}!Asset\+Loader@{Asset\+Loader}}
+\subsubsection{\texorpdfstring{image\+Cache}{imageCache}}
+{\footnotesize\ttfamily map$<$string, sf\+::\+Texture $\ast$$>$ Asset\+Loader\+::image\+Cache\hspace{0.3cm}{\ttfamily [protected]}}
+
+\hypertarget{class_asset_loader_a8109777021214db1df6aace310c9f842}{}\label{class_asset_loader_a8109777021214db1df6aace310c9f842} 
+\index{Asset\+Loader@{Asset\+Loader}!instance@{instance}}
+\index{instance@{instance}!Asset\+Loader@{Asset\+Loader}}
+\subsubsection{\texorpdfstring{instance}{instance}}
+{\footnotesize\ttfamily \hyperlink{class_asset_loader}{Asset\+Loader} $\ast$ Asset\+Loader\+::instance = nullptr\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [protected]}}
+
+\hypertarget{class_asset_loader_a46d605269740622e52033a2d15f1041a}{}\label{class_asset_loader_a46d605269740622e52033a2d15f1041a} 
+\index{Asset\+Loader@{Asset\+Loader}!m\+\_\+assets\+Loaded@{m\+\_\+assets\+Loaded}}
+\index{m\+\_\+assets\+Loaded@{m\+\_\+assets\+Loaded}!Asset\+Loader@{Asset\+Loader}}
+\subsubsection{\texorpdfstring{m\+\_\+assets\+Loaded}{m\_assetsLoaded}}
+{\footnotesize\ttfamily int Asset\+Loader\+::m\+\_\+assets\+Loaded\hspace{0.3cm}{\ttfamily [protected]}}
+
+\hypertarget{class_asset_loader_ad7816a644b0358ff24f308beb6c27b1e}{}\label{class_asset_loader_ad7816a644b0358ff24f308beb6c27b1e} 
+\index{Asset\+Loader@{Asset\+Loader}!m\+\_\+current\+Asset@{m\+\_\+current\+Asset}}
+\index{m\+\_\+current\+Asset@{m\+\_\+current\+Asset}!Asset\+Loader@{Asset\+Loader}}
+\subsubsection{\texorpdfstring{m\+\_\+current\+Asset}{m\_currentAsset}}
+{\footnotesize\ttfamily string Asset\+Loader\+::m\+\_\+current\+Asset\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Console\+Application2/\hyperlink{_asset_loader_8h}{Asset\+Loader.\+h}\item 
+Console\+Application2/\hyperlink{_asset_loader_8cpp}{Asset\+Loader.\+cpp}\end{DoxyCompactItemize}

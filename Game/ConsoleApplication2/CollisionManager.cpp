@@ -1,12 +1,11 @@
 #include "stdafx.h"
 #include "CollisionManager.h"
-
-std::vector<GameObject*> 
-CollisionManager::m_playerBullets,
-CollisionManager::m_meteors,
-CollisionManager::m_enemies,
-CollisionManager::m_enemyBullets,
-CollisionManager::m_powerups;
+ 
+std::vector<GameObject*> CollisionManager::m_playerBullets;
+std::vector<GameObject*> CollisionManager::m_meteors;
+std::vector<GameObject*> CollisionManager::m_enemies;
+std::vector<GameObject*> CollisionManager::m_enemyBullets;
+std::vector<GameObject*> CollisionManager::m_powerups;
 
 Player* CollisionManager::m_player = nullptr;
 Camera* CollisionManager::m_camera = nullptr;
@@ -99,6 +98,13 @@ void CollisionManager::CheckCollisions()
 			if (Collides(enemy, meteor))
 			{
 				enemy->kill();
+			}
+		}
+		if (m_player != nullptr)
+		{
+			if (Collides(m_player, meteor))
+			{
+				m_player->kill();
 			}
 		}
 	}

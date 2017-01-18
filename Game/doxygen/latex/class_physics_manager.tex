@@ -1,0 +1,98 @@
+\hypertarget{class_physics_manager}{}\section{Physics\+Manager Class Reference}
+\label{class_physics_manager}\index{Physics\+Manager@{Physics\+Manager}}
+
+
+{\ttfamily \#include $<$Physics\+Manager.\+h$>$}
+
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \hyperlink{class_physics_manager_afcc811e776c173c001762986adcfc731}{move} (float dt, \hyperlink{class_vector2_d}{Vector2D} \&position, \hyperlink{class_vector2_d}{Vector2D} \&velocity)
+\item 
+static void \hyperlink{class_physics_manager_ac91f12533b45cb7f7d66b82fbfd886fc}{accelerate} (float dt, \hyperlink{class_vector2_d}{Vector2D} \&speed, \hyperlink{class_vector2_d}{Vector2D} acceleration, \hyperlink{class_vector2_d}{Vector2D} target\+Speed)
+\item 
+static void \hyperlink{class_physics_manager_a74ec3035774192469d5e8560b80ddfd1}{accelerate\+Velocity} (float dt, \hyperlink{class_vector2_d}{Vector2D} \&velocity, \hyperlink{class_vector2_d}{Vector2D} acceleration, const float speed\+Limit)
+\item 
+static void \hyperlink{class_physics_manager_a75bfca00399793e604bcd749fa97c4ba}{Bind\+Position\+To\+Level} (\hyperlink{class_vector2_d}{Vector2D} \&m\+\_\+position, \hyperlink{class_vector2_d}{Vector2D} \&m\+\_\+direction)
+\item 
+static void \hyperlink{class_physics_manager_a8938f25d68d5e102f806ce7277814079}{Bind\+Position\+To\+Level} (\hyperlink{class_vector2_d}{Vector2D} \&m\+\_\+position)
+\item 
+static void \hyperlink{class_physics_manager_ad97cf48ec9c49605c4ca1be653cd0806}{Apply\+Friction} (float dt, \hyperlink{class_vector2_d}{Vector2D} \&velocity, float m\+Friction=0.\+01f)
+\item 
+static void \hyperlink{class_physics_manager_a754fec8e5f6ef692eb373d209689f897}{Vertical\+Wrap\+Position} (\hyperlink{class_vector2_d}{Vector2D} \&m\+\_\+position)
+\item 
+static void \hyperlink{class_physics_manager_aeae6dfda767bd621e02d44984ff7df8f}{initialize} (sf\+::\+Float\+Rect level\+Bounds)
+\item 
+static \hyperlink{class_vector2_d}{Vector2D} \hyperlink{class_physics_manager_a09f93d06f2a4a3855bedd13de9033fa5}{get\+Random\+Position} ()
+\item 
+static sf\+::\+Float\+Rect \hyperlink{class_physics_manager_ab6155905552f4740b0e5c9ee8a0de83f}{get\+Level\+Bounds} ()
+\end{DoxyCompactItemize}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_physics_manager_ac91f12533b45cb7f7d66b82fbfd886fc}{}\label{class_physics_manager_ac91f12533b45cb7f7d66b82fbfd886fc} 
+\index{Physics\+Manager@{Physics\+Manager}!accelerate@{accelerate}}
+\index{accelerate@{accelerate}!Physics\+Manager@{Physics\+Manager}}
+\subsubsection{\texorpdfstring{accelerate()}{accelerate()}}
+{\footnotesize\ttfamily void Physics\+Manager\+::accelerate (\begin{DoxyParamCaption}\item[{float}]{dt,  }\item[{\hyperlink{class_vector2_d}{Vector2D} \&}]{speed,  }\item[{\hyperlink{class_vector2_d}{Vector2D}}]{acceleration,  }\item[{\hyperlink{class_vector2_d}{Vector2D}}]{target\+Speed }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\hypertarget{class_physics_manager_a74ec3035774192469d5e8560b80ddfd1}{}\label{class_physics_manager_a74ec3035774192469d5e8560b80ddfd1} 
+\index{Physics\+Manager@{Physics\+Manager}!accelerate\+Velocity@{accelerate\+Velocity}}
+\index{accelerate\+Velocity@{accelerate\+Velocity}!Physics\+Manager@{Physics\+Manager}}
+\subsubsection{\texorpdfstring{accelerate\+Velocity()}{accelerateVelocity()}}
+{\footnotesize\ttfamily void Physics\+Manager\+::accelerate\+Velocity (\begin{DoxyParamCaption}\item[{float}]{dt,  }\item[{\hyperlink{class_vector2_d}{Vector2D} \&}]{velocity,  }\item[{\hyperlink{class_vector2_d}{Vector2D}}]{acceleration,  }\item[{const float}]{speed\+Limit }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\hypertarget{class_physics_manager_ad97cf48ec9c49605c4ca1be653cd0806}{}\label{class_physics_manager_ad97cf48ec9c49605c4ca1be653cd0806} 
+\index{Physics\+Manager@{Physics\+Manager}!Apply\+Friction@{Apply\+Friction}}
+\index{Apply\+Friction@{Apply\+Friction}!Physics\+Manager@{Physics\+Manager}}
+\subsubsection{\texorpdfstring{Apply\+Friction()}{ApplyFriction()}}
+{\footnotesize\ttfamily void Physics\+Manager\+::\+Apply\+Friction (\begin{DoxyParamCaption}\item[{float}]{dt,  }\item[{\hyperlink{class_vector2_d}{Vector2D} \&}]{velocity,  }\item[{float}]{m\+Friction = {\ttfamily 0.01f} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\hypertarget{class_physics_manager_a75bfca00399793e604bcd749fa97c4ba}{}\label{class_physics_manager_a75bfca00399793e604bcd749fa97c4ba} 
+\index{Physics\+Manager@{Physics\+Manager}!Bind\+Position\+To\+Level@{Bind\+Position\+To\+Level}}
+\index{Bind\+Position\+To\+Level@{Bind\+Position\+To\+Level}!Physics\+Manager@{Physics\+Manager}}
+\subsubsection{\texorpdfstring{Bind\+Position\+To\+Level()}{BindPositionToLevel()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void Physics\+Manager\+::\+Bind\+Position\+To\+Level (\begin{DoxyParamCaption}\item[{\hyperlink{class_vector2_d}{Vector2D} \&}]{m\+\_\+position,  }\item[{\hyperlink{class_vector2_d}{Vector2D} \&}]{m\+\_\+direction }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\hypertarget{class_physics_manager_a8938f25d68d5e102f806ce7277814079}{}\label{class_physics_manager_a8938f25d68d5e102f806ce7277814079} 
+\index{Physics\+Manager@{Physics\+Manager}!Bind\+Position\+To\+Level@{Bind\+Position\+To\+Level}}
+\index{Bind\+Position\+To\+Level@{Bind\+Position\+To\+Level}!Physics\+Manager@{Physics\+Manager}}
+\subsubsection{\texorpdfstring{Bind\+Position\+To\+Level()}{BindPositionToLevel()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void Physics\+Manager\+::\+Bind\+Position\+To\+Level (\begin{DoxyParamCaption}\item[{\hyperlink{class_vector2_d}{Vector2D} \&}]{m\+\_\+position }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\hypertarget{class_physics_manager_ab6155905552f4740b0e5c9ee8a0de83f}{}\label{class_physics_manager_ab6155905552f4740b0e5c9ee8a0de83f} 
+\index{Physics\+Manager@{Physics\+Manager}!get\+Level\+Bounds@{get\+Level\+Bounds}}
+\index{get\+Level\+Bounds@{get\+Level\+Bounds}!Physics\+Manager@{Physics\+Manager}}
+\subsubsection{\texorpdfstring{get\+Level\+Bounds()}{getLevelBounds()}}
+{\footnotesize\ttfamily sf\+::\+Float\+Rect Physics\+Manager\+::get\+Level\+Bounds (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\hypertarget{class_physics_manager_a09f93d06f2a4a3855bedd13de9033fa5}{}\label{class_physics_manager_a09f93d06f2a4a3855bedd13de9033fa5} 
+\index{Physics\+Manager@{Physics\+Manager}!get\+Random\+Position@{get\+Random\+Position}}
+\index{get\+Random\+Position@{get\+Random\+Position}!Physics\+Manager@{Physics\+Manager}}
+\subsubsection{\texorpdfstring{get\+Random\+Position()}{getRandomPosition()}}
+{\footnotesize\ttfamily \hyperlink{class_vector2_d}{Vector2D} Physics\+Manager\+::get\+Random\+Position (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\hypertarget{class_physics_manager_aeae6dfda767bd621e02d44984ff7df8f}{}\label{class_physics_manager_aeae6dfda767bd621e02d44984ff7df8f} 
+\index{Physics\+Manager@{Physics\+Manager}!initialize@{initialize}}
+\index{initialize@{initialize}!Physics\+Manager@{Physics\+Manager}}
+\subsubsection{\texorpdfstring{initialize()}{initialize()}}
+{\footnotesize\ttfamily void Physics\+Manager\+::initialize (\begin{DoxyParamCaption}\item[{sf\+::\+Float\+Rect}]{level\+Bounds }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\hypertarget{class_physics_manager_afcc811e776c173c001762986adcfc731}{}\label{class_physics_manager_afcc811e776c173c001762986adcfc731} 
+\index{Physics\+Manager@{Physics\+Manager}!move@{move}}
+\index{move@{move}!Physics\+Manager@{Physics\+Manager}}
+\subsubsection{\texorpdfstring{move()}{move()}}
+{\footnotesize\ttfamily void Physics\+Manager\+::move (\begin{DoxyParamCaption}\item[{float}]{dt,  }\item[{\hyperlink{class_vector2_d}{Vector2D} \&}]{position,  }\item[{\hyperlink{class_vector2_d}{Vector2D} \&}]{velocity }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\hypertarget{class_physics_manager_a754fec8e5f6ef692eb373d209689f897}{}\label{class_physics_manager_a754fec8e5f6ef692eb373d209689f897} 
+\index{Physics\+Manager@{Physics\+Manager}!Vertical\+Wrap\+Position@{Vertical\+Wrap\+Position}}
+\index{Vertical\+Wrap\+Position@{Vertical\+Wrap\+Position}!Physics\+Manager@{Physics\+Manager}}
+\subsubsection{\texorpdfstring{Vertical\+Wrap\+Position()}{VerticalWrapPosition()}}
+{\footnotesize\ttfamily void Physics\+Manager\+::\+Vertical\+Wrap\+Position (\begin{DoxyParamCaption}\item[{\hyperlink{class_vector2_d}{Vector2D} \&}]{m\+\_\+position }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Console\+Application2/\hyperlink{_physics_manager_8h}{Physics\+Manager.\+h}\item 
+Console\+Application2/\hyperlink{_physics_manager_8cpp}{Physics\+Manager.\+cpp}\end{DoxyCompactItemize}

@@ -1,0 +1,100 @@
+\hypertarget{class_meteor}{}\section{Meteor Class Reference}
+\label{class_meteor}\index{Meteor@{Meteor}}
+
+
+{\ttfamily \#include $<$Meteor.\+h$>$}
+
+Inheritance diagram for Meteor\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_meteor}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_meteor_ac3d2e6e2ed8395a62173117f283c0770}{Meteor} (\hyperlink{class_vector2_d}{Vector2D} position, float radius, float speed)
+\item 
+\hyperlink{class_meteor_aa4bfbce9a06fa010a5ef5213772efad8}{$\sim$\+Meteor} ()
+\item 
+void \hyperlink{class_meteor_ab8f7e0d8ded9f7cf368db7841376fba6}{Update} (float dt) override
+\item 
+void \hyperlink{class_meteor_a426244847c2446f36016c4b06713ce10}{Draw} (sf\+::\+Render\+Window \&w) override
+\item 
+void \hyperlink{class_meteor_a6b3dc73ecbbf31c6869f7e79e0e266cc}{Draw\+With\+X\+Offset} (sf\+::\+Render\+Window \&window, float x\+Offset) override
+\item 
+void \hyperlink{class_meteor_a49fe47a23c6622f9850e81eac5c53ec2}{wrap\+Positions} (\hyperlink{class_camera}{Camera} \&cam) override
+\item 
+\hyperlink{class_vector2_d}{Vector2D} \hyperlink{class_meteor_a28b006ae1f193fd0d0b3c2c19b82c278}{get\+Position} ()
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_meteor_ac3d2e6e2ed8395a62173117f283c0770}{}\label{class_meteor_ac3d2e6e2ed8395a62173117f283c0770} 
+\index{Meteor@{Meteor}!Meteor@{Meteor}}
+\index{Meteor@{Meteor}!Meteor@{Meteor}}
+\subsubsection{\texorpdfstring{Meteor()}{Meteor()}}
+{\footnotesize\ttfamily Meteor\+::\+Meteor (\begin{DoxyParamCaption}\item[{\hyperlink{class_vector2_d}{Vector2D}}]{position,  }\item[{float}]{radius,  }\item[{float}]{speed }\end{DoxyParamCaption})}
+
+\hypertarget{class_meteor_aa4bfbce9a06fa010a5ef5213772efad8}{}\label{class_meteor_aa4bfbce9a06fa010a5ef5213772efad8} 
+\index{Meteor@{Meteor}!````~Meteor@{$\sim$\+Meteor}}
+\index{````~Meteor@{$\sim$\+Meteor}!Meteor@{Meteor}}
+\subsubsection{\texorpdfstring{$\sim$\+Meteor()}{~Meteor()}}
+{\footnotesize\ttfamily Meteor\+::$\sim$\+Meteor (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_meteor_a426244847c2446f36016c4b06713ce10}{}\label{class_meteor_a426244847c2446f36016c4b06713ce10} 
+\index{Meteor@{Meteor}!Draw@{Draw}}
+\index{Draw@{Draw}!Meteor@{Meteor}}
+\subsubsection{\texorpdfstring{Draw()}{Draw()}}
+{\footnotesize\ttfamily void Meteor\+::\+Draw (\begin{DoxyParamCaption}\item[{sf\+::\+Render\+Window \&}]{w }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \hyperlink{class_game_object_a0bd45eb831b3d0959eb498cad3e412ce}{Game\+Object}.
+
+\hypertarget{class_meteor_a6b3dc73ecbbf31c6869f7e79e0e266cc}{}\label{class_meteor_a6b3dc73ecbbf31c6869f7e79e0e266cc} 
+\index{Meteor@{Meteor}!Draw\+With\+X\+Offset@{Draw\+With\+X\+Offset}}
+\index{Draw\+With\+X\+Offset@{Draw\+With\+X\+Offset}!Meteor@{Meteor}}
+\subsubsection{\texorpdfstring{Draw\+With\+X\+Offset()}{DrawWithXOffset()}}
+{\footnotesize\ttfamily void Meteor\+::\+Draw\+With\+X\+Offset (\begin{DoxyParamCaption}\item[{sf\+::\+Render\+Window \&}]{window,  }\item[{float}]{x\+Offset }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \hyperlink{class_game_object_a8a3c07e92775fe00baa9e661fefb224e}{Game\+Object}.
+
+\hypertarget{class_meteor_a28b006ae1f193fd0d0b3c2c19b82c278}{}\label{class_meteor_a28b006ae1f193fd0d0b3c2c19b82c278} 
+\index{Meteor@{Meteor}!get\+Position@{get\+Position}}
+\index{get\+Position@{get\+Position}!Meteor@{Meteor}}
+\subsubsection{\texorpdfstring{get\+Position()}{getPosition()}}
+{\footnotesize\ttfamily \hyperlink{class_vector2_d}{Vector2D} Meteor\+::get\+Position (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\hypertarget{class_meteor_ab8f7e0d8ded9f7cf368db7841376fba6}{}\label{class_meteor_ab8f7e0d8ded9f7cf368db7841376fba6} 
+\index{Meteor@{Meteor}!Update@{Update}}
+\index{Update@{Update}!Meteor@{Meteor}}
+\subsubsection{\texorpdfstring{Update()}{Update()}}
+{\footnotesize\ttfamily void Meteor\+::\+Update (\begin{DoxyParamCaption}\item[{float}]{dt }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \hyperlink{class_game_object_a93ed63df640deb516a020530e7f8e045}{Game\+Object}.
+
+\hypertarget{class_meteor_a49fe47a23c6622f9850e81eac5c53ec2}{}\label{class_meteor_a49fe47a23c6622f9850e81eac5c53ec2} 
+\index{Meteor@{Meteor}!wrap\+Positions@{wrap\+Positions}}
+\index{wrap\+Positions@{wrap\+Positions}!Meteor@{Meteor}}
+\subsubsection{\texorpdfstring{wrap\+Positions()}{wrapPositions()}}
+{\footnotesize\ttfamily void Meteor\+::wrap\+Positions (\begin{DoxyParamCaption}\item[{\hyperlink{class_camera}{Camera} \&}]{cam }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \hyperlink{class_game_object_a53b129d55688652e25e6515d80e669ca}{Game\+Object}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Console\+Application2/\hyperlink{_meteor_8h}{Meteor.\+h}\item 
+Console\+Application2/\hyperlink{_meteor_8cpp}{Meteor.\+cpp}\end{DoxyCompactItemize}

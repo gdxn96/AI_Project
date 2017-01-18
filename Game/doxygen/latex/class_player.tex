@@ -1,0 +1,184 @@
+\hypertarget{class_player}{}\section{Player Class Reference}
+\label{class_player}\index{Player@{Player}}
+
+
+{\ttfamily \#include $<$Player.\+h$>$}
+
+Inheritance diagram for Player\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{class_player}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_player_a92008587897cd5b46c85e7d4df5f3b79}{Player} (sf\+::\+Vector2f position, sf\+::\+Vector2f size, \hyperlink{class_vector2_d}{Vector2D} acceleration, \hyperlink{class_vector2_d}{Vector2D} max\+Speed)
+\item 
+\hyperlink{class_player_a749d2c00e1fe0f5c2746f7505a58c062}{$\sim$\+Player} ()
+\item 
+void \hyperlink{class_player_a5685ccedbb647c6dc475581af3454851}{Initialize\+Events} ()
+\item 
+void \hyperlink{class_player_a458939904cb2b2552089b841a5da5057}{Update} (float dt) override
+\item 
+void \hyperlink{class_player_acc9dd8e10a4e219e7ac78a822a7cde7b}{Draw} (sf\+::\+Render\+Window \&w) override
+\item 
+void \hyperlink{class_player_ad977242aa8bda63737df338b5095a931}{Draw\+With\+X\+Offset} (sf\+::\+Render\+Window \&window, float x\+Offset) override
+\item 
+void \hyperlink{class_player_a450eb63d50f2127f4417f50fa926ca30}{on\+Generic\+Event} (\hyperlink{class_event_listener_a23add62d02511a54eba0bae8208f9f48}{Generic\+Event} evt) override
+\item 
+void \hyperlink{class_player_a49ffb438bc970b3d72be35752eac1ce5}{on\+Key\+Down} (\hyperlink{class_event_listener_ae72c5cb67f8dc880170bf2137837f6ce}{Key\+Down\+Event} evt) override
+\item 
+void \hyperlink{class_player_a6f3fd001b6096fa6eb771c959687b33c}{on\+Key\+Up} (\hyperlink{class_event_listener_a69daf2aeedcab55e1f2c1c178206789e}{Key\+Up\+Event} evt) override
+\item 
+void \hyperlink{class_player_a09c333f62472d3ca96ef147126b518cd}{wrap\+Positions} (\hyperlink{class_camera}{Camera} \&cam) override
+\item 
+\hyperlink{class_vector2_d}{Vector2D} \hyperlink{class_player_a265be4030f017fed6b48136c1236d132}{get\+Position} ()
+\item 
+void \hyperlink{class_player_a7a77f784afbc411fd25c7630ac5c500b}{add\+Hyper\+Jump\+Power\+Up} ()
+\item 
+void \hyperlink{class_player_a919823b81b304a95d9052124648e7f49}{increase\+Fire\+Rate} ()
+\item 
+void \hyperlink{class_player_ae94b4c382ac84356018e9f11b13340af}{make\+Invincible} ()
+\item 
+bool \hyperlink{class_player_adba050abb9918cad32f1322b567875cf}{is\+Invincible} ()
+\item 
+void \hyperlink{class_player_a0dfaa62ad3dddedec5fbaaa7c637c655}{add\+E\+MP} ()
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_player_a92008587897cd5b46c85e7d4df5f3b79}{}\label{class_player_a92008587897cd5b46c85e7d4df5f3b79} 
+\index{Player@{Player}!Player@{Player}}
+\index{Player@{Player}!Player@{Player}}
+\subsubsection{\texorpdfstring{Player()}{Player()}}
+{\footnotesize\ttfamily Player\+::\+Player (\begin{DoxyParamCaption}\item[{sf\+::\+Vector2f}]{position,  }\item[{sf\+::\+Vector2f}]{size,  }\item[{\hyperlink{class_vector2_d}{Vector2D}}]{acceleration,  }\item[{\hyperlink{class_vector2_d}{Vector2D}}]{max\+Speed }\end{DoxyParamCaption})}
+
+\hypertarget{class_player_a749d2c00e1fe0f5c2746f7505a58c062}{}\label{class_player_a749d2c00e1fe0f5c2746f7505a58c062} 
+\index{Player@{Player}!````~Player@{$\sim$\+Player}}
+\index{````~Player@{$\sim$\+Player}!Player@{Player}}
+\subsubsection{\texorpdfstring{$\sim$\+Player()}{~Player()}}
+{\footnotesize\ttfamily Player\+::$\sim$\+Player (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_player_a0dfaa62ad3dddedec5fbaaa7c637c655}{}\label{class_player_a0dfaa62ad3dddedec5fbaaa7c637c655} 
+\index{Player@{Player}!add\+E\+MP@{add\+E\+MP}}
+\index{add\+E\+MP@{add\+E\+MP}!Player@{Player}}
+\subsubsection{\texorpdfstring{add\+E\+M\+P()}{addEMP()}}
+{\footnotesize\ttfamily void Player\+::add\+E\+MP (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\hypertarget{class_player_a7a77f784afbc411fd25c7630ac5c500b}{}\label{class_player_a7a77f784afbc411fd25c7630ac5c500b} 
+\index{Player@{Player}!add\+Hyper\+Jump\+Power\+Up@{add\+Hyper\+Jump\+Power\+Up}}
+\index{add\+Hyper\+Jump\+Power\+Up@{add\+Hyper\+Jump\+Power\+Up}!Player@{Player}}
+\subsubsection{\texorpdfstring{add\+Hyper\+Jump\+Power\+Up()}{addHyperJumpPowerUp()}}
+{\footnotesize\ttfamily void Player\+::add\+Hyper\+Jump\+Power\+Up (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\hypertarget{class_player_acc9dd8e10a4e219e7ac78a822a7cde7b}{}\label{class_player_acc9dd8e10a4e219e7ac78a822a7cde7b} 
+\index{Player@{Player}!Draw@{Draw}}
+\index{Draw@{Draw}!Player@{Player}}
+\subsubsection{\texorpdfstring{Draw()}{Draw()}}
+{\footnotesize\ttfamily void Player\+::\+Draw (\begin{DoxyParamCaption}\item[{sf\+::\+Render\+Window \&}]{w }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \hyperlink{class_game_object_a0bd45eb831b3d0959eb498cad3e412ce}{Game\+Object}.
+
+\hypertarget{class_player_ad977242aa8bda63737df338b5095a931}{}\label{class_player_ad977242aa8bda63737df338b5095a931} 
+\index{Player@{Player}!Draw\+With\+X\+Offset@{Draw\+With\+X\+Offset}}
+\index{Draw\+With\+X\+Offset@{Draw\+With\+X\+Offset}!Player@{Player}}
+\subsubsection{\texorpdfstring{Draw\+With\+X\+Offset()}{DrawWithXOffset()}}
+{\footnotesize\ttfamily void Player\+::\+Draw\+With\+X\+Offset (\begin{DoxyParamCaption}\item[{sf\+::\+Render\+Window \&}]{window,  }\item[{float}]{x\+Offset }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \hyperlink{class_game_object_a8a3c07e92775fe00baa9e661fefb224e}{Game\+Object}.
+
+\hypertarget{class_player_a265be4030f017fed6b48136c1236d132}{}\label{class_player_a265be4030f017fed6b48136c1236d132} 
+\index{Player@{Player}!get\+Position@{get\+Position}}
+\index{get\+Position@{get\+Position}!Player@{Player}}
+\subsubsection{\texorpdfstring{get\+Position()}{getPosition()}}
+{\footnotesize\ttfamily \hyperlink{class_vector2_d}{Vector2D} Player\+::get\+Position (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\hypertarget{class_player_a919823b81b304a95d9052124648e7f49}{}\label{class_player_a919823b81b304a95d9052124648e7f49} 
+\index{Player@{Player}!increase\+Fire\+Rate@{increase\+Fire\+Rate}}
+\index{increase\+Fire\+Rate@{increase\+Fire\+Rate}!Player@{Player}}
+\subsubsection{\texorpdfstring{increase\+Fire\+Rate()}{increaseFireRate()}}
+{\footnotesize\ttfamily void Player\+::increase\+Fire\+Rate (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\hypertarget{class_player_a5685ccedbb647c6dc475581af3454851}{}\label{class_player_a5685ccedbb647c6dc475581af3454851} 
+\index{Player@{Player}!Initialize\+Events@{Initialize\+Events}}
+\index{Initialize\+Events@{Initialize\+Events}!Player@{Player}}
+\subsubsection{\texorpdfstring{Initialize\+Events()}{InitializeEvents()}}
+{\footnotesize\ttfamily void Player\+::\+Initialize\+Events (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\hypertarget{class_player_adba050abb9918cad32f1322b567875cf}{}\label{class_player_adba050abb9918cad32f1322b567875cf} 
+\index{Player@{Player}!is\+Invincible@{is\+Invincible}}
+\index{is\+Invincible@{is\+Invincible}!Player@{Player}}
+\subsubsection{\texorpdfstring{is\+Invincible()}{isInvincible()}}
+{\footnotesize\ttfamily bool Player\+::is\+Invincible (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\hypertarget{class_player_ae94b4c382ac84356018e9f11b13340af}{}\label{class_player_ae94b4c382ac84356018e9f11b13340af} 
+\index{Player@{Player}!make\+Invincible@{make\+Invincible}}
+\index{make\+Invincible@{make\+Invincible}!Player@{Player}}
+\subsubsection{\texorpdfstring{make\+Invincible()}{makeInvincible()}}
+{\footnotesize\ttfamily void Player\+::make\+Invincible (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\hypertarget{class_player_a450eb63d50f2127f4417f50fa926ca30}{}\label{class_player_a450eb63d50f2127f4417f50fa926ca30} 
+\index{Player@{Player}!on\+Generic\+Event@{on\+Generic\+Event}}
+\index{on\+Generic\+Event@{on\+Generic\+Event}!Player@{Player}}
+\subsubsection{\texorpdfstring{on\+Generic\+Event()}{onGenericEvent()}}
+{\footnotesize\ttfamily void Player\+::on\+Generic\+Event (\begin{DoxyParamCaption}\item[{\hyperlink{class_event_listener_a23add62d02511a54eba0bae8208f9f48}{Generic\+Event}}]{evt }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \hyperlink{class_event_listener}{Event\+Listener}.
+
+\hypertarget{class_player_a49ffb438bc970b3d72be35752eac1ce5}{}\label{class_player_a49ffb438bc970b3d72be35752eac1ce5} 
+\index{Player@{Player}!on\+Key\+Down@{on\+Key\+Down}}
+\index{on\+Key\+Down@{on\+Key\+Down}!Player@{Player}}
+\subsubsection{\texorpdfstring{on\+Key\+Down()}{onKeyDown()}}
+{\footnotesize\ttfamily void Player\+::on\+Key\+Down (\begin{DoxyParamCaption}\item[{\hyperlink{class_event_listener_ae72c5cb67f8dc880170bf2137837f6ce}{Key\+Down\+Event}}]{evt }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \hyperlink{class_event_listener}{Event\+Listener}.
+
+\hypertarget{class_player_a6f3fd001b6096fa6eb771c959687b33c}{}\label{class_player_a6f3fd001b6096fa6eb771c959687b33c} 
+\index{Player@{Player}!on\+Key\+Up@{on\+Key\+Up}}
+\index{on\+Key\+Up@{on\+Key\+Up}!Player@{Player}}
+\subsubsection{\texorpdfstring{on\+Key\+Up()}{onKeyUp()}}
+{\footnotesize\ttfamily void Player\+::on\+Key\+Up (\begin{DoxyParamCaption}\item[{\hyperlink{class_event_listener_a69daf2aeedcab55e1f2c1c178206789e}{Key\+Up\+Event}}]{evt }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \hyperlink{class_event_listener}{Event\+Listener}.
+
+\hypertarget{class_player_a458939904cb2b2552089b841a5da5057}{}\label{class_player_a458939904cb2b2552089b841a5da5057} 
+\index{Player@{Player}!Update@{Update}}
+\index{Update@{Update}!Player@{Player}}
+\subsubsection{\texorpdfstring{Update()}{Update()}}
+{\footnotesize\ttfamily void Player\+::\+Update (\begin{DoxyParamCaption}\item[{float}]{dt }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \hyperlink{class_game_object_a93ed63df640deb516a020530e7f8e045}{Game\+Object}.
+
+\hypertarget{class_player_a09c333f62472d3ca96ef147126b518cd}{}\label{class_player_a09c333f62472d3ca96ef147126b518cd} 
+\index{Player@{Player}!wrap\+Positions@{wrap\+Positions}}
+\index{wrap\+Positions@{wrap\+Positions}!Player@{Player}}
+\subsubsection{\texorpdfstring{wrap\+Positions()}{wrapPositions()}}
+{\footnotesize\ttfamily void Player\+::wrap\+Positions (\begin{DoxyParamCaption}\item[{\hyperlink{class_camera}{Camera} \&}]{cam }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \hyperlink{class_game_object_a53b129d55688652e25e6515d80e669ca}{Game\+Object}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Console\+Application2/\hyperlink{_player_8h}{Player.\+h}\item 
+Console\+Application2/\hyperlink{_player_8cpp}{Player.\+cpp}\end{DoxyCompactItemize}

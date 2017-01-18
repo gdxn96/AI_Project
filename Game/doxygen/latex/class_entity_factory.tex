@@ -1,0 +1,122 @@
+\hypertarget{class_entity_factory}{}\section{Entity\+Factory Class Reference}
+\label{class_entity_factory}\index{Entity\+Factory@{Entity\+Factory}}
+
+
+{\ttfamily \#include $<$Entity\+Factory.\+h$>$}
+
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \hyperlink{class_entity_factory_a09b1b21ae968b6db79f63824f9488091}{Create\+Missile} (\hyperlink{class_vector2_d}{Vector2D} position)
+\item 
+static void \hyperlink{class_entity_factory_a12afa2409278355f081201d888af9467}{Create\+Bullet} (\hyperlink{class_vector2_d}{Vector2D} position, \hyperlink{class_vector2_d}{Vector2D} direction, bool enemy\+Bullet=false)
+\item 
+static void \hyperlink{class_entity_factory_a9aa7edc76e6f6ee4158ae78b780f1e18}{Create\+Mutant} (\hyperlink{class_vector2_d}{Vector2D} position)
+\item 
+static void \hyperlink{class_entity_factory_a679ed3727e2f00e4fe15576c7fd5144d}{Create\+Meteor} ()
+\item 
+static void \hyperlink{class_entity_factory_a900ad8e29d0d8f27e6b4c981f25a7a58}{Create\+Abductor} (sf\+::\+Vector2f position)
+\item 
+static void \hyperlink{class_entity_factory_a855dd969520879d9ea167d854ca30c11}{Create\+Nest} (\hyperlink{class_vector2_d}{Vector2D} pos, \hyperlink{class_vector2_d}{Vector2D} dir, float speed)
+\item 
+static void \hyperlink{class_entity_factory_a825d95311fabc8edee88c6dda69346f4}{Create\+Astronaut} (float x\+Position)
+\item 
+static void \hyperlink{class_entity_factory_a3d50f46ea571447791681e0799fe7056}{Create\+Power\+Up} (int type, sf\+::\+Vector2f position)
+\item 
+static std\+::vector$<$ \hyperlink{class_game_object}{Game\+Object} $\ast$ $>$ \hyperlink{class_entity_factory_ab67a24301fabebc078f219c7e9e8c4fb}{get\+New\+Objects} ()
+\item 
+static std\+::vector$<$ \hyperlink{class_game_object}{Game\+Object} $\ast$ $>$ \hyperlink{class_entity_factory_a01479e6b22f3db318007b1dbc4e85058}{get\+New\+Objects\+Behind} ()
+\item 
+static void \hyperlink{class_entity_factory_a242fb009eda7ff8ff51025fd3d6a1e23}{clear\+Objects} ()
+\item 
+static void \hyperlink{class_entity_factory_ad55d3285456e3d8e03d27d274ac60d00}{abductor\+Death\+Notify} ()
+\item 
+static void \hyperlink{class_entity_factory_a7a2d1bf2e09b30ae6db3ee7f060763d8}{initialize} (sf\+::\+Float\+Rect level\+Size)
+\end{DoxyCompactItemize}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_entity_factory_ad55d3285456e3d8e03d27d274ac60d00}{}\label{class_entity_factory_ad55d3285456e3d8e03d27d274ac60d00} 
+\index{Entity\+Factory@{Entity\+Factory}!abductor\+Death\+Notify@{abductor\+Death\+Notify}}
+\index{abductor\+Death\+Notify@{abductor\+Death\+Notify}!Entity\+Factory@{Entity\+Factory}}
+\subsubsection{\texorpdfstring{abductor\+Death\+Notify()}{abductorDeathNotify()}}
+{\footnotesize\ttfamily void Entity\+Factory\+::abductor\+Death\+Notify (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\hypertarget{class_entity_factory_a242fb009eda7ff8ff51025fd3d6a1e23}{}\label{class_entity_factory_a242fb009eda7ff8ff51025fd3d6a1e23} 
+\index{Entity\+Factory@{Entity\+Factory}!clear\+Objects@{clear\+Objects}}
+\index{clear\+Objects@{clear\+Objects}!Entity\+Factory@{Entity\+Factory}}
+\subsubsection{\texorpdfstring{clear\+Objects()}{clearObjects()}}
+{\footnotesize\ttfamily void Entity\+Factory\+::clear\+Objects (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\hypertarget{class_entity_factory_a900ad8e29d0d8f27e6b4c981f25a7a58}{}\label{class_entity_factory_a900ad8e29d0d8f27e6b4c981f25a7a58} 
+\index{Entity\+Factory@{Entity\+Factory}!Create\+Abductor@{Create\+Abductor}}
+\index{Create\+Abductor@{Create\+Abductor}!Entity\+Factory@{Entity\+Factory}}
+\subsubsection{\texorpdfstring{Create\+Abductor()}{CreateAbductor()}}
+{\footnotesize\ttfamily void Entity\+Factory\+::\+Create\+Abductor (\begin{DoxyParamCaption}\item[{sf\+::\+Vector2f}]{position }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\hypertarget{class_entity_factory_a825d95311fabc8edee88c6dda69346f4}{}\label{class_entity_factory_a825d95311fabc8edee88c6dda69346f4} 
+\index{Entity\+Factory@{Entity\+Factory}!Create\+Astronaut@{Create\+Astronaut}}
+\index{Create\+Astronaut@{Create\+Astronaut}!Entity\+Factory@{Entity\+Factory}}
+\subsubsection{\texorpdfstring{Create\+Astronaut()}{CreateAstronaut()}}
+{\footnotesize\ttfamily void Entity\+Factory\+::\+Create\+Astronaut (\begin{DoxyParamCaption}\item[{float}]{x\+Position }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\hypertarget{class_entity_factory_a12afa2409278355f081201d888af9467}{}\label{class_entity_factory_a12afa2409278355f081201d888af9467} 
+\index{Entity\+Factory@{Entity\+Factory}!Create\+Bullet@{Create\+Bullet}}
+\index{Create\+Bullet@{Create\+Bullet}!Entity\+Factory@{Entity\+Factory}}
+\subsubsection{\texorpdfstring{Create\+Bullet()}{CreateBullet()}}
+{\footnotesize\ttfamily void Entity\+Factory\+::\+Create\+Bullet (\begin{DoxyParamCaption}\item[{\hyperlink{class_vector2_d}{Vector2D}}]{position,  }\item[{\hyperlink{class_vector2_d}{Vector2D}}]{direction,  }\item[{bool}]{enemy\+Bullet = {\ttfamily false} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\hypertarget{class_entity_factory_a679ed3727e2f00e4fe15576c7fd5144d}{}\label{class_entity_factory_a679ed3727e2f00e4fe15576c7fd5144d} 
+\index{Entity\+Factory@{Entity\+Factory}!Create\+Meteor@{Create\+Meteor}}
+\index{Create\+Meteor@{Create\+Meteor}!Entity\+Factory@{Entity\+Factory}}
+\subsubsection{\texorpdfstring{Create\+Meteor()}{CreateMeteor()}}
+{\footnotesize\ttfamily void Entity\+Factory\+::\+Create\+Meteor (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\hypertarget{class_entity_factory_a09b1b21ae968b6db79f63824f9488091}{}\label{class_entity_factory_a09b1b21ae968b6db79f63824f9488091} 
+\index{Entity\+Factory@{Entity\+Factory}!Create\+Missile@{Create\+Missile}}
+\index{Create\+Missile@{Create\+Missile}!Entity\+Factory@{Entity\+Factory}}
+\subsubsection{\texorpdfstring{Create\+Missile()}{CreateMissile()}}
+{\footnotesize\ttfamily void Entity\+Factory\+::\+Create\+Missile (\begin{DoxyParamCaption}\item[{\hyperlink{class_vector2_d}{Vector2D}}]{position }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\hypertarget{class_entity_factory_a9aa7edc76e6f6ee4158ae78b780f1e18}{}\label{class_entity_factory_a9aa7edc76e6f6ee4158ae78b780f1e18} 
+\index{Entity\+Factory@{Entity\+Factory}!Create\+Mutant@{Create\+Mutant}}
+\index{Create\+Mutant@{Create\+Mutant}!Entity\+Factory@{Entity\+Factory}}
+\subsubsection{\texorpdfstring{Create\+Mutant()}{CreateMutant()}}
+{\footnotesize\ttfamily void Entity\+Factory\+::\+Create\+Mutant (\begin{DoxyParamCaption}\item[{\hyperlink{class_vector2_d}{Vector2D}}]{position }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\hypertarget{class_entity_factory_a855dd969520879d9ea167d854ca30c11}{}\label{class_entity_factory_a855dd969520879d9ea167d854ca30c11} 
+\index{Entity\+Factory@{Entity\+Factory}!Create\+Nest@{Create\+Nest}}
+\index{Create\+Nest@{Create\+Nest}!Entity\+Factory@{Entity\+Factory}}
+\subsubsection{\texorpdfstring{Create\+Nest()}{CreateNest()}}
+{\footnotesize\ttfamily void Entity\+Factory\+::\+Create\+Nest (\begin{DoxyParamCaption}\item[{\hyperlink{class_vector2_d}{Vector2D}}]{pos,  }\item[{\hyperlink{class_vector2_d}{Vector2D}}]{dir,  }\item[{float}]{speed }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\hypertarget{class_entity_factory_a3d50f46ea571447791681e0799fe7056}{}\label{class_entity_factory_a3d50f46ea571447791681e0799fe7056} 
+\index{Entity\+Factory@{Entity\+Factory}!Create\+Power\+Up@{Create\+Power\+Up}}
+\index{Create\+Power\+Up@{Create\+Power\+Up}!Entity\+Factory@{Entity\+Factory}}
+\subsubsection{\texorpdfstring{Create\+Power\+Up()}{CreatePowerUp()}}
+{\footnotesize\ttfamily void Entity\+Factory\+::\+Create\+Power\+Up (\begin{DoxyParamCaption}\item[{int}]{type,  }\item[{sf\+::\+Vector2f}]{position }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\hypertarget{class_entity_factory_ab67a24301fabebc078f219c7e9e8c4fb}{}\label{class_entity_factory_ab67a24301fabebc078f219c7e9e8c4fb} 
+\index{Entity\+Factory@{Entity\+Factory}!get\+New\+Objects@{get\+New\+Objects}}
+\index{get\+New\+Objects@{get\+New\+Objects}!Entity\+Factory@{Entity\+Factory}}
+\subsubsection{\texorpdfstring{get\+New\+Objects()}{getNewObjects()}}
+{\footnotesize\ttfamily std\+::vector$<$ \hyperlink{class_game_object}{Game\+Object} $\ast$ $>$ Entity\+Factory\+::get\+New\+Objects (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\hypertarget{class_entity_factory_a01479e6b22f3db318007b1dbc4e85058}{}\label{class_entity_factory_a01479e6b22f3db318007b1dbc4e85058} 
+\index{Entity\+Factory@{Entity\+Factory}!get\+New\+Objects\+Behind@{get\+New\+Objects\+Behind}}
+\index{get\+New\+Objects\+Behind@{get\+New\+Objects\+Behind}!Entity\+Factory@{Entity\+Factory}}
+\subsubsection{\texorpdfstring{get\+New\+Objects\+Behind()}{getNewObjectsBehind()}}
+{\footnotesize\ttfamily std\+::vector$<$ \hyperlink{class_game_object}{Game\+Object} $\ast$ $>$ Entity\+Factory\+::get\+New\+Objects\+Behind (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\hypertarget{class_entity_factory_a7a2d1bf2e09b30ae6db3ee7f060763d8}{}\label{class_entity_factory_a7a2d1bf2e09b30ae6db3ee7f060763d8} 
+\index{Entity\+Factory@{Entity\+Factory}!initialize@{initialize}}
+\index{initialize@{initialize}!Entity\+Factory@{Entity\+Factory}}
+\subsubsection{\texorpdfstring{initialize()}{initialize()}}
+{\footnotesize\ttfamily void Entity\+Factory\+::initialize (\begin{DoxyParamCaption}\item[{sf\+::\+Float\+Rect}]{level\+Size }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Console\+Application2/\hyperlink{_entity_factory_8h}{Entity\+Factory.\+h}\item 
+Console\+Application2/\hyperlink{_entity_factory_8cpp}{Entity\+Factory.\+cpp}\end{DoxyCompactItemize}

@@ -1,0 +1,109 @@
+\hypertarget{class_camera}{}\section{Camera Class Reference}
+\label{class_camera}\index{Camera@{Camera}}
+
+
+{\ttfamily \#include $<$Camera.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_camera_a52482616d4b8612775a639292303828d}{Camera} (\hyperlink{class_vector2_d}{Vector2D} screen\+Size, \hyperlink{class_vector2_d}{Vector2D} level\+Size)
+\item 
+void \hyperlink{class_camera_a2b7f120e90a5dc351ed44acf4af49729}{Move} (sf\+::\+Vector2f move\+Amount)
+\item 
+void \hyperlink{class_camera_a202fc4aff11dc17b8db71b5528c8476a}{Set\+Center} (sf\+::\+Vector2f center)
+\item 
+sf\+::\+Float\+Rect \hyperlink{class_camera_a77f821b5003fad8f5050ba802dd667e8}{get\+View\+Port} (sf\+::\+View \&v)
+\item 
+void \hyperlink{class_camera_a4795eceabe4768f35007dcb0083d418e}{Render\+Objects} (sf\+::\+Render\+Window \&window, std\+::vector$<$ \hyperlink{class_game_object}{Game\+Object} $\ast$$>$ \&m\+\_\+game\+Objects)
+\item 
+void \hyperlink{class_camera_a0b31de4a23f304be6e27d53706d326c5}{Update\+View} ()
+\item 
+void \hyperlink{class_camera_aadd889d41e7856d1c00609a7823c031f}{Render\+View} (sf\+::\+Render\+Window \&window, sf\+::\+View \&view, std\+::vector$<$ \hyperlink{class_game_object}{Game\+Object} $\ast$$>$ \&objects)
+\item 
+bool \hyperlink{class_camera_a8058d6b1c91c5d3ec5e410e5d0890737}{is\+A\+A\+B\+B\+In\+Viewport} (sf\+::\+Float\+Rect A\+A\+BB, sf\+::\+Float\+Rect viewport)
+\item 
+void \hyperlink{class_camera_aca617187658f1cea7f9633b4f62f1e93}{Wrap} (\hyperlink{class_vector2_d}{Vector2D} \&position)
+\item 
+void \hyperlink{class_camera_ad2f98f35c9a25c335ce7c5e6beae1ff9}{Wrap} (sf\+::\+Float\+Rect \&bounds)
+\item 
+std\+::vector$<$ \hyperlink{class_game_object}{Game\+Object} $\ast$ $>$ \hyperlink{class_camera_a8143cba00af1c4fca71d9597ebb0c748}{get\+Objects\+In\+View\+Port} (std\+::vector$<$ \hyperlink{class_game_object}{Game\+Object} $\ast$$>$ objects)
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_camera_a52482616d4b8612775a639292303828d}{}\label{class_camera_a52482616d4b8612775a639292303828d} 
+\index{Camera@{Camera}!Camera@{Camera}}
+\index{Camera@{Camera}!Camera@{Camera}}
+\subsubsection{\texorpdfstring{Camera()}{Camera()}}
+{\footnotesize\ttfamily Camera\+::\+Camera (\begin{DoxyParamCaption}\item[{\hyperlink{class_vector2_d}{Vector2D}}]{screen\+Size,  }\item[{\hyperlink{class_vector2_d}{Vector2D}}]{level\+Size }\end{DoxyParamCaption})}
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_camera_a8143cba00af1c4fca71d9597ebb0c748}{}\label{class_camera_a8143cba00af1c4fca71d9597ebb0c748} 
+\index{Camera@{Camera}!get\+Objects\+In\+View\+Port@{get\+Objects\+In\+View\+Port}}
+\index{get\+Objects\+In\+View\+Port@{get\+Objects\+In\+View\+Port}!Camera@{Camera}}
+\subsubsection{\texorpdfstring{get\+Objects\+In\+View\+Port()}{getObjectsInViewPort()}}
+{\footnotesize\ttfamily std\+::vector$<$ \hyperlink{class_game_object}{Game\+Object} $\ast$ $>$ Camera\+::get\+Objects\+In\+View\+Port (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \hyperlink{class_game_object}{Game\+Object} $\ast$$>$}]{objects }\end{DoxyParamCaption})}
+
+\hypertarget{class_camera_a77f821b5003fad8f5050ba802dd667e8}{}\label{class_camera_a77f821b5003fad8f5050ba802dd667e8} 
+\index{Camera@{Camera}!get\+View\+Port@{get\+View\+Port}}
+\index{get\+View\+Port@{get\+View\+Port}!Camera@{Camera}}
+\subsubsection{\texorpdfstring{get\+View\+Port()}{getViewPort()}}
+{\footnotesize\ttfamily sf\+::\+Float\+Rect Camera\+::get\+View\+Port (\begin{DoxyParamCaption}\item[{sf\+::\+View \&}]{v }\end{DoxyParamCaption})}
+
+\hypertarget{class_camera_a8058d6b1c91c5d3ec5e410e5d0890737}{}\label{class_camera_a8058d6b1c91c5d3ec5e410e5d0890737} 
+\index{Camera@{Camera}!is\+A\+A\+B\+B\+In\+Viewport@{is\+A\+A\+B\+B\+In\+Viewport}}
+\index{is\+A\+A\+B\+B\+In\+Viewport@{is\+A\+A\+B\+B\+In\+Viewport}!Camera@{Camera}}
+\subsubsection{\texorpdfstring{is\+A\+A\+B\+B\+In\+Viewport()}{isAABBInViewport()}}
+{\footnotesize\ttfamily bool Camera\+::is\+A\+A\+B\+B\+In\+Viewport (\begin{DoxyParamCaption}\item[{sf\+::\+Float\+Rect}]{A\+A\+BB,  }\item[{sf\+::\+Float\+Rect}]{viewport }\end{DoxyParamCaption})}
+
+\hypertarget{class_camera_a2b7f120e90a5dc351ed44acf4af49729}{}\label{class_camera_a2b7f120e90a5dc351ed44acf4af49729} 
+\index{Camera@{Camera}!Move@{Move}}
+\index{Move@{Move}!Camera@{Camera}}
+\subsubsection{\texorpdfstring{Move()}{Move()}}
+{\footnotesize\ttfamily void Camera\+::\+Move (\begin{DoxyParamCaption}\item[{sf\+::\+Vector2f}]{move\+Amount }\end{DoxyParamCaption})}
+
+\hypertarget{class_camera_a4795eceabe4768f35007dcb0083d418e}{}\label{class_camera_a4795eceabe4768f35007dcb0083d418e} 
+\index{Camera@{Camera}!Render\+Objects@{Render\+Objects}}
+\index{Render\+Objects@{Render\+Objects}!Camera@{Camera}}
+\subsubsection{\texorpdfstring{Render\+Objects()}{RenderObjects()}}
+{\footnotesize\ttfamily void Camera\+::\+Render\+Objects (\begin{DoxyParamCaption}\item[{sf\+::\+Render\+Window \&}]{window,  }\item[{std\+::vector$<$ \hyperlink{class_game_object}{Game\+Object} $\ast$$>$ \&}]{m\+\_\+game\+Objects }\end{DoxyParamCaption})}
+
+\hypertarget{class_camera_aadd889d41e7856d1c00609a7823c031f}{}\label{class_camera_aadd889d41e7856d1c00609a7823c031f} 
+\index{Camera@{Camera}!Render\+View@{Render\+View}}
+\index{Render\+View@{Render\+View}!Camera@{Camera}}
+\subsubsection{\texorpdfstring{Render\+View()}{RenderView()}}
+{\footnotesize\ttfamily void Camera\+::\+Render\+View (\begin{DoxyParamCaption}\item[{sf\+::\+Render\+Window \&}]{window,  }\item[{sf\+::\+View \&}]{view,  }\item[{std\+::vector$<$ \hyperlink{class_game_object}{Game\+Object} $\ast$$>$ \&}]{objects }\end{DoxyParamCaption})}
+
+\hypertarget{class_camera_a202fc4aff11dc17b8db71b5528c8476a}{}\label{class_camera_a202fc4aff11dc17b8db71b5528c8476a} 
+\index{Camera@{Camera}!Set\+Center@{Set\+Center}}
+\index{Set\+Center@{Set\+Center}!Camera@{Camera}}
+\subsubsection{\texorpdfstring{Set\+Center()}{SetCenter()}}
+{\footnotesize\ttfamily void Camera\+::\+Set\+Center (\begin{DoxyParamCaption}\item[{sf\+::\+Vector2f}]{center }\end{DoxyParamCaption})}
+
+\hypertarget{class_camera_a0b31de4a23f304be6e27d53706d326c5}{}\label{class_camera_a0b31de4a23f304be6e27d53706d326c5} 
+\index{Camera@{Camera}!Update\+View@{Update\+View}}
+\index{Update\+View@{Update\+View}!Camera@{Camera}}
+\subsubsection{\texorpdfstring{Update\+View()}{UpdateView()}}
+{\footnotesize\ttfamily void Camera\+::\+Update\+View (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\hypertarget{class_camera_aca617187658f1cea7f9633b4f62f1e93}{}\label{class_camera_aca617187658f1cea7f9633b4f62f1e93} 
+\index{Camera@{Camera}!Wrap@{Wrap}}
+\index{Wrap@{Wrap}!Camera@{Camera}}
+\subsubsection{\texorpdfstring{Wrap()}{Wrap()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void Camera\+::\+Wrap (\begin{DoxyParamCaption}\item[{\hyperlink{class_vector2_d}{Vector2D} \&}]{position }\end{DoxyParamCaption})}
+
+\hypertarget{class_camera_ad2f98f35c9a25c335ce7c5e6beae1ff9}{}\label{class_camera_ad2f98f35c9a25c335ce7c5e6beae1ff9} 
+\index{Camera@{Camera}!Wrap@{Wrap}}
+\index{Wrap@{Wrap}!Camera@{Camera}}
+\subsubsection{\texorpdfstring{Wrap()}{Wrap()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void Camera\+::\+Wrap (\begin{DoxyParamCaption}\item[{sf\+::\+Float\+Rect \&}]{bounds }\end{DoxyParamCaption})}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Console\+Application2/\hyperlink{_camera_8h}{Camera.\+h}\item 
+Console\+Application2/\hyperlink{_camera_8cpp}{Camera.\+cpp}\end{DoxyCompactItemize}
