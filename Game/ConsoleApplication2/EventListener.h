@@ -11,7 +11,8 @@ public:
 		SHOOT,
 		NO_SHOOT,
 		HYPERJUMP,
-		SMART_BOMB
+		SMART_BOMB,
+		EMP
 	};	
 
 	enum class KeyDownEvent

@@ -14,10 +14,17 @@ public:
 	void Draw(sf::RenderWindow& window);
 	void DrawWithXOffset(sf::RenderWindow& window, float xOffset);
 	void wrapPositions(Camera & cam);
+	void destroyElectrics();
+	void setGroundY(float y);
+	bool isUnderEMP();
+
 private:
 	Vector2D m_position, m_acceleration, m_velocity;
 	const float MAX_SPEED, MAX_ACCEL;
 	sf::RectangleShape m_shape;
 	float m_timeUntilShoot;
 	const float MAX_TIME_UNTIL_SHOOT;
+	float m_groundY;
+	const int MAX_EMP_TIME;
+	float m_timetillEMPEnds;
 };

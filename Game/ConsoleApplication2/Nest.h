@@ -13,9 +13,12 @@ public:
 	void wrapPositions(Camera& cam) override;
 
 	void SpawnAbductors(float dt);
+	void destroyElectrics();
+	void setGroundY(float y);
+	bool isUnderEMP();
 
 private:
-	enum States {WANDERING, EVADING};
+	enum States {WANDERING, EVADING };
 	Vector2D m_position;
 	Vector2D m_velocity, m_direction;
 	const float MAX_SPEED;
@@ -30,4 +33,7 @@ private:
 	States m_state;
 	const float MAX_ACCEL;
 	Vector2D m_acceleration;
+	float m_groundY;
+	const int MAX_EMP_TIME;
+	float m_timetillEMPEnds;
 };

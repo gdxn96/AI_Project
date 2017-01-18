@@ -6,6 +6,8 @@
 #include "AIManager.h"
 #include "EntityFactory.h"
 #include "CollisionManager.h"
+#include "Mutant.h"
+#include "Nest.h"
 
 using namespace std;
 
@@ -29,21 +31,33 @@ private:
 	bool m_shooting;
 	float m_timeTillNextShot;
 	int NORMAL_FIRERATE;
-	int MAX_FIRERATE;
 
+	//-----------------------------------------
 	// Power ups
+	//-----------------------------------------
+	// Hyperjump
 	bool m_canHyperjump;
+	// Smart bomb
 	bool m_canUseSmartBomb;
 	float BOMB_COOLDOWN;
 	float m_timeTillBombActive;
+	// Increased fire rate
+	int MAX_FIRERATE;
 	float m_timeTillIncreasedFireRateEnds;
 	const int MAX_TIME_INCREASED_FIRE_RATE;
+	// Invincibility
+	const int MAX_INVINCIBILITY_TIME;
+	float m_timeTillInvincibilityEnds;
+	// EMP
+	bool m_canUseEMP;
+	//-----------------------------------------
 
 	void UpdateDirection();
 	void UpdateShootState(float dt);
 	void UpdateSpeed(float dt);
 	void UpdateSmartBomb(float dt);
 	void UpdateIncreasedFireRate(float dt);
+	void UpdateInvincibility(float dt);
 
 
 public:
@@ -58,7 +72,10 @@ public:
 	void onKeyUp(KeyUpEvent evt) override;
 	void wrapPositions(Camera& cam) override;
 	Vector2D getPosition();
-	void setCanUseHyperjump();
+	void addHyperJumpPowerUp();
 	void increaseFireRate();
+	void makeInvincible();
+	bool isInvincible();
+	void addEMP();
 };
 

@@ -21,6 +21,7 @@ public:
 	static void deregisterGameObject(GameObject* g);
 	static void CheckCollisions();
 	static std::vector<GameObject*> GetObjectsOnScreen();
+	static std::vector<GameObject*> GetEnemiesOnScreen();
 
 	static void RegisterCamera(Camera& cam);
 private:

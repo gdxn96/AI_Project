@@ -1,8 +1,7 @@
 #pragma once
 
 #include <vector>
-#include "HyperJumpGenerator.h"
-#include "FireRatePowerupGenerator.h"
+#include "PowerUpGenerator.h"
 
 using namespace std;
 

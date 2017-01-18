@@ -67,3 +67,15 @@ void PhysicsManager::initialize(sf::FloatRect levelBounds)
 {
 	m_levelBounds = levelBounds;
 }
+
+Vector2D PhysicsManager::getRandomPosition()
+{
+	float x = (rand() % (int)m_levelBounds.width) + m_levelBounds.left;
+	float y = (rand() % (int)m_levelBounds.height) + m_levelBounds.top;
+	return Vector2D(x, y);
+}
+
+sf::FloatRect PhysicsManager::getLevelBounds()
+{
+	return m_levelBounds;
+}

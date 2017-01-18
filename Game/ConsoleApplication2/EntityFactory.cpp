@@ -32,12 +32,16 @@ void EntityFactory::CreateBullet(Vector2D position, Vector2D direction, bool isE
 
 void EntityFactory::CreateMissile(Vector2D position)
 {
-	m_newGameObjects.push_back(new Missile(position));
+	Missile* m = new Missile(position);
+	m_newGameObjects.push_back(m);
+	CollisionManager::RegisterEnemyBullet(m);
 }
 
 void EntityFactory::CreateMutant(Vector2D position)
 {
 	Mutant* m = new Mutant(position);
+	sf::FloatRect levelBounds = PhysicsManager::getLevelBounds();
+	m->setGroundY(levelBounds.top + levelBounds.height);
 	m_newGameObjects.push_back(m);
 	CollisionManager::RegisterEnemy(m);
 }
@@ -61,6 +65,8 @@ void EntityFactory::CreateAbductor(sf::Vector2f position)
 		float minPatrolHeight = m_levelSize.height * 0.75f;
 		float maxPatrolHeight = m_levelSize.height * 0.6f;
 		Abductor* abductor = new Abductor(position, size, minPatrolHeight, maxPatrolHeight);
+		sf::FloatRect levelBounds = PhysicsManager::getLevelBounds();
+		abductor->setGroundY(levelBounds.top + levelBounds.height);
 		m_newGameObjects.push_back(abductor);
 		AIManager::registerAbductor(abductor);
 
@@ -92,6 +98,8 @@ void EntityFactory::CreatePowerUp(int type, sf::Vector2f position)
 void EntityFactory::CreateNest(Vector2D pos, Vector2D dir, float speed)
 {
 	Nest* nest = new Nest(pos, dir, speed);
+	sf::FloatRect levelBounds = PhysicsManager::getLevelBounds();
+	nest->setGroundY(levelBounds.top + levelBounds.height);
 	m_newGameObjects.push_back(nest);
 	CollisionManager::RegisterEnemy(nest);
 }

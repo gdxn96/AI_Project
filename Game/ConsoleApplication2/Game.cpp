@@ -21,8 +21,10 @@ Game::Game(Vector2D screenSize, Vector2D levelSize) :
 	CollisionManager::RegisterCamera(m_camera);
 
 	m_powerupManager = PowerUpManager();
-	//m_powerupManager.AddPowerUpGenerator(new HyperJumpGenerator(5, 10));
-	m_powerupManager.AddPowerUpGenerator(new FireRatePowerupGenerator(1, 3));
+	m_powerupManager.AddPowerUpGenerator(new PowerUpGenerator(PowerUpTypes::HYPERJUMP, 5, 10));
+	m_powerupManager.AddPowerUpGenerator(new PowerUpGenerator(PowerUpTypes::MORE_FIRE_RATE, 5, 10));
+	m_powerupManager.AddPowerUpGenerator(new PowerUpGenerator(PowerUpTypes::INVINCIBILITY, 10, 15));
+	m_powerupManager.AddPowerUpGenerator(new PowerUpGenerator(PowerUpTypes::EMP, 10, 15));
 }
 
 
@@ -42,15 +44,13 @@ void Game::CreatePlayer()
 
 void Game::CreateEntities(Vector2D screenSize)
 {
-	EntityFactory::CreateNest(Vector2D(950, 530), Vector2D(0, 1), 500);
-
 	for (int i = 0; i < 15; i++)
 	{
 		if (i % 2 == 0)
-			EntityFactory::CreateAstronaut(400 + (i * 30));
+			EntityFactory::CreateAstronaut(RandomFloat(0, m_levelSize.w));
 
 		EntityFactory::CreateMeteor();
-		EntityFactory::CreateMutant(Vector2D(RandomFloat(0, m_levelSize.width), 0));
+		EntityFactory::CreateNest(Vector2D(RandomFloat(0, m_levelSize.w), 530), Vector2D(0, 1), 500);
 	}
 }
 

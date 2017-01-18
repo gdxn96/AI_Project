@@ -37,6 +37,9 @@ private:
 	const int FIRE_RANGE;
 	const float FIRE_RATE;
 	float m_timeTillFire;
+	float m_groundY;
+	const int MAX_EMP_TIME;
+	float m_timetillEMPEnds;
 
 	bool isInPatrolArea();
 	bool shouldAbductAstronaut();
@@ -62,4 +65,7 @@ public:
 	bool isPatrolling();
 	bool isPredator() override;
 	bool shouldTransform();
+	void destroyElectrics();
+	void setGroundY(float y);
+	bool isUnderEMP();
 };
