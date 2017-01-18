@@ -14,6 +14,7 @@ public:
 	void Update(float dt) override;
 	void Draw(sf::RenderWindow& window) override;
 	void DrawWithXOffset(sf::RenderWindow& window, float xOffset) override;
+	int GetType();
 
 private:
 	sf::FloatRect m_bounds;

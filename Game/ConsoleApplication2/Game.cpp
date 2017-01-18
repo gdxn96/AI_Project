@@ -34,6 +34,7 @@ void Game::CreatePlayer()
 	);
 
 	AIManager::registerPlayer(player);
+	CollisionManager::RegisterPlayer(player);
 	m_gameObjects.push_back(player);
 }
 

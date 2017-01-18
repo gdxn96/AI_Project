@@ -51,3 +51,8 @@ void PowerUp::DrawWithXOffset(sf::RenderWindow & window, float xOffset)
 	window.draw(m_shape);
 	m_shape.move(sf::Vector2f(-xOffset, 0));
 }
+
+int PowerUp::GetType()
+{
+	return m_type;
+}

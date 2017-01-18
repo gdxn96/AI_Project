@@ -84,6 +84,7 @@ void EntityFactory::CreatePowerUp(int type, sf::Vector2f position)
 {
 	cout << "power up created" << endl;
 	GameObject* powerup = new PowerUp(type, position, sf::Vector2f(20, 20));
+	CollisionManager::RegisterPowerup(powerup);
 	m_newGameObjects.push_back(powerup);
 }
 
