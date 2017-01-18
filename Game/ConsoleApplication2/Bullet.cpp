@@ -3,6 +3,7 @@
 
 Bullet::Bullet(Vector2D pos, Vector2D dir)
 :	GameObject(sf::FloatRect(pos.x, pos.y, 20, 10)),
+	Damageable(20),
 	m_velocity(Vector2D(1200, 1200) * dir),
 	m_position(pos),
 	m_timeToLive(1),

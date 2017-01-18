@@ -1,7 +1,8 @@
 #pragma once
 #include "GameObject.h"
+#include "DamageObject.h"
 
-class Missile : public GameObject
+class Missile : public GameObject, public Damageable
 {
 public:
 	Missile(Vector2D pos);

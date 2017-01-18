@@ -9,7 +9,8 @@ Missile::Missile(Vector2D pos)
 	m_acceleration((0,0)),
 	m_timeToLive(10),
 	m_shape(sf::Vector2f(20, 10)),
-	MAX_SPEED(800)
+	MAX_SPEED(800),
+	Damageable(40)
 {
 	m_shape.setPosition(m_position.toSFMLVector());
 	m_bounds.left = m_position.x;

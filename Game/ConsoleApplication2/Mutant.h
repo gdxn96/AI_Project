@@ -1,8 +1,8 @@
 #pragma once
-#include "GameObject.h"
+#include "HealthObject.h"
 #include "Boid.h"
 
-class Mutant : public GameObject, public Boid
+class Mutant : public HealthObject, public Boid
 {
 public:
 	Mutant(Vector2D pos);

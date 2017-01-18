@@ -3,7 +3,7 @@
 #include "EntityFactory.h"
 
 Nest::Nest(Vector2D pos, Vector2D dir, float speed)
-	: GameObject(sf::FloatRect(pos.x, pos.y, 40, 40), true),
+	: HealthObject(50, sf::FloatRect(pos.x, pos.y, 40, 40), true),
 	m_shape(sf::Vector2f(40, 40)),
 	m_position(pos),
 	m_direction((0,0)),

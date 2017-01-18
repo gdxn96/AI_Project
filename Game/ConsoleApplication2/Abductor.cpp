@@ -3,7 +3,7 @@
 
 
 Abductor::Abductor(sf::Vector2f position, sf::Vector2f size, float minPatrolHeight, float maxPatrolHeight)
-	: GameObject(sf::FloatRect(position, size), true),
+	: HealthObject(50, sf::FloatRect(position, size), true),
 	  Boid(true),
 	  m_patrolArea(0, maxPatrolHeight, 0, minPatrolHeight - maxPatrolHeight),
 	  m_position(position),

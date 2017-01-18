@@ -86,6 +86,7 @@
       <Filter>Source</Filter>
     </ClCompile>
     <ClCompile Include="FireRatePowerupGenerator.cpp" />
+    <ClCompile Include="HealthObject.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Abductor.h">
@@ -185,6 +186,12 @@
       <Filter>Header</Filter>
     </ClInclude>
     <ClInclude Include="FireRatePowerupGenerator.h" />
+    <ClInclude Include="HealthObject.h">
+      <Filter>Header</Filter>
+    </ClInclude>
+    <ClInclude Include="DamageObject.h">
+      <Filter>Header</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">

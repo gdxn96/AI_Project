@@ -1,8 +1,9 @@
 #pragma once
 #include "GameObject.h"
 #include "AIManager.h"
+#include "DamageObject.h"
 
-class Bullet : public GameObject
+class Bullet : public GameObject, public Damageable
 {
 private:
 	Vector2D m_velocity;
