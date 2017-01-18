@@ -2,20 +2,21 @@
 
 #include "EntityFactory.h"
 #include "PowerUpTypes.h"
-#include "AIManager.h"
+#include "PhysicsManager.h"
 
 
 class PowerUpGenerator
 {
 public:
-	PowerUpGenerator(int minSpawnTime, int maxSpawnTime);
+	PowerUpGenerator(int powerupType, int minSpawnTime, int maxSpawnTime);
 	~PowerUpGenerator();
-	virtual void Update(float dt) = 0;
+	void Update(float dt);
 
-protected:
+private:
 	const int MIN_SPAWN_TIME;
 	const int MAX_SPAWN_TIME;
 	float m_timeTillSpawn;
+	const int TYPE;
 
 	void ResetTimeTillSpawn();
 };

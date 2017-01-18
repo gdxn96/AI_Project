@@ -101,10 +101,16 @@ void CollisionManager::CheckCollisions()
 				switch (p->GetType())
 				{
 				case PowerUpTypes::HYPERJUMP:
-					m_player->setCanUseHyperjump();
+					m_player->addHyperJumpPowerUp();
 					break;
 				case PowerUpTypes::MORE_FIRE_RATE:
 					m_player->increaseFireRate();
+					break;
+				case PowerUpTypes::INVINCIBILITY:
+					m_player->makeInvincible();
+					break;
+				case PowerUpTypes::EMP:
+					m_player->addEMP();
 					break;
 				}
 
@@ -124,6 +130,11 @@ std::vector<GameObject*> CollisionManager::GetObjectsOnScreen()
 	objects.insert(objects.end(), enemyBulletsOnScreen.begin(), enemyBulletsOnScreen.end());
 
 	return objects;
+}
+
+std::vector<GameObject*> CollisionManager::GetEnemiesOnScreen()
+{
+	return m_camera->getObjectsInViewPort(m_enemies);
 }
 
 void CollisionManager::RegisterCamera(Camera & cam)

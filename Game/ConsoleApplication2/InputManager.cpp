@@ -108,6 +108,9 @@ void InputManager::ProcessInput(sf::RenderWindow* window)
 			case sf::Keyboard::S:
 				Dispatch(EventListener::GenericEvent::SMART_BOMB);
 				break;
+			case sf::Keyboard::D:
+				Dispatch(EventListener::GenericEvent::EMP);
+				break;
 			}
 		}
 		else if (evt.type == sf::Event::KeyReleased)

@@ -2,9 +2,10 @@
 #include "PowerUpGenerator.h"
 
 
-PowerUpGenerator::PowerUpGenerator(int minSpawnTime, int maxSpawnTime)
+PowerUpGenerator::PowerUpGenerator(int powerupType, int minSpawnTime, int maxSpawnTime)
 	: MIN_SPAWN_TIME(minSpawnTime),
-	  MAX_SPAWN_TIME(maxSpawnTime)
+	  MAX_SPAWN_TIME(maxSpawnTime),
+	  TYPE(powerupType)
 {
 	ResetTimeTillSpawn();
 }
@@ -12,6 +13,18 @@ PowerUpGenerator::PowerUpGenerator(int minSpawnTime, int maxSpawnTime)
 
 PowerUpGenerator::~PowerUpGenerator()
 {
+}
+
+void PowerUpGenerator::Update(float dt)
+{
+	m_timeTillSpawn -= dt;
+
+	if (m_timeTillSpawn <= 0)
+	{
+		sf::Vector2f position = PhysicsManager::getRandomPosition().toSFMLVector();
+		EntityFactory::CreatePowerUp(TYPE, position);
+		ResetTimeTillSpawn();
+	}
 }
 
 void PowerUpGenerator::ResetTimeTillSpawn()

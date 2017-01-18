@@ -18,7 +18,10 @@ Player::Player(sf::Vector2f position, sf::Vector2f size, Vector2D acceleration, 
 	  m_canUseSmartBomb(true),
 	  BOMB_COOLDOWN(60),
 	  MAX_TIME_INCREASED_FIRE_RATE(5),
-	  m_timeTillIncreasedFireRateEnds(0)
+	  m_timeTillIncreasedFireRateEnds(0),
+	  MAX_INVINCIBILITY_TIME(5),
+	  m_timeTillInvincibilityEnds(0),
+	  m_canUseEMP(true)
 {
 	m_shape.setPosition(m_position.toSFMLVector());
 	InitializeEvents();
@@ -45,6 +48,7 @@ void Player::InitializeEvents()
 	input->AddListener(static_cast<int>(EventListener::GenericEvent::NO_SHOOT), this);
 	input->AddListener(static_cast<int>(EventListener::GenericEvent::HYPERJUMP), this);
 	input->AddListener(static_cast<int>(EventListener::GenericEvent::SMART_BOMB), this);
+	input->AddListener(static_cast<int>(EventListener::GenericEvent::EMP), this);
 }
 
 
@@ -54,6 +58,7 @@ void Player::Update(float dt)
 	UpdateDirection();
 	UpdateSmartBomb(dt);
 	UpdateIncreasedFireRate(dt);
+	UpdateInvincibility(dt);
 
 	if (m_shooting)
 	{
@@ -107,6 +112,35 @@ void Player::onGenericEvent(GenericEvent evt)
 			for (GameObject* object : objectsOnScreen)
 			{
 				object->kill();
+			}
+		}
+		break;
+	case EventListener::GenericEvent::EMP:
+		if (m_canUseEMP)
+		{
+			std::vector<GameObject*> enemiesOnScreen = CollisionManager::GetEnemiesOnScreen();
+			m_canUseEMP = false;
+
+			for (GameObject* enemy : enemiesOnScreen)
+			{
+				Abductor* abductor = dynamic_cast<Abductor*>(enemy);
+				Mutant* mutant = dynamic_cast<Mutant*>(enemy);
+				Nest* nest = dynamic_cast<Nest*>(enemy);
+
+				if (abductor != NULL)
+				{
+					abductor->destroyElectrics();
+				}
+
+				if (mutant != NULL)
+				{
+					mutant->destroyElectrics();
+				}
+
+				if (nest != NULL)
+				{
+					nest->destroyElectrics();
+				}
 			}
 		}
 		break;
@@ -225,6 +259,14 @@ void Player::UpdateIncreasedFireRate(float dt)
 	}
 }
 
+void Player::UpdateInvincibility(float dt)
+{
+	if (isInvincible())
+	{
+		m_timeTillInvincibilityEnds -= dt;
+	}
+}
+
 
 
 void Player::UpdateDirection()
@@ -267,7 +309,7 @@ Vector2D Player::getPosition()
 	return m_position;
 }
 
-void Player::setCanUseHyperjump()
+void Player::addHyperJumpPowerUp()
 {
 	m_canHyperjump = true;
 }
@@ -276,4 +318,19 @@ void Player::increaseFireRate()
 {
 	m_timeTillIncreasedFireRateEnds = MAX_TIME_INCREASED_FIRE_RATE;
 	m_bulletsPerSecond = MAX_FIRERATE;
+}
+
+void Player::makeInvincible()
+{
+	m_timeTillInvincibilityEnds = MAX_INVINCIBILITY_TIME;
+}
+
+bool Player::isInvincible()
+{
+	return m_timeTillInvincibilityEnds > 0;
+}
+
+void Player::addEMP()
+{
+	m_canUseEMP = true;
 }

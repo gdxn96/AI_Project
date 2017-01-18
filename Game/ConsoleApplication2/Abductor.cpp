@@ -16,7 +16,9 @@ Abductor::Abductor(sf::Vector2f position, sf::Vector2f size, float minPatrolHeig
 	  m_wanderTimeRemaining(0),
 	  FIRE_RANGE(400),
 	  FIRE_RATE(1),
-      m_timeTillFire(0.1f)
+      m_timeTillFire(0.1f),
+	  MAX_EMP_TIME(5),
+	  m_timetillEMPEnds(0)
 {
 	m_currentState = m_states::TOSURFACE;
 	m_shape.setPosition(m_position.toSFMLVector());
@@ -39,39 +41,57 @@ Abductor::~Abductor()
 
 void Abductor::Update(float dt)
 {
-	UpdateState();
-	UpdateShooting(dt);
-
-	switch (m_currentState)
+	if (isUnderEMP())
 	{
-	case m_states::TOSURFACE:
-		AIManager::seekToward(m_position, Vector2D(m_position.x, m_patrolArea.top), m_direction);
-		break;
-	case m_states::PATROL:
-		AIManager::wander(dt, m_wanderTimeRemaining, MAX_WANDER_TIME, m_direction); 
-		calculateAbductPosition();
-		AIManager::flock(this, Vector2D(), m_position, m_velocity, 200, 0);
-		break;
-	case m_states::PATROL_EXIT:
-		m_direction.y *= -1;
-		break;
-	case m_states::SEEK:
-		calculateAbductPosition();
-		AIManager::seekToward(m_position, m_abductPosition, m_direction);
-		break;
-	case m_states::ABDUCT:
-		AIManager::seekToward(m_position, Vector2D(m_position.x, 0), m_direction);
-		m_closestAstronaut->setPosition(Vector2D(m_closestAstronautPosition.x, m_position.y + m_size.h));
-		break;
-	case m_states::TRANSFORM:
-		EntityFactory::CreateMutant(m_position);
-		m_closestAstronaut->kill();
-		kill();
-		break;
+		m_timetillEMPEnds -= dt;
+		PhysicsManager::move(dt, m_position, m_velocity);
+
+		if (m_position.y >= m_groundY)
+		{
+			m_position.y = m_groundY;
+		}
+	}
+	else
+	{
+		UpdateState();
+		UpdateShooting(dt);
+
+		switch (m_currentState)
+		{
+		case m_states::TOSURFACE:
+			AIManager::seekToward(m_position, Vector2D(m_position.x, m_patrolArea.top), m_direction);
+			break;
+		case m_states::PATROL:
+			AIManager::wander(dt, m_wanderTimeRemaining, MAX_WANDER_TIME, m_direction);
+			calculateAbductPosition();
+			AIManager::flock(this, Vector2D(), m_position, m_velocity, 200, 0);
+			break;
+		case m_states::PATROL_EXIT:
+			//m_direction.y *= -1;
+			AIManager::seekToward(m_position, Vector2D(m_position.x, m_patrolArea.top), m_direction);
+			break;
+		case m_states::SEEK:
+			calculateAbductPosition();
+			AIManager::seekToward(m_position, m_abductPosition, m_direction);
+			break;
+		case m_states::ABDUCT:
+			AIManager::seekToward(m_position, Vector2D(m_position.x, 0), m_direction);
+			m_closestAstronaut->setPosition(Vector2D(m_closestAstronautPosition.x, m_position.y + m_size.h));
+			break;
+		case m_states::TRANSFORM:
+			EntityFactory::CreateMutant(m_position);
+			m_closestAstronaut->kill();
+			kill();
+			break;
+		}
+
+		m_velocity = m_direction * m_speed;
+		PhysicsManager::move(dt, m_position, m_velocity);
 	}
 
-	m_velocity = m_direction * m_speed;
-	PhysicsManager::move(dt, m_position, m_velocity);
+	m_shape.setPosition(m_position.toSFMLVector());
+	m_bounds.left = m_position.x;
+	m_bounds.top = m_position.y;
 }
 
 void Abductor::UpdateShooting(float dt)
@@ -124,10 +144,6 @@ void Abductor::UpdateState()
 			m_currentState = m_states::ABDUCT;
 			m_closestAstronaut->setBeingAbducted();
 		}
-		/*else if (!isInPatrolArea())
-		{
-			m_currentState = m_states::PATROL_EXIT;
-		}*/
 		break;
 	case m_states::ABDUCT:
 		if (m_position.y <= 0)
@@ -238,4 +254,27 @@ bool Abductor::isPredator()
 bool Abductor::shouldTransform()
 {
 	return m_currentState == m_states::TRANSFORM;
+}
+
+void Abductor::destroyElectrics()
+{
+	m_velocity = Vector2D::DOWN;
+	m_velocity = m_velocity * m_speed;
+	m_timetillEMPEnds = MAX_EMP_TIME;
+
+	if (m_currentState == m_states::ABDUCT)
+	{
+		dropAstronaut();
+		m_currentState = m_states::TOSURFACE;
+	}
+}
+
+void Abductor::setGroundY(float y)
+{
+	m_groundY = y;
+}
+
+bool Abductor::isUnderEMP()
+{
+	return m_timetillEMPEnds > 0;
 }

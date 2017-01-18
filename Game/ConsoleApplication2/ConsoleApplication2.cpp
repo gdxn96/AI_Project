@@ -22,7 +22,7 @@ int main()
 {
 	srand(time(NULL));
 	InputManager* input = InputManager::getInstance();
-	Vector2D screenSize(1280, 720);
+	Vector2D screenSize(1920, 1080);
 	Vector2D levelSize(screenSize.w * 9, screenSize.h);
 	sf::RenderWindow window(sf::VideoMode(screenSize.w, screenSize.h), "Defender");
 	Game game = Game(screenSize, levelSize);
@@ -52,7 +52,7 @@ int main()
 			window.display();
 		}
 
-       		dt = deltaClock.getElapsedTime().asSeconds();
+       	dt = deltaClock.getElapsedTime().asSeconds();
 	}
 
 	return 0;
