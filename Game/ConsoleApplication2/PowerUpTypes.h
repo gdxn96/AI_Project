@@ -3,5 +3,5 @@
 class PowerUpTypes
 {
 public:
-	enum TYPES { HYPERJUMP };
+	enum TYPES { HYPERJUMP, MORE_FIRE_RATE };
 };

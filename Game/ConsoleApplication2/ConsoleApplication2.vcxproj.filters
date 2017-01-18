@@ -85,6 +85,7 @@
     <ClCompile Include="PowerUpManager.cpp">
       <Filter>Source</Filter>
     </ClCompile>
+    <ClCompile Include="FireRatePowerupGenerator.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Abductor.h">
@@ -183,6 +184,7 @@
     <ClInclude Include="PowerUpManager.h">
       <Filter>Header</Filter>
     </ClInclude>
+    <ClInclude Include="FireRatePowerupGenerator.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">

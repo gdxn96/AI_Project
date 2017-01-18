@@ -10,11 +10,15 @@ Player::Player(sf::Vector2f position, sf::Vector2f size, Vector2D acceleration, 
 	  m_position(position),
 	  m_shape(size),
 	  m_facingDirection(1, 0),
-	  m_bulletsPerSecond(10),
+	  NORMAL_FIRERATE(5),
+	  m_bulletsPerSecond(5),
+	  MAX_FIRERATE(10),
 	  m_shooting(false),
 	  m_canHyperjump(true),
 	  m_canUseSmartBomb(true),
-	  BOMB_COOLDOWN(60)
+	  BOMB_COOLDOWN(60),
+	  MAX_TIME_INCREASED_FIRE_RATE(5),
+	  m_timeTillIncreasedFireRateEnds(0)
 {
 	m_shape.setPosition(m_position.toSFMLVector());
 	InitializeEvents();
@@ -49,6 +53,7 @@ void Player::Update(float dt)
 	UpdateSpeed(dt);
 	UpdateDirection();
 	UpdateSmartBomb(dt);
+	UpdateIncreasedFireRate(dt);
 
 	if (m_shooting)
 	{
@@ -207,6 +212,19 @@ void Player::UpdateSmartBomb(float dt)
 	}
 }
 
+void Player::UpdateIncreasedFireRate(float dt)
+{
+	if (m_timeTillIncreasedFireRateEnds > 0)
+	{
+		m_timeTillIncreasedFireRateEnds -= dt;
+
+		if (m_timeTillIncreasedFireRateEnds <= 0)
+		{
+			m_bulletsPerSecond = NORMAL_FIRERATE;
+		}
+	}
+}
+
 
 
 void Player::UpdateDirection()
@@ -252,4 +270,10 @@ Vector2D Player::getPosition()
 void Player::setCanUseHyperjump()
 {
 	m_canHyperjump = true;
+}
+
+void Player::increaseFireRate()
+{
+	m_timeTillIncreasedFireRateEnds = MAX_TIME_INCREASED_FIRE_RATE;
+	m_bulletsPerSecond = MAX_FIRERATE;
 }

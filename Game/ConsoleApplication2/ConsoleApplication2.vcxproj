@@ -173,6 +173,7 @@
     <ClInclude Include="Constants.h" />
     <ClInclude Include="EntityFactory.h" />
     <ClInclude Include="EventListener.h" />
+    <ClInclude Include="FireRatePowerupGenerator.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="PowerUpTypes.h" />
@@ -206,6 +207,7 @@
     <ClCompile Include="ConsoleApplication2.cpp" />
     <ClCompile Include="Constantscpp.cpp" />
     <ClCompile Include="EntityFactory.cpp" />
+    <ClCompile Include="FireRatePowerupGenerator.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="HyperJumpGenerator.cpp" />
