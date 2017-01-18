@@ -73,6 +73,18 @@
     <ClCompile Include="AssetLoader.cpp">
       <Filter>Source</Filter>
     </ClCompile>
+    <ClCompile Include="PowerUp.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="HyperJumpGenerator.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="PowerUpGenerator.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="PowerUpManager.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Abductor.h">
@@ -154,6 +166,21 @@
       <Filter>Header</Filter>
     </ClInclude>
     <ClInclude Include="Asset.h">
+      <Filter>Header</Filter>
+    </ClInclude>
+    <ClInclude Include="PowerUp.h">
+      <Filter>Header</Filter>
+    </ClInclude>
+    <ClInclude Include="PowerUpTypes.h">
+      <Filter>Header</Filter>
+    </ClInclude>
+    <ClInclude Include="HyperJumpGenerator.h">
+      <Filter>Header</Filter>
+    </ClInclude>
+    <ClInclude Include="PowerUpGenerator.h">
+      <Filter>Header</Filter>
+    </ClInclude>
+    <ClInclude Include="PowerUpManager.h">
       <Filter>Header</Filter>
     </ClInclude>
   </ItemGroup>

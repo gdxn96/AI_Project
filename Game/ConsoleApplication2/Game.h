@@ -8,6 +8,7 @@
 #include "Meteor.h"
 #include "EntityFactory.h"
 #include "PhysicsManager.h"
+#include "PowerUpManager.h"
 
 class Game
 {
@@ -25,4 +26,5 @@ private:
 	std::vector<GameObject*> m_terrainSegments;
 	Camera m_camera;
 	Vector2D m_screenSize, m_levelSize;
+	PowerUpManager m_powerupManager;
 };

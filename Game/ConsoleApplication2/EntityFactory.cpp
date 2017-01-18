@@ -7,6 +7,7 @@
 #include "Nest.h"
 #include "Abductor.h"
 #include "Mutant.h"
+#include "PowerUp.h"
 #include "CollisionManager.h"
 
 int EntityFactory::m_numAbductors = 0;
@@ -77,6 +78,16 @@ void EntityFactory::CreateAstronaut(float xPosition)
 	AIManager::registerAstronaut(astronaut);
 	m_newGameObjects.push_back(astronaut);
 }
+
+
+void EntityFactory::CreatePowerUp(int type, sf::Vector2f position)
+{
+	cout << "power up created" << endl;
+	GameObject* powerup = new PowerUp(type, position, sf::Vector2f(20, 20));
+	CollisionManager::RegisterPowerup(powerup);
+	m_newGameObjects.push_back(powerup);
+}
+
 
 void EntityFactory::CreateNest(Vector2D pos, Vector2D dir, float speed)
 {

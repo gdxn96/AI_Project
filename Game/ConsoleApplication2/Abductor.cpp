@@ -86,7 +86,6 @@ void Abductor::UpdateShooting(float dt)
 
 			if (Vector2D::Distance(m_position, playerPos) < FIRE_RANGE)
 			{
-				cout << "FIRE" << endl;
 				m_timeTillFire = FIRE_RATE;
 				EntityFactory::CreateBullet(m_position, (playerPos - m_position).Normalize(), true);
 			}

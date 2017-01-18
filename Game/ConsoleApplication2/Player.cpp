@@ -88,6 +88,7 @@ void Player::onGenericEvent(GenericEvent evt)
 	case EventListener::GenericEvent::HYPERJUMP:
 		if (m_canHyperjump)
 		{
+			m_canHyperjump = false;
 			AIManager::jumpToRandomPosition(m_position);
 		}
 		break;
@@ -246,4 +247,9 @@ void Player::UpdateShootState(float dt)
 Vector2D Player::getPosition()
 {
 	return m_position;
+}
+
+void Player::setCanUseHyperjump()
+{
+	m_canHyperjump = true;
 }

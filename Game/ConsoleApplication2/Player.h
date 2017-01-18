@@ -53,5 +53,6 @@ public:
 	void onKeyUp(KeyUpEvent evt) override;
 	void wrapPositions(Camera& cam) override;
 	Vector2D getPosition();
+	void setCanUseHyperjump();
 };
 
