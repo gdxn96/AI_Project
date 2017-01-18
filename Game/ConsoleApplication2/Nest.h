@@ -1,9 +1,9 @@
 #pragma once
 #include "SimpleTypes.h"
-#include "GameObject.h"
+#include "HealthObject.h"
 #include "AIManager.h"
 
-class Nest : public GameObject
+class Nest : public HealthObject
 {
 public:
 	Nest(Vector2D pos, Vector2D dir, float speed);

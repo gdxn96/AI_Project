@@ -5,13 +5,15 @@
 PowerUp::PowerUp(int type, sf::Vector2f position, sf::Vector2f size) 
 	: GameObject(sf::FloatRect(position, size)),
 	  m_type(type),
-	  m_timeToLive(5),
+	  m_timeToLive(10),
 	  m_position(position)
 {
 	initializeColor();
 	m_shape = sf::RectangleShape(size);
 	m_shape.setPosition(position);
 	m_shape.setFillColor(m_color);
+	m_bounds.left = m_position.x;
+	m_bounds.top = m_position.y;
 }
 
 
@@ -60,6 +62,12 @@ void PowerUp::DrawWithXOffset(sf::RenderWindow & window, float xOffset)
 	m_shape.move(sf::Vector2f(xOffset, 0));
 	window.draw(m_shape);
 	m_shape.move(sf::Vector2f(-xOffset, 0));
+}
+
+void PowerUp::wrapPositions(Camera & cam)
+{
+	cam.Wrap(m_position);
+	m_shape.setPosition(m_position.toSFMLVector());
 }
 
 int PowerUp::GetType()

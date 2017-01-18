@@ -171,10 +171,12 @@
     <ClInclude Include="Camera.h" />
     <ClInclude Include="CollisionManager.h" />
     <ClInclude Include="Constants.h" />
+    <ClInclude Include="DamageObject.h" />
     <ClInclude Include="EntityFactory.h" />
     <ClInclude Include="EventListener.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameObject.h" />
+    <ClInclude Include="HealthObject.h" />
     <ClInclude Include="PowerUpTypes.h" />
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="Meteor.h" />
@@ -207,6 +209,7 @@
     <ClCompile Include="EntityFactory.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameObject.cpp" />
+    <ClCompile Include="HealthObject.cpp" />
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="Meteor.cpp" />
     <ClCompile Include="Missile.cpp" />

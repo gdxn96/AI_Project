@@ -32,7 +32,9 @@ void EntityFactory::CreateBullet(Vector2D position, Vector2D direction, bool isE
 
 void EntityFactory::CreateMissile(Vector2D position)
 {
-	m_newGameObjects.push_back(new Missile(position));
+	Missile* m = new Missile(position);
+	m_newGameObjects.push_back(m);
+	CollisionManager::RegisterEnemyBullet(m);
 }
 
 void EntityFactory::CreateMutant(Vector2D position)

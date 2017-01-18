@@ -6,13 +6,14 @@
 
 Mutant::Mutant(Vector2D pos) :
 	Boid(false),
-	GameObject(sf::FloatRect(pos.x, pos.y, 20, 20)),
+	HealthObject(100, sf::FloatRect(pos.x, pos.y, 20, 20)),
 	MAX_SPEED(rand() % 1000 + 1000),
 	MAX_ACCEL(rand() % 1000 + 1000),
 	m_shape(sf::RectangleShape(sf::Vector2f(20, 20))),
 	MAX_TIME_UNTIL_SHOOT(0.2f),
 	m_timeUntilShoot(0),
 	MAX_EMP_TIME(5),
+	m_position(pos),
 	m_timetillEMPEnds(0)
 {
 	m_shape.setFillColor(sf::Color::Cyan);

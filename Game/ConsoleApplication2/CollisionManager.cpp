@@ -72,10 +72,23 @@ void CollisionManager::CheckCollisions()
 		{
 			if (Collides(enemy, bullet))
 			{
-				enemy->kill();
+				Damageable* b = dynamic_cast<Damageable*>(bullet);
+				enemy->Damage(b->getDamage());
 				bullet->kill();
 				break;
 			}
+		}
+	}
+
+	for (GameObject* bullet : m_enemyBullets)
+	{
+		if (m_player != nullptr)
+		if (Collides(m_player, bullet))
+		{
+			Damageable* b = dynamic_cast<Damageable*>(bullet);
+			m_player->Damage(b->getDamage());
+			bullet->kill();
+			break;
 		}
 	}
 

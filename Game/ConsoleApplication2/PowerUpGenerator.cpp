@@ -7,6 +7,7 @@ PowerUpGenerator::PowerUpGenerator(int powerupType, int minSpawnTime, int maxSpa
 	  MAX_SPAWN_TIME(maxSpawnTime),
 	  TYPE(powerupType)
 {
+	m_timeTillSpawn = 0;
 	ResetTimeTillSpawn();
 }
 

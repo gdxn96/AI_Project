@@ -1,13 +1,13 @@
 #pragma once
 
-#include "GameObject.h"
+#include "HealthObject.h"
 #include "AIManager.h"
 #include "Astronaut.h"
 
 class Astronaut;
 
 
-class Abductor : public GameObject, public Boid
+class Abductor : public HealthObject, public Boid
 {
 private:
 	sf::RectangleShape m_shape;

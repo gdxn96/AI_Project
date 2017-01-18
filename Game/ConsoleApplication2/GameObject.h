@@ -28,6 +28,7 @@ public:
 	virtual sf::FloatRect getAABBWithXOffset(float xOffset) { sf::FloatRect r = m_bounds; r.left += xOffset; return r; };
 	virtual void setBounds(sf::FloatRect bounds) { m_bounds = bounds; };
 	virtual void wrapPositions(Camera& cam);
+	virtual void Damage(float _) {};
 
 	void kill() { m_alive = false; }
 	bool isAlive() { return m_alive; }

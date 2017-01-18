@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Bullet.h"
-#include "GameObject.h"
+#include "HealthObject.h"
 #include "EventListener.h"
 #include "AIManager.h"
 #include "EntityFactory.h"
@@ -12,7 +12,7 @@
 using namespace std;
 
 
-class Player : public GameObject, public EventListener
+class Player : public HealthObject, public EventListener
 {
 private:
 	sf::RectangleShape m_shape;

@@ -14,6 +14,7 @@ public:
 	void Update(float dt) override;
 	void Draw(sf::RenderWindow& window) override;
 	void DrawWithXOffset(sf::RenderWindow& window, float xOffset) override;
+	void wrapPositions(Camera& cam) override;
 	int GetType();
 
 private:
