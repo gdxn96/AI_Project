@@ -4,7 +4,7 @@
 
 
 Player::Player(sf::Vector2f position, sf::Vector2f size, Vector2D acceleration, Vector2D maxSpeed)
-	: HealthObject(500, sf::FloatRect(position, size), true),
+	: HealthObject(50000, sf::FloatRect(position, size), true),
 	  ACCELERATION(acceleration),
 	  MAX_SPEED(maxSpeed),
 	  m_position(position),

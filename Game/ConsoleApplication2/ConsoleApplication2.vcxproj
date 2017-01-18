@@ -98,6 +98,15 @@
     </Link>
     <PostBuildEvent>
       <Command>copy /y ".\dependancies\dlls\*.dll" "$(OutDir)";
+
+mkdir "$(OutDir)assets";
+
+mkdir "$(OutDir)loadFiles";
+
+copy / y ".\assets\*" "$(OutDir)assets\";
+
+copy / y ".\loadFiles\*" "$(OutDir)loadFiles\";
+
 </Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
@@ -136,6 +145,13 @@
     <PostBuildEvent>
       <Command>copy /y ".\dependancies\dlls\*.dll" "$(OutDir)";
 
+mkdir "$(OutDir)assets";
+
+mkdir "$(OutDir)loadFiles";
+
+copy / y ".\assets\*" "$(OutDir)assets\";
+
+copy / y ".\loadFiles\*" "$(OutDir)loadFiles\";
 
 </Command>
     </PostBuildEvent>

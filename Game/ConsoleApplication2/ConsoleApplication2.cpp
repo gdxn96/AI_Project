@@ -3,14 +3,6 @@
 
 
 ////Stick this in later
-//mkdir "$(OutDir)images";
-//mkdir "$(OutDir)audio";
-//mkdir "$(OutDir)loadFiles";
-//mkdir "$(OutDir)metadata";
-//copy / y ".\images\*" "$(OutDir)images\";
-//copy / y ".\audio\*" "$(OutDir)audio\";
-//copy / y ".\loadFiles\*" "$(OutDir)loadFiles\";
-//copy / y ".\metadata\*" "$(OutDir)metadata\";
 
 #include "stdafx.h"
 #include <SFML/Graphics.hpp>
