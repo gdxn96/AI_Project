@@ -11,7 +11,9 @@ Mutant::Mutant(Vector2D pos) :
 	MAX_ACCEL(rand() % 1000 + 1000),
 	m_shape(sf::RectangleShape(sf::Vector2f(20, 20))),
 	MAX_TIME_UNTIL_SHOOT(0.2f),
-	m_timeUntilShoot(0)
+	m_timeUntilShoot(0),
+	MAX_EMP_TIME(5),
+	m_timetillEMPEnds(0)
 {
 	m_shape.setFillColor(sf::Color::Cyan);
 	m_shape.setPosition(m_position.toSFMLVector());
@@ -34,24 +36,37 @@ bool Mutant::isPredator()
 
 void Mutant::Update(float dt)
 {
-	m_timeUntilShoot -= dt;
-	Vector2D dir(0, 0);
-	Vector2D playerPos = AIManager::getClosestPlayerPos(m_position);
-	if (Vector2D::Distance(playerPos, m_position) < 400)
+	if (isUnderEMP())
 	{
-		if (m_timeUntilShoot < 0)
+		m_timetillEMPEnds -= dt;
+		PhysicsManager::move(dt, m_position, m_velocity);
+		
+		if (m_position.y >= m_groundY)
 		{
-			EntityFactory::CreateBullet(m_position, (playerPos - m_position).Normalize(), true);
-			m_timeUntilShoot = MAX_TIME_UNTIL_SHOOT;
+			m_position.y = m_groundY;
 		}
 	}
-	AIManager::seekToward(m_position, playerPos, dir);
-	m_acceleration = dir * MAX_ACCEL;
+	else
+	{
+		m_timeUntilShoot -= dt;
+		Vector2D dir(0, 0);
+		Vector2D playerPos = AIManager::getClosestPlayerPos(m_position);
+		if (Vector2D::Distance(playerPos, m_position) < 400)
+		{
+			if (m_timeUntilShoot < 0)
+			{
+				EntityFactory::CreateBullet(m_position, (playerPos - m_position).Normalize(), true);
+				m_timeUntilShoot = MAX_TIME_UNTIL_SHOOT;
+			}
+		}
+		AIManager::seekToward(m_position, playerPos, dir);
+		m_acceleration = dir * MAX_ACCEL;
 
-	AIManager::avoidObstacles(m_position, m_acceleration, MAX_ACCEL);
-	AIManager::swarm(this, m_position, m_acceleration);
-	PhysicsManager::accelerateVelocity(dt, m_velocity, m_acceleration, MAX_ACCEL);
-	PhysicsManager::move(dt, m_position, m_velocity);
+		AIManager::avoidObstacles(m_position, m_acceleration, MAX_ACCEL);
+		AIManager::swarm(this, m_position, m_acceleration);
+		PhysicsManager::accelerateVelocity(dt, m_velocity, m_acceleration, MAX_ACCEL);
+		PhysicsManager::move(dt, m_position, m_velocity);
+	}
 	
 	m_shape.setPosition(m_position.toSFMLVector());
 	m_bounds.left = m_position.x;
@@ -74,4 +89,21 @@ void Mutant::wrapPositions(Camera & cam)
 {
 	cam.Wrap(m_position);
 	m_shape.setPosition(m_position.toSFMLVector());
+}
+
+void Mutant::destroyElectrics()
+{
+	m_velocity = Vector2D::DOWN;
+	m_velocity = m_velocity * MAX_SPEED;
+	m_timetillEMPEnds = MAX_EMP_TIME;
+}
+
+void Mutant::setGroundY(float y)
+{
+	m_groundY = y;
+}
+
+bool Mutant::isUnderEMP()
+{
+	return m_timetillEMPEnds > 0;
 }

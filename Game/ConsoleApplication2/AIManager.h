@@ -63,7 +63,6 @@ public:
 	static void avoid(Vector2D position, Vector2D targetPosition, Vector2D& acceleration, const float maxAccel);
 
 	static void jumpToRandomPosition(Vector2D& position);
-	static Vector2D getRandomPosition();
 	
 private:
 	static Player* m_player;
