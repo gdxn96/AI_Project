@@ -19,6 +19,8 @@ Game::Game(Vector2D screenSize, Vector2D levelSize) :
 	CreatePlayer();
 	CreateEntities(screenSize);
 	CollisionManager::RegisterCamera(m_camera);
+	m_powerupManager = PowerUpManager();
+	m_powerupManager.AddPowerUpGenerator(new HyperJumpGenerator(1, 3));
 }
 
 
@@ -57,6 +59,7 @@ void Game::Update(float dt)
 	UpdateGameObjectList(dt, m_gameObjects);
 	UpdateGameObjectList(dt, m_gameObjectsBehind);
 	CollisionManager::CheckCollisions();
+	m_powerupManager.Update(dt);
 }
 
 
